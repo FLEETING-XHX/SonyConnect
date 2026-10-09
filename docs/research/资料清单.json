@@ -1,0 +1,427 @@
+{
+  "schemaVersion": 1,
+  "archiveDate": "2026-10-09",
+  "createdAt": "2026-10-09T06:04:03.9876754Z",
+  "project": "SonyConnect",
+  "root": "C:\\Users\\FLEETING\\Documents\\Project\\SoundConnect",
+  "scope": "Supplementary research materials only; no tools installed, binaries executed, APK analyzed, or user-headphone commands tested",
+  "repositories": [
+    {
+      "path": "references/SonyHeadphonesClient",
+      "role": "原有协议主参考",
+      "addedThisArchive": false,
+      "remote": "https://github.com/mos9527/SonyHeadphonesClient.git",
+      "branch": "v1-compat",
+      "commit": "193c1e053836119eb875c97331dd10c1aef206bc",
+      "shallow": true,
+      "partialCloneFilter": null,
+      "sparseCheckout": false,
+      "sparsePaths": [],
+      "trackedFileCount": 546,
+      "checkedOutTrackedFileCount": 546,
+      "licenseFiles": [
+        {
+          "path": "LICENSE",
+          "sha256": "915e766600639d41714a1c8b0e09e49e0ac3e8f3c90264c8e08d70195bc485c1"
+        }
+      ],
+      "submoduleStatus": [],
+      "worktreeClean": true
+    },
+    {
+      "path": "references/sony-tray",
+      "role": "原有 C# Windows 实现",
+      "addedThisArchive": false,
+      "remote": "https://github.com/abhiinhii/sony-tray.git",
+      "branch": "main",
+      "commit": "497baa39ee5a940ba9ef2d1f9489d40ec10d1952",
+      "shallow": true,
+      "partialCloneFilter": null,
+      "sparseCheckout": false,
+      "sparsePaths": [],
+      "trackedFileCount": 83,
+      "checkedOutTrackedFileCount": 83,
+      "licenseFiles": [
+        {
+          "path": "LICENSE",
+          "sha256": "e2fb2e96c1dc263c78cb704f3c06a86ac970cd6041ea5321c4e260f545157a81"
+        }
+      ],
+      "submoduleStatus": [],
+      "worktreeClean": true
+    },
+    {
+      "path": "references/sony-device-center",
+      "role": "原有桌面架构参考",
+      "addedThisArchive": false,
+      "remote": "https://github.com/marconvcm/sony-device-center.git",
+      "branch": "main",
+      "commit": "0bf98223c1ba402dd6c5136c21e6ab35482e4390",
+      "shallow": true,
+      "partialCloneFilter": null,
+      "sparseCheckout": false,
+      "sparsePaths": [],
+      "trackedFileCount": 277,
+      "checkedOutTrackedFileCount": 276,
+      "licenseFiles": [
+        {
+          "path": "LICENSE",
+          "sha256": "006da6d371425ea1b93fe35cc4222e10482c027fd29e214c1d8cc4bccf490212"
+        }
+      ],
+      "submoduleStatus": [
+        " b62bfd6b06de958e4630b715225b7e8409bfd0f9 Client/imgui (b62bfd6)"
+      ],
+      "worktreeClean": true
+    },
+    {
+      "path": "references/supplemental/01-protocol-docs/mdr-protocol",
+      "role": "旧协议文档",
+      "addedThisArchive": true,
+      "remote": "https://github.com/AndreasOlofsson/mdr-protocol.git",
+      "branch": "master",
+      "commit": "367bfa55a398e7bba1ec872062d4c3de9b7aac56",
+      "shallow": true,
+      "partialCloneFilter": null,
+      "sparseCheckout": false,
+      "sparsePaths": [],
+      "trackedFileCount": 8,
+      "checkedOutTrackedFileCount": 8,
+      "licenseFiles": [],
+      "submoduleStatus": [],
+      "worktreeClean": true
+    },
+    {
+      "path": "references/supplemental/01-protocol-docs/sony-headphones-bluetooth-documentation",
+      "role": "独立协议研究笔记",
+      "addedThisArchive": true,
+      "remote": "https://github.com/ohm-app/sony-headphones-bluetooth-documentation.git",
+      "branch": "main",
+      "commit": "e38bf35c19e219ced93dd748ac6b48c2c4fe6ffd",
+      "shallow": true,
+      "partialCloneFilter": null,
+      "sparseCheckout": false,
+      "sparsePaths": [],
+      "trackedFileCount": 11,
+      "checkedOutTrackedFileCount": 11,
+      "licenseFiles": [
+        {
+          "path": "LICENSE",
+          "sha256": "f4e7f373b9b996950337e8d41a4a2939c2d90b7725e9baf3d5084a22717ad328"
+        }
+      ],
+      "submoduleStatus": [],
+      "worktreeClean": true
+    },
+    {
+      "path": "references/supplemental/02-desktop-implementations/SonyBridge",
+      "role": "桌面实现补充",
+      "addedThisArchive": true,
+      "remote": "https://github.com/AmitRajput-Dev/SonyBridge.git",
+      "branch": "main",
+      "commit": "8c81a2775a76097f4938fbc835411bd59088014c",
+      "shallow": true,
+      "partialCloneFilter": null,
+      "sparseCheckout": false,
+      "sparsePaths": [],
+      "trackedFileCount": 118,
+      "checkedOutTrackedFileCount": 117,
+      "licenseFiles": [
+        {
+          "path": "LICENSE",
+          "sha256": "006da6d371425ea1b93fe35cc4222e10482c027fd29e214c1d8cc4bccf490212"
+        }
+      ],
+      "submoduleStatus": [
+        " b62bfd6b06de958e4630b715225b7e8409bfd0f9 Client/imgui (b62bfd6)"
+      ],
+      "worktreeClean": true
+    },
+    {
+      "path": "references/supplemental/03-android-implementation/Gadgetbridge",
+      "role": "Android Sony 实现补充",
+      "addedThisArchive": true,
+      "remote": "https://codeberg.org/Freeyourgadget/Gadgetbridge.git",
+      "branch": "master",
+      "commit": "20a20ed7ded003e4b06ecfd8ee63737a6debfeb4",
+      "shallow": true,
+      "partialCloneFilter": "blob:none",
+      "sparseCheckout": true,
+      "sparsePaths": [
+        "app/src/main/java/nodomain/freeyourgadget/gadgetbridge/devices/sony/headphones",
+        "app/src/main/java/nodomain/freeyourgadget/gadgetbridge/service/devices/sony/headphones",
+        "app/src/main/res/xml",
+        "app/src/test/java/nodomain/freeyourgadget/gadgetbridge/service/devices/sony/headphones"
+      ],
+      "trackedFileCount": 6469,
+      "checkedOutTrackedFileCount": 605,
+      "licenseFiles": [
+        {
+          "path": "LICENSE",
+          "sha256": "6da1054eef20b8949622f2acc5a89c3243ff3b3d7aa8c2bb8fa5c04d15113c00"
+        },
+        {
+          "path": "LICENSE.artwork",
+          "sha256": "d26094fdfb5b960e289c50a7ec79df8c4a70aee647cd0c7c6d8ec150af3c95cf"
+        }
+      ],
+      "submoduleStatus": [
+        "-0734e0edd59242e2e5a7a5eaf265fef8c01d930d external/fossil-hr-gbapps",
+        "-e8bc7a2b93a6edfa463458c8bb69fac2a36feb9e external/jerryscript"
+      ],
+      "worktreeClean": true
+    }
+  ],
+  "downloadedDocuments": [
+    {
+      "path": "docs/research/02-设备支持/Gadgetbridge-Sony支持情况.html",
+      "url": "https://freeyourgadget.codeberg.page/gadgetbridge_org/gadgets/headphones/sony/",
+      "retrievedAt": "2026-10-09T05:58:06.8851667Z",
+      "bytes": 196016,
+      "sha256": "36e80f591e59780b632fce0bfa079f197a546b5a74c4119be3c590100dd1d9e4",
+      "title": "Sony - Gadgetbridge",
+      "format": ".html",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/03-双设备与固定播放/PR57-固定播放.patch",
+      "url": "https://github.com/mos9527/SonyHeadphonesClient/pull/57.patch",
+      "retrievedAt": "2026-10-09T05:58:08.6046339Z",
+      "bytes": 37513,
+      "sha256": "9578741bfd2b3540359c48896b7e55686f24d530ebfbdfe1e69c71e629596f44",
+      "title": null,
+      "format": ".patch",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/04-抓包与调试/Android-蓝牙HCI日志.html",
+      "url": "https://source.android.com/docs/core/connect/bluetooth/verifying_debugging",
+      "retrievedAt": "2026-10-09T05:58:10.6380849Z",
+      "bytes": 350477,
+      "sha256": "77e0156a2849a47280f41b3f37a5db549a1754221b7d6325f7381615c8dec6d5",
+      "title": "Verify and debug &nbsp;|&nbsp; Android Open Source Project",
+      "format": ".html",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/05-APK分析工具/JADX-README.md",
+      "url": "https://raw.githubusercontent.com/skylot/jadx/master/README.md",
+      "retrievedAt": "2026-10-09T05:58:11.117186Z",
+      "bytes": 18089,
+      "sha256": "3cea1d7e9ff4f7c041c3d802be0d237f9931fba823b9a608bd0f74c6d3ec5ae8",
+      "title": null,
+      "format": ".md",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/05-APK分析工具/JADX-LICENSE",
+      "url": "https://raw.githubusercontent.com/skylot/jadx/master/LICENSE",
+      "retrievedAt": "2026-10-09T05:58:11.6387899Z",
+      "bytes": 11357,
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+      "title": null,
+      "format": "",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/06-Windows开发/WPF-概览.html",
+      "url": "https://learn.microsoft.com/en-us/dotnet/desktop/wpf/overview/",
+      "retrievedAt": "2026-10-09T05:58:12.1844459Z",
+      "bytes": 96668,
+      "sha256": "8b4ee70acb5a534dcc24e1d240aa953f5a6d20b8323334b3352b00fe46389f3e",
+      "title": "What is Windows Presentation Foundation - WPF | Microsoft Learn",
+      "format": ".html",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/06-Windows开发/NET-单文件发布.html",
+      "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/single-file/overview",
+      "retrievedAt": "2026-10-09T05:58:12.7759585Z",
+      "bytes": 66930,
+      "sha256": "15654b58db7d619623e83d333f5068cbbcce59afc0dff89be3296a69fe7c54ac",
+      "title": "Create a single file for application deployment - .NET | Microsoft Learn",
+      "format": ".html",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/06-Windows开发/NET-裁剪不兼容情况.html",
+      "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/incompatibilities",
+      "retrievedAt": "2026-10-09T05:58:13.4604462Z",
+      "bytes": 54782,
+      "sha256": "b50e8207a2d3d8876e153ddd77fb32e67f20950a419d54cc0f899a1fb7e6b5d8",
+      "title": "Known trimming incompatibilities - .NET | Microsoft Learn",
+      "format": ".html",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/06-Windows开发/Windows-RFCOMM接口.html",
+      "url": "https://learn.microsoft.com/en-us/uwp/api/windows.devices.bluetooth.rfcomm?view=winrt-26100",
+      "retrievedAt": "2026-10-09T05:58:14.3666109Z",
+      "bytes": 49081,
+      "sha256": "ad9a10cb23cc5928648688010c19c554516e490c1d18a3404868f352e7225b8c",
+      "title": "Windows.Devices.Bluetooth.Rfcomm Namespace - Windows apps | Microsoft Learn",
+      "format": ".html",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/06-Windows开发/VisualStudio-性能分析.html",
+      "url": "https://learn.microsoft.com/en-us/visualstudio/profiling/",
+      "retrievedAt": "2026-10-09T05:58:16.0711991Z",
+      "bytes": 35188,
+      "sha256": "0ad05d8b656106a2a8a1c1f6140bd268ef6c0a78e84f06ce7d0e89e0f5109a72",
+      "title": "Measure performance in Visual Studio - Visual Studio (Windows) | Microsoft Learn",
+      "format": ".html",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/06-Windows开发/Windows-系统音量接口.html",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/endpointvolume/nn-endpointvolume-iaudioendpointvolume",
+      "retrievedAt": "2026-10-09T05:59:18.7757936Z",
+      "bytes": 63624,
+      "sha256": "e5ea284adda9ff550f0d43a0afbd4009c12c09633581d02b5dbe5cdada363f64",
+      "title": "IAudioEndpointVolume (endpointvolume.h) - Win32 apps | Microsoft Learn",
+      "format": ".html",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/06-Windows开发/Windows-媒体会话接口.html",
+      "url": "https://learn.microsoft.com/en-us/uwp/api/windows.media.control.globalsystemmediatransportcontrolssessionmanager?view=winrt-26100",
+      "retrievedAt": "2026-10-09T05:59:19.3829506Z",
+      "bytes": 55019,
+      "sha256": "1771864b2d45d104baabd9bd3aa29b3bb23dc3b21d984dee2a7a819b82ca6fb7",
+      "title": "GlobalSystemMediaTransportControlsSessionManager Class (Windows.Media.Control) - Windows apps | Microsoft Learn",
+      "format": ".html",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/06-Windows开发/Windows-全局快捷键.html",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerhotkey",
+      "retrievedAt": "2026-10-09T05:59:20.0134769Z",
+      "bytes": 58038,
+      "sha256": "a68f05bf4cfd5ebf347ed79be1d17e964e4f45366e85ee7d0f7c0d1d9443f812",
+      "title": "RegisterHotKey function (winuser.h) - Win32 apps | Microsoft Learn",
+      "format": ".html",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/06-Windows开发/Windows-蓝牙设备类型.html",
+      "url": "https://learn.microsoft.com/en-us/uwp/api/windows.devices.bluetooth.bluetoothclassofdevice?view=winrt-26100",
+      "retrievedAt": "2026-10-09T05:59:20.9419235Z",
+      "bytes": 55849,
+      "sha256": "d6e50855c4405bfd54d82bffe2a16ed443279d0b92d32c718b7fc4097169bb7d",
+      "title": "BluetoothClassOfDevice Class (Windows.Devices.Bluetooth) - Windows apps | Microsoft Learn",
+      "format": ".html",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/06-Windows开发/NET-运行时计数器.html",
+      "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
+      "retrievedAt": "2026-10-09T05:59:21.6002414Z",
+      "bytes": 76177,
+      "sha256": "4da35f6e03f7ab39e96ef5fa3dfe6aa9b5be4976d80abe5c0a353fbecf943864",
+      "title": "dotnet-counters diagnostic tool - .NET CLI - .NET | Microsoft Learn",
+      "format": ".html",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/06-Windows开发/GitHub-Releases接口.html",
+      "url": "https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28",
+      "retrievedAt": "2026-10-09T05:59:22.6587261Z",
+      "bytes": 467822,
+      "sha256": "905ac43db4a53fed84e2399ceb07aa5218fd32d5e15b865732c43f3b7d5f7508",
+      "title": "REST API endpoints for releases - GitHub Docs",
+      "format": ".html",
+      "offlineScope": "original body/content; HTML assets may require network"
+    },
+    {
+      "path": "docs/research/03-双设备与固定播放/PR57-讨论与实机记录.html",
+      "url": "https://github.com/mos9527/SonyHeadphonesClient/pull/57",
+      "retrievedAt": "2026-10-09T05:58:39.8626084Z",
+      "bytes": 426899,
+      "sha256": "446c2f2a7238f85ad914ac69b3cd1fc666b9ecbd95d9d3596c30a8d8b4de0eaa",
+      "title": "Fix playback device on multipoint by jkolo · Pull Request #57 · mos9527/SonyHeadphonesClient · GitHub",
+      "format": ".html",
+      "offlineScope": "original body/content; HTML assets may require network"
+    }
+  ],
+  "authoredIndexes": [
+    {
+      "path": "docs/research/README.md",
+      "sha256": "53bb66e648ecbca1f87408b1b7005100345cb698911454309911a56c4860efad",
+      "type": "SonyConnect authored classification index"
+    },
+    {
+      "path": "docs/research/01-协议文档/README.md",
+      "sha256": "f74bec57eb7d7f5a863c91ded59c8d27b9bbe0b5b221351d77a95bc4bd408c45",
+      "type": "SonyConnect authored classification index"
+    },
+    {
+      "path": "docs/research/02-设备支持/README.md",
+      "sha256": "f7c91fb4f9ad3f4e6e9962f2e9cdf69fddbedc0cab3c6753e224597d70935546",
+      "type": "SonyConnect authored classification index"
+    },
+    {
+      "path": "docs/research/03-双设备与固定播放/README.md",
+      "sha256": "f2dec11a444e78a16d2e9dbd22eb7271aa0371efcbce7df8f0211e5538514135",
+      "type": "SonyConnect authored classification index"
+    },
+    {
+      "path": "docs/research/04-抓包与调试/README.md",
+      "sha256": "84ff8715b79c4b0f96b8aad397ed14ae4185c785d00a6cb00ffa50dee8dac945",
+      "type": "SonyConnect authored classification index"
+    },
+    {
+      "path": "docs/research/05-APK分析工具/README.md",
+      "sha256": "1c01f606063b8db52a328a43d8213f97a51c6b3e25f827d525041de9dced9648",
+      "type": "SonyConnect authored classification index"
+    },
+    {
+      "path": "docs/research/06-Windows开发/README.md",
+      "sha256": "1c209ec081e1a3f27bc7409b19085027f36ce2da2b2fe3ad45aad60524d70fde",
+      "type": "SonyConnect authored classification index"
+    }
+  ],
+  "failedDownloads": [
+    {
+      "path": "03-双设备与固定播放/PR57-信息.json",
+      "url": "https://api.github.com/repos/mos9527/SonyHeadphonesClient/pulls/57",
+      "status": "failed",
+      "error": "Response status code does not indicate success: 403 (rate limit exceeded)."
+    },
+    {
+      "path": "03-双设备与固定播放/PR57-讨论.json",
+      "url": "https://api.github.com/repos/mos9527/SonyHeadphonesClient/issues/57/comments?per_page=100",
+      "status": "failed",
+      "error": "Response status code does not indicate success: 403 (rate limit exceeded)."
+    },
+    {
+      "path": "03-双设备与固定播放/PR57-代码审查.json",
+      "url": "https://api.github.com/repos/mos9527/SonyHeadphonesClient/pulls/57/reviews?per_page=100",
+      "status": "failed",
+      "error": "Response status code does not indicate success: 403 (rate limit exceeded)."
+    },
+    {
+      "path": "03-双设备与固定播放/PR57-改动文件.json",
+      "url": "https://api.github.com/repos/mos9527/SonyHeadphonesClient/pulls/57/files?per_page=100",
+      "status": "failed",
+      "error": "Response status code does not indicate success: 403 (rate limit exceeded)."
+    }
+  ],
+  "fallbacks": [
+    {
+      "failed": "GitHub PR 57 REST API endpoints returned HTTP 403 rate limit",
+      "savedInstead": [
+        "docs/research/03-双设备与固定播放/PR57-讨论与实机记录.html",
+        "docs/research/03-双设备与固定播放/PR57-固定播放.patch"
+      ]
+    }
+  ],
+  "originalManifest": "download-manifest.json",
+  "notes": [
+    "Original three checkouts and APK retained.",
+    "Gadgetbridge checkout is sparse and partial; not build-ready.",
+    "References and APK are ignored by root Git; document archive is separate.",
+    "Source licenses remain in upstream checkouts; mdr-protocol checkout has no standalone LICENSE.",
+    "Saved pages verified to contain titles; SHA-256 checked for each successful download."
+  ]
+}

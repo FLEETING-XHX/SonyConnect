@@ -1,0 +1,106 @@
+[
+  {
+    "path": "02-设备支持/Gadgetbridge-Sony支持情况.html",
+    "url": "https://freeyourgadget.codeberg.page/gadgetbridge_org/gadgets/headphones/sony/",
+    "retrievedAt": "2026-10-09T05:58:06.8851667Z",
+    "bytes": 196016,
+    "sha256": "36e80f591e59780b632fce0bfa079f197a546b5a74c4119be3c590100dd1d9e4",
+    "status": "saved"
+  },
+  {
+    "path": "03-双设备与固定播放/PR57-固定播放.patch",
+    "url": "https://github.com/mos9527/SonyHeadphonesClient/pull/57.patch",
+    "retrievedAt": "2026-10-09T05:58:08.6046339Z",
+    "bytes": 37513,
+    "sha256": "9578741bfd2b3540359c48896b7e55686f24d530ebfbdfe1e69c71e629596f44",
+    "status": "saved"
+  },
+  {
+    "path": "03-双设备与固定播放/PR57-信息.json",
+    "url": "https://api.github.com/repos/mos9527/SonyHeadphonesClient/pulls/57",
+    "status": "failed",
+    "error": "Response status code does not indicate success: 403 (rate limit exceeded)."
+  },
+  {
+    "path": "03-双设备与固定播放/PR57-讨论.json",
+    "url": "https://api.github.com/repos/mos9527/SonyHeadphonesClient/issues/57/comments?per_page=100",
+    "status": "failed",
+    "error": "Response status code does not indicate success: 403 (rate limit exceeded)."
+  },
+  {
+    "path": "03-双设备与固定播放/PR57-代码审查.json",
+    "url": "https://api.github.com/repos/mos9527/SonyHeadphonesClient/pulls/57/reviews?per_page=100",
+    "status": "failed",
+    "error": "Response status code does not indicate success: 403 (rate limit exceeded)."
+  },
+  {
+    "path": "03-双设备与固定播放/PR57-改动文件.json",
+    "url": "https://api.github.com/repos/mos9527/SonyHeadphonesClient/pulls/57/files?per_page=100",
+    "status": "failed",
+    "error": "Response status code does not indicate success: 403 (rate limit exceeded)."
+  },
+  {
+    "path": "04-抓包与调试/Android-蓝牙HCI日志.html",
+    "url": "https://source.android.com/docs/core/connect/bluetooth/verifying_debugging",
+    "retrievedAt": "2026-10-09T05:58:10.6380849Z",
+    "bytes": 350477,
+    "sha256": "77e0156a2849a47280f41b3f37a5db549a1754221b7d6325f7381615c8dec6d5",
+    "status": "saved"
+  },
+  {
+    "path": "05-APK分析工具/JADX-README.md",
+    "url": "https://raw.githubusercontent.com/skylot/jadx/master/README.md",
+    "retrievedAt": "2026-10-09T05:58:11.1171860Z",
+    "bytes": 18089,
+    "sha256": "3cea1d7e9ff4f7c041c3d802be0d237f9931fba823b9a608bd0f74c6d3ec5ae8",
+    "status": "saved"
+  },
+  {
+    "path": "05-APK分析工具/JADX-LICENSE",
+    "url": "https://raw.githubusercontent.com/skylot/jadx/master/LICENSE",
+    "retrievedAt": "2026-10-09T05:58:11.6387899Z",
+    "bytes": 11357,
+    "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+    "status": "saved"
+  },
+  {
+    "path": "06-Windows开发/WPF-概览.html",
+    "url": "https://learn.microsoft.com/en-us/dotnet/desktop/wpf/overview/",
+    "retrievedAt": "2026-10-09T05:58:12.1844459Z",
+    "bytes": 96668,
+    "sha256": "8b4ee70acb5a534dcc24e1d240aa953f5a6d20b8323334b3352b00fe46389f3e",
+    "status": "saved"
+  },
+  {
+    "path": "06-Windows开发/NET-单文件发布.html",
+    "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/single-file/overview",
+    "retrievedAt": "2026-10-09T05:58:12.7759585Z",
+    "bytes": 66930,
+    "sha256": "15654b58db7d619623e83d333f5068cbbcce59afc0dff89be3296a69fe7c54ac",
+    "status": "saved"
+  },
+  {
+    "path": "06-Windows开发/NET-裁剪不兼容情况.html",
+    "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/incompatibilities",
+    "retrievedAt": "2026-10-09T05:58:13.4604462Z",
+    "bytes": 54782,
+    "sha256": "b50e8207a2d3d8876e153ddd77fb32e67f20950a419d54cc0f899a1fb7e6b5d8",
+    "status": "saved"
+  },
+  {
+    "path": "06-Windows开发/Windows-RFCOMM接口.html",
+    "url": "https://learn.microsoft.com/en-us/uwp/api/windows.devices.bluetooth.rfcomm?view=winrt-26100",
+    "retrievedAt": "2026-10-09T05:58:14.3666109Z",
+    "bytes": 49081,
+    "sha256": "ad9a10cb23cc5928648688010c19c554516e490c1d18a3404868f352e7225b8c",
+    "status": "saved"
+  },
+  {
+    "path": "06-Windows开发/VisualStudio-性能分析.html",
+    "url": "https://learn.microsoft.com/en-us/visualstudio/profiling/",
+    "retrievedAt": "2026-10-09T05:58:16.0711991Z",
+    "bytes": 35188,
+    "sha256": "0ad05d8b656106a2a8a1c1f6140bd268ef6c0a78e84f06ce7d0e89e0f5109a72",
+    "status": "saved"
+  }
+]

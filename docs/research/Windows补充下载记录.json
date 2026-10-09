@@ -1,0 +1,50 @@
+[
+  {
+    "path": "06-Windows开发/Windows-系统音量接口.html",
+    "url": "https://learn.microsoft.com/en-us/windows/win32/api/endpointvolume/nn-endpointvolume-iaudioendpointvolume",
+    "retrievedAt": "2026-10-09T05:59:18.7757936Z",
+    "bytes": 63624,
+    "sha256": "e5ea284adda9ff550f0d43a0afbd4009c12c09633581d02b5dbe5cdada363f64",
+    "status": "saved"
+  },
+  {
+    "path": "06-Windows开发/Windows-媒体会话接口.html",
+    "url": "https://learn.microsoft.com/en-us/uwp/api/windows.media.control.globalsystemmediatransportcontrolssessionmanager?view=winrt-26100",
+    "retrievedAt": "2026-10-09T05:59:19.3829506Z",
+    "bytes": 55019,
+    "sha256": "1771864b2d45d104baabd9bd3aa29b3bb23dc3b21d984dee2a7a819b82ca6fb7",
+    "status": "saved"
+  },
+  {
+    "path": "06-Windows开发/Windows-全局快捷键.html",
+    "url": "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerhotkey",
+    "retrievedAt": "2026-10-09T05:59:20.0134769Z",
+    "bytes": 58038,
+    "sha256": "a68f05bf4cfd5ebf347ed79be1d17e964e4f45366e85ee7d0f7c0d1d9443f812",
+    "status": "saved"
+  },
+  {
+    "path": "06-Windows开发/Windows-蓝牙设备类型.html",
+    "url": "https://learn.microsoft.com/en-us/uwp/api/windows.devices.bluetooth.bluetoothclassofdevice?view=winrt-26100",
+    "retrievedAt": "2026-10-09T05:59:20.9419235Z",
+    "bytes": 55849,
+    "sha256": "d6e50855c4405bfd54d82bffe2a16ed443279d0b92d32c718b7fc4097169bb7d",
+    "status": "saved"
+  },
+  {
+    "path": "06-Windows开发/NET-运行时计数器.html",
+    "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters",
+    "retrievedAt": "2026-10-09T05:59:21.6002414Z",
+    "bytes": 76177,
+    "sha256": "4da35f6e03f7ab39e96ef5fa3dfe6aa9b5be4976d80abe5c0a353fbecf943864",
+    "status": "saved"
+  },
+  {
+    "path": "06-Windows开发/GitHub-Releases接口.html",
+    "url": "https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28",
+    "retrievedAt": "2026-10-09T05:59:22.6587261Z",
+    "bytes": 467822,
+    "sha256": "905ac43db4a53fed84e2399ceb07aa5218fd32d5e15b865732c43f3b7d5f7508",
+    "status": "saved"
+  }
+]

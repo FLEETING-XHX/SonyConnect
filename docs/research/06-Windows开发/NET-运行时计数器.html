@@ -1,0 +1,1897 @@
+ <!DOCTYPE html>
+		<html
+			class="layout layout-holy-grail   show-table-of-contents conceptual show-breadcrumb default-focus"
+			lang="en-us"
+			dir="ltr"
+			data-authenticated="false"
+			data-auth-status-determined="false"
+			data-target="docs"
+			x-ms-format-detection="none"
+		>
+			
+		<head>
+			<title>dotnet-counters diagnostic tool - .NET CLI - .NET | Microsoft Learn</title>
+			<meta charset="utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="color-scheme" content="light dark" />
+
+			<meta name="description" content="Learn how to install and use the dotnet-counter CLI tool for ad-hoc health monitoring and first-level performance investigation." />
+			<link rel="canonical" href="https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters" /> 
+
+			<!-- Non-customizable open graph and sharing-related metadata -->
+			<meta name="twitter:card" content="summary" />
+			<meta name="twitter:site" content="@MicrosoftLearn" />
+			<meta property="og:type" content="website" />
+			<meta property="og:image:alt" content="dotnet-counters diagnostic tool - .NET CLI - .NET | Microsoft Learn" />
+			<meta property="og:image" content="https://learn.microsoft.com/dotnet/media/dotnet-logo.png" />
+			<!-- Page specific open graph and sharing-related metadata -->
+			<meta property="og:title" content="dotnet-counters diagnostic tool - .NET CLI - .NET" />
+			<meta property="og:url" content="https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters" />
+			<meta property="og:description" content="Learn how to install and use the dotnet-counter CLI tool for ad-hoc health monitoring and first-level performance investigation." />
+			<meta name="platform_id" content="80c64fdd-3843-1c8e-c225-f39954058694" /> <meta name="scope" content=".NET" />
+			<meta name="locale" content="en-us" />
+			 
+			<meta name="uhfHeaderId" content="MSDocsHeader-DotNet" />
+
+			<meta name="page_type" content="conceptual" />
+
+			<!--page specific meta tags-->
+			
+
+			<!-- custom meta tags -->
+			
+		<meta name="apiPlatform" content="dotnet" />
+	
+		<meta name="author" content="tommcdon" />
+	
+		<meta name="breadcrumb_path" content="/dotnet/breadcrumb/toc.json" />
+	
+		<meta name="feedback_system" content="OpenSource" />
+	
+		<meta name="feedback_product_url" content="https://aka.ms/feedback/report?space=61" />
+	
+		<meta name="ms.author" content="tommcdon" />
+	
+		<meta name="ms.devlang" content="dotnet" />
+	
+		<meta name="ms.service" content="dotnet-fundamentals" />
+	
+		<meta name="ms.topic" content="reference" />
+	
+		<meta name="show_latex" content="true" />
+	
+		<meta name="ms.date" content="2025-09-06T00:00:00Z" />
+	
+		<meta name="document_id" content="a4dadb56-569e-b390-b118-57c3b0225c13" />
+	
+		<meta name="document_version_independent_id" content="50cf6a7e-e95e-a29b-67fd-26747f4440c1" />
+	
+		<meta name="updated_at" content="2025-12-03T09:19:00Z" />
+	
+		<meta name="original_content_git_url" content="https://github.com/dotnet/docs/blob/live/docs/core/diagnostics/dotnet-counters.md" />
+	
+		<meta name="gitcommit" content="https://github.com/dotnet/docs/blob/020cd4a325f2f29d82412789c9d679f2940272ae/docs/core/diagnostics/dotnet-counters.md" />
+	
+		<meta name="git_commit_id" content="020cd4a325f2f29d82412789c9d679f2940272ae" />
+	
+		<meta name="site_name" content="Docs" />
+	
+		<meta name="depot_name" content="VS.core-docs" />
+	
+		<meta name="schema" content="Conceptual" />
+	
+		<meta name="toc_rel" content="../../navigate/tools-diagnostics/toc.json" />
+	
+		<meta name="pdf_url_template" content="https://learn.microsoft.com/pdfstore/en-us/VS.core-docs/{branchName}{pdfName}" />
+	
+		<meta name="feedback_help_link_type" content="" />
+	
+		<meta name="feedback_help_link_url" content="" />
+	
+		<meta name="search.mshattr.devlang" content="csharp" />
+	
+		<meta name="word_count" content="2255" />
+	
+		<meta name="asset_id" content="core/diagnostics/dotnet-counters" />
+	
+		<meta name="moniker_range_name" content="" />
+	
+		<meta name="item_type" content="Content" />
+	
+		<meta name="source_path" content="docs/core/diagnostics/dotnet-counters.md" />
+	
+		<meta name="previous_tlsh_hash" content="9584D432611DC750AEA11E1D2D4F9264FBF09D8C2AB07EC122FAD255E20A5F2397A18D5EEE1B830753374D92618D778D52F28726822D131245AB1CE9C364A38783EC6F2BD6" />
+	
+		<meta name="github_feedback_content_git_url" content="https://github.com/dotnet/docs/blob/main/docs/core/diagnostics/dotnet-counters.md" />
+	
+		<meta name="markdown_url" content="https://learn.microsoft.com/en-us/dotnet/core/diagnostics/dotnet-counters?accept=text/markdown" />
+	 
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/7696cda6-0510-47f6-8302-71bb5d2e28cf" data-source="generated" />
+	
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/07bb3e10-d135-43ff-bc8b-360497cb39fa" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/69c76c32-967e-4c65-b89a-74cc527db725" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/12e559b9-eaf6-4aee-9af7-62334e15f863" data-source="generated" />
+	
+
+			<!-- Apply persisted/system theme before first paint to prevent wrong-theme flash when scripts are deferred. -->
+			<script id="theme-preference">
+				(function () {
+			try {
+				var stored = localStorage.getItem('theme');
+				var theme = /^(light|dark|high-contrast)$/.test(stored)
+					? stored
+					: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				document.documentElement.classList.add('theme-' + theme);
+			} catch (e) {}
+		})();;
+			</script>
+
+			<script id="atlas-layout-preferences">
+				(function () {
+			try {
+				var state = JSON.parse(localStorage.getItem('atlas-layout-preferences') || '{}');
+				var view = state["docs-layout-persistence"] || {};
+				var excludesKey = "";
+				var blocked = {};
+				if (excludesKey) {
+					var exclusions = JSON.parse(localStorage.getItem('atlas-layout-exclusions') || '{}');
+					if (Object.prototype.hasOwnProperty.call(exclusions, excludesKey)) {
+						var scoped = exclusions[excludesKey];
+						if (scoped) {
+							if (typeof scoped === 'object') blocked = scoped;
+						}
+					}
+				}
+				var html = document.documentElement;
+				for (var c in view) {
+					if (Object.prototype.hasOwnProperty.call(blocked, c)) continue;
+					if (view[c]) html.classList.add(c);
+					else html.classList.remove(c);
+				}
+			} catch (e) {}
+		})();;
+			</script>
+
+			<!-- assets and js globals -->
+			
+			<link rel="stylesheet" href="/static/assets/0.4.03564.8276-6f650523/styles/site.css" />
+			
+			<script src="https://wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js"></script>
+			<!-- Keep this URL in sync with oneDSScriptSelector in instrumentation/one-ds.ts. -->
+			<script async src="https://js.monitor.azure.com/scripts/c/ms.jsll-4.min.js"></script>
+			
+
+			<!-- msdocs global object -->
+			<script id="msdocs-script">
+		var msDocs = {
+  "environment": {
+    "accessLevel": "online",
+    "azurePortalHostname": "portal.azure.com",
+    "reviewFeatures": false,
+    "supportLevel": "production",
+    "systemContent": true,
+    "siteName": "learn",
+    "legacyHosting": false
+  },
+  "data": {
+    "contentLocale": "en-us",
+    "contentDir": "ltr",
+    "userLocale": "en-us",
+    "userDir": "ltr",
+    "pageTemplate": "Conceptual",
+    "layoutStateStorageKey": "docs-layout-persistence",
+    "brand": "",
+    "context": {},
+    "standardFeedback": false,
+    "showFeedbackReport": false,
+    "feedbackHelpLinkType": "",
+    "feedbackHelpLinkUrl": "",
+    "feedbackSystem": "OpenSource",
+    "feedbackGitHubRepo": "dotnet/docs",
+    "feedbackProductUrl": "https://aka.ms/feedback/report?space=61",
+    "extendBreadcrumb": false,
+    "isEditDisplayable": true,
+    "isPrivateUnauthorized": false,
+    "hideViewSource": false,
+    "isPermissioned": false,
+    "hasRecommendations": false,
+    "mathjax": {},
+    "openSourceFeedbackIssueUrl": "https://github.com/dotnet/docs/issues/new?template=z-customer-feedback.yml",
+    "openSourceFeedbackIssueTitle": ""
+  },
+  "functions": {}
+};;
+	</script>
+
+			<!-- base scripts, msdocs global should be before this -->
+			<script
+				src="/static/assets/0.4.03564.8276-6f650523/scripts/en-us/index-docs.js"
+				async
+			></script>
+			
+
+			<!-- json-ld -->
+			
+		<script >bazadebezolkohpepadr="1736594879"</script><script type="text/javascript" src="https://learn.microsoft.com/akam/13/67825674"  defer></script></head>
+	
+			<body
+				id="body"
+				data-bi-name="body"
+				class="layout-body "
+				lang="en-us"
+				dir="ltr"
+			>
+				<header class="layout-body-header background-color-body-medium">
+		<div class="header-holder has-default-focus">
+			
+		<a
+			href="#main"
+			
+			style="z-index: 1070"
+			class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body"
+			
+		>
+			Skip to main content
+		</a>
+	
+		<a
+			href="#"
+			data-skip-to-ask-learn
+			style="z-index: 1070"
+			class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body"
+			hidden
+		>
+			Skip to Ask Learn chat experience
+		</a>
+	
+
+			<div hidden id="cookie-consent-holder" data-test-id="cookie-consent-container"></div>
+			<!-- Unsupported browser warning -->
+			<div
+				id="unsupported-browser"
+				style="background-color: white; color: black; padding: 16px; border-bottom: 1px solid grey;"
+				hidden
+			>
+				<div style="max-width: 800px; margin: 0 auto;">
+					<p style="font-size: 24px">This browser is no longer supported.</p>
+					<p style="font-size: 16px; margin-top: 16px;">
+						Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+					</p>
+					<div style="margin-top: 12px;">
+						<a
+							href="https://go.microsoft.com/fwlink/p/?LinkID=2092881 "
+							style="background-color: #0078d4; border: 1px solid #0078d4; color: white; padding: 6px 12px; border-radius: 2px; display: inline-block;"
+						>
+							Download Microsoft Edge
+						</a>
+						<a
+							href="https://learn.microsoft.com/en-us/lifecycle/faq/internet-explorer-microsoft-edge"
+							style="background-color: white; padding: 6px 12px; border: 1px solid #505050; color: #171717; border-radius: 2px; display: inline-block;"
+						>
+							More info about Internet Explorer and Microsoft Edge
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- site header -->
+			<div
+				id="ms--site-header"
+				data-test-id="site-header-wrapper"
+				itemscope="itemscope"
+				itemtype="http://schema.org/Organization"
+			>
+				<div
+					id="ms--mobile-nav"
+					class="site-header display-none-tablet padding-inline-none gap-none"
+					data-bi-name="mobile-header"
+					data-test-id="mobile-header"
+				></div>
+				<div
+					id="ms--primary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L1-header"
+					data-test-id="primary-header"
+				></div>
+				<div
+					id="ms--secondary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L2-header"
+					data-test-id="secondary-header"
+					
+				></div>
+			</div>
+			
+		<!-- banner -->
+		<div data-banner>
+			<div id="disclaimer-holder"></div>
+			
+		</div>
+		<!-- banner end -->
+	
+		</div>
+	</header>
+				 <section
+					id="layout-body-menu"
+					class="layout-body-menu border-right display-flex background-color-body-medium"
+					data-bi-name="menu"
+			  >
+					
+		<div
+			id="left-container"
+			class="left-container display-none padding-none display-block-tablet width-full display-none-until-layout-restored"
+			data-toc-container="true"
+		>
+			<div
+				id="ms--toc-content"
+				class="padding-left-sm padding-right-none padding-bottom-sm height-full"
+			>
+				<nav
+					id="affixed-left-container"
+					class="margin-top-xxs-tablet position-sticky display-flex flex-direction-column width-full"
+					aria-label="Primary"
+					data-bi-name="left-toc"
+					role="navigation"
+				>
+					<div
+						id="ms--collapsible-toc-header"
+						class="display-flex flex-direction-row-reverse justify-content-center align-items-center margin-bottom-xxs margin-right-xxs"
+					>
+						<button
+							type="button"
+							class="button button-clear button-sm inner-focus"
+							data-collapsible-toc-toggle
+							aria-expanded="true"
+							hidden
+							aria-controls="ms--toc-content"
+							aria-label="Table of contents"
+						>
+							<span class="icon icon-mirrored-rtl" aria-hidden="true">
+								<span
+									class="docon docon-panel-left-contract display-none-layout-menu-collapsed"
+								></span>
+								<span
+									class="docon docon-panel-left-expand display-none display-inline-layout-menu-collapsed"
+								></span>
+							</span>
+						</button>
+						<div
+							id="ms--collapsible-toc-moniker-slot"
+							class="flex-grow-1 display-none-layout-menu-collapsed"
+						></div>
+					</div>
+				</nav>
+			</div>
+		</div>
+	
+			  </section>
+
+				<main
+					id="main"
+					role="main"
+					class="layout-body-main "
+					data-bi-name="content"
+					lang="en-us"
+					dir="ltr"
+				>
+					
+			<div
+		id="ms--content-header"
+		class="content-header default-focus border-bottom-none"
+		data-bi-name="content-header"
+	>
+		<div class="content-header-controls margin-xxs margin-inline-sm-tablet">
+			<button
+				type="button"
+				class="contents-button button button-sm margin-right-xxs"
+				data-bi-name="contents-expand"
+				aria-haspopup="true"
+				data-contents-button
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-menu"></span></span>
+				<span class="contents-expand-title"> Table of contents </span>
+			</button>
+			<button
+				type="button"
+				class="ap-collapse-behavior ap-expanded button button-sm"
+				data-bi-name="ap-collapse"
+				aria-controls="action-panel"
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-exit-mode"></span></span>
+				<span>Exit editor mode</span>
+			</button>
+		</div>
+	</div> 
+		<div
+			id="action-panel"
+			role="region"
+			aria-label="Action Panel"
+			class="action-panel"
+			tabindex="-1"
+		></div>
+	
+			<div
+				data-main-column
+				class="reading-width margin-inline-auto layout-padding padding-top-none padding-top-sm-tablet padding-bottom-sm"
+			>
+				<div>
+					
+		<div id="article-header" class="background-color-body margin-bottom-xs display-none-print">
+			<div class="display-flex align-items-center justify-content-space-between">
+				
+		<details
+			id="article-header-breadcrumbs-overflow-popover"
+			class="popover popover-left"
+			data-for="article-header-breadcrumbs"
+		>
+			<summary
+				class="button button-clear button-primary button-sm inner-focus"
+				aria-label="All breadcrumbs"
+			>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-more"></span>
+				</span>
+			</summary>
+			<div id="article-header-breadcrumbs-overflow" class="popover-content"></div>
+		</details>
+
+		<bread-crumbs
+			id="article-header-breadcrumbs"
+			role="group"
+			aria-label="Breadcrumbs"
+			data-test-id="article-header-breadcrumbs"
+			class="overflow-hidden flex-grow-1 margin-right-sm margin-right-md-tablet margin-right-lg-desktop margin-left-negative-xxs padding-left-xxs"
+		></bread-crumbs>
+	 
+		<div
+			id="article-header-page-actions"
+			class="opacity-none margin-left-auto display-flex flex-wrap-no-wrap align-items-stretch"
+		>
+			
+		<button
+			class="button button-sm border-none inner-focus display-none-tablet flex-shrink-0 "
+			data-bi-name="ask-learn-assistant-entry"
+			data-test-id="ask-learn-assistant-modal-entry-mobile"
+			data-ask-learn-modal-entry
+			
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-label="Ask Learn"
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button
+			class="button button-sm display-none display-inline-flex-tablet display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn "
+			data-bi-name="ask-learn-assistant-entry"
+			
+			data-test-id="ask-learn-assistant-modal-entry-tablet"
+			data-ask-learn-modal-entry
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button
+			class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn "
+			data-bi-name="ask-learn-assistant-entry"
+			
+			data-test-id="ask-learn-assistant-flyout-entry"
+			data-ask-learn-flyout-entry
+			data-flyout-button="toggle"
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-controls="ask-learn-flyout"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	 
+
+			<details class="popover popover-right" id="article-header-page-actions-overflow">
+				<summary
+					class="justify-content-flex-start button button-clear button-sm button-primary inner-focus"
+					aria-label="More actions"
+					aria-expanded="false"
+					title="More actions"
+				>
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-more-vertical"></span>
+					</span>
+				</summary>
+				<div class="popover-content">
+					
+		<button
+			type="button"
+			id="ms--focus-mode-button"
+			data-focus-mode
+			data-bi-name="focus-mode-entry"
+			data-page-action-item="overflow-all"
+			data-popover-close
+			class="button button-clear button-sm button-block justify-content-flex-start text-align-left inner-focus display-none display-inline-flex-tablet"
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-glasses"></span>
+			</span>
+			<span>Reading mode</span>
+		</button>
+	 
+		<button
+			data-page-action-item="overflow-mobile"
+			type="button"
+			class="display-block-layout-menu-collapsed button-block button-sm inner-focus button button-clear display-none-tablet justify-content-flex-start text-align-left"
+			data-bi-name="contents-expand"
+			data-contents-button
+			data-popover-close
+		>
+			<span class="icon" aria-hidden="true"
+				><span class="docon docon-editor-list-bullet"></span
+			></span>
+			<span class="contents-expand-title">Table of contents</span>
+		</button>
+	 
+		<a
+			id="lang-link-overflow"
+			class="button-sm inner-focus button button-clear button-block justify-content-flex-start text-align-left"
+			data-bi-name="language-toggle"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-read-in-link
+			href="#"
+			hidden
+		>
+			<span class="icon" aria-hidden="true" data-read-in-link-icon>
+				<span class="docon docon-locale-globe"></span>
+			</span>
+			<span data-read-in-link-text>Read in English</span>
+		</a>
+	
+					
+		<button
+			type="button"
+			class="collection button button-clear button-sm button-block justify-content-flex-start text-align-left inner-focus"
+			data-list-type="collection"
+			data-bi-name="collection"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-popover-close
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-circle-addition"></span>
+			</span>
+			<span class="collection-status">Add</span>
+		</button>
+	 
+		<button
+			type="button"
+			class="collection button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus"
+			data-list-type="plan"
+			data-bi-name="plan"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-popover-close
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-circle-addition"></span>
+			</span>
+			<span class="plan-status">Add to Plans</span>
+		</button>
+	 
+					
+		<a
+			data-contenteditbtn
+			class="button button-clear button-block button-sm inner-focus justify-content-flex-start text-align-left text-decoration-none"
+			data-bi-name="edit"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			
+			href="https://github.com/dotnet/docs/blob/main/docs/core/diagnostics/dotnet-counters.md"
+			data-original_content_git_url="https://github.com/dotnet/docs/blob/live/docs/core/diagnostics/dotnet-counters.md"
+			data-original_content_git_url_template="{repo}/blob/{branch}/docs/core/diagnostics/dotnet-counters.md"
+			data-pr_repo=""
+			data-pr_branch=""
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-edit-outline"></span>
+			</span>
+			<span>Edit</span>
+		</a>
+	  
+		<hr class="margin-block-xxs" />
+		
+				<button
+					class="button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus"
+					type="button"
+					data-bi-name="copy-markdown"
+					data-page-action-item="overflow-all"
+					data-copy-markdown
+					data-copy-state="idle"
+					data-check-hidden="true"
+				>
+					<span class="icon color-primary" aria-hidden="true">
+						<span data-show-when="idle" class="docon docon-code-lang"></span>
+						<span data-show-when="loading" class="loader" hidden></span>
+						<span data-show-when="success" class="docon docon-check-mark" hidden></span>
+					</span>
+					<span>Copy Markdown</span>
+				</button>
+		   
+				<button
+					class="button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus"
+					type="button"
+					data-bi-name="print"
+					data-page-action-item="overflow-all"
+					data-popover-close
+					data-print-page
+					data-check-hidden="true"
+				>
+					<span class="icon color-primary" aria-hidden="true">
+						<span class="docon docon-print"></span>
+					</span>
+					<span>Print</span>
+				</button>
+		  
+	
+				</div>
+			</details>
+		</div>
+	
+			</div>
+		</div>
+	  
+		<!-- privateUnauthorizedTemplate is hidden by default -->
+		<div unauthorized-private-section data-bi-name="permission-content-unauthorized-private" hidden>
+			<hr class="hr margin-top-xs margin-bottom-sm" />
+			<div class="notification notification-info">
+				<div class="notification-content">
+					<p class="margin-top-none notification-title">
+						<span class="icon" aria-hidden="true"
+							><span class="docon docon-exclamation-circle-solid"></span
+						></span>
+						<span>Note</span>
+					</p>
+					<p class="margin-top-none authentication-determined not-authenticated">
+						Access to this page requires authorization. You can try <a class="docs-sign-in" href="#" data-bi-name="permission-content-sign-in">signing in</a> or <a  class="docs-change-directory" data-bi-name="permisson-content-change-directory">changing directories</a>.
+					</p>
+					<p class="margin-top-none authentication-determined authenticated">
+						Access to this page requires authorization. You can try <a class="docs-change-directory" data-bi-name="permisson-content-change-directory">changing directories</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	
+					<div class="content"><h1 id="investigate-performance-counters-dotnet-counters">Investigate performance counters (dotnet-counters)</h1></div>
+					
+		<div
+			id="article-metadata"
+			data-bi-name="article-metadata"
+			data-test-id="article-metadata"
+			class="page-metadata-container display-flex gap-xxs justify-content-space-between align-items-center flex-wrap-wrap"
+		>
+			 
+				<div
+					id="user-feedback"
+					class="margin-block-xxs display-none display-none-print"
+					hidden
+					data-hide-on-archived
+				>
+					
+		<button
+			id="user-feedback-button"
+			data-test-id="conceptual-feedback-button"
+			class="button button-sm button-clear button-primary display-none"
+			type="button"
+			data-bi-name="user-feedback-button"
+			data-user-feedback-button
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-like"></span>
+			</span>
+			<span>Feedback</span>
+		</button>
+	
+				</div>
+		  
+		</div>
+	 
+		<div data-id="ai-summary" class="display-none-print">
+			<div id="ms--ai-summary-cta" class="margin-top-xs display-flex align-items-center">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-sparkle-fill gradient-text-vivid"></span>
+				</span>
+				<button
+					id="ms--ai-summary"
+					type="button"
+					class="tag tag-sm tag-suggestion margin-left-xxs"
+					data-test-id="ai-summary-cta"
+					data-bi-name="ai-summary-cta"
+					data-an="ai-summary"
+				>
+					<span class="ai-summary-cta-text">
+						Summarize this article for me
+					</span>
+				</button>
+			</div>
+			<!-- Slot where the client will render the summary card after the user clicks the CTA -->
+			<div id="ms--ai-summary-header" class="margin-top-xs"></div>
+		</div>
+	 
+		<nav
+			id="center-doc-outline"
+			class="doc-outline display-none-desktop display-none-print margin-bottom-sm"
+			data-bi-name="intopic toc"
+			aria-label="In this article"
+		>
+			<h2 id="ms--in-this-article" class="title is-6 margin-block-xs">
+				In this article
+			</h2>
+		</nav>
+	 <div class="content"><p><strong>This article applies to:</strong> ✔️ <code>dotnet-counters</code> version 3.0.47001 and later versions.</p>
+<p>Counters can be read from applications running .NET 5 or later.</p>
+<h2 id="install">Install</h2>
+<p>There are three ways to download and use <code>dotnet-counters</code>:</p>
+<ul>
+<li><p><strong>One-shot execution (recommended):</strong></p>
+<p>Starting with .NET 10.0.100, you can run <code>dotnet-counters</code> without permanent installation using <a href="../tools/dotnet-tool-exec" data-linktype="relative-path"><code>dnx</code></a>:</p>
+<pre><code class="lang-dotnetcli">dnx dotnet-counters [options]
+</code></pre>
+<p>For example:</p>
+<pre><code class="lang-dotnetcli">dnx dotnet-counters monitor --process-id 1234
+</code></pre>
+<p>This approach automatically downloads and runs the latest version without permanently modifying your system.</p>
+</li>
+<li><p><strong>dotnet global tool:</strong></p>
+<p>To install the latest release version of the <code>dotnet-counters</code> <a href="https://www.nuget.org/packages/dotnet-counters" data-linktype="external">NuGet package</a> for frequent use, use the <a href="../tools/dotnet-tool-install" data-linktype="relative-path">dotnet tool install</a> command:</p>
+<pre><code class="lang-dotnetcli">dotnet tool install --global dotnet-counters
+</code></pre>
+<p>This command installs a <code>dotnet-counters</code> binary to your .NET SDK Tools path, which
+you can add to your PATH to easily invoke globally-installed tools.</p>
+</li>
+<li><p><strong>Direct download:</strong></p>
+<p>Download the tool executable that matches your platform:</p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>Platform</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows</td>
+<td><a href="https://aka.ms/dotnet-counters/win-x86" data-linktype="external">x86</a> | <a href="https://aka.ms/dotnet-counters/win-x64" data-linktype="external">x64</a> | <a href="https://aka.ms/dotnet-counters/win-arm" data-linktype="external">Arm</a> | <a href="https://aka.ms/dotnet-counters/win-arm64" data-linktype="external">Arm-x64</a></td>
+</tr>
+<tr>
+<td>Linux</td>
+<td><a href="https://aka.ms/dotnet-counters/linux-x64" data-linktype="external">x64</a> | <a href="https://aka.ms/dotnet-counters/linux-arm" data-linktype="external">Arm</a> | <a href="https://aka.ms/dotnet-counters/linux-arm64" data-linktype="external">Arm64</a> | <a href="https://aka.ms/dotnet-counters/linux-musl-x64" data-linktype="external">musl-x64</a> | <a href="https://aka.ms/dotnet-counters/linux-musl-arm64" data-linktype="external">musl-Arm64</a></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<div class="NOTE">
+<p>Note</p>
+<p>To use <code>dotnet-counters</code> on an x86 app, you need a corresponding x86 version of the tool.</p>
+</div>
+<h2 id="synopsis">Synopsis</h2>
+<pre><code class="lang-dotnetcli">dotnet-counters [-h|--help] [--version] &lt;command&gt;
+</code></pre>
+<h2 id="description">Description</h2>
+<p><code>dotnet-counters</code> is a performance monitoring tool for ad-hoc health monitoring and first-level performance investigation. It can observe performance counter values that are published via the <a href="/en-us/dotnet/api/system.diagnostics.tracing.eventcounter" class="no-loc" data-linktype="absolute-path">EventCounter</a> API or the <a href="/en-us/dotnet/api/system.diagnostics.metrics.meter" class="no-loc" data-linktype="absolute-path">Meter</a> API. For example, you can quickly monitor things like the CPU usage or the rate of exceptions being thrown in your .NET Core application to see if there's anything suspicious before diving into more serious performance investigation using <code>PerfView</code> or <code>dotnet-trace</code>.</p>
+<h2 id="options">Options</h2>
+<ul>
+<li><p><strong><code>--version</code></strong></p>
+<p>Displays the version of the <code>dotnet-counters</code> utility.</p>
+</li>
+<li><p><strong><code>-h|--help</code></strong></p>
+<p>Shows command-line help.</p>
+</li>
+</ul>
+<h2 id="commands">Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#dotnet-counters-collect" data-linktype="self-bookmark">dotnet-counters collect</a></td>
+</tr>
+<tr>
+<td><a href="#dotnet-counters-monitor" data-linktype="self-bookmark">dotnet-counters monitor</a></td>
+</tr>
+<tr>
+<td><a href="#dotnet-counters-ps" data-linktype="self-bookmark">dotnet-counters ps</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="dotnet-counters-collect">dotnet-counters collect</h2>
+<p>Periodically collect selected counter values and export them into a specified file format for post-processing.</p>
+<h3 id="synopsis-1">Synopsis</h3>
+<pre><code class="lang-dotnetcli">dotnet-counters collect [-h|--help] [-p|--process-id] [-n|--name] [--diagnostic-port] [--refresh-interval] [--counters &lt;COUNTERS&gt;] [--format] [-o|--output] [-- &lt;command&gt;]
+</code></pre>
+<h3 id="options-1">Options</h3>
+<ul>
+<li><p><strong><code>-p|--process-id &lt;PID&gt;</code></strong></p>
+<p>The ID of the process to collect counter data from.</p>
+<div class="NOTE">
+<p>Note</p>
+<p>On Linux and macOS, using this option requires the target application and <code>dotnet-counters</code> to share the same <code>TMPDIR</code> environment variable. Otherwise, the command will time out.</p>
+</div>
+</li>
+<li><p><strong><code>-n|--name &lt;name&gt;</code></strong></p>
+<p>The name of the process to collect counter data from.</p>
+<div class="NOTE">
+<p>Note</p>
+<p>On Linux and macOS, using this option requires the target application and <code>dotnet-counters</code> to share the same <code>TMPDIR</code> environment variable. Otherwise, the command will time out.</p>
+</div>
+</li>
+<li><p><strong><code>--diagnostic-port &lt;port-address[,(listen|connect)]&gt;</code></strong></p>
+<p>Sets the <a href="diagnostic-port" data-linktype="relative-path">diagnostic port</a> used to communicate with the process to be monitored. <code>dotnet-counters</code> and the .NET runtime inside the target process must agree on the port-address, with one listening and the other connecting. <code>dotnet-counters</code> automatically determines the correct port when attaching using the <code>--process-id</code> or <code>--name</code> options, or when launching a process using the <code>-- &lt;command&gt;</code> option. It's usually only necessary to specify the port explicitly when waiting for a process that will start in the future or communicating to a process that's running inside a container that isn't part of the current process namespace.</p>
+<p>The <code>port-address</code> differs by OS:</p>
+<ul>
+<li>Linux and macOS - a path to a Unix domain socket such as <code>/foo/tool1.socket</code>.</li>
+<li>Windows - a path to a named pipe such as <code>\\.\pipe\my_diag_port1</code>.</li>
+<li>Android, iOS, and tvOS - an IP:port such as <code>127.0.0.1:9000</code>.</li>
+</ul>
+<p>By default, <code>dotnet-counters</code> listens at the specified address. You can request <code>dotnet-counters</code> to connect instead by appending <code>,connect</code> after the address. For example, <code>--diagnostic-port /foo/tool1.socket,connect</code> will connect to a .NET runtime process that's listening to the <code>/foo/tool1.socket</code> Unix domain socket.</p>
+<p>For information about how to use this option to start monitoring counters from app startup, see <a href="#using-diagnostic-port" data-linktype="self-bookmark">using diagnostic port</a>.</p>
+</li>
+<li><p><strong><code>--refresh-interval &lt;SECONDS&gt;</code></strong></p>
+<p>The number of seconds to delay between updating the displayed counters</p>
+</li>
+<li><p><strong><code>--counters &lt;COUNTERS&gt;</code></strong></p>
+<p>A comma-separated list of counters. Counters can be specified <code>provider_name[:counter_name]</code>. If the <code>provider_name</code> is used without a qualifying list of counters, then all counters from the provider are shown. To discover provider and counter names, see <a href="built-in-metrics" data-linktype="relative-path">built-in metrics</a>. For <a href="event-counters" data-linktype="relative-path">EventCounters</a>, <code>provider_name</code> is the name of the EventSource and for <a href="metrics" data-linktype="relative-path">Meters</a>, <code>provider_name</code> is the name of the Meter.</p>
+</li>
+<li><p><strong><code>--format &lt;csv|json&gt;</code></strong></p>
+<p>The format to be exported. Currently available: csv, json.</p>
+</li>
+<li><p><strong><code>-o|--output &lt;output&gt;</code></strong></p>
+<p>The name of the output file.</p>
+</li>
+<li><p><strong><code>-- &lt;command&gt;</code></strong></p>
+<p>After the collection configuration parameters, the user can append <code>--</code> followed by a command to start a .NET application. <code>dotnet-counters</code> launches a process with the provided command and collect the requested metrics. This is often useful to collect metrics for the application's startup path and can be used to diagnose or monitor issues that happen early before or shortly after the main entry point.</p>
+<div class="NOTE">
+<p>Note</p>
+<p>Using this option monitors the first .NET process that communicates back to the tool, which means if your command launches multiple .NET applications, it will only collect the first app. Therefore, it's recommended you use this option on self-contained applications, or using the <code>dotnet exec &lt;app.dll&gt;</code> option.</p>
+</div>
+<div class="NOTE">
+<p>Note</p>
+<p>If you launch a .NET executable via <code>dotnet-counters</code>, its input/output will be redirected and you won't be able to interact with its stdin/stdout. You can exit the tool via <kbd>Ctrl+C</kbd> or SIGTERM to safely end both the tool and the child process. If the child process exits before the tool, the tool will exit as well. If you need to use stdin/stdout, you can use the <code>--diagnostic-port</code> option. For more information, see <a href="#using-diagnostic-port" data-linktype="self-bookmark">Using diagnostic port</a>.</p>
+</div>
+</li>
+</ul>
+<div class="NOTE">
+<p>Note</p>
+<p>To collect metrics using <code>dotnet-counters</code>, it needs to be run as the same user as the user running target process or as root. Otherwise, the tool will fail to establish a connection with the target process.</p>
+</div>
+<h3 id="examples">Examples</h3>
+<ul>
+<li><p>Collect all counters at a refresh interval of 3 seconds and generate a csv as output:</p>
+<pre><code class="lang-dotnetcli">&gt; dotnet-counters collect --process-id 1902 --refresh-interval 3 --format csv
+
+--counters is unspecified. Monitoring System.Runtime counters by default.
+Starting a counter session. Press Q to quit.
+</code></pre>
+</li>
+<li><p>Start <code>dotnet mvc.dll</code> as a child process and start collecting runtime counters and ASP.NET Core Hosting counters from startup and save it as a JSON output:</p>
+<pre><code class="lang-dotnetcli">&gt; dotnet-counters collect --format json --counters System.Runtime,Microsoft.AspNetCore.Hosting -- dotnet mvc.dll
+Starting a counter session. Press Q to quit.
+File saved to counter.json
+</code></pre>
+</li>
+</ul>
+<h2 id="dotnet-counters-monitor">dotnet-counters monitor</h2>
+<p>Displays periodically refreshing values of selected counters.</p>
+<h3 id="synopsis-2">Synopsis</h3>
+<pre><code class="lang-dotnetcli">dotnet-counters monitor [-h|--help] [-p|--process-id] [-n|--name] [--diagnostic-port] [--refresh-interval] [--counters] [-- &lt;command&gt;]
+</code></pre>
+<h3 id="options-2">Options</h3>
+<ul>
+<li><p><strong><code>-p|--process-id &lt;PID&gt;</code></strong></p>
+<p>The ID of the process to be monitored.</p>
+</li>
+<li><p><strong><code>-n|--name &lt;name&gt;</code></strong></p>
+<p>The name of the process to be monitored.</p>
+</li>
+<li><p><strong><code>--diagnostic-port</code></strong></p>
+<p>The name of the diagnostic port to create. See <a href="#using-diagnostic-port" data-linktype="self-bookmark">using diagnostic port</a> for how to use this option to start monitoring counters from app startup.</p>
+</li>
+<li><p><strong><code>--refresh-interval &lt;SECONDS&gt;</code></strong></p>
+<p>The number of seconds to delay between updating the displayed counters</p>
+</li>
+<li><p><strong><code>--counters &lt;COUNTERS&gt;</code></strong></p>
+<p>A comma-separated list of counters. Counters can be specified <code>provider_name[:counter_name]</code>. If the <code>provider_name</code> is used without a qualifying list of counters, then all counters from the provider are shown. To discover provider and counter names, see <a href="built-in-metrics" data-linktype="relative-path">built-in metrics</a>. For <a href="event-counters" data-linktype="relative-path">EventCounters</a>, <code>provider_name</code> is the name of the EventSource and for <a href="metrics" data-linktype="relative-path">Meters</a>, <code>provider_name</code> is the name of the Meter.</p>
+</li>
+<li><p><strong><code>-- &lt;command&gt;</code></strong></p>
+<p>After the collection configuration parameters, you can append <code>--</code> followed by a command to start a .NET application. <code>dotnet-counters</code> will launch a process with the provided command and monitor the requested metrics. This is often useful to collect metrics for the application's startup path and can be used to diagnose or monitor issues that happen early before or shortly after the main entry point.</p>
+<div class="NOTE">
+<p>Note</p>
+<p>Using this option monitors the first .NET process that communicates back to the tool, which means if your command launches multiple .NET applications, it will only collect the first app. Therefore, it's recommended you use this option on self-contained applications, or using the <code>dotnet exec &lt;app.dll&gt;</code> option.</p>
+</div>
+<div class="NOTE">
+<p>Note</p>
+<p>Launching a .NET executable via <code>dotnet-counters</code> will redirect its input/output and you won't be able to interact with its stdin/stdout. You can exit the tool via <kbd>Ctrl+C</kbd> or SIGTERM to safely end both the tool and the child process. If the child process exits before the tool, the tool will exit as well. If you need to use stdin/stdout, you can use the <code>--diagnostic-port</code> option. For more information, see <a href="#using-diagnostic-port" data-linktype="self-bookmark">Using diagnostic port</a>.</p>
+</div>
+</li>
+</ul>
+<div class="NOTE">
+<p>Note</p>
+<p>On Linux and macOS, this command expects the target application and <code>dotnet-counters</code> to share the same <code>TMPDIR</code> environment variable.</p>
+</div>
+<div class="NOTE">
+<p>Note</p>
+<p>To monitor metrics using <code>dotnet-counters</code>, it needs to be run as the same user as the user running target process or as root.</p>
+</div>
+<div class="NOTE">
+<p>Note</p>
+<p>If you see an error message similar to the following one: <code>[ERROR] System.ComponentModel.Win32Exception (299): A 32 bit processes cannot access modules of a 64 bit process.</code>, you're trying to use <code>dotnet-counters</code> that has mismatched bitness against the target process. Make sure to download the correct bitness of the tool in the <a href="#install" data-linktype="self-bookmark">install</a> link.</p>
+</div>
+<h3 id="examples-1">Examples</h3>
+<ul>
+<li><p>Monitor all counters from <code>System.Runtime</code> at a refresh interval of 3 seconds:</p>
+<pre><code class="lang-dotnetcli">&gt; dotnet-counters monitor --process-id 1902  --refresh-interval 3 --counters System.Runtime
+Press p to pause, r to resume, q to quit.
+    Status: Running
+Name                                              Current Value
+[System.Runtime]
+    dotnet.assembly.count ({assembly})                               115
+    dotnet.gc.collections ({collection})
+        gc.heap.generation
+        ------------------
+        gen0                                                           5
+        gen1                                                           1
+        gen2                                                           1
+    dotnet.gc.heap.total_allocated (By)                       1.6947e+08
+    dotnet.gc.last_collection.heap.fragmentation.size (By)
+        gc.heap.generation
+        ------------------
+        gen0                                                           0
+        gen1                                                     348,248
+        gen2                                                           0
+        loh                                                           32
+        poh                                                            0
+    dotnet.gc.last_collection.heap.size (By)
+        gc.heap.generation
+        ------------------
+        gen0                                                           0
+        gen1                                                  18,010,920
+        gen2                                                   5,065,600
+        loh                                                       98,384
+        poh                                                    3,407,048
+    dotnet.gc.last_collection.memory.committed_size (By)      66,842,624
+    dotnet.gc.pause.time (s)                                           0.05
+    dotnet.jit.compilation.time (s)                                    1.317
+    dotnet.jit.compiled_il.size (By)                             574,886
+    dotnet.jit.compiled_methods ({method})                         6,008
+    dotnet.monitor.lock_contentions ({contention})                   194
+    dotnet.process.cpu.count ({cpu})                                  16
+    dotnet.process.cpu.time (s)
+        cpu.mode
+        --------
+        system                                                         4.953
+        user                                                           6.266
+    dotnet.process.memory.working_set (By)                             1.3217e+08
+    dotnet.thread_pool.queue.length ({work_item})                      0
+    dotnet.thread_pool.thread.count ({thread})                       133
+    dotnet.thread_pool.work_item.count ({work_item})              71,188
+    dotnet.timer.count ({timer})                                     124
+</code></pre>
+<div class="NOTE">
+<p>Note</p>
+<p>If the app uses .NET version 8 or lower, the <a href="built-in-metrics-runtime#systemruntime" data-linktype="relative-path">System.Runtime Meter</a> doesn't exist in those versions and <code>dotnet-counters</code> will fall back to display the older <a href="available-counters#systemruntime-counters" data-linktype="relative-path">System.Runtime EventCounters</a> instead. The UI looks slightly different, as shown here.</p>
+</div>
+<pre><code class="lang-output">[System.Runtime]
+      % Time in GC since last GC (%)                                 0
+      Allocation Rate (B / 1 sec)                                5,376
+      CPU Usage (%)                                                  0
+      Exception Count (Count / 1 sec)                                0
+      GC Fragmentation (%)                                          48.467
+      GC Heap Size (MB)                                              0
+      Gen 0 GC Count (Count / 1 sec)                                 1
+      Gen 0 Size (B)                                                24
+      Gen 1 GC Count (Count / 1 sec)                                 1
+      Gen 1 Size (B)                                                24
+      Gen 2 GC Count (Count / 1 sec)                                 1
+      Gen 2 Size (B)                                           272,000
+      IL Bytes Jitted (B)                                       19,449
+      LOH Size (B)                                              19,640
+      Monitor Lock Contention Count (Count / 1 sec)                  0
+      Number of Active Timers                                        0
+      Number of Assemblies Loaded                                    7
+      Number of Methods Jitted                                     166
+      POH (Pinned Object Heap) Size (B)                             24
+      ThreadPool Completed Work Item Count (Count / 1 sec)           0
+      ThreadPool Queue Length                                        0
+      ThreadPool Thread Count                                        2
+      Working Set (MB)                                              19
+</code></pre>
+</li>
+<li><p>Monitor just garbage collections and garbage collection heap allocation from <code>System.Runtime</code>:</p>
+<pre><code class="lang-dotnetcli">&gt; dotnet-counters monitor --process-id 1902 --counters System.Runtime[dotnet.gc.collections,dotnet.gc.heap.total_allocated]
+
+Press p to pause, r to resume, q to quit.
+Status: Running
+
+Name                                  Current Value
+[System.Runtime]
+    dotnet.gc.collections ({collection})
+        gc.heap.generation
+        ------------------
+        gen0                                0
+        gen1                                0
+        gen2                                0
+    dotnet.gc.heap.total_allocated (By)     9,943,384
+
+</code></pre>
+</li>
+<li><p>Monitor <code>EventCounter</code> values from user-defined <code>EventSource</code>. For more information, see <a href="event-counter-perf" data-linktype="relative-path">Tutorial: Measure performance using EventCounters in .NET Core</a>.</p>
+<pre><code class="lang-dotnetcli">&gt; dotnet-counters monitor --process-id 1902 --counters Samples-EventCounterDemos-Minimal
+
+Press p to pause, r to resume, q to quit.
+    request                                      100
+</code></pre>
+</li>
+<li><p>Launch <code>my-aspnet-server.exe</code> and monitor the # of assemblies loaded from its startup:</p>
+<pre><code class="lang-dotnetcli">&gt; dotnet-counters monitor --counters System.Runtime[dotnet.assembly.count] -- my-aspnet-server.exe
+Press p to pause, r to resume, q to quit.
+Status: Running
+
+Name                               Current Value
+[System.Runtime]
+dotnet.assembly.count ({assembly})      11
+</code></pre>
+</li>
+<li><p>Launch <code>my-aspnet-server.exe</code> with <code>arg1</code> and <code>arg2</code> as command-line arguments and monitor its working set and GC heap size from its startup:</p>
+<pre><code class="lang-dotnetcli">&gt; dotnet-counters monitor --counters System.Runtime[dotnet.process.memory.working_set,dotnet.gc.last_collection.heap.size] -- my-aspnet-server.exe arg1 arg2
+</code></pre>
+<pre><code class="lang-output">Name                                             Current Value
+[System.Runtime]
+    dotnet.gc.last_collection.heap.size (By)
+        gc.heap.generation
+        ------------------
+        gen0                                          560
+        gen1                                      462,720
+        gen2                                            0
+        loh                                             0
+        poh                                         8,184
+    dotnet.process.memory.working_set (By)     48,431,104
+
+</code></pre>
+</li>
+</ul>
+<h2 id="dotnet-counters-ps">dotnet-counters ps</h2>
+<p>Lists the dotnet processes that can be monitored by <code>dotnet-counters</code>.
+<code>dotnet-counters</code> version 6.0.320703 and later also displays the command-line arguments that each process was started with, if available.</p>
+<h3 id="synopsis-3">Synopsis</h3>
+<pre><code class="lang-dotnetcli">dotnet-counters ps [-h|--help]
+</code></pre>
+<h3 id="example">Example</h3>
+<p>Suppose you start a long-running app using the command <code>dotnet run --configuration Release</code>. In another window, you run the <code>dotnet-counters ps</code> command. The output you see is as follows. The command-line arguments, if any, are shown in <code>dotnet-counters</code> version 6.0.320703 and later.</p>
+<pre><code class="lang-dotnetcli">&gt; dotnet-counters ps
+
+  21932 dotnet     C:\Program Files\dotnet\dotnet.exe   run --configuration Release
+  36656 dotnet     C:\Program Files\dotnet\dotnet.exe
+</code></pre>
+<h2 id="using-diagnostic-port">Using diagnostic port</h2>
+<p><a href="diagnostic-port" data-linktype="relative-path">Diagnostic port</a> is a runtime feature that allows you to start monitoring or collecting counters from app startup. To do this using <code>dotnet-counters</code>, you can either use <code>dotnet-counters &lt;collect|monitor&gt; -- &lt;command&gt;</code> as described in the previous examples, or use the <code>--diagnostic-port</code> option.</p>
+<p>Using <code>dotnet-counters &lt;collect|monitor&gt; -- &lt;command&gt;</code> to launch the application as a child process is the simplest way to quickly monitor it from its startup.</p>
+<p>However, when you want to gain a finer control over the lifetime of the app being monitored (for example, monitor the app for the first 10 minutes only and continue executing) or if you need to interact with the app using the CLI, using <code>--diagnostic-port</code> option allows you to control both the target app being monitored and <code>dotnet-counters</code>.</p>
+<ol>
+<li><p>The following command makes <code>dotnet-counters</code> create a diagnostics socket named <code>myport.sock</code> and wait for a connection.</p>
+<blockquote>
+<pre><code class="lang-dotnetcli">dotnet-counters collect --diagnostic-port myport.sock
+</code></pre>
+</blockquote>
+<p>Output:</p>
+<blockquote>
+<pre><code class="lang-output">Waiting for connection on myport.sock
+Start an application with the following environment variable: DOTNET_DiagnosticPorts=/home/user/myport.sock
+</code></pre>
+</blockquote>
+</li>
+<li><p>In a separate console, launch the target application with the environment variable <code>DOTNET_DiagnosticPorts</code> set to the value in the <code>dotnet-counters</code> output.</p>
+<blockquote>
+<pre><code class="lang-console">export DOTNET_DiagnosticPorts=/home/user/myport.sock
+./my-dotnet-app arg1 arg2
+</code></pre>
+</blockquote>
+<p>This enables <code>dotnet-counters</code> to start collecting counters on <code>my-dotnet-app</code>:</p>
+<blockquote>
+<pre><code class="lang-output">Waiting for connection on myport.sock
+Start an application with the following environment variable: DOTNET_DiagnosticPorts=myport.sock
+Starting a counter session. Press Q to quit.
+</code></pre>
+</blockquote>
+<div class="IMPORTANT">
+<p>Important</p>
+<p>Launching your app with <code>dotnet run</code> can be problematic because the dotnet CLI might spawn many child processes that aren't your app and they can connect to <code>dotnet-counters</code> before your app, leaving your app to be suspended at runtime. It's recommended you directly use a self-contained version of the app or use <code>dotnet exec</code> to launch the application.</p>
+</div>
+</li>
+</ol>
+</div>
+					
+		<div
+			id="ms--inline-notifications"
+			class="margin-block-xs"
+			data-bi-name="inline-notification"
+		></div>
+	 
+		<div
+			id="assertive-live-region"
+			role="alert"
+			aria-live="assertive"
+			class="visually-hidden"
+			aria-relevant="additions"
+			aria-atomic="true"
+		></div>
+		<div
+			id="polite-live-region"
+			role="status"
+			aria-live="polite"
+			class="visually-hidden"
+			aria-relevant="additions"
+			aria-atomic="true"
+		></div>
+	
+					
+			
+		<!-- feedback section -->
+		<section
+			class="feedback-section position-relative margin-top-lg border border-radius padding-xxs display-none-print"
+			data-bi-name="open-source-feedback-section"
+			data-open-source-feedback-section
+			hidden
+		>
+			<div class="display-flex flex-direction-column flex-direction-row-tablet">
+				<div
+					class="width-450-tablet padding-inline-xs padding-inline-xs-tablet padding-top-xs padding-bottom-sm padding-top-xs-tablet background-color-body-medium"
+				>
+					<div class="display-flex flex-direction-column">
+						<div class="padding-bottom-xxs">
+							<span class="icon margin-right-xxs" aria-hidden="true">
+								<span class="docon docon-brand-github"></span>
+							</span>
+							<span class="font-weight-semibold">
+								Collaborate with us on GitHub
+							</span>
+						</div>
+						<span class="line-height-normal">
+							The source for this content can be found on GitHub, where you can also create and review issues and pull requests. For more information, see <a href="https://learn.microsoft.com/contribute/content/dotnet/dotnet-contribute">our contributor guide</a>.
+						</span>
+					</div>
+				</div>
+				<div
+					class="display-flex gap-xs width-full-tablet flex-direction-column padding-xs justify-content-space-evenly"
+				>
+					<div class="media">
+						
+					<div class="media-left">
+						<div class="image image-36x36" hidden data-open-source-image-container>
+							<img
+								class="theme-display is-light"
+								src="https://learn.microsoft.com/media/logos/logo_net.svg"
+								aria-hidden="true"
+								data-open-source-image-light
+							/>
+							<img
+								class="theme-display is-dark is-high-contrast"
+								src="https://learn.microsoft.com/media/logos/logo_net.svg"
+								aria-hidden="true"
+								data-open-source-image-dark
+							/>
+						</div>
+					</div>
+			  
+
+						<div class="media-content">
+							<p
+								class="font-size-xl font-weight-semibold margin-bottom-xxs"
+								data-open-source-product-title
+							>
+								.NET
+							</p>
+							<div class="display-flex gap-xs flex-direction-column">
+								<p class="line-height-normal" data-open-source-product-description></p>
+								<div class="display-flex gap-xs flex-direction-column">
+									<a href="#" data-github-link>
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-bug"></span>
+										</span>
+										<span>Open a documentation issue</span>
+									</a>
+									<a
+										href="https://aka.ms/feedback/report?space=61"
+										class="display-block margin-top-auto font-size-md"
+										data-feedback-product-url
+									>
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-feedback"></span>
+										</span>
+										<span>Provide product feedback</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- end feedback section -->
+	
+			
+		<!-- feedback section -->
+		<section
+			id="site-user-feedback-footer"
+			class="font-size-sm margin-top-md display-none-print display-none-desktop"
+			data-test-id="site-user-feedback-footer"
+			data-bi-name="site-feedback-section"
+		>
+			<hr class="hr" />
+			<h2 id="ms--feedback" class="title is-3">Feedback</h2>
+			<div class="display-flex flex-wrap-wrap align-items-center">
+				<p class="font-weight-semibold margin-xxs margin-left-none">
+					Was this page helpful?
+				</p>
+				<div class="buttons">
+					<button
+						class="thumb-rating-button like button button-primary button-sm"
+						data-test-id="footer-rating-yes"
+						data-binary-rating-response="rating-yes"
+						type="button"
+						title="This article is helpful"
+						data-bi-name="button-rating-yes"
+						aria-pressed="false"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-like"></span>
+						</span>
+						<span>Yes</span>
+					</button>
+					<button
+						class="thumb-rating-button dislike button button-primary button-sm"
+						id="standard-rating-no-button"
+						hidden
+						data-test-id="footer-rating-no"
+						data-binary-rating-response="rating-no"
+						type="button"
+						title="This article is not helpful"
+						data-bi-name="button-rating-no"
+						aria-pressed="false"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-dislike"></span>
+						</span>
+						<span>No</span>
+					</button>
+					<details
+						class="popover popover-top"
+						id="mobile-help-popover"
+						data-test-id="footer-feedback-popover"
+					>
+						<summary
+							class="thumb-rating-button dislike button button-primary button-sm"
+							data-test-id="details-footer-rating-no"
+							data-binary-rating-response="rating-no"
+							title="This article is not helpful"
+							data-bi-name="button-rating-no"
+							aria-pressed="false"
+							data-bi-an="feedback-unhelpful-popover"
+						>
+							<span class="icon" aria-hidden="true">
+								<span class="docon docon-dislike"></span>
+							</span>
+							<span>No</span>
+						</summary>
+						<div
+							class="popover-content width-200 width-300-tablet"
+							role="dialog"
+							aria-labelledby="popover-heading"
+							aria-describedby="popover-description"
+						>
+							<p id="popover-heading" class="font-size-lg margin-bottom-xxs font-weight-semibold">
+								Need help with this topic?
+							</p>
+							<p id="popover-description" class="font-size-sm margin-bottom-xs">
+								Want to try using Ask Learn to clarify or guide you through this topic?
+							</p>
+							
+		<div class="buttons flex-direction-row flex-wrap justify-content-center gap-xxs">
+			<div>
+		<button
+			class="button button-sm border inner-focus display-none margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-test-id="ask-learn-assistant-modal-entry-mobile-feedback"
+			data-ask-learn-modal-entry-feedback
+			data-bi-an=feedback-unhelpful-popover
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-label="Ask Learn"
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button
+			class="button button-sm display-inline-flex display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-modal-entry-tablet-feedback"
+			data-ask-learn-modal-entry-feedback
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button
+			class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-flyout-entry-feedback"
+			data-ask-learn-flyout-entry-show-only
+			data-flyout-button="toggle"
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-controls="ask-learn-flyout"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	</div>
+			<button
+				type="button"
+				class="button button-sm margin-right-xxs"
+				data-help-option="suggest-fix"
+				data-bi-name="feedback-suggest"
+				data-bi-an="feedback-unhelpful-popover"
+				data-test-id="suggest-fix"
+			>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-feedback"></span>
+				</span>
+				<span> Suggest a fix? </span>
+			</button>
+		</div>
+	
+						</div>
+					</details>
+				</div>
+			</div>
+		</section>
+		<!-- end feedback section -->
+	
+		
+				</div>
+				
+		<div id="ms--additional-resources-mobile" class="display-none-print">
+			<hr class="hr" hidden />
+			<h2 id="ms--additional-resources-mobile-heading" class="title is-3" hidden>
+				Additional resources
+			</h2>
+			 
+		<section
+			id="right-rail-training-mobile"
+			class=""
+			data-bi-name="learning-resource-card"
+			hidden
+		></section>
+	 
+		<section
+			id="right-rail-events-mobile"
+			class=""
+			data-bi-name="events-card"
+			hidden
+		></section>
+	
+		</div>
+	 
+		<div
+			id="article-metadata-footer"
+			data-bi-name="article-metadata-footer"
+			data-test-id="article-metadata-footer"
+			class="page-metadata-container"
+		>
+			<hr class="hr" />
+			<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+				<li class="visibility-hidden-visual-diff">
+			<span class="badge badge-sm text-wrap-pretty">
+				<span>Last updated on <local-time format="twoDigitNumeric"
+		datetime="2025-10-02T10:01:00.000Z"
+		data-article-date-source="calculated"
+		class="is-invisible"
+	>
+		2025-10-02
+	</local-time></span>
+			</span>
+		</li>
+			</ul>
+		</div>
+	
+			</div>
+		
+				</main>
+				<aside
+					id="layout-body-aside"
+					class="layout-body-aside  "
+					data-bi-name="aside"
+					aria-label="Additional resources"
+			  >
+					
+		<div
+			id="ms--additional-resources"
+			class="right-container padding-sm display-none display-block-desktop height-full"
+			data-bi-name="pageactions"
+		>
+			<div id="affixed-right-container" data-bi-name="right-column">
+				
+		<nav
+			id="side-doc-outline"
+			class="doc-outline border-bottom padding-bottom-xs margin-bottom-xs scrollbar-width-thin"
+			data-bi-name="intopic toc"
+			aria-label="In this article"
+		>
+			<h3>In this article</h3>
+		</nav>
+	
+				<!-- Feedback -->
+				
+		<section
+			id="ms--site-user-feedback-right-rail"
+			class="font-size-sm display-none-print"
+			data-test-id="site-user-feedback-right-rail"
+			data-bi-name="site-feedback-right-rail"
+		>
+			<div class="display-flex flex-wrap-wrap align-items-center">
+				<p class="font-weight-semibold margin-xxs margin-left-none">
+					Was this page helpful?
+				</p>
+				<div class="display-flex flex-wrap-nowrap">
+					<button
+						class="thumb-rating-button like inner-focus"
+						data-test-id="right-rail-rating-yes"
+						data-binary-rating-response="rating-yes"
+						type="button"
+						title="This article is helpful"
+						aria-label="This article is helpful"
+						data-bi-name="button-rating-yes"
+						aria-pressed="false"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-like"></span>
+						</span>
+					</button>
+					<button
+						class="thumb-rating-button dislike inner-focus"
+						id="right-rail-no-button"
+						hidden
+						data-test-id="right-rail-rating-no"
+						data-binary-rating-response="rating-no"
+						type="button"
+						title="This article is not helpful"
+						aria-label="This article is not helpful"
+						data-bi-name="button-rating-no"
+						aria-pressed="false"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-dislike"></span>
+						</span>
+					</button>
+					<details class="popover popover-right" id="help-popover" data-test-id="feedback-popover">
+						<summary
+							tabindex="0"
+							class="thumb-rating-button dislike inner-focus"
+							data-test-id="details-right-rail-rating-no"
+							data-binary-rating-response="rating-no"
+							title="This article is not helpful"
+							aria-label="This article is not helpful"
+							data-bi-name="button-rating-no"
+							aria-pressed="false"
+							data-bi-an="feedback-unhelpful-popover"
+						>
+							<span class="icon" aria-hidden="true">
+								<span class="docon docon-dislike"></span>
+							</span>
+						</summary>
+						<div
+							class="popover-content width-200 width-300-tablet"
+							role="dialog"
+							aria-labelledby="popover-heading-right-rail"
+							aria-describedby="popover-description-right-rail"
+						>
+							<p
+								id="popover-heading-right-rail"
+								class="font-size-lg margin-bottom-xxs font-weight-semibold"
+							>
+								Need help with this topic?
+							</p>
+							<p id="popover-description-right-rail" class="font-size-sm margin-bottom-xs">
+								Want to try using Ask Learn to clarify or guide you through this topic?
+							</p>
+							
+		<div class="buttons flex-direction-row flex-wrap justify-content-center gap-xxs">
+			<div>
+		<button
+			class="button button-sm border inner-focus display-none margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-test-id="ask-learn-assistant-modal-entry-mobile-feedback"
+			data-ask-learn-modal-entry-feedback
+			data-bi-an=feedback-unhelpful-popover
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-label="Ask Learn"
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button
+			class="button button-sm display-inline-flex display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-modal-entry-tablet-feedback"
+			data-ask-learn-modal-entry-feedback
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button
+			class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-flyout-entry-feedback"
+			data-ask-learn-flyout-entry-show-only
+			data-flyout-button="toggle"
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-controls="ask-learn-flyout"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	</div>
+			<button
+				type="button"
+				class="button button-sm margin-right-xxs"
+				data-help-option="suggest-fix"
+				data-bi-name="feedback-suggest"
+				data-bi-an="feedback-unhelpful-popover"
+				data-test-id="suggest-fix"
+			>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-feedback"></span>
+				</span>
+				<span> Suggest a fix? </span>
+			</button>
+		</div>
+	
+						</div>
+					</details>
+				</div>
+			</div>
+		</section>
+	
+			</div>
+		</div>
+	
+			  </aside> <section
+					id="layout-body-flyout"
+					class="layout-body-flyout "
+					data-bi-name="flyout"
+			  >
+					 <div
+	class="height-full border-left background-color-body-medium"
+	id="ask-learn-flyout"
+></div>
+			  </section> <div class="layout-body-footer " data-bi-name="layout-footer">
+		<footer
+			id="footer"
+			data-test-id="footer"
+			data-bi-name="footer"
+			class="footer-layout padding-xs padding-sm-desktop has-default-focus border-top"
+			role="contentinfo"
+		>
+			<div class="display-flex gap-xs flex-wrap-wrap is-full-height padding-right-lg-desktop">
+				
+		<a
+			data-mscc-ic="false"
+			href="#"
+			data-bi-name="select-locale"
+			class="locale-selector-link flex-shrink-0 button button-sm button-clear external-link-indicator"
+			id=""
+			title=""
+			><span class="icon" aria-hidden="true"
+				><span class="docon docon-world"></span></span
+			><span class="local-selector-link-text">en-us</span></a
+		>
+	 <div class="ccpa-privacy-link" data-ccpa-privacy-link hidden>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://aka.ms/yourcaliforniaprivacychoices"
+			data-bi-name="your-privacy-choices"
+			class="button button-sm button-clear flex-shrink-0 external-link-indicator"
+			id=""
+			title=""
+			>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 30 14"
+			xml:space="preserve"
+			height="16"
+			width="43"
+			aria-hidden="true"
+			focusable="false"
+		>
+			<path
+				d="M7.4 12.8h6.8l3.1-11.6H7.4C4.2 1.2 1.6 3.8 1.6 7s2.6 5.8 5.8 5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#fff"
+			></path>
+			<path
+				d="M22.6 0H7.4c-3.9 0-7 3.1-7 7s3.1 7 7 7h15.2c3.9 0 7-3.1 7-7s-3.2-7-7-7zm-21 7c0-3.2 2.6-5.8 5.8-5.8h9.9l-3.1 11.6H7.4c-3.2 0-5.8-2.6-5.8-5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#06f"
+			></path>
+			<path
+				d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z"
+				style="fill:#fff"
+			></path>
+			<path
+				d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z"
+				style="fill:#06f"
+			></path>
+		</svg>
+	
+			<span>Your Privacy Choices</span></a
+		>
+	
+	</div>
+				<div class="flex-shrink-0">
+		<div class="dropdown has-caret-up">
+			<button
+				data-test-id="theme-selector-button"
+				class="dropdown-trigger button button-clear button-sm inner-focus theme-dropdown-trigger"
+				aria-controls="{{ themeMenuId }}"
+				aria-haspopup="true"
+				aria-expanded="false"
+				data-bi-name="theme"
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-sun"></span></span>
+				<span>Theme</span>
+				<span class="icon expanded-indicator" aria-hidden="true">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<div class="dropdown-menu" id="{{ themeMenuId }}" role="menu">
+				<ul class="theme-selector padding-xxs" data-test-id="theme-dropdown-menu" role="none">
+					<li class="theme display-block" role="none">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							role="menuitemradio"
+							aria-checked="false"
+							data-theme-to="light"
+							tabindex="-1"
+						>
+							<span class="theme-light margin-right-xxs">
+								<span
+									class="theme-selector-icon border display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span> Light </span>
+						</button>
+					</li>
+					<li class="theme display-block" role="none">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							role="menuitemradio"
+							aria-checked="false"
+							data-theme-to="dark"
+							tabindex="-1"
+						>
+							<span class="theme-dark margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span> Dark </span>
+						</button>
+					</li>
+					<li class="theme display-block" role="none">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							role="menuitemradio"
+							aria-checked="false"
+							data-theme-to="high-contrast"
+							tabindex="-1"
+						>
+							<span class="theme-high-contrast margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span> High contrast </span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+			</div>
+			<ul class="links" data-bi-name="footerlinks">
+				<li class="manage-cookies-holder" hidden=""></li>
+				<li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/principles-for-ai-generated-content"
+			data-bi-name="aiDisclaimer"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>AI Disclaimer</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/previous-versions/"
+			data-bi-name="archivelink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Previous Versions</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://techcommunity.microsoft.com/t5/microsoft-learn-blog/bg-p/MicrosoftLearnBlog"
+			data-bi-name="bloglink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Blog</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/contribute"
+			data-bi-name="contributorGuide"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Contribute</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?LinkId=521839"
+			data-bi-name="privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?linkid=2259814"
+			data-bi-name="consumer-health-privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Consumer Health Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/legal/termsofuse"
+			data-bi-name="termsofuse"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Terms of Use</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://www.microsoft.com/legal/intellectualproperty/Trademarks/"
+			data-bi-name="trademarks"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Trademarks</a
+		>
+	
+	</li>
+				<li>&copy; Microsoft 2026</li>
+			</ul>
+		</footer>
+	</footer>
+			<noscript><img src="https://learn.microsoft.com/akam/13/pixel_67825674?a=dD03NGEzYzE1OTJjMGE2MGZhYzBhYWJhMjVkNjhmNDE4MjEzOWM5ODNlJmpzPW9mZg==" style="visibility: hidden; position: absolute; left: -999px; top: -999px;" /></noscript></body>
+		</html>

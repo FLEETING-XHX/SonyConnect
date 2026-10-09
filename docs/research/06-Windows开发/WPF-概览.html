@@ -1,0 +1,1989 @@
+ <!DOCTYPE html>
+		<html
+			class="layout layout-holy-grail   show-table-of-contents conceptual show-breadcrumb default-focus"
+			lang="en-us"
+			dir="ltr"
+			data-authenticated="false"
+			data-auth-status-determined="false"
+			data-target="docs"
+			x-ms-format-detection="none"
+		>
+			
+		<head>
+			<title>What is Windows Presentation Foundation - WPF | Microsoft Learn</title>
+			<meta charset="utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<meta name="color-scheme" content="light dark" />
+
+			<meta name="description" content="This article gives an overview of Windows Presentation Foundation (WPF) with .NET. WPF is a Windows-only user interface (UI) framework." />
+			<link rel="canonical" href="https://learn.microsoft.com/en-us/dotnet/desktop/wpf/overview/" /> 
+
+			<!-- Non-customizable open graph and sharing-related metadata -->
+			<meta name="twitter:card" content="summary_large_image" />
+			<meta name="twitter:site" content="@MicrosoftLearn" />
+			<meta property="og:type" content="website" />
+			<meta property="og:image:alt" content="Microsoft Learn" />
+			<meta property="og:image" content="https://learn.microsoft.com/en-us/media/open-graph-image.png" />
+			<!-- Page specific open graph and sharing-related metadata -->
+			<meta property="og:title" content="What is Windows Presentation Foundation - WPF" />
+			<meta property="og:url" content="https://learn.microsoft.com/en-us/dotnet/desktop/wpf/overview/" />
+			<meta property="og:description" content="This article gives an overview of Windows Presentation Foundation (WPF) with .NET. WPF is a Windows-only user interface (UI) framework." />
+			<meta name="platform_id" content="62659df5-2074-27c0-7ad8-390353dea5a4" /> 
+			<meta name="locale" content="en-us" />
+			 
+			<meta name="uhfHeaderId" content="MSDocsHeader-DotNet" />
+
+			<meta name="page_type" content="conceptual" />
+
+			<!--page specific meta tags-->
+			
+
+			<!-- custom meta tags -->
+			
+		<meta name="breadcrumb_path" content="/dotnet/desktop/breadcrumb/toc.json" />
+	
+		<meta name="feedback_system" content="OpenSource" />
+	
+		<meta name="feedback_product_url" content="https://developercommunity.visualstudio.com/VisualStudio" />
+	
+		<meta name="author" content="adegeo" />
+	
+		<meta name="ms.author" content="adegeo" />
+	
+		<meta name="ms.subservice" content="wpf" />
+	
+		<meta name="ms.topic" content="overview" />
+	
+		<meta name="ms.date" content="2026-03-23T00:00:00Z" />
+	
+		<meta name="ms.service" content="dotnet-desktop" />
+	
+		<meta name="ms.update-cycle" content="365-days" />
+	
+		<meta name="ms.custom" content="update-template, updateeachrelease" />
+	
+		<meta name="ai-usage" content="ai-assisted" />
+	
+		<meta name="document_id" content="f6c46556-c345-5e6c-de72-4d1399cc41bf" />
+	
+		<meta name="document_version_independent_id" content="f6c46556-c345-5e6c-de72-4d1399cc41bf" />
+	
+		<meta name="updated_at" content="2026-03-30T14:53:00Z" />
+	
+		<meta name="original_content_git_url" content="https://github.com/dotnet/docs-desktop/blob/live/dotnet-desktop-guide/wpf/overview/index.md" />
+	
+		<meta name="gitcommit" content="https://github.com/dotnet/docs-desktop/blob/ef919eb034e9646022f1b53adbefc5ebe20d2c8d/dotnet-desktop-guide/wpf/overview/index.md" />
+	
+		<meta name="git_commit_id" content="ef919eb034e9646022f1b53adbefc5ebe20d2c8d" />
+	
+		<meta name="site_name" content="Docs" />
+	
+		<meta name="depot_name" content="MSDN.dotnet-desktop-guide" />
+	
+		<meta name="schema" content="Conceptual" />
+	
+		<meta name="toc_rel" content="../toc.json" />
+	
+		<meta name="pdf_url_template" content="https://learn.microsoft.com/pdfstore/en-us/MSDN.dotnet-desktop-guide/{branchName}{pdfName}" />
+	
+		<meta name="feedback_help_link_type" content="" />
+	
+		<meta name="feedback_help_link_url" content="" />
+	
+		<meta name="search.mshattr.devlang" content="csharp vb" />
+	
+		<meta name="word_count" content="3498" />
+	
+		<meta name="asset_id" content="wpf/overview/index" />
+	
+		<meta name="moniker_range_name" content="" />
+	
+		<meta name="item_type" content="Content" />
+	
+		<meta name="source_path" content="dotnet-desktop-guide/wpf/overview/index.md" />
+	
+		<meta name="previous_tlsh_hash" content="49C26A92840C5610EF836E16B6AFA741B1F0904D5CB43BE818327152D1566E734FDADCA5E357631113700BA301AA734FA2D2CB7ED07DB7E30956A4BD42AC16A2978A3FB3D9" />
+	
+		<meta name="github_feedback_content_git_url" content="https://github.com/dotnet/docs-desktop/blob/main/dotnet-desktop-guide/wpf/overview/index.md" />
+	
+		<meta name="markdown_url" content="https://learn.microsoft.com/en-us/dotnet/desktop/wpf/overview/?accept=text/markdown" />
+	 
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/7696cda6-0510-47f6-8302-71bb5d2e28cf" data-source="generated" />
+	
+		<meta name="cmProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/bcbcbad5-4208-4783-8035-8481272c98b8" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/69c76c32-967e-4c65-b89a-74cc527db725" data-source="generated" />
+	
+		<meta name="spProducts" content="https://authoring-docs-microsoft.poolparty.biz/devrel/43b2e5aa-8a6d-4de2-a252-692232e5edc8" data-source="generated" />
+	
+
+			<!-- Apply persisted/system theme before first paint to prevent wrong-theme flash when scripts are deferred. -->
+			<script id="theme-preference">
+				(function () {
+			try {
+				var stored = localStorage.getItem('theme');
+				var theme = /^(light|dark|high-contrast)$/.test(stored)
+					? stored
+					: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				document.documentElement.classList.add('theme-' + theme);
+			} catch (e) {}
+		})();;
+			</script>
+
+			<script id="atlas-layout-preferences">
+				(function () {
+			try {
+				var state = JSON.parse(localStorage.getItem('atlas-layout-preferences') || '{}');
+				var view = state["docs-layout-persistence"] || {};
+				var excludesKey = "";
+				var blocked = {};
+				if (excludesKey) {
+					var exclusions = JSON.parse(localStorage.getItem('atlas-layout-exclusions') || '{}');
+					if (Object.prototype.hasOwnProperty.call(exclusions, excludesKey)) {
+						var scoped = exclusions[excludesKey];
+						if (scoped) {
+							if (typeof scoped === 'object') blocked = scoped;
+						}
+					}
+				}
+				var html = document.documentElement;
+				for (var c in view) {
+					if (Object.prototype.hasOwnProperty.call(blocked, c)) continue;
+					if (view[c]) html.classList.add(c);
+					else html.classList.remove(c);
+				}
+			} catch (e) {}
+		})();;
+			</script>
+
+			<!-- assets and js globals -->
+			
+			<link rel="stylesheet" href="/static/assets/0.4.03564.8276-6f650523/styles/site.css" />
+			
+			<script src="https://wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js"></script>
+			<!-- Keep this URL in sync with oneDSScriptSelector in instrumentation/one-ds.ts. -->
+			<script async src="https://js.monitor.azure.com/scripts/c/ms.jsll-4.min.js"></script>
+			
+
+			<!-- msdocs global object -->
+			<script id="msdocs-script">
+		var msDocs = {
+  "environment": {
+    "accessLevel": "online",
+    "azurePortalHostname": "portal.azure.com",
+    "reviewFeatures": false,
+    "supportLevel": "production",
+    "systemContent": true,
+    "siteName": "learn",
+    "legacyHosting": false
+  },
+  "data": {
+    "contentLocale": "en-us",
+    "contentDir": "ltr",
+    "userLocale": "en-us",
+    "userDir": "ltr",
+    "pageTemplate": "Conceptual",
+    "layoutStateStorageKey": "docs-layout-persistence",
+    "brand": "",
+    "context": {},
+    "standardFeedback": false,
+    "showFeedbackReport": false,
+    "feedbackHelpLinkType": "",
+    "feedbackHelpLinkUrl": "",
+    "feedbackSystem": "OpenSource",
+    "feedbackGitHubRepo": "dotnet/docs-desktop",
+    "feedbackProductUrl": "https://developercommunity.visualstudio.com/VisualStudio",
+    "extendBreadcrumb": false,
+    "isEditDisplayable": true,
+    "isPrivateUnauthorized": false,
+    "hideViewSource": false,
+    "isPermissioned": false,
+    "hasRecommendations": true,
+    "openSourceFeedbackIssueUrl": "https://github.com/dotnet/docs-desktop/issues/new?template=customer-feedback.yml",
+    "openSourceFeedbackIssueTitle": ""
+  },
+  "functions": {}
+};;
+	</script>
+
+			<!-- base scripts, msdocs global should be before this -->
+			<script
+				src="/static/assets/0.4.03564.8276-6f650523/scripts/en-us/index-docs.js"
+				async
+			></script>
+			
+
+			<!-- json-ld -->
+			
+		<script >bazadebezolkohpepadr="1736594879"</script><script type="text/javascript" src="https://learn.microsoft.com/akam/13/67825674"  defer></script></head>
+	
+			<body
+				id="body"
+				data-bi-name="body"
+				class="layout-body "
+				lang="en-us"
+				dir="ltr"
+			>
+				<header class="layout-body-header background-color-body-medium">
+		<div class="header-holder has-default-focus">
+			
+		<a
+			href="#main"
+			
+			style="z-index: 1070"
+			class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body"
+			
+		>
+			Skip to main content
+		</a>
+	
+		<a
+			href="#"
+			data-skip-to-ask-learn
+			style="z-index: 1070"
+			class="outline-color-text visually-hidden-until-focused position-fixed inner-focus focus-visible top-0 left-0 right-0 padding-xs text-align-center background-color-body"
+			hidden
+		>
+			Skip to Ask Learn chat experience
+		</a>
+	
+
+			<div hidden id="cookie-consent-holder" data-test-id="cookie-consent-container"></div>
+			<!-- Unsupported browser warning -->
+			<div
+				id="unsupported-browser"
+				style="background-color: white; color: black; padding: 16px; border-bottom: 1px solid grey;"
+				hidden
+			>
+				<div style="max-width: 800px; margin: 0 auto;">
+					<p style="font-size: 24px">This browser is no longer supported.</p>
+					<p style="font-size: 16px; margin-top: 16px;">
+						Upgrade to Microsoft Edge to take advantage of the latest features, security updates, and technical support.
+					</p>
+					<div style="margin-top: 12px;">
+						<a
+							href="https://go.microsoft.com/fwlink/p/?LinkID=2092881 "
+							style="background-color: #0078d4; border: 1px solid #0078d4; color: white; padding: 6px 12px; border-radius: 2px; display: inline-block;"
+						>
+							Download Microsoft Edge
+						</a>
+						<a
+							href="https://learn.microsoft.com/en-us/lifecycle/faq/internet-explorer-microsoft-edge"
+							style="background-color: white; padding: 6px 12px; border: 1px solid #505050; color: #171717; border-radius: 2px; display: inline-block;"
+						>
+							More info about Internet Explorer and Microsoft Edge
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- site header -->
+			<div
+				id="ms--site-header"
+				data-test-id="site-header-wrapper"
+				itemscope="itemscope"
+				itemtype="http://schema.org/Organization"
+			>
+				<div
+					id="ms--mobile-nav"
+					class="site-header display-none-tablet padding-inline-none gap-none"
+					data-bi-name="mobile-header"
+					data-test-id="mobile-header"
+				></div>
+				<div
+					id="ms--primary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L1-header"
+					data-test-id="primary-header"
+				></div>
+				<div
+					id="ms--secondary-nav"
+					class="site-header display-none display-flex-tablet"
+					data-bi-name="L2-header"
+					data-test-id="secondary-header"
+					
+				></div>
+			</div>
+			
+		<!-- banner -->
+		<div data-banner>
+			<div id="disclaimer-holder"></div>
+			
+		</div>
+		<!-- banner end -->
+	
+		</div>
+	</header>
+				 <section
+					id="layout-body-menu"
+					class="layout-body-menu border-right display-flex background-color-body-medium"
+					data-bi-name="menu"
+			  >
+					
+		<div
+			id="left-container"
+			class="left-container display-none padding-none display-block-tablet width-full display-none-until-layout-restored"
+			data-toc-container="true"
+		>
+			<div
+				id="ms--toc-content"
+				class="padding-left-sm padding-right-none padding-bottom-sm height-full"
+			>
+				<nav
+					id="affixed-left-container"
+					class="margin-top-xxs-tablet position-sticky display-flex flex-direction-column width-full"
+					aria-label="Primary"
+					data-bi-name="left-toc"
+					role="navigation"
+				>
+					<div
+						id="ms--collapsible-toc-header"
+						class="display-flex flex-direction-row-reverse justify-content-center align-items-center margin-bottom-xxs margin-right-xxs"
+					>
+						<button
+							type="button"
+							class="button button-clear button-sm inner-focus"
+							data-collapsible-toc-toggle
+							aria-expanded="true"
+							hidden
+							aria-controls="ms--toc-content"
+							aria-label="Table of contents"
+						>
+							<span class="icon icon-mirrored-rtl" aria-hidden="true">
+								<span
+									class="docon docon-panel-left-contract display-none-layout-menu-collapsed"
+								></span>
+								<span
+									class="docon docon-panel-left-expand display-none display-inline-layout-menu-collapsed"
+								></span>
+							</span>
+						</button>
+						<div
+							id="ms--collapsible-toc-moniker-slot"
+							class="flex-grow-1 display-none-layout-menu-collapsed"
+						></div>
+					</div>
+				</nav>
+			</div>
+		</div>
+	
+			  </section>
+
+				<main
+					id="main"
+					role="main"
+					class="layout-body-main "
+					data-bi-name="content"
+					lang="en-us"
+					dir="ltr"
+				>
+					
+			<div
+		id="ms--content-header"
+		class="content-header default-focus border-bottom-none"
+		data-bi-name="content-header"
+	>
+		<div class="content-header-controls margin-xxs margin-inline-sm-tablet">
+			<button
+				type="button"
+				class="contents-button button button-sm margin-right-xxs"
+				data-bi-name="contents-expand"
+				aria-haspopup="true"
+				data-contents-button
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-menu"></span></span>
+				<span class="contents-expand-title"> Table of contents </span>
+			</button>
+			<button
+				type="button"
+				class="ap-collapse-behavior ap-expanded button button-sm"
+				data-bi-name="ap-collapse"
+				aria-controls="action-panel"
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-exit-mode"></span></span>
+				<span>Exit editor mode</span>
+			</button>
+		</div>
+	</div> 
+		<div
+			id="action-panel"
+			role="region"
+			aria-label="Action Panel"
+			class="action-panel"
+			tabindex="-1"
+		></div>
+	
+			<div
+				data-main-column
+				class="reading-width margin-inline-auto layout-padding padding-top-none padding-top-sm-tablet padding-bottom-sm"
+			>
+				<div>
+					
+		<div id="article-header" class="background-color-body margin-bottom-xs display-none-print">
+			<div class="display-flex align-items-center justify-content-space-between">
+				
+		<details
+			id="article-header-breadcrumbs-overflow-popover"
+			class="popover popover-left"
+			data-for="article-header-breadcrumbs"
+		>
+			<summary
+				class="button button-clear button-primary button-sm inner-focus"
+				aria-label="All breadcrumbs"
+			>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-more"></span>
+				</span>
+			</summary>
+			<div id="article-header-breadcrumbs-overflow" class="popover-content"></div>
+		</details>
+
+		<bread-crumbs
+			id="article-header-breadcrumbs"
+			role="group"
+			aria-label="Breadcrumbs"
+			data-test-id="article-header-breadcrumbs"
+			class="overflow-hidden flex-grow-1 margin-right-sm margin-right-md-tablet margin-right-lg-desktop margin-left-negative-xxs padding-left-xxs"
+		></bread-crumbs>
+	 
+		<div
+			id="article-header-page-actions"
+			class="opacity-none margin-left-auto display-flex flex-wrap-no-wrap align-items-stretch"
+		>
+			
+		<button
+			class="button button-sm border-none inner-focus display-none-tablet flex-shrink-0 "
+			data-bi-name="ask-learn-assistant-entry"
+			data-test-id="ask-learn-assistant-modal-entry-mobile"
+			data-ask-learn-modal-entry
+			
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-label="Ask Learn"
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button
+			class="button button-sm display-none display-inline-flex-tablet display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn "
+			data-bi-name="ask-learn-assistant-entry"
+			
+			data-test-id="ask-learn-assistant-modal-entry-tablet"
+			data-ask-learn-modal-entry
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button
+			class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn "
+			data-bi-name="ask-learn-assistant-entry"
+			
+			data-test-id="ask-learn-assistant-flyout-entry"
+			data-ask-learn-flyout-entry
+			data-flyout-button="toggle"
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-controls="ask-learn-flyout"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	 
+		<details class="language popover popover-right">
+			<summary
+				class="button button-clear button-sm"
+				title="Language"
+				data-bi-name="language"
+			>
+				<span class="lang-title align-self-flex-start" dir="ltr">Language</span>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-chevron-down-light expanded-indicator"></span>
+				</span>
+			</summary>
+			<div class="language-selector popover-content padding-xxs">
+				<ul
+					class="list-style-none margin-none padding-none"
+					data-bi-name="language-links"
+					dir="ltr"
+				>
+					
+			<li>
+				<button
+					type="button"
+					class="button button-clear button-sm button-block"
+					data-bi-name="lang-csharp"
+					data-popover-close
+					aria-pressed="false"
+				>
+					csharp
+				</button>
+			</li>
+		
+			<li>
+				<button
+					type="button"
+					class="button button-clear button-sm button-block"
+					data-bi-name="lang-vb"
+					data-popover-close
+					aria-pressed="false"
+				>
+					vb
+				</button>
+			</li>
+		
+				</ul>
+			</div>
+		</details>
+	
+
+			<details class="popover popover-right" id="article-header-page-actions-overflow">
+				<summary
+					class="justify-content-flex-start button button-clear button-sm button-primary inner-focus"
+					aria-label="More actions"
+					aria-expanded="false"
+					title="More actions"
+				>
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-more-vertical"></span>
+					</span>
+				</summary>
+				<div class="popover-content">
+					
+		<button
+			type="button"
+			id="ms--focus-mode-button"
+			data-focus-mode
+			data-bi-name="focus-mode-entry"
+			data-page-action-item="overflow-all"
+			data-popover-close
+			class="button button-clear button-sm button-block justify-content-flex-start text-align-left inner-focus display-none display-inline-flex-tablet"
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-glasses"></span>
+			</span>
+			<span>Reading mode</span>
+		</button>
+	 
+		<button
+			data-page-action-item="overflow-mobile"
+			type="button"
+			class="display-block-layout-menu-collapsed button-block button-sm inner-focus button button-clear display-none-tablet justify-content-flex-start text-align-left"
+			data-bi-name="contents-expand"
+			data-contents-button
+			data-popover-close
+		>
+			<span class="icon" aria-hidden="true"
+				><span class="docon docon-editor-list-bullet"></span
+			></span>
+			<span class="contents-expand-title">Table of contents</span>
+		</button>
+	 
+		<a
+			id="lang-link-overflow"
+			class="button-sm inner-focus button button-clear button-block justify-content-flex-start text-align-left"
+			data-bi-name="language-toggle"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-read-in-link
+			href="#"
+			hidden
+		>
+			<span class="icon" aria-hidden="true" data-read-in-link-icon>
+				<span class="docon docon-locale-globe"></span>
+			</span>
+			<span data-read-in-link-text>Read in English</span>
+		</a>
+	
+					
+		<button
+			type="button"
+			class="collection button button-clear button-sm button-block justify-content-flex-start text-align-left inner-focus"
+			data-list-type="collection"
+			data-bi-name="collection"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-popover-close
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-circle-addition"></span>
+			</span>
+			<span class="collection-status">Add</span>
+		</button>
+	 
+		<button
+			type="button"
+			class="collection button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus"
+			data-list-type="plan"
+			data-bi-name="plan"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			data-popover-close
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-circle-addition"></span>
+			</span>
+			<span class="plan-status">Add to Plans</span>
+		</button>
+	 
+					
+		<a
+			data-contenteditbtn
+			class="button button-clear button-block button-sm inner-focus justify-content-flex-start text-align-left text-decoration-none"
+			data-bi-name="edit"
+			data-page-action-item="overflow-all"
+			data-check-hidden="true"
+			
+			href="https://github.com/dotnet/docs-desktop/blob/main/dotnet-desktop-guide/wpf/overview/index.md"
+			data-original_content_git_url="https://github.com/dotnet/docs-desktop/blob/live/dotnet-desktop-guide/wpf/overview/index.md"
+			data-original_content_git_url_template="{repo}/blob/{branch}/dotnet-desktop-guide/wpf/overview/index.md"
+			data-pr_repo=""
+			data-pr_branch=""
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-edit-outline"></span>
+			</span>
+			<span>Edit</span>
+		</a>
+	  
+		<hr class="margin-block-xxs" />
+		
+				<button
+					class="button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus"
+					type="button"
+					data-bi-name="copy-markdown"
+					data-page-action-item="overflow-all"
+					data-copy-markdown
+					data-copy-state="idle"
+					data-check-hidden="true"
+				>
+					<span class="icon color-primary" aria-hidden="true">
+						<span data-show-when="idle" class="docon docon-code-lang"></span>
+						<span data-show-when="loading" class="loader" hidden></span>
+						<span data-show-when="success" class="docon docon-check-mark" hidden></span>
+					</span>
+					<span>Copy Markdown</span>
+				</button>
+		   
+				<button
+					class="button button-block button-clear button-sm justify-content-flex-start text-align-left inner-focus"
+					type="button"
+					data-bi-name="print"
+					data-page-action-item="overflow-all"
+					data-popover-close
+					data-print-page
+					data-check-hidden="true"
+				>
+					<span class="icon color-primary" aria-hidden="true">
+						<span class="docon docon-print"></span>
+					</span>
+					<span>Print</span>
+				</button>
+		  
+	
+				</div>
+			</details>
+		</div>
+	
+			</div>
+		</div>
+	  
+		<!-- privateUnauthorizedTemplate is hidden by default -->
+		<div unauthorized-private-section data-bi-name="permission-content-unauthorized-private" hidden>
+			<hr class="hr margin-top-xs margin-bottom-sm" />
+			<div class="notification notification-info">
+				<div class="notification-content">
+					<p class="margin-top-none notification-title">
+						<span class="icon" aria-hidden="true"
+							><span class="docon docon-exclamation-circle-solid"></span
+						></span>
+						<span>Note</span>
+					</p>
+					<p class="margin-top-none authentication-determined not-authenticated">
+						Access to this page requires authorization. You can try <a class="docs-sign-in" href="#" data-bi-name="permission-content-sign-in">signing in</a> or <a  class="docs-change-directory" data-bi-name="permisson-content-change-directory">changing directories</a>.
+					</p>
+					<p class="margin-top-none authentication-determined authenticated">
+						Access to this page requires authorization. You can try <a class="docs-change-directory" data-bi-name="permisson-content-change-directory">changing directories</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+	
+					<div class="content"><h1 id="windows-presentation-foundation-overview">Windows Presentation Foundation Overview</h1></div>
+					
+		<div
+			id="article-metadata"
+			data-bi-name="article-metadata"
+			data-test-id="article-metadata"
+			class="page-metadata-container display-flex gap-xxs justify-content-space-between align-items-center flex-wrap-wrap"
+		>
+			 
+				<div
+					id="user-feedback"
+					class="margin-block-xxs display-none display-none-print"
+					hidden
+					data-hide-on-archived
+				>
+					
+		<button
+			id="user-feedback-button"
+			data-test-id="conceptual-feedback-button"
+			class="button button-sm button-clear button-primary display-none"
+			type="button"
+			data-bi-name="user-feedback-button"
+			data-user-feedback-button
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-like"></span>
+			</span>
+			<span>Feedback</span>
+		</button>
+	
+				</div>
+		  
+		</div>
+	 
+		<div data-id="ai-summary" class="display-none-print">
+			<div id="ms--ai-summary-cta" class="margin-top-xs display-flex align-items-center">
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-sparkle-fill gradient-text-vivid"></span>
+				</span>
+				<button
+					id="ms--ai-summary"
+					type="button"
+					class="tag tag-sm tag-suggestion margin-left-xxs"
+					data-test-id="ai-summary-cta"
+					data-bi-name="ai-summary-cta"
+					data-an="ai-summary"
+				>
+					<span class="ai-summary-cta-text">
+						Summarize this article for me
+					</span>
+				</button>
+			</div>
+			<!-- Slot where the client will render the summary card after the user clicks the CTA -->
+			<div id="ms--ai-summary-header" class="margin-top-xs"></div>
+		</div>
+	 
+		<nav
+			id="center-doc-outline"
+			class="doc-outline display-none-desktop display-none-print margin-bottom-sm"
+			data-bi-name="intopic toc"
+			aria-label="In this article"
+		>
+			<h2 id="ms--in-this-article" class="title is-6 margin-block-xs">
+				In this article
+			</h2>
+		</nav>
+	 
+				<div class="content" data-code-language-options="csharp,vb">
+					<p>Welcome to the Desktop Guide for Windows Presentation Foundation (WPF), a UI framework that's resolution-independent and uses a vector-based rendering engine, built to take advantage of modern graphics hardware. WPF provides a comprehensive set of application-development features that include Extensible Application Markup Language (XAML), controls, data binding, layout, 2D and 3D graphics, animation, styles, templates, documents, media, text, and typography. WPF is part of .NET, so you can build applications that incorporate other elements of the .NET API.</p>
+<p>WPF has two implementations:</p>
+<ol>
+<li><p><strong>.NET</strong> version (this guide):</p>
+<p>An open-source implementation of WPF hosted on <a href="https://github.com/dotnet/wpf" data-linktype="external">GitHub</a>, which runs on .NET. The XAML designer requires, at a minimum, <a href="https://visualstudio.microsoft.com/downloads/?utm_medium=microsoft&amp;utm_source=learn.microsoft.com&amp;utm_campaign=inline+link&amp;utm_content=download+vs2019+desktopguide+wpf" data-linktype="external">Visual Studio 2019 version 16.8</a>. But depending on your version of .NET, you may be required to use a newer version of Visual Studio.</p>
+<p>Even though .NET is a cross-platform technology, WPF only runs on Windows.</p>
+</li>
+<li><p><strong>.NET Framework 4</strong> version:</p>
+<p>.NET Framework implementation of WPF that's supported by Visual Studio 2019 and Visual Studio 2017.</p>
+<p>.NET Framework 4 is a Windows-only version of .NET and is considered a Windows Operating System component. This version of WPF is distributed with .NET Framework.</p>
+</li>
+</ol>
+<p>This overview is intended for newcomers and covers the key capabilities and concepts of WPF. To learn how to create a WPF app, see <a href="../get-started/create-app-visual-studio" data-linktype="relative-path">Tutorial: Create a new WPF app</a>.</p>
+<h2 id="why-upgrade-from-net-framework">Why upgrade from .NET Framework</h2>
+<p>When you upgrade your application from .NET Framework to .NET, you benefit from:</p>
+<ul>
+<li>Better performance</li>
+<li>New .NET APIs</li>
+<li>The latest language improvements</li>
+<li>Improved accessibility and reliability</li>
+<li>Updated tooling and more</li>
+</ul>
+<p>To upgrade your application, see <a href="../migration/" data-linktype="relative-path">How to upgrade a WPF desktop app to .NET</a>.</p>
+<h2 id="program-with-wpf">Program with WPF</h2>
+<p>WPF exists as a subset of .NET types that are mostly located in the <a href="/en-us/dotnet/api/system.windows" class="no-loc" data-linktype="absolute-path">System.Windows</a> namespace. If you've previously built applications with .NET using frameworks like ASP.NET and Windows Forms, the fundamental WPF programming experience should be familiar. You:</p>
+<ul>
+<li>Instantiate classes</li>
+<li>Set properties</li>
+<li>Call methods</li>
+<li>Handle events</li>
+</ul>
+<p>WPF includes more programming constructs that enhance properties and events: <a href="../properties/dependency-properties-overview" data-linktype="relative-path">dependency properties</a> and <a href="../events/routed-events-overview" data-linktype="relative-path">routed events</a>.</p>
+<h2 id="markup-and-code-behind">Markup and code-behind</h2>
+<p>WPF lets you develop an application using both <em>markup</em> and <em>code-behind</em>, an experience with which ASP.NET developers should be familiar. You generally use XAML markup to implement the appearance of an application while using managed programming languages (code-behind) to implement its behavior. This separation of appearance and behavior has the following benefits:</p>
+<ul>
+<li><p>Development and maintenance costs are reduced because appearance-specific markup isn't tightly coupled with behavior-specific code.</p>
+</li>
+<li><p>Development is more efficient because designers can implement an application's appearance simultaneously with developers who are implementing the application's behavior.</p>
+</li>
+<li><p><a href="../advanced/wpf-globalization-and-localization-overview" data-linktype="relative-path">Globalization and localization</a> for WPF applications is simplified.</p>
+</li>
+</ul>
+<h3 id="markup">Markup</h3>
+<p>XAML is an XML-based markup language that implements an application's appearance declaratively. You typically use it to define windows, dialog boxes, pages, and user controls, and to fill them with controls, shapes, and graphics.</p>
+<p>The following example uses XAML to implement the appearance of a window that contains a single button:</p>
+<pre><code class="lang-xaml">&lt;Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    Title="Window with button"
+    Width="250" Height="100"&gt;
+
+  &lt;!-- Add button to window --&gt;
+  &lt;Button Name="button"&gt;Click Me!&lt;/Button&gt;
+
+&lt;/Window&gt;
+</code></pre>
+<p>Specifically, this XAML defines a window and a button by using the <code>Window</code> and <code>Button</code> elements. Each element is configured with attributes, such as the <code>Window</code> element's <code>Title</code> attribute to specify the window's title-bar text. At run time, WPF converts the elements and attributes that are defined in markup to instances of WPF classes. For example, the <code>Window</code> element is converted to an instance of the <a href="/en-us/dotnet/api/system.windows.window" class="no-loc" data-linktype="absolute-path">Window</a> class whose <a href="/en-us/dotnet/api/system.windows.window.title" class="no-loc" data-linktype="absolute-path">Title</a> property is the value of the <code>Title</code> attribute.</p>
+<p>The following figure shows the user interface (UI) that is defined by the XAML in the previous example:</p>
+<p><span class="mx-imgBorder">
+<img src="media/index/markup-window-button.png" alt="A window that contains a button" data-linktype="relative-path">
+</span>
+</p>
+<p>Since XAML is XML-based, the UI that you compose with it is assembled in a hierarchy of nested elements that's known as an <a href="../advanced/trees-in-wpf" data-linktype="relative-path">element tree</a>. The element tree provides a logical and intuitive way to create and manage UIs.</p>
+<h3 id="code-behind">Code-behind</h3>
+<p>The main behavior of an application is to implement the functionality that responds to user interactions. For example, clicking a menu or button and calling business logic and data access logic in response. In WPF, this behavior is implemented in code that's associated with markup. This type of code is known as code-behind. The following example shows the updated markup from the previous example and the code-behind:</p>
+<pre><code class="lang-xaml">&lt;Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="SDKSample.AWindow"
+    Title="Window with button"
+    Width="250" Height="100"&gt;
+
+  &lt;!-- Add button to window --&gt;
+  &lt;Button Name="button" Click="button_Click"&gt;Click Me!&lt;/Button&gt;
+
+&lt;/Window&gt;
+</code></pre>
+<p>The updated markup defines the <code>xmlns:x</code> namespace and maps it to the schema that adds support for the code-behind types. The <code>x:Class</code> attribute associates a code-behind class to this specific XAML markup. Considering this attribute is declared on the <code>&lt;Window&gt;</code> element, the code-behind class must inherit from the <code>Window</code> class.</p>
+<pre><code class="lang-csharp">using System.Windows;
+
+namespace SDKSample
+{
+    public&nbsp;partial&nbsp;class AWindow : Window
+    {
+        public AWindow()
+        {
+            // InitializeComponent call is required to merge the UI
+            // that is defined in markup with this class, including &nbsp;
+            // setting properties and registering event handlers
+            InitializeComponent();
+        }
+
+        void button_Click(object sender, RoutedEventArgs e)
+        {
+            // Show message box when button is clicked.
+            MessageBox.Show("Hello, Windows Presentation Foundation!");
+        }
+    }
+}
+</code></pre>
+<pre><code class="lang-vb">Namespace SDKSample
+
+    Partial&nbsp;Public&nbsp;Class AWindow
+        Inherits System.Windows.Window
+
+        Public&nbsp;Sub&nbsp;New()
+
+            ' InitializeComponent call is required to merge the UI
+            ' that is defined in markup with this class, including &nbsp;
+            ' setting properties and registering event handlers
+            InitializeComponent()
+
+        End&nbsp;Sub
+
+        Private&nbsp;Sub button_Click(ByVal sender As&nbsp;Object, ByVal e As RoutedEventArgs)
+
+            ' Show message box when button is clicked.
+            MessageBox.Show("Hello, Windows Presentation Foundation!")
+
+        End&nbsp;Sub
+
+    End&nbsp;Class
+
+End&nbsp;Namespace
+</code></pre>
+<p><code>InitializeComponent</code> is called from the code-behind class's constructor to merge the UI that's defined in markup with the code-behind class. (<code>InitializeComponent</code> is generated for you when your application is built, which is why you don't need to implement it manually.) The combination of <code>x:Class</code> and <code>InitializeComponent</code> ensure that your implementation is correctly initialized whenever it's created.</p>
+<p>Notice that in the markup the <code>&lt;Button&gt;</code> element defined a value of <code>button_Click</code> for the <code>Click</code> attribute. With the markup and code-behind initialized and working together, the <a href="/en-us/dotnet/api/system.windows.controls.primitives.buttonbase.click#system-windows-controls-primitives-buttonbase-click" class="no-loc" data-linktype="absolute-path">Click</a> event for the button is automatically mapped to the <code>button_Click</code> method. When the button is clicked, the event handler is invoked and displays a message box by calling the <a href="/en-us/dotnet/api/system.windows.messagebox.show" class="no-loc" data-linktype="absolute-path">System.Windows.MessageBox.Show</a> method.</p>
+<p>The following figure shows the result when the button is clicked:</p>
+<p><span class="mx-imgBorder">
+<img src="media/index/markup-window-button-clicked.png" alt="A MessageBox" data-linktype="relative-path">
+</span>
+</p>
+<h2 id="input-and-commands">Input and commands</h2>
+<p>Controls most often detect and respond to user input. The WPF input system uses both direct and routed events to support text input, focus management, and mouse positioning.</p>
+<p>Applications often have complex input requirements. WPF provides a command system that separates user-input actions from the code that responds to those actions. The command system allows for multiple sources to invoke the same command logic. For example, take the common editing operations used by different applications: <strong>Copy</strong>, <strong>Cut</strong>, and <strong>Paste</strong>. These operations can be invoked using different user actions if they're implemented using commands.</p>
+<h2 id="controls">Controls</h2>
+<p>The application model delivers user experiences through constructed controls. In WPF, <em>control</em> is an umbrella term that applies to a category of WPF classes that have the following characteristics:</p>
+<ul>
+<li>Hosted in either a window or a page.</li>
+<li>Have a user interface.</li>
+<li>Implement some behavior.</li>
+</ul>
+<p>For more information, see <a href="../controls/" data-linktype="relative-path">Controls</a>.</p>
+<h3 id="wpf-controls-by-function">WPF controls by function</h3>
+<p>The built-in WPF controls are listed here:</p>
+<ul>
+<li><p><strong>Buttons</strong>: <a href="/en-us/dotnet/api/system.windows.controls.button" class="no-loc" data-linktype="absolute-path">Button</a> and <a href="/en-us/dotnet/api/system.windows.controls.primitives.repeatbutton" class="no-loc" data-linktype="absolute-path">RepeatButton</a>.</p>
+</li>
+<li><p><strong>Data Display</strong>: <a href="/en-us/dotnet/api/system.windows.controls.datagrid" class="no-loc" data-linktype="absolute-path">DataGrid</a>, <a href="/en-us/dotnet/api/system.windows.controls.listview" class="no-loc" data-linktype="absolute-path">ListView</a>, and <a href="/en-us/dotnet/api/system.windows.controls.treeview" class="no-loc" data-linktype="absolute-path">TreeView</a>.</p>
+</li>
+<li><p><strong>Date Display and Selection</strong>: <a href="/en-us/dotnet/api/system.windows.controls.calendar" class="no-loc" data-linktype="absolute-path">Calendar</a> and <a href="/en-us/dotnet/api/system.windows.controls.datepicker" class="no-loc" data-linktype="absolute-path">DatePicker</a>.</p>
+</li>
+<li><p><strong>Dialog Boxes</strong>: <a href="/en-us/dotnet/api/microsoft.win32.openfiledialog" class="no-loc" data-linktype="absolute-path">OpenFileDialog</a>, <a href="/en-us/dotnet/api/system.windows.controls.printdialog" class="no-loc" data-linktype="absolute-path">PrintDialog</a>, and <a href="/en-us/dotnet/api/microsoft.win32.savefiledialog" class="no-loc" data-linktype="absolute-path">SaveFileDialog</a>.</p>
+</li>
+<li><p><strong>Digital Ink</strong>: <a href="/en-us/dotnet/api/system.windows.controls.inkcanvas" class="no-loc" data-linktype="absolute-path">InkCanvas</a> and <a href="/en-us/dotnet/api/system.windows.controls.inkpresenter" class="no-loc" data-linktype="absolute-path">InkPresenter</a>.</p>
+</li>
+<li><p><strong>Documents</strong>: <a href="/en-us/dotnet/api/system.windows.controls.documentviewer" class="no-loc" data-linktype="absolute-path">DocumentViewer</a>, <a href="/en-us/dotnet/api/system.windows.controls.flowdocumentpageviewer" class="no-loc" data-linktype="absolute-path">FlowDocumentPageViewer</a>, <a href="/en-us/dotnet/api/system.windows.controls.flowdocumentreader" class="no-loc" data-linktype="absolute-path">FlowDocumentReader</a>, <a href="/en-us/dotnet/api/system.windows.controls.flowdocumentscrollviewer" class="no-loc" data-linktype="absolute-path">FlowDocumentScrollViewer</a>, and <a href="/en-us/dotnet/api/system.windows.controls.stickynotecontrol" class="no-loc" data-linktype="absolute-path">StickyNoteControl</a>.</p>
+</li>
+<li><p><strong>Input</strong>: <a href="/en-us/dotnet/api/system.windows.controls.textbox" class="no-loc" data-linktype="absolute-path">TextBox</a>, <a href="/en-us/dotnet/api/system.windows.controls.richtextbox" class="no-loc" data-linktype="absolute-path">RichTextBox</a>, and <a href="/en-us/dotnet/api/system.windows.controls.passwordbox" class="no-loc" data-linktype="absolute-path">PasswordBox</a>.</p>
+</li>
+<li><p><strong>Layout</strong>: <a href="/en-us/dotnet/api/system.windows.controls.border" class="no-loc" data-linktype="absolute-path">Border</a>, <a href="/en-us/dotnet/api/system.windows.controls.primitives.bulletdecorator" class="no-loc" data-linktype="absolute-path">BulletDecorator</a>, <a href="/en-us/dotnet/api/system.windows.controls.canvas" class="no-loc" data-linktype="absolute-path">Canvas</a>, <a href="/en-us/dotnet/api/system.windows.controls.dockpanel" class="no-loc" data-linktype="absolute-path">DockPanel</a>, <a href="/en-us/dotnet/api/system.windows.controls.expander" class="no-loc" data-linktype="absolute-path">Expander</a>, <a href="/en-us/dotnet/api/system.windows.controls.grid" class="no-loc" data-linktype="absolute-path">Grid</a>, <a href="/en-us/dotnet/api/system.windows.controls.gridview" class="no-loc" data-linktype="absolute-path">GridView</a>, <a href="/en-us/dotnet/api/system.windows.controls.gridsplitter" class="no-loc" data-linktype="absolute-path">GridSplitter</a>, <a href="/en-us/dotnet/api/system.windows.controls.groupbox" class="no-loc" data-linktype="absolute-path">GroupBox</a>, <a href="/en-us/dotnet/api/system.windows.controls.panel" class="no-loc" data-linktype="absolute-path">Panel</a>, <a href="/en-us/dotnet/api/system.windows.controls.primitives.resizegrip" class="no-loc" data-linktype="absolute-path">ResizeGrip</a>, <a href="/en-us/dotnet/api/system.windows.controls.separator" class="no-loc" data-linktype="absolute-path">Separator</a>, <a href="/en-us/dotnet/api/system.windows.controls.primitives.scrollbar" class="no-loc" data-linktype="absolute-path">ScrollBar</a>, <a href="/en-us/dotnet/api/system.windows.controls.scrollviewer" class="no-loc" data-linktype="absolute-path">ScrollViewer</a>, <a href="/en-us/dotnet/api/system.windows.controls.stackpanel" class="no-loc" data-linktype="absolute-path">StackPanel</a>, <a href="/en-us/dotnet/api/system.windows.controls.primitives.thumb" class="no-loc" data-linktype="absolute-path">Thumb</a>, <a href="/en-us/dotnet/api/system.windows.controls.viewbox" class="no-loc" data-linktype="absolute-path">Viewbox</a>, <a href="/en-us/dotnet/api/system.windows.controls.virtualizingstackpanel" class="no-loc" data-linktype="absolute-path">VirtualizingStackPanel</a>, <a href="/en-us/dotnet/api/system.windows.window" class="no-loc" data-linktype="absolute-path">Window</a>, and <a href="/en-us/dotnet/api/system.windows.controls.wrappanel" class="no-loc" data-linktype="absolute-path">WrapPanel</a>.</p>
+</li>
+<li><p><strong>Media</strong>: <a href="/en-us/dotnet/api/system.windows.controls.image" class="no-loc" data-linktype="absolute-path">Image</a>, <a href="/en-us/dotnet/api/system.windows.controls.mediaelement" class="no-loc" data-linktype="absolute-path">MediaElement</a>, and <a href="/en-us/dotnet/api/system.windows.controls.soundplayeraction" class="no-loc" data-linktype="absolute-path">SoundPlayerAction</a>.</p>
+</li>
+<li><p><strong>Menus</strong>: <a href="/en-us/dotnet/api/system.windows.controls.contextmenu" class="no-loc" data-linktype="absolute-path">ContextMenu</a>, <a href="/en-us/dotnet/api/system.windows.controls.menu" class="no-loc" data-linktype="absolute-path">Menu</a>, and <a href="/en-us/dotnet/api/system.windows.controls.toolbar" class="no-loc" data-linktype="absolute-path">ToolBar</a>.</p>
+</li>
+<li><p><strong>Navigation</strong>: <a href="/en-us/dotnet/api/system.windows.controls.frame" class="no-loc" data-linktype="absolute-path">Frame</a>, <a href="/en-us/dotnet/api/system.windows.documents.hyperlink" class="no-loc" data-linktype="absolute-path">Hyperlink</a>, <a href="/en-us/dotnet/api/system.windows.controls.page" class="no-loc" data-linktype="absolute-path">Page</a>, <a href="/en-us/dotnet/api/system.windows.navigation.navigationwindow" class="no-loc" data-linktype="absolute-path">NavigationWindow</a>, and <a href="/en-us/dotnet/api/system.windows.controls.tabcontrol" class="no-loc" data-linktype="absolute-path">TabControl</a>.</p>
+</li>
+<li><p><strong>Selection</strong>: <a href="/en-us/dotnet/api/system.windows.controls.checkbox" class="no-loc" data-linktype="absolute-path">CheckBox</a>, <a href="/en-us/dotnet/api/system.windows.controls.combobox" class="no-loc" data-linktype="absolute-path">ComboBox</a>, <a href="/en-us/dotnet/api/system.windows.controls.listbox" class="no-loc" data-linktype="absolute-path">ListBox</a>, <a href="/en-us/dotnet/api/system.windows.controls.radiobutton" class="no-loc" data-linktype="absolute-path">RadioButton</a>, and <a href="/en-us/dotnet/api/system.windows.controls.slider" class="no-loc" data-linktype="absolute-path">Slider</a>.</p>
+</li>
+<li><p><strong>User Information</strong>: <a href="/en-us/dotnet/api/system.windows.controls.accesstext" class="no-loc" data-linktype="absolute-path">AccessText</a>, <a href="/en-us/dotnet/api/system.windows.controls.label" class="no-loc" data-linktype="absolute-path">Label</a>, <a href="/en-us/dotnet/api/system.windows.controls.primitives.popup" class="no-loc" data-linktype="absolute-path">Popup</a>, <a href="/en-us/dotnet/api/system.windows.controls.progressbar" class="no-loc" data-linktype="absolute-path">ProgressBar</a>, <a href="/en-us/dotnet/api/system.windows.controls.primitives.statusbar" class="no-loc" data-linktype="absolute-path">StatusBar</a>, <a href="/en-us/dotnet/api/system.windows.controls.textblock" class="no-loc" data-linktype="absolute-path">TextBlock</a>, and <a href="/en-us/dotnet/api/system.windows.controls.tooltip" class="no-loc" data-linktype="absolute-path">ToolTip</a>.</p>
+</li>
+</ul>
+<h2 id="layout">Layout</h2>
+<p>When you create a user interface, you arrange your controls by location and size to form a layout. A key requirement of any layout is to adapt to changes in window size and display settings. Rather than forcing you to write code to adapt a layout in these circumstances, WPF provides a first-class, extensible layout system.</p>
+<p>The cornerstone of the layout system is relative positioning, which increases the ability to adapt to changing window and display conditions. The layout system also manages the negotiation between controls to determine the layout. The negotiation is a two-step process: first, a control tells its parent what location and size it requires. Second, the parent tells the control what space it can have.</p>
+<p>The layout system exposes itself to child controls through base WPF classes. For common layouts such as grids, stacking, and docking, WPF includes several layout controls:</p>
+<ul>
+<li><p><a href="/en-us/dotnet/api/system.windows.controls.canvas" class="no-loc" data-linktype="absolute-path">Canvas</a>: Child controls provide their own layout.</p>
+</li>
+<li><p><a href="/en-us/dotnet/api/system.windows.controls.dockpanel" class="no-loc" data-linktype="absolute-path">DockPanel</a>: Child controls are aligned to the edges of the panel.</p>
+</li>
+<li><p><a href="/en-us/dotnet/api/system.windows.controls.grid" class="no-loc" data-linktype="absolute-path">Grid</a>: Child controls are positioned by rows and columns.</p>
+</li>
+<li><p><a href="/en-us/dotnet/api/system.windows.controls.stackpanel" class="no-loc" data-linktype="absolute-path">StackPanel</a>: Child controls are stacked either vertically or horizontally.</p>
+</li>
+<li><p><a href="/en-us/dotnet/api/system.windows.controls.virtualizingstackpanel" class="no-loc" data-linktype="absolute-path">VirtualizingStackPanel</a>: Child controls are virtualized and arranged on a single line that is either horizontally or vertically oriented.</p>
+</li>
+<li><p><a href="/en-us/dotnet/api/system.windows.controls.wrappanel" class="no-loc" data-linktype="absolute-path">WrapPanel</a>: Child controls are positioned in left-to-right order and wrapped to the next line when there isn't enough space on the current line.</p>
+</li>
+</ul>
+<p>The following example uses a <a href="/en-us/dotnet/api/system.windows.controls.dockpanel" class="no-loc" data-linktype="absolute-path">DockPanel</a> to lay out several <a href="/en-us/dotnet/api/system.windows.controls.textbox" class="no-loc" data-linktype="absolute-path">TextBox</a> controls:</p>
+<pre><code class="lang-xaml">&lt;Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="SDKSample.LayoutWindow"
+    Title="Layout with the DockPanel" Height="143" Width="319"&gt;
+
+  &lt;!--DockPanel to layout four text boxes--&gt;
+  &lt;DockPanel&gt;
+    &lt;TextBox DockPanel.Dock="Top"&gt;Dock = "Top"&lt;/TextBox&gt;
+    &lt;TextBox DockPanel.Dock="Bottom"&gt;Dock = "Bottom"&lt;/TextBox&gt;
+    &lt;TextBox DockPanel.Dock="Left"&gt;Dock = "Left"&lt;/TextBox&gt;
+    &lt;TextBox Background="White"&gt;This TextBox "fills" the remaining space.&lt;/TextBox&gt;
+  &lt;/DockPanel&gt;
+
+&lt;/Window&gt;
+</code></pre>
+<p>The <a href="/en-us/dotnet/api/system.windows.controls.dockpanel" class="no-loc" data-linktype="absolute-path">DockPanel</a> allows the child <a href="/en-us/dotnet/api/system.windows.controls.textbox" class="no-loc" data-linktype="absolute-path">TextBox</a> controls to tell it how to arrange them. To do this, the <a href="/en-us/dotnet/api/system.windows.controls.dockpanel" class="no-loc" data-linktype="absolute-path">DockPanel</a> implements a <code>Dock</code> attached property that is exposed to the child controls to allow each of them to specify a dock style.</p>
+<div class="NOTE">
+<p>Note</p>
+<p>A property that's implemented by a parent control for use by child controls is a WPF construct called an <a href="../properties/attached-properties-overview" data-linktype="relative-path">attached property</a>.</p>
+</div>
+<p>The following figure shows the result of the XAML markup in the preceding example:</p>
+<p><span class="mx-imgBorder">
+<img src="media/index/dockpanel-page.png" alt="DockPanel page" data-linktype="relative-path">
+</span>
+</p>
+<h2 id="data-binding">Data binding</h2>
+<p>Most applications provide users with the means to view and edit data. For WPF applications, many different .NET data access libraries such as SQL and Entity Framework Core already provide the work of storing and accessing data. After the data is accessed and loaded into an application's managed objects, the hard work for WPF applications begins. Essentially, this involves two things:</p>
+<ol>
+<li><p>Copying the data from the managed objects into controls, where users can display and edit the data.</p>
+</li>
+<li><p>Ensuring that changes made to data using controls are copied back to the managed objects.</p>
+</li>
+</ol>
+<p>To simplify application development, WPF provides a powerful data binding engine to automatically handle these steps. The core unit of the data binding engine is the <a href="/en-us/dotnet/api/system.windows.data.binding" class="no-loc" data-linktype="absolute-path">Binding</a> class, whose job is to bind a control (the binding target) to a data object (the binding source). This relationship is illustrated by the following figure:</p>
+<p><span class="mx-imgBorder">
+<img src="media/index/databinding-basic-diagram.png" alt="Basic data binding diagram" data-linktype="relative-path">
+</span>
+</p>
+<p>WPF supports declaring bindings in the XAML markup directly. For example, the following XAML code binds the <a href="/en-us/dotnet/api/system.windows.controls.textbox.text" class="no-loc" data-linktype="absolute-path">Text</a> property of the <a href="/en-us/dotnet/api/system.windows.controls.textbox" class="no-loc" data-linktype="absolute-path">TextBox</a> to the <code>Name</code> property of an object using the "<code>{Binding ... }</code>" XAML syntax. This assumes there's a data object set to the <a href="/en-us/dotnet/api/system.windows.frameworkelement.datacontext" class="no-loc" data-linktype="absolute-path">DataContext</a> property of the <code>Window</code> with a <code>Name</code> property.</p>
+<pre><code class="lang-xaml">&lt;Window
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     x:Class="SDKSample.DataBindingWindow"&gt;
+
+   &lt;!-- Bind the TextBox to the data source (TextBox.Text to Person.Name) --&gt;
+   &lt;TextBox Name="personNameTextBox" Text="{Binding Path=Name}" /&gt;
+
+&lt;/Window&gt;
+</code></pre>
+<p>The WPF data binding engine provides more than just binding; it provides validation, sorting, filtering, and grouping. Furthermore, data binding supports the use of data templates to create custom user interface for bound data.</p>
+<p>For more information, see <a href="../data/" data-linktype="relative-path">Data binding overview</a>.</p>
+<h2 id="graphics--animation">Graphics &amp; animation</h2>
+<p>WPF provides an extensive and flexible set of graphics features that have the following benefits:</p>
+<ul>
+<li><p><strong>Resolution-independent and device-independent graphics</strong>. The basic unit of measurement in the WPF graphics system is the device-independent pixel, which is 1/96th of an inch, and provides the foundation for resolution-independent and device-independent rendering. Each device-independent pixel automatically scales to match the dots-per-inch (dpi) setting of the system it renders on.</p>
+</li>
+<li><p><strong>Improved precision</strong>. The WPF coordinate system is measured with double-precision floating-point numbers rather than single-precision. Transformations and opacity values are also expressed as double-precision. WPF also supports a wide color gamut (scRGB) and provides integrated support for managing inputs from different color spaces.</p>
+</li>
+<li><p><strong>Advanced graphics and animation support</strong>. WPF simplifies graphics programming by managing animation scenes for you; there's no need to worry about scene processing, rendering loops, and bilinear interpolation. Additionally, WPF provides hit-testing support and full alpha-compositing support.</p>
+</li>
+<li><p><strong>Hardware acceleration</strong>. The WPF graphics system takes advantage of graphics hardware to minimize CPU usage.</p>
+</li>
+</ul>
+<h3 id="2d-graphics">2D graphics</h3>
+<p>WPF provides a library of common vector-drawn 2D shapes, such as the rectangles and ellipses. The shapes aren't just for display; shapes implement many of the features that you expect from controls, including keyboard and mouse input.</p>
+<p>The 2D shapes provided by WPF cover the standard set of basic shapes. However, you might need to create custom shapes to help the design of a customized user interface. WPF provides geometries to create a custom shape that can be drawn directly, used as a brush, or used to clip other shapes and controls.</p>
+<p>For more information, see <a href="../graphics-multimedia/geometry-overview" data-linktype="relative-path">Geometry overview</a>.</p>
+<p>A subset of WPF 2D capabilities includes visual effects, such as gradients, bitmaps, drawings, painting with videos, rotation, scaling, and skewing. Brushes achieve all these effects. The following figure shows some examples:</p>
+<p><span class="mx-imgBorder">
+<img src="media/index/graphics-brushes.png" alt="Illustration of different brushes" data-linktype="relative-path">
+</span>
+</p>
+<p>For more information, see <a href="../graphics-multimedia/wpf-brushes-overview" data-linktype="relative-path">WPF brushes overview</a>.</p>
+<h3 id="3d-rendering">3D rendering</h3>
+<p>WPF also includes 3D rendering capabilities that integrate with 2D graphics to allow the creation of more exciting and interesting user interfaces. For example, the following figure shows 2D images rendered onto 3D shapes:</p>
+<p><span class="mx-imgBorder">
+<img src="media/index/graphics-3d.png" alt="Visual3D sample screen shot" data-linktype="relative-path">
+</span>
+</p>
+<p>For more information, see <a href="../graphics-multimedia/3-d-graphics-overview" data-linktype="relative-path">3D graphics overview</a>.</p>
+<h3 id="animation">Animation</h3>
+<p>WPF animation support lets you make controls grow, shake, spin, and fade to create interesting page transitions and more. You can animate most WPF classes, even custom classes. The following figure shows a simple animation in action:</p>
+<p><span class="mx-imgBorder">
+<img src="media/index/animation-cube.gif" alt="Images of an animated cube" data-linktype="relative-path">
+</span>
+</p>
+<p>For more information, see <a href="../graphics-multimedia/animation-overview" data-linktype="relative-path">Animation overview</a>.</p>
+<h2 id="text-and-typography">Text and typography</h2>
+<p>To provide high-quality text rendering, WPF offers the following features:</p>
+<ul>
+<li>OpenType font support.</li>
+<li>ClearType enhancements.</li>
+<li>High performance that takes advantage of hardware acceleration.</li>
+<li>Integration of text with media, graphics, and animation.</li>
+<li>International font support and fallback mechanisms.</li>
+</ul>
+<p>As a demonstration of text integration with graphics, the following figure shows the application of text decorations:</p>
+<p><span class="mx-imgBorder">
+<img src="media/index/text.png" alt="Text with various text decorations" data-linktype="relative-path">
+</span>
+</p>
+<p>For more information, see <a href="../advanced/typography-in-wpf" data-linktype="relative-path">Typography in Windows Presentation Foundation</a>.</p>
+<h2 id="customize-wpf-apps">Customize WPF apps</h2>
+<p>Up to this point, you've seen the core WPF building blocks for developing applications:</p>
+<ul>
+<li>You use the application model to host and deliver application content, which consists mainly of controls.</li>
+<li>To simplify the arrangement of controls in a user interface, you use the WPF layout system.</li>
+<li>You use data binding to reduce the work of integrating your user interface with data.</li>
+<li>To enhance the visual appearance of your application, you use the comprehensive range of graphics, animation, and media support provided by WPF.</li>
+</ul>
+<p>Often, though, the basics aren't enough for creating and managing a truly distinct and visually stunning user experience. The standard WPF controls might not integrate with the desired appearance of your application. Data might not display in the most effective way. Your application's overall user experience might not suit the default look and feel of Windows themes.</p>
+<p>For this reason, WPF provides various mechanisms for creating unique user experiences.</p>
+<h3 id="content-model">Content Model</h3>
+<p>The main purpose of most of the WPF controls is to display content. In WPF, the type and number of items that can constitute the content of a control is referred to as the control's <em>content model</em>. Some controls can contain a single item and type of content. For example, the content of a <a href="/en-us/dotnet/api/system.windows.controls.textbox" class="no-loc" data-linktype="absolute-path">TextBox</a> is a string value that's assigned to the <a href="/en-us/dotnet/api/system.windows.controls.textbox.text" class="no-loc" data-linktype="absolute-path">Text</a> property.</p>
+<p>Other controls, however, can contain multiple items of different types of content; the content of a <a href="/en-us/dotnet/api/system.windows.controls.button" class="no-loc" data-linktype="absolute-path">Button</a>, specified by the <a href="/en-us/dotnet/api/system.windows.controls.contentcontrol.content" class="no-loc" data-linktype="absolute-path">Content</a> property, can contain various items including layout controls, text, images, and shapes.</p>
+<p>For more information on the kinds of content that's supported by various controls, see <a href="../controls/wpf-content-model" data-linktype="relative-path">WPF content model</a>.</p>
+<h3 id="triggers">Triggers</h3>
+<p>Although the main purpose of XAML markup is to implement an application's appearance, you can also use XAML to implement some aspects of an application's behavior. One example is the use of triggers to change an application's appearance based on user interactions. For more information, see <a href="../controls/styles-templates-overview" data-linktype="relative-path">Styles and templates</a>.</p>
+<h3 id="templates">Templates</h3>
+<p>Other controls and shapes typically construct the default user interfaces for WPF controls. For example, a <a href="/en-us/dotnet/api/system.windows.controls.button" class="no-loc" data-linktype="absolute-path">Button</a> is composed of both <a href="/en-us/dotnet/api/microsoft.windows.themes.buttonchrome" class="no-loc" data-linktype="absolute-path">ButtonChrome</a> and <a href="/en-us/dotnet/api/system.windows.controls.contentpresenter" class="no-loc" data-linktype="absolute-path">ContentPresenter</a> controls. The <a href="/en-us/dotnet/api/microsoft.windows.themes.buttonchrome" class="no-loc" data-linktype="absolute-path">ButtonChrome</a> provides the standard button appearance, while the <a href="/en-us/dotnet/api/system.windows.controls.contentpresenter" class="no-loc" data-linktype="absolute-path">ContentPresenter</a> displays the button's content, as specified by the <a href="/en-us/dotnet/api/system.windows.controls.contentcontrol.content" class="no-loc" data-linktype="absolute-path">Content</a> property.</p>
+<p>Sometimes the default appearance of a control might conflict with the overall appearance of an application. In this case, use a <a href="/en-us/dotnet/api/system.windows.controls.controltemplate" class="no-loc" data-linktype="absolute-path">ControlTemplate</a> to change the appearance of the control's user interface without changing its content and behavior.</p>
+<p>For example, a <a href="/en-us/dotnet/api/system.windows.controls.button" class="no-loc" data-linktype="absolute-path">Button</a> raises the <a href="/en-us/dotnet/api/system.windows.controls.primitives.buttonbase.click#system-windows-controls-primitives-buttonbase-click" class="no-loc" data-linktype="absolute-path">Click</a> event when it's clicked. By changing the template of a button to display an <a href="/en-us/dotnet/api/system.windows.shapes.ellipse" class="no-loc" data-linktype="absolute-path">Ellipse</a> shape, the visual aspect of the control changes, but the functionality doesn't. You can still click on the visual aspect of the control and the <a href="/en-us/dotnet/api/system.windows.controls.primitives.buttonbase.click#system-windows-controls-primitives-buttonbase-click" class="no-loc" data-linktype="absolute-path">Click</a> event is raised as expected.</p>
+<p><span class="mx-imgBorder">
+<img src="media/index/template-button.png" alt="An elliptical button and a second window" data-linktype="relative-path">
+</span>
+</p>
+<h3 id="data-templates">Data templates</h3>
+<p>Whereas a control template lets you specify the appearance of a control, a data template lets you specify the appearance of a control's content. Data templates are frequently used to enhance how bound data is displayed. The following figure shows the default appearance for a <a href="/en-us/dotnet/api/system.windows.controls.listbox" class="no-loc" data-linktype="absolute-path">ListBox</a> that's bound to a collection of <code>Task</code> objects, where each task has a name, description, and priority:</p>
+<p><span class="mx-imgBorder">
+<img src="media/index/data-template-listbox-normal.png" alt="A list box with the default appearance" data-linktype="relative-path">
+</span>
+</p>
+<p>The default appearance is what you'd expect from a <a href="/en-us/dotnet/api/system.windows.controls.listbox" class="no-loc" data-linktype="absolute-path">ListBox</a>. However, the default appearance of each task contains only the task name. To show the task name, description, and priority, change the default appearance of the <a href="/en-us/dotnet/api/system.windows.controls.listbox" class="no-loc" data-linktype="absolute-path">ListBox</a> control's bound list items using a <a href="/en-us/dotnet/api/system.windows.datatemplate" class="no-loc" data-linktype="absolute-path">DataTemplate</a>. Here's an example of applying a data template that was created for the <code>Task</code> object.</p>
+<p><span class="mx-imgBorder">
+<img src="media/index/data-template-listbox-applied.png" alt="List box that uses a data template" data-linktype="relative-path">
+</span>
+</p>
+<p>The <a href="/en-us/dotnet/api/system.windows.controls.listbox" class="no-loc" data-linktype="absolute-path">ListBox</a> retains its behavior and overall appearance and only the appearance of the content being displayed by the list box has changed.</p>
+<p>For more information, see <a href="../data/data-templating-overview" data-linktype="relative-path">Data templating overview</a>.</p>
+<h3 id="styles">Styles</h3>
+<p>Styles enable developers and designers to standardize on a particular appearance for their product. WPF provides a strong style model, the foundation of which is the <a href="/en-us/dotnet/api/system.windows.style" class="no-loc" data-linktype="absolute-path">Style</a> element. Styles can apply property values to types. They can be applied automatically to the everything according to the type or individual objects when referenced. The following example creates a style that sets the background color for every <a href="/en-us/dotnet/api/system.windows.controls.button" class="no-loc" data-linktype="absolute-path">Button</a> on the window to <code>Orange</code>:</p>
+<pre><code class="lang-xaml">&lt;Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="SDKSample.StyleWindow"
+    Title="Styles"&gt;
+
+    &lt;Window.Resources&gt;
+        &lt;!-- Style that will be applied to all buttons for this window --&gt;
+        &lt;Style TargetType="{x:Type Button}"&gt;
+            &lt;Setter Property="Background" Value="Orange" /&gt;
+            &lt;Setter Property="BorderBrush" Value="Crimson" /&gt;
+            &lt;Setter Property="FontSize" Value="20" /&gt;
+            &lt;Setter Property="FontWeight" Value="Bold" /&gt;
+            &lt;Setter Property="Margin" Value="5" /&gt;
+        &lt;/Style&gt;
+    &lt;/Window.Resources&gt;
+    &lt;StackPanel&gt;
+
+        &lt;!-- This button will have the style applied to it --&gt;
+        &lt;Button&gt;Click Me!&lt;/Button&gt;
+
+        &lt;!-- This label will not have the style applied to it --&gt;
+        &lt;Label&gt;Don't Click Me!&lt;/Label&gt;
+
+        &lt;!-- This button will have the style applied to it --&gt;
+        &lt;Button&gt;Click Me!&lt;/Button&gt;
+
+    &lt;/StackPanel&gt;
+&lt;/Window&gt;
+</code></pre>
+<p>Because this style targets all <a href="/en-us/dotnet/api/system.windows.controls.button" class="no-loc" data-linktype="absolute-path">Button</a> controls, the style is automatically applied to all the buttons in the window, as shown in the following figure:</p>
+<p><span class="mx-imgBorder">
+<img src="media/index/styles-buttons.png" alt="Two orange buttons" data-linktype="relative-path">
+</span>
+</p>
+<p>For more information, see <a href="../controls/styles-templates-overview" data-linktype="relative-path">Styles and templates</a>.</p>
+<h3 id="resources">Resources</h3>
+<p>Controls in an application should share the same appearance, which can include anything from fonts and background colors to control templates, data templates, and styles. You can use WPF's support for user interface resources to encapsulate these resources in a single location for reuse.</p>
+<p>The following example defines a common background color that is shared by a <a href="/en-us/dotnet/api/system.windows.controls.button" class="no-loc" data-linktype="absolute-path">Button</a> and a <a href="/en-us/dotnet/api/system.windows.controls.label" class="no-loc" data-linktype="absolute-path">Label</a>:</p>
+<pre><code class="lang-xaml">&lt;Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="SDKSample.ResourcesWindow"
+    Title="Resources Window"&gt;
+
+  &lt;!-- Define window-scoped background color resource --&gt;
+  &lt;Window.Resources&gt;
+    &lt;SolidColorBrush x:Key="defaultBackground" Color="Red" /&gt;
+  &lt;/Window.Resources&gt;
+
+  &lt;!-- Button background is defined by window-scoped resource --&gt;
+  &lt;Button Background="{StaticResource defaultBackground}"&gt;One Button&lt;/Button&gt;
+
+  &lt;!-- Label background is defined by window-scoped resource --&gt;
+  &lt;Label Background="{StaticResource defaultBackground}"&gt;One Label&lt;/Label&gt;
+&lt;/Window&gt;
+</code></pre>
+<p>For more information, see <a href="../systems/xaml-resources-how-to-define-and-reference" data-linktype="relative-path">How to define and reference a WPF resource</a>.</p>
+<h3 id="custom-controls">Custom controls</h3>
+<p>Although WPF provides a host of customization support, you may encounter situations where existing WPF controls do not meet the needs of either your application or its users. This can occur when:</p>
+<ul>
+<li>The user interface that you require cannot be created by customizing the look and feel of existing WPF implementations.</li>
+<li>The behavior that you require isn't supported (or not easily supported) by existing WPF implementations.</li>
+</ul>
+<p>At this point, however, you can take advantage of one of three WPF models to create a new control. Each model targets a specific scenario and requires your custom control to derive from a particular WPF base class. The three models are listed here:</p>
+<ul>
+<li><p><strong>User Control Model</strong><br>
+A custom control derives from <a href="/en-us/dotnet/api/system.windows.controls.usercontrol" class="no-loc" data-linktype="absolute-path">UserControl</a> and is composed of one or more other controls.</p>
+</li>
+<li><p><strong>Control Model</strong>
+A custom control derives from <a href="/en-us/dotnet/api/system.windows.controls.control" class="no-loc" data-linktype="absolute-path">Control</a> and is used to build implementations that separate their behavior from their appearance using templates, much like most WPF controls. Deriving from <a href="/en-us/dotnet/api/system.windows.controls.control" class="no-loc" data-linktype="absolute-path">Control</a> allows you more freedom for creating a custom user interface than user controls, but it may require more effort.</p>
+</li>
+<li><p><strong>Framework Element Model</strong>.<br>
+A custom control derives from <a href="/en-us/dotnet/api/system.windows.frameworkelement" class="no-loc" data-linktype="absolute-path">FrameworkElement</a> when its appearance is defined by custom rendering logic (not templates).</p>
+</li>
+</ul>
+<p>For more information on custom controls, see <a href="../controls/control-authoring-overview" data-linktype="relative-path">Control authoring overview</a>.</p>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="../get-started/create-app-visual-studio" data-linktype="relative-path">Tutorial: Create a new WPF app</a></li>
+<li><a href="../migration/" data-linktype="relative-path">Migrate a WPF app to .NET</a></li>
+<li><a href="../windows/" data-linktype="relative-path">Overview of WPF windows</a></li>
+<li><a href="../data/" data-linktype="relative-path">Data binding overview</a></li>
+<li><a href="../xaml/" data-linktype="relative-path">XAML overview</a></li>
+</ul>
+
+				</div>
+		  
+					
+		<div
+			id="ms--inline-notifications"
+			class="margin-block-xs"
+			data-bi-name="inline-notification"
+		></div>
+	 
+		<div
+			id="assertive-live-region"
+			role="alert"
+			aria-live="assertive"
+			class="visually-hidden"
+			aria-relevant="additions"
+			aria-atomic="true"
+		></div>
+		<div
+			id="polite-live-region"
+			role="status"
+			aria-live="polite"
+			class="visually-hidden"
+			aria-relevant="additions"
+			aria-atomic="true"
+		></div>
+	
+					
+			
+		<!-- feedback section -->
+		<section
+			class="feedback-section position-relative margin-top-lg border border-radius padding-xxs display-none-print"
+			data-bi-name="open-source-feedback-section"
+			data-open-source-feedback-section
+			hidden
+		>
+			<div class="display-flex flex-direction-column flex-direction-row-tablet">
+				<div
+					class="width-450-tablet padding-inline-xs padding-inline-xs-tablet padding-top-xs padding-bottom-sm padding-top-xs-tablet background-color-body-medium"
+				>
+					<div class="display-flex flex-direction-column">
+						<div class="padding-bottom-xxs">
+							<span class="icon margin-right-xxs" aria-hidden="true">
+								<span class="docon docon-brand-github"></span>
+							</span>
+							<span class="font-weight-semibold">
+								Collaborate with us on GitHub
+							</span>
+						</div>
+						<span class="line-height-normal">
+							The source for this content can be found on GitHub, where you can also create and review issues and pull requests. For more information, see <a href="https://learn.microsoft.com/contribute/content/dotnet/dotnet-contribute">our contributor guide</a>.
+						</span>
+					</div>
+				</div>
+				<div
+					class="display-flex gap-xs width-full-tablet flex-direction-column padding-xs justify-content-space-evenly"
+				>
+					<div class="media">
+						
+					<div class="media-left">
+						<div class="image image-36x36" hidden data-open-source-image-container>
+							<img
+								class="theme-display is-light"
+								src="https://learn.microsoft.com/media/logos/logo_net.svg"
+								aria-hidden="true"
+								data-open-source-image-light
+							/>
+							<img
+								class="theme-display is-dark is-high-contrast"
+								src="https://learn.microsoft.com/media/logos/logo_net.svg"
+								aria-hidden="true"
+								data-open-source-image-dark
+							/>
+						</div>
+					</div>
+			  
+
+						<div class="media-content">
+							<p
+								class="font-size-xl font-weight-semibold margin-bottom-xxs"
+								data-open-source-product-title
+							>
+								.NET Desktop feedback
+							</p>
+							<div class="display-flex gap-xs flex-direction-column">
+								<p class="line-height-normal" data-open-source-product-description></p>
+								<div class="display-flex gap-xs flex-direction-column">
+									<a href="#" data-github-link>
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-bug"></span>
+										</span>
+										<span>Open a documentation issue</span>
+									</a>
+									<a
+										href="https://developercommunity.visualstudio.com/VisualStudio"
+										class="display-block margin-top-auto font-size-md"
+										data-feedback-product-url
+									>
+										<span class="icon margin-right-xxs" aria-hidden="true">
+											<span class="docon docon-feedback"></span>
+										</span>
+										<span>Provide product feedback</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- end feedback section -->
+	
+			
+		<!-- feedback section -->
+		<section
+			id="site-user-feedback-footer"
+			class="font-size-sm margin-top-md display-none-print display-none-desktop"
+			data-test-id="site-user-feedback-footer"
+			data-bi-name="site-feedback-section"
+		>
+			<hr class="hr" />
+			<h2 id="ms--feedback" class="title is-3">Feedback</h2>
+			<div class="display-flex flex-wrap-wrap align-items-center">
+				<p class="font-weight-semibold margin-xxs margin-left-none">
+					Was this page helpful?
+				</p>
+				<div class="buttons">
+					<button
+						class="thumb-rating-button like button button-primary button-sm"
+						data-test-id="footer-rating-yes"
+						data-binary-rating-response="rating-yes"
+						type="button"
+						title="This article is helpful"
+						data-bi-name="button-rating-yes"
+						aria-pressed="false"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-like"></span>
+						</span>
+						<span>Yes</span>
+					</button>
+					<button
+						class="thumb-rating-button dislike button button-primary button-sm"
+						id="standard-rating-no-button"
+						hidden
+						data-test-id="footer-rating-no"
+						data-binary-rating-response="rating-no"
+						type="button"
+						title="This article is not helpful"
+						data-bi-name="button-rating-no"
+						aria-pressed="false"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-dislike"></span>
+						</span>
+						<span>No</span>
+					</button>
+					<details
+						class="popover popover-top"
+						id="mobile-help-popover"
+						data-test-id="footer-feedback-popover"
+					>
+						<summary
+							class="thumb-rating-button dislike button button-primary button-sm"
+							data-test-id="details-footer-rating-no"
+							data-binary-rating-response="rating-no"
+							title="This article is not helpful"
+							data-bi-name="button-rating-no"
+							aria-pressed="false"
+							data-bi-an="feedback-unhelpful-popover"
+						>
+							<span class="icon" aria-hidden="true">
+								<span class="docon docon-dislike"></span>
+							</span>
+							<span>No</span>
+						</summary>
+						<div
+							class="popover-content width-200 width-300-tablet"
+							role="dialog"
+							aria-labelledby="popover-heading"
+							aria-describedby="popover-description"
+						>
+							<p id="popover-heading" class="font-size-lg margin-bottom-xxs font-weight-semibold">
+								Need help with this topic?
+							</p>
+							<p id="popover-description" class="font-size-sm margin-bottom-xs">
+								Want to try using Ask Learn to clarify or guide you through this topic?
+							</p>
+							
+		<div class="buttons flex-direction-row flex-wrap justify-content-center gap-xxs">
+			<div>
+		<button
+			class="button button-sm border inner-focus display-none margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-test-id="ask-learn-assistant-modal-entry-mobile-feedback"
+			data-ask-learn-modal-entry-feedback
+			data-bi-an=feedback-unhelpful-popover
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-label="Ask Learn"
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button
+			class="button button-sm display-inline-flex display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-modal-entry-tablet-feedback"
+			data-ask-learn-modal-entry-feedback
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button
+			class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-flyout-entry-feedback"
+			data-ask-learn-flyout-entry-show-only
+			data-flyout-button="toggle"
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-controls="ask-learn-flyout"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	</div>
+			<button
+				type="button"
+				class="button button-sm margin-right-xxs"
+				data-help-option="suggest-fix"
+				data-bi-name="feedback-suggest"
+				data-bi-an="feedback-unhelpful-popover"
+				data-test-id="suggest-fix"
+			>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-feedback"></span>
+				</span>
+				<span> Suggest a fix? </span>
+			</button>
+		</div>
+	
+						</div>
+					</details>
+				</div>
+			</div>
+		</section>
+		<!-- end feedback section -->
+	
+		
+				</div>
+				
+		<div id="ms--additional-resources-mobile" class="display-none-print">
+			<hr class="hr" hidden />
+			<h2 id="ms--additional-resources-mobile-heading" class="title is-3" hidden>
+				Additional resources
+			</h2>
+			
+		<section
+			id="right-rail-recommendations-mobile"
+			class=""
+			data-bi-name="recommendations"
+			hidden
+		></section>
+	 
+		<section
+			id="right-rail-training-mobile"
+			class=""
+			data-bi-name="learning-resource-card"
+			hidden
+		></section>
+	 
+		<section
+			id="right-rail-events-mobile"
+			class=""
+			data-bi-name="events-card"
+			hidden
+		></section>
+	
+		</div>
+	 
+		<div
+			id="article-metadata-footer"
+			data-bi-name="article-metadata-footer"
+			data-test-id="article-metadata-footer"
+			class="page-metadata-container"
+		>
+			<hr class="hr" />
+			<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+				<li class="visibility-hidden-visual-diff">
+			<span class="badge badge-sm text-wrap-pretty">
+				<span>Last updated on <local-time format="twoDigitNumeric"
+		datetime="2026-03-23T08:00:00.000Z"
+		data-article-date-source="calculated"
+		class="is-invisible"
+	>
+		2026-03-23
+	</local-time></span>
+			</span>
+		</li>
+			</ul>
+		</div>
+	
+			</div>
+		
+				</main>
+				<aside
+					id="layout-body-aside"
+					class="layout-body-aside  "
+					data-bi-name="aside"
+					aria-label="Additional resources"
+			  >
+					
+		<div
+			id="ms--additional-resources"
+			class="right-container padding-sm display-none display-block-desktop height-full"
+			data-bi-name="pageactions"
+		>
+			<div id="affixed-right-container" data-bi-name="right-column">
+				
+		<nav
+			id="side-doc-outline"
+			class="doc-outline border-bottom padding-bottom-xs margin-bottom-xs scrollbar-width-thin"
+			data-bi-name="intopic toc"
+			aria-label="In this article"
+		>
+			<h3>In this article</h3>
+		</nav>
+	
+				<!-- Feedback -->
+				
+		<section
+			id="ms--site-user-feedback-right-rail"
+			class="font-size-sm display-none-print"
+			data-test-id="site-user-feedback-right-rail"
+			data-bi-name="site-feedback-right-rail"
+		>
+			<div class="display-flex flex-wrap-wrap align-items-center">
+				<p class="font-weight-semibold margin-xxs margin-left-none">
+					Was this page helpful?
+				</p>
+				<div class="display-flex flex-wrap-nowrap">
+					<button
+						class="thumb-rating-button like inner-focus"
+						data-test-id="right-rail-rating-yes"
+						data-binary-rating-response="rating-yes"
+						type="button"
+						title="This article is helpful"
+						aria-label="This article is helpful"
+						data-bi-name="button-rating-yes"
+						aria-pressed="false"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-like"></span>
+						</span>
+					</button>
+					<button
+						class="thumb-rating-button dislike inner-focus"
+						id="right-rail-no-button"
+						hidden
+						data-test-id="right-rail-rating-no"
+						data-binary-rating-response="rating-no"
+						type="button"
+						title="This article is not helpful"
+						aria-label="This article is not helpful"
+						data-bi-name="button-rating-no"
+						aria-pressed="false"
+					>
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-dislike"></span>
+						</span>
+					</button>
+					<details class="popover popover-right" id="help-popover" data-test-id="feedback-popover">
+						<summary
+							tabindex="0"
+							class="thumb-rating-button dislike inner-focus"
+							data-test-id="details-right-rail-rating-no"
+							data-binary-rating-response="rating-no"
+							title="This article is not helpful"
+							aria-label="This article is not helpful"
+							data-bi-name="button-rating-no"
+							aria-pressed="false"
+							data-bi-an="feedback-unhelpful-popover"
+						>
+							<span class="icon" aria-hidden="true">
+								<span class="docon docon-dislike"></span>
+							</span>
+						</summary>
+						<div
+							class="popover-content width-200 width-300-tablet"
+							role="dialog"
+							aria-labelledby="popover-heading-right-rail"
+							aria-describedby="popover-description-right-rail"
+						>
+							<p
+								id="popover-heading-right-rail"
+								class="font-size-lg margin-bottom-xxs font-weight-semibold"
+							>
+								Need help with this topic?
+							</p>
+							<p id="popover-description-right-rail" class="font-size-sm margin-bottom-xs">
+								Want to try using Ask Learn to clarify or guide you through this topic?
+							</p>
+							
+		<div class="buttons flex-direction-row flex-wrap justify-content-center gap-xxs">
+			<div>
+		<button
+			class="button button-sm border inner-focus display-none margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-test-id="ask-learn-assistant-modal-entry-mobile-feedback"
+			data-ask-learn-modal-entry-feedback
+			data-bi-an=feedback-unhelpful-popover
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-label="Ask Learn"
+			hidden
+		>
+			<span class="icon" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+		</button>
+		<button
+			class="button button-sm display-inline-flex display-none-desktop flex-shrink-0 margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-modal-entry-tablet-feedback"
+			data-ask-learn-modal-entry-feedback
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+		<button
+			class="button button-sm display-none flex-shrink-0 display-inline-flex-desktop margin-right-xxs border-color-ask-learn margin-right-xxs"
+			data-bi-name="ask-learn-assistant-entry-troubleshoot"
+			data-bi-an=feedback-unhelpful-popover
+			data-test-id="ask-learn-assistant-flyout-entry-feedback"
+			data-ask-learn-flyout-entry-show-only
+			data-flyout-button="toggle"
+			type="button"
+			style="min-width: max-content;"
+			aria-expanded="false"
+			aria-controls="ask-learn-flyout"
+			hidden
+		>
+			<span class="icon font-size-lg" aria-hidden="true">
+				<span class="docon docon-chat-sparkle-fill gradient-ask-learn-logo"></span>
+			</span>
+			<span>Ask Learn</span>
+		</button>
+	</div>
+			<button
+				type="button"
+				class="button button-sm margin-right-xxs"
+				data-help-option="suggest-fix"
+				data-bi-name="feedback-suggest"
+				data-bi-an="feedback-unhelpful-popover"
+				data-test-id="suggest-fix"
+			>
+				<span class="icon" aria-hidden="true">
+					<span class="docon docon-feedback"></span>
+				</span>
+				<span> Suggest a fix? </span>
+			</button>
+		</div>
+	
+						</div>
+					</details>
+				</div>
+			</div>
+		</section>
+	
+			</div>
+		</div>
+	
+			  </aside> <section
+					id="layout-body-flyout"
+					class="layout-body-flyout "
+					data-bi-name="flyout"
+			  >
+					 <div
+	class="height-full border-left background-color-body-medium"
+	id="ask-learn-flyout"
+></div>
+			  </section> <div class="layout-body-footer " data-bi-name="layout-footer">
+		<footer
+			id="footer"
+			data-test-id="footer"
+			data-bi-name="footer"
+			class="footer-layout padding-xs padding-sm-desktop has-default-focus border-top"
+			role="contentinfo"
+		>
+			<div class="display-flex gap-xs flex-wrap-wrap is-full-height padding-right-lg-desktop">
+				
+		<a
+			data-mscc-ic="false"
+			href="#"
+			data-bi-name="select-locale"
+			class="locale-selector-link flex-shrink-0 button button-sm button-clear external-link-indicator"
+			id=""
+			title=""
+			><span class="icon" aria-hidden="true"
+				><span class="docon docon-world"></span></span
+			><span class="local-selector-link-text">en-us</span></a
+		>
+	 <div class="ccpa-privacy-link" data-ccpa-privacy-link hidden>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://aka.ms/yourcaliforniaprivacychoices"
+			data-bi-name="your-privacy-choices"
+			class="button button-sm button-clear flex-shrink-0 external-link-indicator"
+			id=""
+			title=""
+			>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 30 14"
+			xml:space="preserve"
+			height="16"
+			width="43"
+			aria-hidden="true"
+			focusable="false"
+		>
+			<path
+				d="M7.4 12.8h6.8l3.1-11.6H7.4C4.2 1.2 1.6 3.8 1.6 7s2.6 5.8 5.8 5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#fff"
+			></path>
+			<path
+				d="M22.6 0H7.4c-3.9 0-7 3.1-7 7s3.1 7 7 7h15.2c3.9 0 7-3.1 7-7s-3.2-7-7-7zm-21 7c0-3.2 2.6-5.8 5.8-5.8h9.9l-3.1 11.6H7.4c-3.2 0-5.8-2.6-5.8-5.8z"
+				style="fill-rule:evenodd;clip-rule:evenodd;fill:#06f"
+			></path>
+			<path
+				d="M24.6 4c.2.2.2.6 0 .8L22.5 7l2.2 2.2c.2.2.2.6 0 .8-.2.2-.6.2-.8 0l-2.2-2.2-2.2 2.2c-.2.2-.6.2-.8 0-.2-.2-.2-.6 0-.8L20.8 7l-2.2-2.2c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0l2.2 2.2L23.8 4c.2-.2.6-.2.8 0z"
+				style="fill:#fff"
+			></path>
+			<path
+				d="M12.7 4.1c.2.2.3.6.1.8L8.6 9.8c-.1.1-.2.2-.3.2-.2.1-.5.1-.7-.1L5.4 7.7c-.2-.2-.2-.6 0-.8.2-.2.6-.2.8 0L8 8.6l3.8-4.5c.2-.2.6-.2.9 0z"
+				style="fill:#06f"
+			></path>
+		</svg>
+	
+			<span>Your Privacy Choices</span></a
+		>
+	
+	</div>
+				<div class="flex-shrink-0">
+		<div class="dropdown has-caret-up">
+			<button
+				data-test-id="theme-selector-button"
+				class="dropdown-trigger button button-clear button-sm inner-focus theme-dropdown-trigger"
+				aria-controls="{{ themeMenuId }}"
+				aria-haspopup="true"
+				aria-expanded="false"
+				data-bi-name="theme"
+			>
+				<span class="icon" aria-hidden="true"><span class="docon docon-sun"></span></span>
+				<span>Theme</span>
+				<span class="icon expanded-indicator" aria-hidden="true">
+					<span class="docon docon-chevron-down-light"></span>
+				</span>
+			</button>
+			<div class="dropdown-menu" id="{{ themeMenuId }}" role="menu">
+				<ul class="theme-selector padding-xxs" data-test-id="theme-dropdown-menu" role="none">
+					<li class="theme display-block" role="none">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							role="menuitemradio"
+							aria-checked="false"
+							data-theme-to="light"
+							tabindex="-1"
+						>
+							<span class="theme-light margin-right-xxs">
+								<span
+									class="theme-selector-icon border display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span> Light </span>
+						</button>
+					</li>
+					<li class="theme display-block" role="none">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							role="menuitemradio"
+							aria-checked="false"
+							data-theme-to="dark"
+							tabindex="-1"
+						>
+							<span class="theme-dark margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span> Dark </span>
+						</button>
+					</li>
+					<li class="theme display-block" role="none">
+						<button
+							class="button button-clear button-sm theme-control button-block justify-content-flex-start text-align-left"
+							role="menuitemradio"
+							aria-checked="false"
+							data-theme-to="high-contrast"
+							tabindex="-1"
+						>
+							<span class="theme-high-contrast margin-right-xxs">
+								<span
+									class="border theme-selector-icon display-inline-block has-body-background"
+									aria-hidden="true"
+								>
+									<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+										<rect width="22" height="14" class="has-fill-body-background" />
+										<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+										<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+										<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+										<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+										<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+										<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+									</svg>
+								</span>
+							</span>
+							<span> High contrast </span>
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+			</div>
+			<ul class="links" data-bi-name="footerlinks">
+				<li class="manage-cookies-holder" hidden=""></li>
+				<li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/principles-for-ai-generated-content"
+			data-bi-name="aiDisclaimer"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>AI Disclaimer</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/previous-versions/"
+			data-bi-name="archivelink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Previous Versions</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://techcommunity.microsoft.com/t5/microsoft-learn-blog/bg-p/MicrosoftLearnBlog"
+			data-bi-name="bloglink"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Blog</a
+		>
+	
+	</li> <li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/contribute"
+			data-bi-name="contributorGuide"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Contribute</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?LinkId=521839"
+			data-bi-name="privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://go.microsoft.com/fwlink/?linkid=2259814"
+			data-bi-name="consumer-health-privacy"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Consumer Health Privacy</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://learn.microsoft.com/en-us/legal/termsofuse"
+			data-bi-name="termsofuse"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Terms of Use</a
+		>
+	
+	</li><li>
+		
+		<a
+			data-mscc-ic="false"
+			href="https://www.microsoft.com/legal/intellectualproperty/Trademarks/"
+			data-bi-name="trademarks"
+			class=" external-link-indicator"
+			id=""
+			title=""
+			>Trademarks</a
+		>
+	
+	</li>
+				<li>&copy; Microsoft 2026</li>
+			</ul>
+		</footer>
+	</footer>
+			<noscript><img src="https://learn.microsoft.com/akam/13/pixel_67825674?a=dD03NGEzYzE1OTJjMGE2MGZhYzBhYWJhMjVkNjhmNDE4MjEzOWM5ODNlJmpzPW9mZg==" style="visibility: hidden; position: absolute; left: -999px; top: -999px;" /></noscript></body>
+		</html>

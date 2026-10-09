@@ -1,0 +1,54 @@
+{
+  "downloadedAt": "2026-10-08T13:43:14.5250755Z",
+  "repositories": [
+    {
+      "name": "SonyHeadphonesClient",
+      "path": "C:\\Users\\FLEETING\\Documents\\Project\\SoundConnect\\references\\SonyHeadphonesClient",
+      "origin": "https://github.com/mos9527/SonyHeadphonesClient.git",
+      "branch": "v1-compat",
+      "commit": "193c1e053836119eb875c97331dd10c1aef206bc",
+      "shallow": true,
+      "clean": true,
+      "submodules": [],
+      "licensePresent": true
+    },
+    {
+      "name": "sony-tray",
+      "path": "C:\\Users\\FLEETING\\Documents\\Project\\SoundConnect\\references\\sony-tray",
+      "origin": "https://github.com/abhiinhii/sony-tray.git",
+      "branch": "main",
+      "commit": "497baa39ee5a940ba9ef2d1f9489d40ec10d1952",
+      "shallow": true,
+      "clean": true,
+      "submodules": [],
+      "licensePresent": true
+    },
+    {
+      "name": "sony-device-center",
+      "path": "C:\\Users\\FLEETING\\Documents\\Project\\SoundConnect\\references\\sony-device-center",
+      "origin": "https://github.com/marconvcm/sony-device-center.git",
+      "branch": "main",
+      "commit": "0bf98223c1ba402dd6c5136c21e6ab35482e4390",
+      "shallow": true,
+      "clean": true,
+      "submodules": [
+        " b62bfd6b06de958e4630b715225b7e8409bfd0f9 Client/imgui (b62bfd6)"
+      ],
+      "licensePresent": true
+    }
+  ],
+  "apk": {
+    "path": "C:\\Users\\FLEETING\\Documents\\Project\\SoundConnect\\reference-apk\\SoundConnect-13.2.2.apk",
+    "version": "13.2.2",
+    "sourcePage": "https://www.sonystyle.com.cn/minisite/cross/appcenter/pa/sound_connect/index.html",
+    "downloadUrl": "https://www.sonystyle.com.cn/minisite/cross/app/download/pa/sound_connect_v13.2.2_1.apk",
+    "bytes": 130695432,
+    "sha256": "e6169848923e7c9f5f88a202c3cf0f3c83389a193639770361205b72cb0c5318",
+    "checks": {
+      "entryCount": 9021,
+      "dexCount": 6,
+      "packageNameFound": true,
+      "versionNameFound": true
+    }
+  }
+}

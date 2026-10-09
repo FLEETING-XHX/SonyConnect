@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "repository": "FLEETING-XHX/SonyConnect",
+  "repositoryUrl": "https://github.com/FLEETING-XHX/SonyConnect",
+  "releasesPageUrl": "https://github.com/FLEETING-XHX/SonyConnect/releases",
+  "latestStableReleaseApiUrl": "https://api.github.com/repos/FLEETING-XHX/SonyConnect/releases/latest",
+  "visibility": "private",
+  "privateRepositoryRequiresAuthentication": true,
+  "noPublishedReleaseBehavior": "no-release",
+  "implementationStatus": "target-configured-application-not-implemented"
+}

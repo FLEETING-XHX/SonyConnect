@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="27" viewBox="0 0 300 27" role="img" aria-label="DSEE Extreme">
+  <title>DSEE Extreme — refined hand-redrawn vector wordmark</title>
+  <g fill="#111111" fill-rule="evenodd">
+    <path transform="translate(0 0)" d="M0 1h20q7 0 7 7v12q0 7-7 7h-20z m5 5v16h14q3 0 3-3v-10q0-3-3-3z"/>
+    <path transform="translate(32 0)" d="M27 1v5h-20q-2 0-2 2 0 1 2 2l14 4q7 2 7 7 0 6-7 6h-21v-5h21q2 0 2-2 0-1-2-2l-14-4q-7-2-7-7 0-6 7-6z"/>
+    <path transform="translate(65 0)" d="M6 1h21v5h-20q-2 0-2 2v3h21v5h-21v4q0 2 2 2h20v5h-21q-6 0-6-6v-14q0-6 6-6z"/>
+    <path transform="translate(97 0)" d="M6 1h21v5h-20q-2 0-2 2v3h21v5h-21v4q0 2 2 2h20v5h-21q-6 0-6-6v-14q0-6 6-6z"/>
+    <path transform="translate(139 0)" d="M6 1h20v5h-19q-2 0-2 2v3h20v5h-20v4q0 2 2 2h19v5h-20q-6 0-6-6v-14q0-6 6-6z"/>
+    <path transform="translate(168 0)" d="M0 8h6l4 5 4-5h6l-7 9 7 10h-6l-4-6-4 6h-6l7-10z"/>
+    <path transform="translate(191 0)" d="M3 2l5 0 0 6 6 0 0 4-6 0 0 9c0 1.333 0.667 2 2 2l4 0 0 4-5 0c-4 0-6-2-6-6"/>
+    <path transform="translate(208 0)" d="M0 8h12q3 0 3 3v2h-8q-2 0-2 2v12h-5z"/>
+    <path transform="translate(225 0)" d="M6 8h8q6 0 6 6v6h-15v1q0 2 3 2h12v4h-14q-6 0-6-6v-7q0-6 6-6z m-1 8h10v-2q0-2-2-2h-6q-2 0-2 2z"/>
+    <path transform="translate(248 0)" d="M0 8h25q4 0 4 4v15h-5v-13q0-1-1-1h-6v14h-5v-13q0-1-1-1h-6v14h-5z"/>
+    <path transform="translate(280 0)" d="M6 8h8q6 0 6 6v6h-15v1q0 2 3 2h12v4h-14q-6 0-6-6v-7q0-6 6-6z m-1 8h10v-2q0-2-2-2h-6q-2 0-2 2z"/>
+  </g>
+</svg>

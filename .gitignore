@@ -1,0 +1,16 @@
+# 本地下载的独立上游仓库与 APK；来源由 download-manifest.json 记录
+/references/
+/reference-apk/
+
+# 构建产物、IDE 缓存与临时日志
+**/bin/
+**/obj/
+/build/
+/dist/
+/artifacts/
+.vs/
+.idea/
+*.user
+*.suo
+*.log
+*.tmp
