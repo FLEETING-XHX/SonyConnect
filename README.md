@@ -1,5 +1,8 @@
 # SonyConnect for Windows
 
+## 开发方式（2026-10-09 用户确认）
+
+采用模块化架构，先用简易 UI 实现并验证主要功能，再切换现有设计 UI 和动效。两种 UI 复用设备状态、业务操作与协议模块。模块边界、开发阶段及切换验收条件见 [模块化架构与分阶段开发](docs/模块化架构与分阶段开发.md)。
 ## 目录
 
 - references/SonyHeadphonesClient：mos9527/SonyHeadphonesClient，耳机协议与跨平台参考实现。
