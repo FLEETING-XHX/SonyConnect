@@ -1,0 +1,445 @@
+{
+  "date": "2026-10-10",
+  "timezone": "Asia/Singapore",
+  "branch": "FLEETING/sc-1-scope-capability-license",
+  "baseCommit": "458b7a86e3042b3d7b06e7cb0e72d29665d4311c",
+  "linearIssue": "SC-1",
+  "linearReadStatus": "Todo",
+  "scope": "Documentation review only; no product code copied; no build, replay, APK analysis or local hardware test executed",
+  "featureCoverage": {
+    "expected": [
+      "F01",
+      "F02",
+      "F03",
+      "F04",
+      "F05",
+      "F06",
+      "F07",
+      "F08",
+      "F09",
+      "F10",
+      "F11",
+      "F12",
+      "F13",
+      "F14",
+      "F15",
+      "F16",
+      "F17",
+      "F18",
+      "F19",
+      "F20",
+      "F21",
+      "F22",
+      "F23",
+      "F24",
+      "F25",
+      "F26",
+      "F27",
+      "F28",
+      "F29"
+    ],
+    "actual": [
+      "F01",
+      "F02",
+      "F03",
+      "F04",
+      "F05",
+      "F06",
+      "F07",
+      "F08",
+      "F09",
+      "F10",
+      "F11",
+      "F12",
+      "F13",
+      "F14",
+      "F15",
+      "F16",
+      "F17",
+      "F18",
+      "F19",
+      "F20",
+      "F21",
+      "F22",
+      "F23",
+      "F24",
+      "F25",
+      "F26",
+      "F27",
+      "F28",
+      "F29"
+    ],
+    "missing": [],
+    "duplicateCount": 0,
+    "invalidCategoryCount": 0,
+    "classifications": [
+      {
+        "feature": "F01",
+        "name": "型号、连接状态、耳机选择",
+        "category": "首版必需"
+      },
+      {
+        "feature": "F02",
+        "name": "电量",
+        "category": "首版必需"
+      },
+      {
+        "feature": "F03",
+        "name": "降噪 / 通透 / 关闭",
+        "category": "首版必需"
+      },
+      {
+        "feature": "F04",
+        "name": "环境声音强度",
+        "category": "首版必需"
+      },
+      {
+        "feature": "F05",
+        "name": "关注语音",
+        "category": "能力条件"
+      },
+      {
+        "feature": "F06",
+        "name": "多点连接开关",
+        "category": "能力条件"
+      },
+      {
+        "feature": "F07",
+        "name": "双设备名称、当前音源、普通切换",
+        "category": "实验"
+      },
+      {
+        "feature": "F08",
+        "name": "连接质量偏好 / 当前 codec",
+        "category": "能力条件"
+      },
+      {
+        "feature": "F09",
+        "name": "本机媒体标题、来源与播放控制",
+        "category": "首版必需"
+      },
+      {
+        "feature": "F10",
+        "name": "本机耳机输出端点音量同步",
+        "category": "首版必需"
+      },
+      {
+        "feature": "F11",
+        "name": "当前音压",
+        "category": "实验"
+      },
+      {
+        "feature": "F12",
+        "name": "EQ 开关、预设、五段",
+        "category": "首版必需"
+      },
+      {
+        "feature": "F13",
+        "name": "CLEAR BASS",
+        "category": "首版必需"
+      },
+      {
+        "feature": "F14",
+        "name": "DSEE Extreme",
+        "category": "能力条件"
+      },
+      {
+        "feature": "F15",
+        "name": "左右触摸功能分配",
+        "category": "能力条件"
+      },
+      {
+        "feature": "F16",
+        "name": "声音模式循环组合",
+        "category": "能力条件"
+      },
+      {
+        "feature": "F17",
+        "name": "智能免摘 Speak-to-Chat",
+        "category": "能力条件"
+      },
+      {
+        "feature": "F18",
+        "name": "摘下暂停",
+        "category": "能力条件"
+      },
+      {
+        "feature": "F19",
+        "name": "自动断电",
+        "category": "能力条件"
+      },
+      {
+        "feature": "F20",
+        "name": "通知与语音向导开关",
+        "category": "能力条件"
+      },
+      {
+        "feature": "F21",
+        "name": "提示音量",
+        "category": "能力条件"
+      },
+      {
+        "feature": "F22",
+        "name": "固件版本只读",
+        "category": "首版必需"
+      },
+      {
+        "feature": "F23",
+        "name": "开机启动",
+        "category": "首版必需"
+      },
+      {
+        "feature": "F24",
+        "name": "关闭窗口最小化到托盘",
+        "category": "首版必需"
+      },
+      {
+        "feature": "F25",
+        "name": "未连接界面与“查看蓝牙”",
+        "category": "首版必需"
+      },
+      {
+        "feature": "F26",
+        "name": "固定 / 解除固定播放",
+        "category": "实验"
+      },
+      {
+        "feature": "F27",
+        "name": "软件版本、更新检测、Releases",
+        "category": "首版必需"
+      },
+      {
+        "feature": "F28",
+        "name": "耳机关机",
+        "category": "首版必需"
+      },
+      {
+        "feature": "F29",
+        "name": "四类调节条个性化样式",
+        "category": "首版必需"
+      }
+    ]
+  },
+  "preservation": {
+    "baselineFileCount": 101,
+    "changedOriginalFileCount": 0,
+    "uiResourceCount": 60,
+    "statePreviewCount": 31,
+    "archivedResourceCount": 12,
+    "uiHashMismatchCount": 0,
+    "preExistingUntracked": [
+      "docs/linear/"
+    ],
+    "baselineFile": "保留内容基线.json"
+  },
+  "repositories": [
+    {
+      "path": "references/SonyHeadphonesClient",
+      "expectedCommit": "193c1e053836119eb875c97331dd10c1aef206bc",
+      "actualCommit": "193c1e053836119eb875c97331dd10c1aef206bc",
+      "matchesArchivedCommit": true,
+      "worktreeClean": true,
+      "licenses": [
+        {
+          "path": "LICENSE",
+          "sha256": "915e766600639d41714a1c8b0e09e49e0ac3e8f3c90264c8e08d70195bc485c1",
+          "matchesArchivedHash": true
+        }
+      ]
+    },
+    {
+      "path": "references/sony-tray",
+      "expectedCommit": "497baa39ee5a940ba9ef2d1f9489d40ec10d1952",
+      "actualCommit": "497baa39ee5a940ba9ef2d1f9489d40ec10d1952",
+      "matchesArchivedCommit": true,
+      "worktreeClean": true,
+      "licenses": [
+        {
+          "path": "LICENSE",
+          "sha256": "e2fb2e96c1dc263c78cb704f3c06a86ac970cd6041ea5321c4e260f545157a81",
+          "matchesArchivedHash": true
+        }
+      ]
+    },
+    {
+      "path": "references/sony-device-center",
+      "expectedCommit": "0bf98223c1ba402dd6c5136c21e6ab35482e4390",
+      "actualCommit": "0bf98223c1ba402dd6c5136c21e6ab35482e4390",
+      "matchesArchivedCommit": true,
+      "worktreeClean": true,
+      "licenses": [
+        {
+          "path": "LICENSE",
+          "sha256": "006da6d371425ea1b93fe35cc4222e10482c027fd29e214c1d8cc4bccf490212",
+          "matchesArchivedHash": true
+        }
+      ]
+    },
+    {
+      "path": "references/supplemental/01-protocol-docs/mdr-protocol",
+      "expectedCommit": "367bfa55a398e7bba1ec872062d4c3de9b7aac56",
+      "actualCommit": "367bfa55a398e7bba1ec872062d4c3de9b7aac56",
+      "matchesArchivedCommit": true,
+      "worktreeClean": true,
+      "licenses": []
+    },
+    {
+      "path": "references/supplemental/01-protocol-docs/sony-headphones-bluetooth-documentation",
+      "expectedCommit": "e38bf35c19e219ced93dd748ac6b48c2c4fe6ffd",
+      "actualCommit": "e38bf35c19e219ced93dd748ac6b48c2c4fe6ffd",
+      "matchesArchivedCommit": true,
+      "worktreeClean": true,
+      "licenses": [
+        {
+          "path": "LICENSE",
+          "sha256": "f4e7f373b9b996950337e8d41a4a2939c2d90b7725e9baf3d5084a22717ad328",
+          "matchesArchivedHash": true
+        }
+      ]
+    },
+    {
+      "path": "references/supplemental/02-desktop-implementations/SonyBridge",
+      "expectedCommit": "8c81a2775a76097f4938fbc835411bd59088014c",
+      "actualCommit": "8c81a2775a76097f4938fbc835411bd59088014c",
+      "matchesArchivedCommit": true,
+      "worktreeClean": true,
+      "licenses": [
+        {
+          "path": "LICENSE",
+          "sha256": "006da6d371425ea1b93fe35cc4222e10482c027fd29e214c1d8cc4bccf490212",
+          "matchesArchivedHash": true
+        }
+      ]
+    },
+    {
+      "path": "references/supplemental/03-android-implementation/Gadgetbridge",
+      "expectedCommit": "20a20ed7ded003e4b06ecfd8ee63737a6debfeb4",
+      "actualCommit": "20a20ed7ded003e4b06ecfd8ee63737a6debfeb4",
+      "matchesArchivedCommit": true,
+      "worktreeClean": true,
+      "licenses": [
+        {
+          "path": "LICENSE",
+          "sha256": "6da1054eef20b8949622f2acc5a89c3243ff3b3d7aa8c2bb8fa5c04d15113c00",
+          "matchesArchivedHash": true
+        },
+        {
+          "path": "LICENSE.artwork",
+          "sha256": "d26094fdfb5b960e289c50a7ec79df8c4a70aee647cd0c7c6d8ec150af3c95cf",
+          "matchesArchivedHash": true
+        }
+      ]
+    }
+  ],
+  "documentChecks": {
+    "localLinkCount": 28,
+    "missingLocalLinks": [],
+    "trailingWhitespace": [],
+    "externalLinkCheck": "Pinned references and selected official pages inspected; no exhaustive remote link crawl",
+    "hardwareValidation": "未验证",
+    "decisions": [
+      "D1 源码公开、禁止商用、允许二次开发：已确认",
+      "D2 实验项呈现策略：已确认",
+      "D3 固定播放交互及 UI 提示框：已确认"
+    ],
+    "tableColumnMismatch": []
+  },
+  "onlineEvidence": [
+    {
+      "url": "https://www.nuget.org/packages/Hardcodet.NotifyIcon.Wpf/2.0.1",
+      "version": "2.0.1",
+      "license": "MIT",
+      "status": "Version metadata and tag LICENSE inspected; nupkg not unpacked"
+    },
+    {
+      "url": "https://github.com/hardcodet/wpf-notifyicon/blob/2.0.1/LICENSE",
+      "version": "2.0.1 tag",
+      "license": "MIT"
+    },
+    {
+      "url": "https://spdx.org/licenses/CPOL-1.02.html",
+      "license": "CPOL-1.02",
+      "status": "Terms inspected; no adopted CPOL component pinned"
+    },
+    {
+      "url": "https://github.com/DavidHDev/react-bits/blob/main/LICENSE.md",
+      "version": "main, unpinned",
+      "license": "MIT + Commons Clause",
+      "status": "Current text inspected; historical component version not verified"
+    },
+    {
+      "url": "https://github.com/mos9527/SonyHeadphonesClient/pull/57",
+      "model": "WF-1000XM5",
+      "firmware": "6.1.0 upstream only",
+      "status": "Author report; no successful fixed-state capture; no local hardware verification"
+    },
+    {
+      "url": "https://polyformproject.org/licenses/noncommercial/1.0.0",
+      "version": "1.0.0",
+      "license": "PolyForm-Noncommercial-1.0.0",
+      "status": "Official full text inspected; candidate only, not adopted as root LICENSE"
+    },
+    {
+      "url": "https://spdx.org/licenses/PolyForm-Noncommercial-1.0.0.html",
+      "version": "1.0.0",
+      "license": "PolyForm-Noncommercial-1.0.0",
+      "status": "Full text cross-check inspected"
+    }
+  ],
+  "documentHashes": [
+    {
+      "path": "第三方许可矩阵.md",
+      "sha256": "8a61ff422c6ff067e0339acc3e7dc62b4f35fb989c010b199186e5a9f94c011f"
+    },
+    {
+      "path": "首版范围矩阵.md",
+      "sha256": "9eef95c134c414b4d7600aec4e5ccb08231c60cd9de556aed96b07a5075bfe69"
+    },
+    {
+      "path": "执行断点.md",
+      "sha256": "0405380f983ac23e211f579e8a945cf175408949a61482e0d3fc574415692374"
+    },
+    {
+      "path": "README.md",
+      "sha256": "2c8fd3bb58d7286e290c1f0db5df83a292446e39188288ec45cf1d4c5c7c6bd7"
+    },
+    {
+      "path": "WF-WH能力与验证矩阵.md",
+      "sha256": "29921c27a106773e769a09c01ab122cef7b472700c26f9295d485115f9685caa"
+    }
+  ],
+  "decisionResolution": {
+    "date": "2026-10-10",
+    "source": "Direct user reply in current Codex conversation",
+    "D1": {
+      "status": "confirmed",
+      "sourcePublic": true,
+      "commercialUseAllowed": false,
+      "modificationAllowed": true,
+      "releaseTarget": "Existing FLEETING-XHX/SonyConnect Releases by default",
+      "licenseCandidate": "PolyForm-Noncommercial-1.0.0",
+      "rootLicenseEstablished": false,
+      "remoteVisibilityChanged": false,
+      "updateConfigChanged": false
+    },
+    "D2": {
+      "status": "confirmed",
+      "fixedPlayback": "Keep entry; enable only after model and firmware hardware validation",
+      "soundPressure": "Hide while unverified",
+      "listAndSwitch": "Gate independently by evidence"
+    },
+    "D3": {
+      "status": "confirmed",
+      "holdMs": 700,
+      "progressStart": "top",
+      "progressDirection": "counterclockwise",
+      "shortClickOtherWhenFixed": "Block switching and prompt to unlock first",
+      "feedback": "Compact light themed custom popup aligned with preserved UI; no default MessageBox",
+      "implemented": false
+    },
+    "remainingPublicationItems": [
+      "Exact LICENSE text and copyright holder",
+      "Release material licensing and actual anonymous update API validation"
+    ]
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "RecordedAt": "2026-10-12T02:29:49.7478538+08:00",
+  "Passed": true,
+  "HardwareVerified": false,
+  "ProtocolTests": 36,
+  "TransportTests": 44,
+  "StateTests": 24,
+  "CoordinationTests": 63,
+  "BatteryChecks": [
+    {
+      "Name": "battery-six-v2-layouts-and-strict-parsing",
+      "Passed": true
+    },
+    {
+      "Name": "wf-battery-readonly-advertised-thresholds",
+      "Passed": true
+    },
+    {
+      "Name": "wh-single-battery-without-wf-readings",
+      "Passed": true
+    },
+    {
+      "Name": "missing-or-opaque-case-battery-stays-unknown",
+      "Passed": true
+    },
+    {
+      "Name": "unknown-charging-is-not-false",
+      "Passed": true
+    },
+    {
+      "Name": "reported-model-resolves-renamed-device-layout",
+      "Passed": true
+    },
+    {
+      "Name": "battery-notifications-update-without-writes",
+      "Passed": true
+    },
+    {
+      "Name": "newer-battery-notification-wins-before-ack",
+      "Passed": true
+    },
+    {
+      "Name": "switch-device-clears-and-rereads-battery",
+      "Passed": true
+    },
+    {
+      "Name": "automatic-reconnect-rereads-without-restoring-settings",
+      "Passed": true
+    },
+    {
+      "Name": "battery-ack-only-fails-and-releases-socket",
+      "Passed": true
+    },
+    {
+      "Name": "reconnect-notification-cannot-enable-controls-before-readback",
+      "Passed": true
+    }
+  ],
+  "CumulativeReport": "artifacts/sc-8/run-20261011-182919-743/summary.json",
+  "SourceHashes": [
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrBatteryParameters.cs",
+      "Sha256": "5312a6060469e86165371dc3e10a4be7b6b50fc7666c9fa337cffb31416d6351"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrMessageParser.cs",
+      "Sha256": "88148fa70db671d1c59ec0058d0c6d9502e4e9fe46860ee58d699f570eb74334"
+    },
+    {
+      "File": "src/SonyConnect.Application/ProtocolDeviceBackend.cs",
+      "Sha256": "1a07ba8bb85f34d04642a90b8d39f12bb7eb1149db82fded15115ca1322b5088"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/DeviceViewModel.cs",
+      "Sha256": "d9c15eb992a2fdc3b0191521d97ec822fb12c8f5fa82a30590da2c33f2a8596a"
+    },
+    {
+      "File": "src/SonyConnect.App/App.xaml.cs",
+      "Sha256": "4c3c974d91afef1d4da7b25c438f00025bddd3b0314443a33a8e48ddce75e1a6"
+    },
+    {
+      "File": "src/SonyConnect.App/CompositionRoot.cs",
+      "Sha256": "9935f48695884bb132bf45d5c1b10aa0617177ddd132da5f8b20a34c7cbe4237"
+    },
+    {
+      "File": "src/SonyConnect.App/WindowsBatteryProbe.cs",
+      "Sha256": "3ae3686579048ad1e9b6228d1bd76633f02df00161e12c5aa27d0f52b9772f92"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/BatteryScenarios.cs",
+      "Sha256": "361ac1f4488d62a50266695604c4b4900a64455e66d05f12c025adde1399c441"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/Program.cs",
+      "Sha256": "4fb8411ffe543794bcdda45fc8ea834ea4c54d794a3d221c8b9b106ed5656bf1"
+    },
+    {
+      "File": "scripts/Test-SC8.ps1",
+      "Sha256": "b0806dbdd27abbeca73166eb92c2f910c69e99d37e7d00d7a07bb0fd78ecdb83"
+    }
+  ],
+  "HardwareLogCheck": {
+    "Queries": 24,
+    "SettingCommands": 0,
+    "BatteryReads": 6
+  }
+}

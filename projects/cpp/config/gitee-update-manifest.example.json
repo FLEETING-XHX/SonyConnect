@@ -1,0 +1,5 @@
+{
+  "version": "填写已发布的实际版本号，例如 0.1.0",
+  "releasePage": "https://gitee.com/fleetingxhx/SonyConnect/releases",
+  "notes": "发布说明。确认对应发行版的安装包可以下载后，再将 version 改为实际版本，并以 update.json 上传到 Gitee 的 main 分支根目录。"
+}

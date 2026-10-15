@@ -1,0 +1,324 @@
+{
+  "Stage": "SC-10 WF hardware EQ write and restore",
+  "StartedAt": "2026-10-12T13:12:42.9513022+08:00",
+  "EndedAt": "2026-10-12T13:12:51.9380271+08:00",
+  "Model": "WF-1000XM5",
+  "Firmware": "6.1.0",
+  "Passed": true,
+  "HardwareWritesVerified": true,
+  "Original": {
+    "PresetId": 162,
+    "Bands": {
+      "Hz400": 1,
+      "Hz1000": -1,
+      "Hz2500": 3,
+      "Hz6300": 5,
+      "Hz16000": 7
+    },
+    "ClearBass": 3
+  },
+  "OriginalCustom": {
+    "PresetId": 160,
+    "Bands": {
+      "Hz400": 0,
+      "Hz1000": 0,
+      "Hz2500": 0,
+      "Hz6300": 0,
+      "Hz16000": 0
+    },
+    "ClearBass": 0
+  },
+  "Restored": {
+    "PresetId": 162,
+    "Bands": {
+      "Hz400": 1,
+      "Hz1000": -1,
+      "Hz2500": 3,
+      "Hz6300": 5,
+      "Hz16000": 7
+    },
+    "ClearBass": 3
+  },
+  "RestoredCustom": {
+    "PresetId": 160,
+    "Bands": {
+      "Hz400": 0,
+      "Hz1000": 0,
+      "Hz2500": 0,
+      "Hz6300": 0,
+      "Hz16000": 0
+    },
+    "ClearBass": 0
+  },
+  "Restoration": {
+    "Status": 0,
+    "Error": null,
+    "IsSuccess": true
+  },
+  "SettingWrites": 24,
+  "SuccessfulConfirmations": 24,
+  "FailedConfirmations": 0,
+  "BadWriteReadCorrelations": 0,
+  "SoundModeWrites": 0,
+  "ExternalNotifications": 6,
+  "Dropped": [
+    0
+  ],
+  "UserVerification": {
+    "OfficialAppReadingsMatch": true,
+    "SoundNormal": true,
+    "Statement": "读数一致，声音正常",
+    "Scope": "Restored current EQ only; not an external modification sync test"
+  },
+  "Checks": [
+    {
+      "Name": "capture-custom-before-adjustments",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "off",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "off-dependency-blocked",
+      "Result": {
+        "Status": 2,
+        "Error": {
+          "Code": 0,
+          "Message": "请先启用 EQ 并确认五段布局。"
+        },
+        "IsSuccess": false
+      },
+      "Passed": true
+    },
+    {
+      "Name": "bright-preset",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "band-0-endpoint--10",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "band-1-endpoint--10",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "band-2-endpoint--10",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "band-3-endpoint--10",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "band-4-endpoint--10",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "bass-endpoint--10",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "band-0-endpoint-10",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "band-1-endpoint-10",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "band-2-endpoint-10",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "band-3-endpoint-10",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "band-4-endpoint-10",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "bass-endpoint-10",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "continuous-input-last-confirmed",
+      "Result": null,
+      "Passed": true
+    },
+    {
+      "Name": "refresh",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "restore-custom-preset",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "restore-custom-band-0",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "restore-custom-band-1",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "restore-custom-band-2",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "restore-custom-band-3",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "restore-custom-band-4",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "restore-custom-bass",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    },
+    {
+      "Name": "restore-original-preset",
+      "Result": {
+        "Status": 0,
+        "Error": null,
+        "IsSuccess": true
+      },
+      "Passed": null
+    }
+  ],
+  "Report": "artifacts/sc-10/hardware-write-20261012-051242-634/report.json",
+  "ReportSha256": "b834703d1a0ece9d197381c77916c753972b0a4581239bde4c5e1d665dc30afb",
+  "OriginalBackup": "artifacts/sc-10/hardware-write-20261012-051242-634/eq-original-backup.json",
+  "BackupSha256": "ecb345cd844d6dfec98d142498a68b0cbad877e1a292e840c5b8a3acfd7a117f",
+  "ExecutableSha256": "f072fd676bee2be67f065b60ad36aba1999c8d8984ed82104f43575a78e46b9d",
+  "ProbeSourceSha256": "ca88fcd00ea2c42e7f6a39528c02621b951217eda3b6d69fac1f52599361a7fc",
+  "ExternalPhoneSyncVerified": false,
+  "WhVerified": false,
+  "PhoneReconnectSyncUserReport": {
+    "Completed": true,
+    "Statement": "实测完成",
+    "Basis": "User feedback after phone modification and PC reconnect instructions",
+    "IndependentLogsProvided": false,
+    "ExactReadingsProvided": false
+  },
+  "ExternalPhoneSyncVerificationScope": "Automated independent evidence absent; user-reported sequential reconnect test completed separately"
+}

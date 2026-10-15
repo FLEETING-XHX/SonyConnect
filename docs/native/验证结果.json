@@ -1,0 +1,153 @@
+{
+  "Date": "2026-10-14",
+  "Branch": "C++",
+  "Passed": true,
+  "HardwareVerified": false,
+  "LiveBluetoothVerified": false,
+  "LiveMediaVerified": false,
+  "PhysicalHotkeysVerified": false,
+  "LiveUpdateVerified": false,
+  "Configurations": {
+    "Debug": {
+      "Passed": true,
+      "UiScenarios": 18
+    },
+    "Release": {
+      "Passed": true,
+      "UiScenarios": 18
+    }
+  },
+  "NativeTestSuites": [
+    "protocol",
+    "session",
+    "desktop",
+    "ui"
+  ],
+  "ProtocolScenarios": 57,
+  "SessionScenarios": 30,
+  "HeaderDependenciesVerified": true,
+  "ManagedClrRva": 0,
+  "ManagedClrSize": 0,
+  "ZipIntegrityVerified": true,
+  "Package": {
+    "Passed": true,
+    "RecordedAtUtc": "2026-10-14T07:59:53.4210423+00:00",
+    "HardwareVerified": false,
+    "BluetoothApisCalled": false,
+    "ExternalNetworkCalled": false,
+    "Executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-075952-557\\portable\\SonyConnect.exe",
+    "ExecutableBytes": 1041408,
+    "ExecutableSha256": "8370c339dd41c7435da3fd884c9d8d80c120544870cd5d9c751573289dac64b4",
+    "Machine": "AMD64",
+    "ManagedClrRva": 0,
+    "ManagedClrSize": 0,
+    "Archive": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-075952-557\\SonyConnect-Cpp-Windows-x64.zip",
+    "ArchiveBytes": 484866,
+    "ArchiveSha256": "e2646f49841ea99a05db1e8cbd00629c5a71b81f023c28c93e5b8a2de7950082",
+    "PortableUiReport": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-075952-557\\portable-ui-test\\report.json",
+    "UiScenarios": 18
+  },
+  "CSharpBaseline": {
+    "Passed": true,
+    "Report": "artifacts\\sc-20-22\\run-20261014-041804-232\\summary.json",
+    "RegressionTests": 230,
+    "FeatureChecksPerBuild": 135,
+    "SourceModified": false
+  },
+  "Committed": false,
+  "Pushed": false,
+  "SourceHashes": [
+    {
+      "File": "CMakeLists.txt",
+      "Sha256": "5defe5d3f10f8595de47363be743fa5103b46f7c14830cec0d002a9c80a7ed99"
+    },
+    {
+      "File": "CMakePresets.json",
+      "Sha256": "6b6defa67939fa93f20f89901697ae9492a53e7a4f1c9db0bdf42a6a0c2d2556"
+    },
+    {
+      "File": "native/.clang-format",
+      "Sha256": "262f34593a7c18311dbcd68bc827b493573b9715b948aa944e071e692fbbc569"
+    },
+    {
+      "File": "native/include/sonyconnect/desktop.hpp",
+      "Sha256": "0be4847b13926c93cdb0c1a36c3724e8d914696a2645884c8ee15c5f9f933eae"
+    },
+    {
+      "File": "native/include/sonyconnect/protocol.hpp",
+      "Sha256": "e9fc0afd4c451454caa287b5c28f188538a065960eee06fc3f24b7e1e6312836"
+    },
+    {
+      "File": "native/include/sonyconnect/session.hpp",
+      "Sha256": "5ef3e05e9b69b50caadc575a5894dd50b0283437ed6e9bbf4903348329b3d57c"
+    },
+    {
+      "File": "native/notices/sony-device-center-MIT.txt",
+      "Sha256": "006da6d371425ea1b93fe35cc4222e10482c027fd29e214c1d8cc4bccf490212"
+    },
+    {
+      "File": "native/notices/sony-tray-MIT.txt",
+      "Sha256": "e2fb2e96c1dc263c78cb704f3c06a86ac970cd6041ea5321c4e260f545157a81"
+    },
+    {
+      "File": "native/notices/SonyConnect-native-NOTICE.txt",
+      "Sha256": "a44a3ddf36871cfd2c1364f791c1bc79674fe6649eefbfadd9ea42a73718a2e4"
+    },
+    {
+      "File": "native/notices/SonyHeadphonesClient-MIT.txt",
+      "Sha256": "915e766600639d41714a1c8b0e09e49e0ac3e8f3c90264c8e08d70195bc485c1"
+    },
+    {
+      "File": "native/resources/app.manifest",
+      "Sha256": "2e93e519c608993f6e56f3a2c6172e50998d4dcabc9cb94d437b926de5c9d934"
+    },
+    {
+      "File": "native/resources/app.rc",
+      "Sha256": "8c83c4ab0ed613cb666ef0c7ba9edbc76211be4331d5ca78271d07dfabab98c0"
+    },
+    {
+      "File": "native/src/desktop.cpp",
+      "Sha256": "9613988be35a236e44864809e56e4df1f1d8ecef8a8e2d343a90315f6a63f1f9"
+    },
+    {
+      "File": "native/src/main.cpp",
+      "Sha256": "b24301a2aef81494cd6d400a010ffad34f6ff01799fbf12b075b3bd31f7b0a08"
+    },
+    {
+      "File": "native/src/protocol.cpp",
+      "Sha256": "cb399702b39ed724adb42d787e0521577aa5e14b0d6f2cb11b9c12264a6db89e"
+    },
+    {
+      "File": "native/src/session.cpp",
+      "Sha256": "55788ce1e84ebd5b00df980789bd4e7b78a02a3bd6023c48c17974dd1e2b1a06"
+    },
+    {
+      "File": "native/tests/desktop_tests.cpp",
+      "Sha256": "3ecb88a8e82b5c2cd655db556c5057fa28c8456effedaaf73ae9f80cd09eb1c3"
+    },
+    {
+      "File": "native/tests/protocol_tests.cpp",
+      "Sha256": "1472cdc34fe308cb568bfc4568bd70267c5a17d26533bb65dbd7d5320840357a"
+    },
+    {
+      "File": "native/tests/session_tests.cpp",
+      "Sha256": "4a90fc4f1f0959d68e33eb4d4f29d15814ee7c88341d11cf435634c1891c3206"
+    },
+    {
+      "File": "scripts/Build-Native.ps1",
+      "Sha256": "da3785b65772379cd0708ad14acc544a8ffefc7e38293b58a3fff51f35ea2c4b"
+    },
+    {
+      "File": "scripts/Get-MsvcDependencyPrefix.ps1",
+      "Sha256": "49be9d14721b7e54dc5745fc45d2bd7773a1c74a6c6f8d29805a8ecc432a93df"
+    },
+    {
+      "File": "scripts/NativeBuild.cmd",
+      "Sha256": "037cbcad89f0b0ef0b664c3066a4ebe5af50fc2f2b08e16632a9bf08318760f0"
+    },
+    {
+      "File": "scripts/Publish-Native.ps1",
+      "Sha256": "823376aa5f803e2b58304d2dea782a338ccc4d5f0940de2d98f47fd1ce5cb6c9"
+    }
+  ]
+}

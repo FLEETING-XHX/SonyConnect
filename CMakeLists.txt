@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.24)
+project(SonyConnectWorkspace LANGUAGES CXX RC)
+if(MSVC AND SONYCONNECT_MSVC_DEPS_PREFIX)
+  set(CMAKE_CL_SHOWINCLUDES_PREFIX "${SONYCONNECT_MSVC_DEPS_PREFIX}")
+endif()
+include(CTest)
+add_subdirectory(projects/cpp)

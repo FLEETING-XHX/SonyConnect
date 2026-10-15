@@ -10,3 +10,9 @@ docs/research/**/*.html -text -whitespace
 docs/research/**/*.patch -text -whitespace
 docs/research/05-APK分析工具/JADX-README.md -text -whitespace
 docs/research/05-APK分析工具/JADX-LICENSE -text -whitespace
+
+# Preserve SC-2 notices exactly as supplied by the pinned runtime packages.
+tools/SC2Probe/Notices/* -text -whitespace
+docs/sc-2/source-evidence/* -text -whitespace
+src/SonyConnect.Core/Protocol/Notices/* -text -whitespace
+projects/cpp/native/notices/* -text -whitespace

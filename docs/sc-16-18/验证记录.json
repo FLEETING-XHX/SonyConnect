@@ -1,0 +1,439 @@
+{
+  "Stages": [
+    "SC-16",
+    "SC-17",
+    "SC-18"
+  ],
+  "Branch": "FLEETING/sc-16-18-offline",
+  "RecordedAt": "2026-10-13T20:09:07.2393809+08:00",
+  "OfflinePassed": true,
+  "LatestUserAcceptance": {
+    "Date": "2026-10-13",
+    "Stage": "SC-16",
+    "Feedback": "实测功能正常",
+    "Source": "用户针对 SC-16 待验收说明的后续反馈",
+    "Scope": "共用实现及 WF-1000XM5 基线；语音助手关联恢复用户报告通过",
+    "PerPathLogsProvided": false,
+    "OtherModelsVerified": false,
+    "LinearStatusReadBack": "Done",
+    "HistoricalOfflineFlagsPreserved": true,
+    "GitCommittedOrMergedThisUpdate": false
+  },
+  "HardwareVerified": false,
+  "BluetoothApisCalled": false,
+  "ActualStartupModified": false,
+  "AggregateReport": "artifacts/sc-16-18/run-20261013-120443-383/summary.json",
+  "CoordinationCount": 126,
+  "NewProtocolGroups": 10,
+  "NewUiChecksPerBuild": 34,
+  "UiTotalChecksPerBuild": 49,
+  "BuildConfigurations": [
+    "Debug",
+    "Release"
+  ],
+  "RegressionTotals": {
+    "Coordination": 126,
+    "Regression": 24,
+    "Protocol": 36,
+    "Transport": 44
+  },
+  "Executable": {
+    "File": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261013-120446-972\\publish\\SonyConnect.exe",
+    "Bytes": 201015129,
+    "Sha256": "0ea5aa0f99c7d9d170d74acdb9a75865659c2358a62028382f46021cb381946c",
+    "FileCount": 1,
+    "SelfContained": true,
+    "SingleFile": true
+  },
+  "CurrentShortcut": "artifacts/sc-3/01-当前测试版.lnk",
+  "FrozenBranch": "FLEETING/sc-13-15-offline",
+  "FrozenCommit": "2d005bb3bacc5048761e1ba72969954af053d3d2",
+  "FrozenExecutable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261013-004736-717\\publish\\SonyConnect.exe",
+  "FrozenSha256": "d48c9c8aa971996eba9112488533a88906cf802c40f43b0145e9533b09745e90",
+  "FrozenShortcut": "artifacts/sc-3/03-SC12-15实测冻结版.lnk",
+  "SourceHashes": [
+    {
+      "File": "src/SonyConnect.Core/Devices/InteractionSettings.cs",
+      "Sha256": "b3c6bd922ea0b3171be708d0da943a94d732853c64ca28cd55e9c83b98eee7f5"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrInteractionParameters.cs",
+      "Sha256": "dae1095cdbdbf9342b468a64f1e5bc234bcae7e4758d80970c74da9600c77798"
+    },
+    {
+      "File": "src/SonyConnect.Application/ProtocolInteractionBackend.cs",
+      "Sha256": "2b41a566081cf8d72066872856e684a37adcad3594601a0eb6284db38b3226e8"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/InteractionViewModel.cs",
+      "Sha256": "c4208eeba3ad5a7d109e3efaa239b3e331f3c5a633b3f50d5bee09effae84cbd"
+    },
+    {
+      "File": "src/SonyConnect.App/WindowsInteractionReadProbe.cs",
+      "Sha256": "494928fb79b1e9eb81fc7cac6bf9d3325c7da1c065e8abda283499c203091374"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/InteractionScenarios.cs",
+      "Sha256": "04d0e574c9110c165d44adaeb81a73388a8c4d5583bf8a0cc73f73b6388d53a2"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/AudioSourceScenarios.cs",
+      "Sha256": "6d8db4a17841d95704c022e9f0e9bd842b1ccf4403571758364a366ab3cc682f"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/EqualizerScenarios.cs",
+      "Sha256": "fa9f07dd2bae2e2b28de580fea1988891bd18315d609d9f7704a24482f3718a4"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/SoundScenarios.cs",
+      "Sha256": "6ca5fda0be42517b5e2dee9bed0dd1503d3b58d3b9b7f81a8b7bba175384a3de"
+    },
+    {
+      "File": "scripts/Test-SC16-18.ps1",
+      "Sha256": "bbea91bdb062ee22a7ac61164e41fa9b6812698dbb54e983378eac8fa952ed85"
+    },
+    {
+      "File": "src/SonyConnect.App/DesktopLifecycle.cs",
+      "Sha256": "4116ad50c667bd6b1ad49004efbdcf26ea606fb4ff637efa740b92a5f2685220"
+    },
+    {
+      "File": "src/SonyConnect.App/DesktopValidation.cs",
+      "Sha256": "2f9a79fdc64449e3b286355a266973d72ffa0a03065e0caa3125376688794999"
+    },
+    {
+      "File": "src/SonyConnect.App/App.xaml.cs",
+      "Sha256": "f99d6c0e6ba3c38135fdfb2c0dca1794093662b586198a84d717fbd2f280cdce"
+    },
+    {
+      "File": "src/SonyConnect.App/ReadOnlyReplay.cs",
+      "Sha256": "b4599d3c2e24141dd5e458614812b0ca79f3ead046721cc28d60e83066c2ff60"
+    },
+    {
+      "File": "src/SonyConnect.App/CompositionRoot.cs",
+      "Sha256": "661c815a48f1be14f649f3f8ba4a6e2b4f3b84b6be4f0a1b7d1da2b865285b4b"
+    },
+    {
+      "File": "src/SonyConnect.App/SonyConnect.App.csproj",
+      "Sha256": "0e1c4524cb9ab3f9a8a2804a855c5c5ff64bf9455ceed7e44531f339b197d71b"
+    },
+    {
+      "File": "src/SonyConnect.Core/Devices/ExtendedSettings.cs",
+      "Sha256": "e48403a3d4c7e312cdff1eb6fb63a8d17bdd1a24082549c21429bdf2056a6bad"
+    },
+    {
+      "File": "src/SonyConnect.Core/Devices/HeadphoneState.cs",
+      "Sha256": "a88a3e74f5d8e5b7e23aaa61635548d6caba7f0865c65603db62efc644374ba8"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrExtendedParameters.cs",
+      "Sha256": "8ca05b816ee4f27619603969cad6673c42a82deef4df62e919a9023361135fa9"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrMessageParser.cs",
+      "Sha256": "ac2e55f8629686714cb511df88b8a9e58e3500e6af82f6e5a44502996192697d"
+    },
+    {
+      "File": "src/SonyConnect.Core/State/OperationResult.cs",
+      "Sha256": "0b173c42e2f6d4b394a5f3388aafb9991115990d2b302c7693c74295d02a0081"
+    },
+    {
+      "File": "src/SonyConnect.Application/ProtocolExtendedBackend.cs",
+      "Sha256": "d26d57432a804499e9416a524fcbfbe0a3016edc693d1ea264cf0940a06149bf"
+    },
+    {
+      "File": "src/SonyConnect.Application/ProtocolDeviceBackend.cs",
+      "Sha256": "8cf1317b78465b89dc3f8b887655fc3970671c751562050668dcfec2a6bc44e3"
+    },
+    {
+      "File": "src/SonyConnect.Application/ProtocolAudioSourceBackend.cs",
+      "Sha256": "1e9e7a4127c4277fd585198b5861a28ef813cfe2ecde648aa1edb8b6d746e81a"
+    },
+    {
+      "File": "src/SonyConnect.Application/DeviceController.cs",
+      "Sha256": "c9a361de43f9b1a749a23e7c65dc2270bcaa1e1e6ebe2327bb9a052ea115d51d"
+    },
+    {
+      "File": "src/SonyConnect.Application/IDeviceUseCases.cs",
+      "Sha256": "4e54103d27ab82043cbd0f6b60839bbc9e3c14bb41dc644c972db04f948879ba"
+    },
+    {
+      "File": "src/SonyConnect.Application/Ports/DevicePorts.cs",
+      "Sha256": "96bbcd54f2695a25eed8ef72d6394235ab8cef80dfd39c19ce49c1e9c17dbd89"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/DeviceViewModel.cs",
+      "Sha256": "80c604421ad3b51bd6e3c1799793c9cbb96e99f3279125fb1aecf28bdd3566fe"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml",
+      "Sha256": "fbed373aa733d5aa5952f1f3381d118884f13c008b82673cd207040e8d27f566"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml.cs",
+      "Sha256": "b39220ad07d95ca838e0d5ebc7713ab1cb09cf68a6a39e50e0f27e5b5ad71f86"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/ExtendedSettingsScenarios.cs",
+      "Sha256": "580a73da870083aef6c7ad36e9309fa49b8fe582ef65a9868768a593cbb4be2e"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/Program.cs",
+      "Sha256": "c06f187a6a26c51417f8d3f75484cb70b8375de15e6d54edbdf81d3da339e3c2"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/SonyConnect.CoordinationTests.csproj",
+      "Sha256": "b56a1e77f7035f7b86cdb7c054e679825aa3a98c9672c98f66935437c5e2a021"
+    },
+    {
+      "File": "scripts/Test-SC13-15.ps1",
+      "Sha256": "4ab26451e7bd394277d61b5a55d3c03c5d383775d2924d024d8942f13c15f2de"
+    },
+    {
+      "File": "src/SonyConnect.App/WindowsTouchWriteProbe.cs",
+      "Sha256": "58a9c26c98cc737ad4d9af585082ceb0425a0e9f39c70fba39f6cc6bfd8a4389"
+    }
+  ],
+  "FeatureChecks": [
+    {
+      "Name": "sc16-18-strict-nested-signed-and-inverted-layouts",
+      "Passed": true
+    },
+    {
+      "Name": "sc16-touch-candidates-atomic-list-cycle-dependencies",
+      "Passed": true
+    },
+    {
+      "Name": "sc16-touch-extended-cycle-real-layout-and-preservation",
+      "Passed": true
+    },
+    {
+      "Name": "sc17-four-guidance-layouts-five-prompt-levels",
+      "Passed": true
+    },
+    {
+      "Name": "sc18-fixed-release-refusal-source-reconnect",
+      "Passed": true
+    },
+    {
+      "Name": "sc16-18-model-readonly-limitation-and-failure-guards",
+      "Passed": true
+    },
+    {
+      "Name": "sc16-linked-assistant-restore-original-on-and-off",
+      "Passed": true
+    },
+    {
+      "Name": "sc16-linked-assistant-partial-unknown-and-session-guards",
+      "Passed": true
+    },
+    {
+      "Name": "sc16-17-input-merge-notification-no-echo-disconnect",
+      "Passed": true
+    },
+    {
+      "Name": "sc18-sound-pressure-no-untrusted-number",
+      "Passed": true
+    }
+  ],
+  "Limits": [
+    "仅 WF-1000XM5 已核对型号与实际能力组合允许写入；WH 读取布局独立，写入保持禁用。",
+    "音压没有可信单位、采样窗口与校准条件，显示受限说明，无数值和查询。",
+    "固定播放抢占、通话优先级、固件差异、WF/WH 实机行为未验证。",
+    "PNG 直接截取组控件时表头有局部裁切；不代表正式设计 UI 或 DPI 验收。",
+    "触摸分配快速切换偶发失败，正式 UI 保存流程已记录，尚未实现或证明修复。",
+    "WF 35 可定制循环读取已实机确认，写入与实际触摸循环行为仍待验收；未知布局禁写。",
+    "SC-12/SC-14 重连用例已等待真实断开事件后重连，原回读与不重发断言全部保留；生产逻辑未因测试改动。"
+  ],
+  "Pending": [
+    "WH 独立能力布局与硬件验证",
+    "SC-18 音压保持受限结论，不安排无依据数值测试",
+    "SC-16 正式 UI 触摸编辑后保存流程",
+    "SC-16 右耳其他候选、实际触摸行为及确认弹窗交互验收",
+    "独立语音助手配置和实际唤起行为未另行验收",
+    "SC-16 新增语音助手关联恢复路径实机验收：原开启与原关闭两条路径；跨控制连接不自动恢复",
+    "SC-14 E7 读取、普通写入及原值恢复已通过，扩大验收见 docs/sc-14/验证记录.json"
+  ],
+  "Committed": false,
+  "RemotePushed": false,
+  "LinearMarkedDone": false,
+  "CumulativeRegressionCount": 230,
+  "CycleUiFollowup": {
+    "ThreeIndependentCheckboxes": true,
+    "ImmediateSubmitOnUserClick": true,
+    "SeparateSaveButton": false,
+    "MinimumModes": 2,
+    "InvalidSelectionRestoresConfirmed": true,
+    "BindingUpdatesDoNotWrite": true,
+    "HardwareRetested": false,
+    "CapabilityGuardPreserved": true
+  },
+  "UserHardwareFeedback": {
+    "Date": "2026-10-13",
+    "Source": "docs/sc-16-18/实测反馈-20261013.md",
+    "FixedPlayback": "reported-normal",
+    "ReleaseAndReconnect": "reported-normal",
+    "ExternalSync": "reported-normal",
+    "TouchAssignment": "right-ear-alert-root-cause-fixed; single-none-write-and-original-assignment-restoration-hardware-readback-passed; other-presets-and-physical-actions-pending",
+    "AmbientCycle": "reported-normal-after-layout-fix",
+    "GuidanceAndPromptVolume": "reported-normal",
+    "BuildHashConfirmed": false,
+    "FullStageAccepted": false,
+    "TouchTranslation": "reported-normal-after-label-fix",
+    "FixedPlaybackBoundaryCases": "reported-normal"
+  },
+  "CustomTouchCycleFollowup": {
+    "Date": "2026-10-13",
+    "Model": "WF-1000XM5",
+    "Firmware": "6.1.0",
+    "Table1Independent69Reported": false,
+    "AssignableF3Reported": true,
+    "HardwareReadVerified": true,
+    "CycleValue": 4,
+    "CycleMeaning": "通透／关闭",
+    "SettingWritesAllowed": false,
+    "HardwareWritesVerified": false,
+    "Report": "artifacts/sc-16-18/wf-touch-cycle-confirmed-read-20261013/report.json",
+    "Implementation": "FA/FB/FC/FD preset action list; preserve unrelated actions",
+    "Translation": "环境声音控制/Quick Access",
+    "UserReportedWriteAndCycleTest": "normal; user feedback, not independently instrumented"
+  },
+  "PauseCheckpoint": {
+    "Date": "2026-10-13",
+    "Reason": "User resting; hardware write diagnosis deferred",
+    "RightWriteAuthorized": false,
+    "HardwareSettingsWrittenThisTurn": false,
+    "CodeChangedThisTurn": false,
+    "ResumeRequiresUser": true,
+    "AutomaticResumeScheduled": false
+  },
+  "RightTouchFix": {
+    "Date": "2026-10-13",
+    "RootCause": "unhandled fixed alert 0F/action 01 for voice assistant assignable sensor",
+    "HardwareReport": "artifacts/sc-16-18/right-touch-fixed-20261013-185836/report.json",
+    "BluetoothApisCalled": true,
+    "ExplicitVoiceAssistantAlertConsent": true,
+    "RightNoneWriteAndReadbackPassed": true,
+    "LeftAssignmentUnchanged": true,
+    "BothOriginalAssignmentsRestored": true,
+    "VoiceAssistantConfigurationVerified": false,
+    "OtherPresetsAndPhysicalActionsVerified": false,
+    "UiDialogManuallyVerified": false,
+    "AggregateReport": "artifacts/sc-16-18/run-20261013-110037-170/summary.json",
+    "Publish": {
+      "File": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261013-110040-658\\publish\\SonyConnect.exe",
+      "Bytes": 200977241,
+      "Sha256": "127d1aebc8e4fd09a03f7c4a4a5a78acea90aab9f00046c461089f54f94774fe",
+      "FileCount": 1,
+      "SelfContained": true,
+      "SingleFile": true
+    },
+    "WholeStageHardwareVerified": false,
+    "AssociatedSettingsFullyRestored": false,
+    "UserFollowup": "User reports voice assistant did not return after restoring playback control; original voice assistant value was not captured."
+  },
+  "LinkedVoiceAssistantFix": {
+    "Date": "2026-10-13",
+    "ImplementationCompleted": true,
+    "OfflineVerified": true,
+    "HardwareVerified": false,
+    "BluetoothApisCalled": false,
+    "HardwareSettingsWritten": false,
+    "OriginalOffRemainsOff": true,
+    "RecordedOptionRestoredExactly": true,
+    "RestoreScope": "same physical control link; no cross-restart automatic restoration",
+    "StartupQueriesAdded": false,
+    "LazyReadsBeforeTouchWrites": true,
+    "UnknownOriginalBlocked": true,
+    "PartialRestorationNotSuccess": true,
+    "OriginalValueFromPriorHardwareTestKnown": false,
+    "AggregateReport": "artifacts/sc-16-18/run-20261013-113306-311/summary.json",
+    "Documentation": "docs/sc-16-18/语音助手关联恢复-20261013.md"
+  },
+  "Sc14Followup": {
+    "Stage": "SC-14",
+    "Date": "2026-10-13",
+    "Branch": "FLEETING/sc-16-18-offline",
+    "OfflinePassed": true,
+    "CumulativeRegressionCount": 230,
+    "CoordinationCount": 126,
+    "E7ProtocolGroups": 3,
+    "UiVariants": [
+      "three-byte-parameter",
+      "four-byte-parameter"
+    ],
+    "UiConfigurations": [
+      "Debug",
+      "Release"
+    ],
+    "UiChecksPerVariant": 20,
+    "AggregateReport": "artifacts/sc-16-18/run-20261013-120443-383/summary.json",
+    "Publish": {
+      "File": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261013-120446-972\\publish\\SonyConnect.exe",
+      "Bytes": 201015129,
+      "Sha256": "0ea5aa0f99c7d9d170d74acdb9a75865659c2358a62028382f46021cb381946c",
+      "FileCount": 1,
+      "SelfContained": true,
+      "SingleFile": true
+    },
+    "CurrentShortcut": "artifacts/sc-3/01-当前测试版.lnk",
+    "HardwareReadVerified": true,
+    "HardwareOrdinaryQualityWriteVerified": true,
+    "HardwareOriginalRestored": true,
+    "Model": "WF-1000XM5",
+    "Firmware": "6.1.0",
+    "Original": 1,
+    "Final": 1,
+    "HardwareReadReport": "artifacts/sc-14/wf-e7-read-20261013-195708/report.json",
+    "HardwareWriteReport": "artifacts/sc-14/wf-quality-write-20261013-200324/report.json",
+    "HardwareNotificationVerified": false,
+    "OtherModelsVerified": false,
+    "LeAudioWritesAllowed": false,
+    "CodeCommitted": false,
+    "RemotePushed": false,
+    "LinearMarkedDone": false,
+    "SourceHashes": [
+      {
+        "File": "src/SonyConnect.Core/Protocol/MdrExtendedParameters.cs",
+        "Sha256": "8ca05b816ee4f27619603969cad6673c42a82deef4df62e919a9023361135fa9"
+      },
+      {
+        "File": "src/SonyConnect.Application/ProtocolExtendedBackend.cs",
+        "Sha256": "d26d57432a804499e9416a524fcbfbe0a3016edc693d1ea264cf0940a06149bf"
+      },
+      {
+        "File": "src/SonyConnect.App/ReadOnlyReplay.cs",
+        "Sha256": "b4599d3c2e24141dd5e458614812b0ca79f3ead046721cc28d60e83066c2ff60"
+      },
+      {
+        "File": "src/SonyConnect.App/App.xaml.cs",
+        "Sha256": "f99d6c0e6ba3c38135fdfb2c0dca1794093662b586198a84d717fbd2f280cdce"
+      },
+      {
+        "File": "src/SonyConnect.App/WindowsQualityWriteProbe.cs",
+        "Sha256": "36239056072c5985b4019b9f7bd8b775efdf4e5e8c2756c1e7d4a2283b8e9be9"
+      },
+      {
+        "File": "src/SonyConnect.App/WindowsInteractionReadProbe.cs",
+        "Sha256": "494928fb79b1e9eb81fc7cac6bf9d3325c7da1c065e8abda283499c203091374"
+      },
+      {
+        "File": "tests/SonyConnect.CoordinationTests/ExtendedSettingsScenarios.cs",
+        "Sha256": "580a73da870083aef6c7ad36e9309fa49b8fe582ef65a9868768a593cbb4be2e"
+      },
+      {
+        "File": "tests/SonyConnect.CoordinationTests/Program.cs",
+        "Sha256": "c06f187a6a26c51417f8d3f75484cb70b8375de15e6d54edbdf81d3da339e3c2"
+      },
+      {
+        "File": "scripts/Test-SC13-15.ps1",
+        "Sha256": "4ab26451e7bd394277d61b5a55d3c03c5d383775d2924d024d8942f13c15f2de"
+      }
+    ],
+    "Pending": [
+      "用户核对新版界面及正常使用",
+      "其他型号／固件独立验证",
+      "真实通知、连接重建及长期稳定性效果未扩展验收"
+    ],
+    "Research": "docs/sc-14/E7核查与修复-20261013.md"
+  }
+}

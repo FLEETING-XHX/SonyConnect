@@ -1,0 +1,57 @@
+{
+  "Passed": true,
+  "RecordedAtUtc": "2026-10-14T12:05:46.3135403+00:00",
+  "Branch": "C++",
+  "HardwareVerified": false,
+  "BluetoothApisCalled": false,
+  "ExternalNetworkCalled": false,
+  "ProtocolScenarios": 57,
+  "SessionScenarios": 42,
+  "UiScenarios": 51,
+  "DebugUiScenarios": 51,
+  "DebugAndReleaseCTestSuites": 4,
+  "ReleaseWarnings": 0,
+  "DebugWarnings": 0,
+  "CSharpSourceModified": false,
+  "CycleRule": "At least two; two and three both submit immediately; fewer than two restore last confirmed",
+  "DiscoveryRule": "Paired Sony devices reported currently connected by Windows",
+  "WhHardwareVerified": false,
+  "WhChecklist": "docs/native/WH设备取回后待测.md",
+  "FeedbackDocument": "docs/native/CSharp交互对齐与第二轮反馈-20261014.md",
+  "Sources": [
+    {
+      "Path": "projects/cpp/native/src/main.cpp",
+      "Sha256": "9e83319f69f4559f4f2246a9f2d359cdbdbb1bc77351d03ff1a6d6d11dd07ccf"
+    },
+    {
+      "Path": "projects/cpp/native/src/session.cpp",
+      "Sha256": "20fa1ab3caf3fe26a2a59d866307b82eaece072197a7cb8fed31dcf0a45aca85"
+    },
+    {
+      "Path": "projects/cpp/native/include/sonyconnect/session.hpp",
+      "Sha256": "cd16bca0a3ac68882188c5c747c6151260209789548885ff14c93bd436aa1fb1"
+    },
+    {
+      "Path": "projects/cpp/native/tests/session_tests.cpp",
+      "Sha256": "2bb69f316d2e3e948bbccdd703ac933c844604be788226098710264e47bdd6cf"
+    }
+  ],
+  "Package": {
+    "Passed": true,
+    "RecordedAtUtc": "2026-10-14T20:04:52.8493235+08:00",
+    "HardwareVerified": false,
+    "BluetoothApisCalled": false,
+    "ExternalNetworkCalled": false,
+    "Executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-120451-424\\portable\\SonyConnect.exe",
+    "ExecutableBytes": 1082368,
+    "ExecutableSha256": "799039f0b348782b69e016bf960e48a6cc94eb58affd5c9818c8930bf7600c39",
+    "Machine": "AMD64",
+    "ManagedClrRva": 0,
+    "ManagedClrSize": 0,
+    "Archive": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-120451-424\\SonyConnect-Cpp-Windows-x64.zip",
+    "ArchiveBytes": 520040,
+    "ArchiveSha256": "325a6264df13b46b86fa1d9e9f402c073c0b2bca92d200d7c194cc3c5440bdd1",
+    "PortableUiReport": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-120451-424\\portable-ui-test\\report.json",
+    "UiScenarios": 51
+  }
+}

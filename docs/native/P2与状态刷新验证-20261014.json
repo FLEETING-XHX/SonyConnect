@@ -1,0 +1,58 @@
+{
+  "Passed": true,
+  "RecordedAtUtc": "2026-10-14T13:23:19.4564858+00:00",
+  "Branch": "C++",
+  "HardwareVerified": false,
+  "BluetoothApisCalledByOfflineTests": false,
+  "ExternalNetworkCalledByOfflineTests": false,
+  "ProtocolScenarios": 57,
+  "SessionScenarios": 52,
+  "Configurations": {
+    "Release": {
+      "Passed": true,
+      "TestGroups": 4,
+      "UiScenarios": 72,
+      "Warnings": 0,
+      "Errors": 0,
+      "UiReport": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\build\\native-ninja\\Release\\ui-test-report.json",
+      "BuildLog": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\p2-interaction\\release-build.log"
+    },
+    "Debug": {
+      "Passed": true,
+      "TestGroups": 4,
+      "UiScenarios": 72,
+      "Warnings": 0,
+      "Errors": 0,
+      "UiReport": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\build\\native-ninja\\Debug\\ui-test-report.json",
+      "BuildLog": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\p2-interaction\\debug-build.log"
+    }
+  },
+  "PackageSummary": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-132318-110\\summary.json",
+  "Package": {
+    "Passed": true,
+    "RecordedAtUtc": "2026-10-14T21:23:19.3933327+08:00",
+    "HardwareVerified": false,
+    "BluetoothApisCalled": false,
+    "ExternalNetworkCalled": false,
+    "Executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-132318-110\\portable\\SonyConnect.exe",
+    "ExecutableBytes": 1114624,
+    "ExecutableSha256": "8fbad1263c0ff073571ca49a874b2a7fad43b33f3c23aa04fe8db6a66321f39e",
+    "Machine": "AMD64",
+    "ManagedClrRva": 0,
+    "ManagedClrSize": 0,
+    "Archive": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-132318-110\\SonyConnect-Cpp-Windows-x64.zip",
+    "ArchiveBytes": 533355,
+    "ArchiveSha256": "d1d9ad6cd319d7fbd550f5d977c25fe14b56f5c9dc70febe3f761c4fa2ff76ab",
+    "PortableUiReport": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-132318-110\\portable-ui-test\\report.json",
+    "UiScenarios": 72
+  },
+  "SourceSha256": {
+    "projects/cpp/native/src/main.cpp": "ca870e04e0c7d2b5f05bd118744c8358817dea920b3451b2ec10a7c24d07c698",
+    "projects/cpp/native/src/session.cpp": "3d84e9c12d348d246cb858c3b4b698dbcd37b22d6e001b04880477ebec6b501d",
+    "projects/cpp/native/src/desktop.cpp": "4e01e6fda40d36c639ddf9ce7a48eb37e557505fdf83e1e05662fc6bb13bed64",
+    "projects/cpp/native/include/sonyconnect/desktop.hpp": "8f7cb13c3034da5772efc3eac9a4a19bdcb36eff183f762746fddfe03a3a4b68",
+    "projects/cpp/native/tests/session_tests.cpp": "8a9fa32f584e5175ae078f11474f05ccbb77e26afc47751d31eb0b306838ef3d",
+    "projects/cpp/native/tests/desktop_tests.cpp": "1a2a6b756b7fdbd673cc0eeba4145b616286ab6fc3b1dd5b556f389901d8e40f"
+  },
+  "Verification": "Mock session transport, injected hotkey platform, real Win32 controls with constructed device state. No hardware support claim."
+}

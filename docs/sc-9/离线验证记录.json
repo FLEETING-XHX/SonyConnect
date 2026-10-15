@@ -1,0 +1,97 @@
+{
+  "RecordedAt": "2026-10-12T11:06:14.0999148+08:00",
+  "Passed": true,
+  "HardwareVerified": false,
+  "Stage": "SC-9 sound controls offline integration",
+  "VoiceChecks": [
+    {
+      "Name": "sc9-voice-confirmed-write-and-disable",
+      "Passed": true
+    },
+    {
+      "Name": "sc9-voice-mode-range-and-product-maximum-guards",
+      "Passed": true
+    },
+    {
+      "Name": "sc9-voice-rejection-preserves-actual",
+      "Passed": true
+    },
+    {
+      "Name": "sc9-voice-ack-only-times-out-without-retry",
+      "Passed": true
+    },
+    {
+      "Name": "sc9-voice-level-merge-and-off-supersession",
+      "Passed": true
+    },
+    {
+      "Name": "sc9-voice-external-notification-no-echo",
+      "Passed": true
+    },
+    {
+      "Name": "sc9-voice-disconnect-cancels-unsent-input",
+      "Passed": true
+    },
+    {
+      "Name": "sc9-voice-unverified-wh-remains-readonly",
+      "Passed": true
+    }
+  ],
+  "CoordinationCount": 71,
+  "SourceHashes": [
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrSoundParameters.cs",
+      "Sha256": "de4aef870ee4fb6c80fc52fb9101c2333e0ca10f5fd2a87b2da91b19529337f1"
+    },
+    {
+      "File": "src/SonyConnect.Core/Devices/SoundState.cs",
+      "Sha256": "75a5ead6339eb9268ca38b0f09acf8b68a0c6e989ba05ac2f9a6e5c2b24b5fcc"
+    },
+    {
+      "File": "src/SonyConnect.Application/DeviceController.cs",
+      "Sha256": "243ee23ebc9ce553e6f6a9bb24b496feffae3171145119a852a930cb649be5e1"
+    },
+    {
+      "File": "src/SonyConnect.Application/ProtocolDeviceBackend.cs",
+      "Sha256": "caa453d9f1dcf0a192dee88fb81ad0a72fa854aae713fe9a5e12676de79e77b1"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/DeviceViewModel.cs",
+      "Sha256": "d1bbde2efcf0bea6f4090ff427b8bf0dbde5623ebb99747710ee72ed6c03d04d"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml",
+      "Sha256": "339d72f9cbaf170730b19c73c021b11cf7093eee8e5c622be6e4f32ff85a214e"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml.cs",
+      "Sha256": "485508e0f61abe72d986f1eb299f7fc132a0e8bff5bd9a5527e5437e9b74cafd"
+    },
+    {
+      "File": "src/SonyConnect.App/App.xaml.cs",
+      "Sha256": "aee8a295915aae769dd5eaca9bf4c436b06265ed455e0a75cd0b3bff9a5ddc3c"
+    },
+    {
+      "File": "src/SonyConnect.App/ReadOnlyReplay.cs",
+      "Sha256": "a9ce62db44d5a7236ddd64443a0d931549af03b801aafcb5b2af1f0d8818718b"
+    },
+    {
+      "File": "src/SonyConnect.App/WindowsSoundProbe.cs",
+      "Sha256": "ec662fa936e2661a7c5ebce886a7afce8edff4711772640e4156a06dea25744f"
+    },
+    {
+      "File": "src/SonyConnect.App/CompositionRoot.cs",
+      "Sha256": "9bbf068f03ad6f822da046152422d3306270fca7e2d783f49e63fdc21b1bce91"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/SoundScenarios.cs",
+      "Sha256": "4c5f88f8da923c7846a419bb544b76809c98667d0591e23870aa033e2ffcf9f1"
+    },
+    {
+      "File": "scripts/Test-SC9.ps1",
+      "Sha256": "103709f229119a2f1baf19a25d662b61882a382fc7e75ca81cc356f5fa68a739"
+    }
+  ],
+  "IntegrationReport": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-9\\run-20261012-030542-068\\summary.json",
+  "Notes": "Debug/Release, 175 regressions, WPF replay, self-contained single EXE passed. WF writes/readback verified separately; phone simultaneous-control acceptance blocked."
+}

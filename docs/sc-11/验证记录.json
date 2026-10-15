@@ -1,0 +1,106 @@
+{
+  "Stage": "SC-11",
+  "Branch": "FLEETING/sc-11-windows-audio-media",
+  "Baseline": "209b931",
+  "RecordedAt": "2026-10-12T06:07:05.2448744+00:00",
+  "Passed": true,
+  "HardwareVerified": false,
+  "WindowsAudioMediaApisCalled": false,
+  "LocalScenarios": 9,
+  "CoordinationScenarios": 94,
+  "TotalOfflineScenarios": 198,
+  "UiChecks": [
+    {
+      "Executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\src\\SonyConnect.App\\bin\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\SonyConnect.exe",
+      "Passed": true,
+      "ScenarioCount": 16,
+      "HardwareVerified": false
+    },
+    {
+      "Executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-060620-011\\publish\\SonyConnect.exe",
+      "Passed": true,
+      "ScenarioCount": 16,
+      "HardwareVerified": false
+    }
+  ],
+  "BuildConfigurations": [
+    "Debug",
+    "Release"
+  ],
+  "OriginalSummary": "artifacts/sc-11/run-20261012-060617-440/summary.json",
+  "OriginalSummarySha256": "2d4bb6710c73a8ea7f0322ebeb4e83feeb26337ed7fcef4ba31fdd1ec275921c",
+  "SourceHashes": [
+    {
+      "File": "src/SonyConnect.Application/Ports/LocalPlaybackPorts.cs",
+      "Sha256": "ecd321533416b1cc50b77d1fd092fd39dd3315eb06cb8bcfd462dee5937c9ff6"
+    },
+    {
+      "File": "src/SonyConnect.Application/Ports/UnavailableLocalPlaybackBackend.cs",
+      "Sha256": "96df83a09d7653681fdae6ad5ebbc714bcf8ade280930d161caacec618e4bf0c"
+    },
+    {
+      "File": "src/SonyConnect.Application/LocalPlaybackController.cs",
+      "Sha256": "b16828291c463a88d0a6d2d60ad7f73e42c7181511c9a69287cbb38c41a1a790"
+    },
+    {
+      "File": "src/SonyConnect.App/WindowsAudioInterop.cs",
+      "Sha256": "6e0ef37d514a026427e3b8a0dde00c1403037ae57a79bbae1093a0001f212f52"
+    },
+    {
+      "File": "src/SonyConnect.App/WindowsLocalPlaybackBackend.cs",
+      "Sha256": "b8274fa9c5707625f8cf8e0abb264f79e304e80359c512cf429e218293c00faa"
+    },
+    {
+      "File": "src/SonyConnect.App/LocalPlaybackReplay.cs",
+      "Sha256": "880e95b4ffa84ce7c17ab938923d1c76302df00bafc688957c7cc809a17fe493"
+    },
+    {
+      "File": "src/SonyConnect.App/CompositionRoot.cs",
+      "Sha256": "3bd7f55be3c1cb835cbbd9fe4d8cf01ae117cdcf966db2219b2baf35ac81311c"
+    },
+    {
+      "File": "src/SonyConnect.App/App.xaml.cs",
+      "Sha256": "49a92f119231711bc41985b267f43d853e4fb9e4f275eb0ce08a295a89d66838"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/DeviceViewModel.cs",
+      "Sha256": "5b4fa1ea4dda77aabb7e3cad939cbfb73007f57df990cc20eaf8b1ba4ef05924"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml",
+      "Sha256": "9ada65f92f4b4301786de114fe594257541dd35673244bbed4767169fe2f3828"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml.cs",
+      "Sha256": "fccd6594f875bb3a4f6b823fa20958dbe4a6edcd7275ab06860b68611808116f"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/LocalPlaybackScenarios.cs",
+      "Sha256": "22d587fcfa1f573136cebf0bbd7dbfbd77aa048def67c2989f9dc0452d8c367e"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/Program.cs",
+      "Sha256": "7d8f6b68b5d3a8be9e68fa0f95410503dfb3743e170faca4a7f3d0a14f736a06"
+    },
+    {
+      "File": "scripts/Test-SC11.ps1",
+      "Sha256": "8416a4386a3cb9408892e8e81a53e91b99094b703eb3581961ccce1182805bcd"
+    }
+  ],
+  "ReportDirectoryFix": {
+    "Result": "Passed",
+    "Report": "artifacts/sc-11/missing-parent-validation/coordination.json",
+    "Total": 94,
+    "Failed": 0
+  },
+  "Pending": [
+    "Windows endpoint identity matching and live volume/mute verification",
+    "Local media runtime control verification",
+    "Phone active source boundary verification",
+    "Endpoint/media replacement and exit hardware verification"
+  ],
+  "DisplayChanges": [
+    "Volume percentage rounded to integer for display only",
+    "Source label clarified as local playback application; formal source device deferred to SC-12"
+  ]
+}

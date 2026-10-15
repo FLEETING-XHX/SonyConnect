@@ -1,0 +1,884 @@
+{
+  "Passed": true,
+  "RecordedAt": "2026-10-11T19:28:59.1906133+08:00",
+  "Branch": "FLEETING/sc-5-windows-rfcomm",
+  "Baseline": "3d34074f0485dc837f5034d3847e703ebb083407",
+  "Sdk": "10.0.401",
+  "RunRoot": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-5\\run-20261011-112835-670",
+  "Integration": {
+    "Passed": true,
+    "RecordedAt": "2026-10-11T19:28:55.8739563+08:00",
+    "Branch": "FLEETING/sc-5-windows-rfcomm",
+    "Baseline": "3d34074f0485dc837f5034d3847e703ebb083407",
+    "Sdk": "10.0.401",
+    "RunRoot": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-4\\run-20261011-112835-946",
+    "Integration": {
+      "Passed": true,
+      "RecordedAt": "2026-10-11T19:28:54.6930853+08:00",
+      "Sdk": "10.0.401",
+      "RunRoot": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261011-112836-178",
+      "BuildConfigurations": [
+        "Debug",
+        "Release"
+      ],
+      "RegressionScenarios": 24,
+      "WpfChecks": [
+        "default",
+        "simulation"
+      ],
+      "Publish": {
+        "File": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261011-112836-178\\publish\\SonyConnect.exe",
+        "Bytes": 167063370,
+        "Sha256": "d180d34c7f8a68d86581539e8767e71a484f902498ade1e9e7c944b8402c4b85",
+        "FileCount": 1,
+        "SelfContained": true,
+        "SingleFile": true
+      },
+      "Offline": true,
+      "NuGetAuditPerformed": false,
+      "HardwareVerified": false,
+      "CleanWindowsWithoutDotnet": "not-retested-for-SC3",
+      "VisualQa": "inspect generated PNGs separately"
+    },
+    "Protocol": {
+      "Passed": true,
+      "Scenarios": [
+        {
+          "Name": "fixed-fixtures-have-provenance-and-source-hashes",
+          "Passed": true
+        },
+        {
+          "Name": "fixed-wire-frames-roundtrip-byte-for-byte",
+          "Passed": true
+        },
+        {
+          "Name": "payload-and-checksum-markers-are-escaped",
+          "Passed": true
+        },
+        {
+          "Name": "every-fixture-split-and-one-byte-feed",
+          "Passed": true
+        },
+        {
+          "Name": "sticky-frames-and-noise-return-in-order",
+          "Passed": true
+        },
+        {
+          "Name": "nested-start-marker-recovers-next-frame",
+          "Passed": true
+        },
+        {
+          "Name": "bad-checksum-does-not-hide-following-frame",
+          "Passed": true
+        },
+        {
+          "Name": "invalid-escape-and-escaped-tail-rejected",
+          "Passed": true
+        },
+        {
+          "Name": "every-truncated-prefix-reported-at-eof",
+          "Passed": true
+        },
+        {
+          "Name": "short-bodies-never-read-outside-buffer",
+          "Passed": true
+        },
+        {
+          "Name": "oversized-and-negative-wire-lengths-bounded",
+          "Passed": true
+        },
+        {
+          "Name": "exact-limit-and-worst-case-escaping",
+          "Passed": true
+        },
+        {
+          "Name": "length-mismatch-and-trailing-body-rejected",
+          "Passed": true
+        },
+        {
+          "Name": "reset-discards-old-connection-fragments",
+          "Passed": true
+        },
+        {
+          "Name": "deterministic-arbitrary-bytes-cannot-crash-parser",
+          "Passed": true
+        },
+        {
+          "Name": "ack-shape-and-complementary-sequence",
+          "Passed": true
+        },
+        {
+          "Name": "wf-capture-version-and-enable-flags",
+          "Passed": true
+        },
+        {
+          "Name": "malformed-protocol-fields-not-guessed",
+          "Passed": true
+        },
+        {
+          "Name": "function-priorities-and-unknown-ids-preserved",
+          "Passed": true
+        },
+        {
+          "Name": "function-count-zero-and-maximum-255",
+          "Passed": true
+        },
+        {
+          "Name": "truncated-and-extra-function-pairs-rejected",
+          "Passed": true
+        },
+        {
+          "Name": "model-and-firmware-utf8-lengths-validated",
+          "Passed": true
+        },
+        {
+          "Name": "capability-counter-and-anonymous-id",
+          "Passed": true
+        },
+        {
+          "Name": "response-notification-and-query-separated-by-table",
+          "Passed": true
+        },
+        {
+          "Name": "unknown-types-and-commands-remain-recordable",
+          "Passed": true
+        },
+        {
+          "Name": "wf-bootstrap-completes-from-fixed-samples",
+          "Passed": true
+        },
+        {
+          "Name": "ack-notification-and-bad-reply-cannot-complete-query",
+          "Passed": true
+        },
+        {
+          "Name": "out-of-order-and-duplicate-replies-ignored",
+          "Passed": true
+        },
+        {
+          "Name": "disabled-table2-skips-query-and-maps-absence",
+          "Passed": true
+        },
+        {
+          "Name": "disabled-table1-and-v1-stop-explicitly",
+          "Passed": true
+        },
+        {
+          "Name": "stale-session-and-reconnect-clear-bootstrap-data",
+          "Passed": true
+        },
+        {
+          "Name": "wf-wh-capability-layout-and-evidence-separation",
+          "Passed": true
+        },
+        {
+          "Name": "pure-core-has-no-ui-or-windows-dependency",
+          "Passed": true
+        },
+        {
+          "Name": "query-fields-and-table-routing-are-explicit",
+          "Passed": true
+        },
+        {
+          "Name": "decoder-limit-policy-is-validated",
+          "Passed": true
+        },
+        {
+          "Name": "protocol-notices-match-pinned-license-bytes",
+          "Passed": true
+        }
+      ],
+      "FixedFixtures": 13,
+      "UpstreamCaptures": 6,
+      "SourceCommit": "193c1e053836119eb875c97331dd10c1aef206bc",
+      "HardwareVerified": false,
+      "WhHardwareCapture": false
+    },
+    "SourceHashes": [
+      {
+        "File": "scripts/Test-SC4.ps1",
+        "Sha256": "7c2f59200118323a2246c375834447356657912b950b6e0f05aaecb5d6ed3184"
+      },
+      {
+        "File": "SonyConnect.sln",
+        "Sha256": "4d0ffd77955ac4269015c15857052eb3234af8c5fa6a82ae1afa5a49c1b03c6b"
+      },
+      {
+        "File": "src/SonyConnect.App/App.xaml.cs",
+        "Sha256": "d75f15b6a052a00540cab70a8d9a5fa1eee5ce2d64301adfc7fb6901f39b3d27"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/MdrCapabilityMapper.cs",
+        "Sha256": "f6893c1ce540baffdccf7b95fdf0405113c3baa8b77bc2ad5e98f76880762bf2"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/MdrHandshake.cs",
+        "Sha256": "f56fe20e82fbfec40711c8cc07e02acb10d15775e16bf594221bd41da9aebf80"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/MdrMessageParser.cs",
+        "Sha256": "3eea10c5646f4ca17ac05254bbc1aa2ee3b0f0bceb4ce1dd3fc8dcfb4bebc9c3"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/MdrMessages.cs",
+        "Sha256": "d18303657ff27661b61360b3ef8b90faf1fc0f89830112349378c4eb0cecfbf5"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/Notices/SonyConnect-protocol-NOTICE.txt",
+        "Sha256": "df66fc4c27dd93042e6875cfb0b06dd271563b7bc9ed6b57047d142df61a598c"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/Notices/SonyHeadphonesClient-MIT.txt",
+        "Sha256": "915e766600639d41714a1c8b0e09e49e0ac3e8f3c90264c8e08d70195bc485c1"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/Notices/sony-tray-MIT.txt",
+        "Sha256": "e2fb2e96c1dc263c78cb704f3c06a86ac970cd6041ea5321c4e260f545157a81"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/TandemCodec.cs",
+        "Sha256": "0537d300bb19a23b508b337c1b00b28c53038ca1bb13195e8a924374a73ed7b9"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/TandemFrame.cs",
+        "Sha256": "befdc5310da9f6a4d38a31787329ae7eb4c48518ccbb8799738b22724485ff3d"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/TandemStreamDecoder.cs",
+        "Sha256": "86272e48695b3340040e011a211f86a05d901522d3b20960245da1e001feb86b"
+      },
+      {
+        "File": "src/SonyConnect.Core/SonyConnect.Core.csproj",
+        "Sha256": "93a0477bdf1a80575984820b600c8b9c239a05cb17a84c674c650ddc27037c1e"
+      },
+      {
+        "File": "tests/SonyConnect.ProtocolTests/Fixtures/frames.json",
+        "Sha256": "77b7d4730c5012c79ba0534477862cabec136368dc4972a894821c945f935c3a"
+      },
+      {
+        "File": "tests/SonyConnect.ProtocolTests/packages.lock.json",
+        "Sha256": "b6ffbc76ebeaa15dcc12f3763e5e37445365ea5cce83f53786766de4e8f6bb17"
+      },
+      {
+        "File": "tests/SonyConnect.ProtocolTests/Program.cs",
+        "Sha256": "8915da5a8fd8b68d697197119c82f171019ca08c0cd70e0b00f0dca1d7c06c42"
+      },
+      {
+        "File": "tests/SonyConnect.ProtocolTests/SonyConnect.ProtocolTests.csproj",
+        "Sha256": "86c7d486cb7585f8561b9b247dd5a85c9f36f88561c9201faa7855c41c1b9aa9"
+      }
+    ],
+    "HardwareVerified": false,
+    "WhHardwareCapture": false,
+    "Pushed": false
+  },
+  "Transport": {
+    "Passed": true,
+    "Scenarios": [
+      {
+        "Name": "paired-targets-sorted-without-waking-offline-headphones",
+        "Passed": true
+      },
+      {
+        "Name": "renamed-online-sony-requires-service-and-keeps-model-unknown",
+        "Passed": true
+      },
+      {
+        "Name": "candidate-error-does-not-hide-other-headphones",
+        "Passed": true
+      },
+      {
+        "Name": "paired-inventory-is-deduplicated-and-bounded",
+        "Passed": true
+      },
+      {
+        "Name": "discovery-cancellation-and-timeout-are-distinct",
+        "Passed": true
+      },
+      {
+        "Name": "real-transport-rejects-simulation-before-opening",
+        "Passed": true
+      },
+      {
+        "Name": "transport-instance-is-single-use",
+        "Passed": true
+      },
+      {
+        "Name": "canceled-late-connect-is-released-once",
+        "Passed": true
+      },
+      {
+        "Name": "timed-out-late-connect-is-released-once",
+        "Passed": true
+      },
+      {
+        "Name": "dispose-cancels-a-pending-connect-and-joins-cleanup",
+        "Passed": true
+      },
+      {
+        "Name": "connector-failure-has-actionable-diagnostic",
+        "Passed": true
+      },
+      {
+        "Name": "concurrent-writes-preserve-whole-buffer-order",
+        "Passed": true
+      },
+      {
+        "Name": "canceling-a-queued-write-keeps-current-connection",
+        "Passed": true
+      },
+      {
+        "Name": "canceling-an-active-write-closes-the-stream",
+        "Passed": true
+      },
+      {
+        "Name": "write-timeout-closes-stream-without-replaying-bytes",
+        "Passed": true
+      },
+      {
+        "Name": "late-read-cannot-mutate-returned-caller-memory",
+        "Passed": true
+      },
+      {
+        "Name": "dispose-unblocks-receive-and-is-idempotent",
+        "Passed": true
+      },
+      {
+        "Name": "concurrent-dispose-callers-await-same-cleanup",
+        "Passed": true
+      },
+      {
+        "Name": "raw-write-size-and-empty-read-policy-are-bounded",
+        "Passed": true
+      },
+      {
+        "Name": "bytes-have-selection-and-fresh-physical-link-identities",
+        "Passed": true
+      },
+      {
+        "Name": "failed-connect-retries-are-delayed-and-bounded",
+        "Passed": true
+      },
+      {
+        "Name": "immediate-eof-cannot-reset-retry-budget",
+        "Passed": true
+      },
+      {
+        "Name": "canceling-initial-connect-does-not-start-more-attempts",
+        "Passed": true
+      },
+      {
+        "Name": "bluetooth-off-waits-for-event-without-opening-sockets",
+        "Passed": true
+      },
+      {
+        "Name": "bluetooth-off-on-releases-stream-and-creates-fresh-link",
+        "Passed": true
+      },
+      {
+        "Name": "sleep-resume-releases-stream-and-creates-fresh-link",
+        "Passed": true
+      },
+      {
+        "Name": "repeated-environment-events-cannot-extend-wait-forever",
+        "Passed": true
+      },
+      {
+        "Name": "late-initial-environment-snapshot-cannot-erase-off-event",
+        "Passed": true
+      },
+      {
+        "Name": "old-connection-completion-does-not-publish-late-bytes",
+        "Passed": true
+      },
+      {
+        "Name": "selection-switch-releases-old-link-and-isolates-new-bytes",
+        "Passed": true
+      },
+      {
+        "Name": "late-disconnect-cannot-close-new-selection",
+        "Passed": true
+      },
+      {
+        "Name": "factory-mode-mismatch-stops-before-receiving",
+        "Passed": true
+      },
+      {
+        "Name": "throwing-observer-does-not-crash-byte-receive-loop",
+        "Passed": true
+      },
+      {
+        "Name": "session-dispose-unsubscribes-and-stops-background-receive",
+        "Passed": true
+      },
+      {
+        "Name": "simulation-and-replay-feed-same-core-decoder",
+        "Passed": true
+      },
+      {
+        "Name": "replay-validates-write-bytes-and-session-mode",
+        "Passed": true
+      },
+      {
+        "Name": "replay-cancel-and-dispose-interrupt-delayed-chunks",
+        "Passed": true
+      },
+      {
+        "Name": "replay-script-count-length-and-delay-are-bounded",
+        "Passed": true
+      },
+      {
+        "Name": "recovery-invalidates-old-operation-and-preserves-audio-separation",
+        "Passed": true
+      },
+      {
+        "Name": "gateway-connect-reports-only-transport-not-device-readings",
+        "Passed": true
+      },
+      {
+        "Name": "gateway-recovery-events-follow-new-physical-connection",
+        "Passed": true
+      },
+      {
+        "Name": "cleanup-failure-stops-further-automatic-attempts",
+        "Passed": true
+      },
+      {
+        "Name": "invalid-policy-cannot-create-unbounded-retry-or-buffer",
+        "Passed": true
+      },
+      {
+        "Name": "portable-transport-tests-load-no-windows-adapter",
+        "Passed": true
+      }
+    ],
+    "HardwareVerified": false,
+    "WindowsApisCalled": false,
+    "Modes": [
+      "Device via injected connector",
+      "Simulation",
+      "Replay"
+    ]
+  },
+  "WindowsProbes": [
+    {
+      "Passed": true,
+      "RecordedAt": "2026-10-11T19:28:58.408221+08:00",
+      "WindowsApisCalled": true,
+      "Mode": "Device",
+      "WindowsVersion": "Microsoft Windows NT 10.0.26100.0",
+      "Bluetooth": "Unavailable",
+      "Suspended": false,
+      "DiscoverySucceeded": true,
+      "DiscoveryErrorCode": null,
+      "Devices": [
+        {
+          "AnonymousId": "CEBD8A7DEFFC",
+          "ModelHint": "Wf1000Xm5",
+          "BluetoothConnected": false
+        },
+        {
+          "AnonymousId": "4F3391BDCD14",
+          "ModelHint": "Wh1000Xm5",
+          "BluetoothConnected": false
+        }
+      ],
+      "ConnectionRequested": true,
+      "ConnectionAttempted": false,
+      "SelectedModelHint": null,
+      "SocketConnectionSucceeded": null,
+      "ConnectionErrorCode": null,
+      "BytesReceived": 0,
+      "BytesWritten": 0,
+      "CommandsSentToHeadphones": false,
+      "CleanupSucceeded": true,
+      "RemainingSubscriptions": 0,
+      "BackgroundRefreshActive": false,
+      "ProbeError": null,
+      "CleanupError": null,
+      "MissingAssembly": null,
+      "ErrorFrames": null,
+      "CleanupFrames": null,
+      "HardwareVerified": false,
+      "EvidenceScope": "Windows API inventory / resource cleanup and optional RFCOMM socket only; no protocol handshake, firmware or feature validation"
+    },
+    {
+      "Passed": true,
+      "RecordedAt": "2026-10-11T19:28:58.8412684+08:00",
+      "WindowsApisCalled": true,
+      "Mode": "Device",
+      "WindowsVersion": "Microsoft Windows NT 10.0.26100.0",
+      "Bluetooth": "Unavailable",
+      "Suspended": false,
+      "DiscoverySucceeded": true,
+      "DiscoveryErrorCode": null,
+      "Devices": [
+        {
+          "AnonymousId": "42ED44D5C66D",
+          "ModelHint": "Wf1000Xm5",
+          "BluetoothConnected": false
+        },
+        {
+          "AnonymousId": "720247B04024",
+          "ModelHint": "Wh1000Xm5",
+          "BluetoothConnected": false
+        }
+      ],
+      "ConnectionRequested": true,
+      "ConnectionAttempted": false,
+      "SelectedModelHint": null,
+      "SocketConnectionSucceeded": null,
+      "ConnectionErrorCode": null,
+      "BytesReceived": 0,
+      "BytesWritten": 0,
+      "CommandsSentToHeadphones": false,
+      "CleanupSucceeded": true,
+      "RemainingSubscriptions": 0,
+      "BackgroundRefreshActive": false,
+      "ProbeError": null,
+      "CleanupError": null,
+      "MissingAssembly": null,
+      "ErrorFrames": null,
+      "CleanupFrames": null,
+      "HardwareVerified": false,
+      "EvidenceScope": "Windows API inventory / resource cleanup and optional RFCOMM socket only; no protocol handshake, firmware or feature validation"
+    }
+  ],
+  "SourceHashes": [
+    {
+      "File": "global.json",
+      "Sha256": "4e7d5022b2a5a8d02bb951bb264a4c8613eabc332572a0af5f9743d23f23d84e"
+    },
+    {
+      "File": "scripts/Enable-SC2Sandbox.ps1",
+      "Sha256": "78a39e0c94d428b0b1921073f9ccba74da893d5642a5f60dddf57665095eb18f"
+    },
+    {
+      "File": "scripts/Invoke-SC2Sandbox.ps1",
+      "Sha256": "0431bbc8a718c8da90c96067dcd4c46cba31ca024c53b05349d9b33945b81659"
+    },
+    {
+      "File": "scripts/NuGet.SC3.config",
+      "Sha256": "f545a7e2ea14ac53cdfb91217cae67b8ff14275313f6298f9a3331d205b6c948"
+    },
+    {
+      "File": "scripts/Prepare-SC2Sandbox.ps1",
+      "Sha256": "36bd66799527a1a62fa6a6faba63fda2970acce23522f841957efc3dab3edf5f"
+    },
+    {
+      "File": "scripts/Publish-SC2.ps1",
+      "Sha256": "05d34ee1f1b26b11f9124b7af24ce9a3c09069a0086e3b35283913235327e8e4"
+    },
+    {
+      "File": "scripts/Test-SC2.ps1",
+      "Sha256": "2bff7e3d65b8625621d562b3b9a7910b807d833b3215a8f2b7ee9bed111a07fd"
+    },
+    {
+      "File": "scripts/Test-SC2Sandbox.ps1",
+      "Sha256": "c487a264e772bb929ea12dd36d2a6a680789d1a720e3fc1485605ba396b832e9"
+    },
+    {
+      "File": "scripts/Test-SC3.ps1",
+      "Sha256": "fe16af6e067fef92c4aa5ace2ba842839af877d3c2ea92dd22d19a089240c38e"
+    },
+    {
+      "File": "scripts/Test-SC4.ps1",
+      "Sha256": "7c2f59200118323a2246c375834447356657912b950b6e0f05aaecb5d6ed3184"
+    },
+    {
+      "File": "scripts/Test-SC5.ps1",
+      "Sha256": "0f3db2b5256c49bd5439abb0052e90ec52036ccdf2293658b48a4394aa186337"
+    },
+    {
+      "File": "SonyConnect.sln",
+      "Sha256": "4d0ffd77955ac4269015c15857052eb3234af8c5fa6a82ae1afa5a49c1b03c6b"
+    },
+    {
+      "File": "src/Directory.Build.props",
+      "Sha256": "dd32e1d60d2446ded944d4c4851a58ea4bf5df2fddebd78da9ef3f5b5e902d6a"
+    },
+    {
+      "File": "src/SonyConnect.App/App.xaml",
+      "Sha256": "2bfccff67eb28925fbef22348354890a63272f17f28bd4dcb68771f06dbbe652"
+    },
+    {
+      "File": "src/SonyConnect.App/App.xaml.cs",
+      "Sha256": "d75f15b6a052a00540cab70a8d9a5fa1eee5ce2d64301adfc7fb6901f39b3d27"
+    },
+    {
+      "File": "src/SonyConnect.App/CompositionRoot.cs",
+      "Sha256": "0bed577de3931e327f24252f0b3ec9132007585b193f67ee9d828f6b59133e15"
+    },
+    {
+      "File": "src/SonyConnect.App/Notices/Windows-runtime-NOTICE.txt",
+      "Sha256": "aa2e6c2d5b112685ec7bdb8f0588e21ec3a6de3cb6ac67d87a4aae3a9af41754"
+    },
+    {
+      "File": "src/SonyConnect.App/packages.lock.json",
+      "Sha256": "389edd3149ef9c5b1d67764a3183c0a0bd99294d5fdf0ea81edc41962548dbdc"
+    },
+    {
+      "File": "src/SonyConnect.App/SonyConnect.App.csproj",
+      "Sha256": "410f54f739f3c5e85ea1d1993ba0fe566936c6ca135a37c4179cd69b8b7bf723"
+    },
+    {
+      "File": "src/SonyConnect.App/WindowsTransportProbe.cs",
+      "Sha256": "4a1e546e8c818f55c68643cc4a2f7bf3284107227aa0745fb73655294dc286bc"
+    },
+    {
+      "File": "src/SonyConnect.Application/DeviceController.cs",
+      "Sha256": "55ed1ddc32ff82de8905de32c7ab8f9a090d4b2063ba5aab86ab1191b2e9475d"
+    },
+    {
+      "File": "src/SonyConnect.Application/IDeviceUseCases.cs",
+      "Sha256": "f53db8eefea58665598f864b0b22c40ea0140279596cf70670ebecbfa153efc0"
+    },
+    {
+      "File": "src/SonyConnect.Application/packages.lock.json",
+      "Sha256": "b6ffbc76ebeaa15dcc12f3763e5e37445365ea5cce83f53786766de4e8f6bb17"
+    },
+    {
+      "File": "src/SonyConnect.Application/Ports/DevicePorts.cs",
+      "Sha256": "a60f7661a98ef2c3e2023109072bf98ffe7338577a11e45675edff1e94ceadc2"
+    },
+    {
+      "File": "src/SonyConnect.Application/Ports/TransportPorts.cs",
+      "Sha256": "bf094b8f5d463a4ea5703522f126f70fe4f0aed1b90a67bd5d5e704f2b3b7112"
+    },
+    {
+      "File": "src/SonyConnect.Application/SonyConnect.Application.csproj",
+      "Sha256": "7b4968d7a5f5e3255a8679384331001a1ad7f55e0a0ae2244cd561d68773c22f"
+    },
+    {
+      "File": "src/SonyConnect.Application/TransportSession.cs",
+      "Sha256": "f049861f7928bdaac7a3c35b00af1ed34cb434f1a787ad426885e9abb0ff4676"
+    },
+    {
+      "File": "src/SonyConnect.Core/Devices/AudioSourceState.cs",
+      "Sha256": "86e17caa403d07ecae9113e615aa308126813dd5398c5f5562e139178bd4fbb8"
+    },
+    {
+      "File": "src/SonyConnect.Core/Devices/BatteryState.cs",
+      "Sha256": "26b3fcdd38c44ff4d8fd1f69ce71122a572f96c5944b878b6caf1d28729eb6d9"
+    },
+    {
+      "File": "src/SonyConnect.Core/Devices/Capabilities.cs",
+      "Sha256": "459537b3f849ae85fe4f96323e1e132a1d0425f81e12a66827fca06a100579fd"
+    },
+    {
+      "File": "src/SonyConnect.Core/Devices/DeviceIdentity.cs",
+      "Sha256": "b1faeb29c8a86678185de0632c6d92220f53c13d76699a911eb8c7c4d3171ba3"
+    },
+    {
+      "File": "src/SonyConnect.Core/Devices/HeadphoneState.cs",
+      "Sha256": "1e7fa5161f158c2ef6d57a638df1fab09c4e8a72b4d9cabe97d969a2381b7b25"
+    },
+    {
+      "File": "src/SonyConnect.Core/Devices/SoundState.cs",
+      "Sha256": "c040b9fff89fb9a61119495edeccc857f91b76893eee85d0c488d3bd83fad1af"
+    },
+    {
+      "File": "src/SonyConnect.Core/packages.lock.json",
+      "Sha256": "a4364d81a6de2707d66fbced18fbbc926c882ab96e1d1aebbb17e871285b9d75"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrCapabilityMapper.cs",
+      "Sha256": "f6893c1ce540baffdccf7b95fdf0405113c3baa8b77bc2ad5e98f76880762bf2"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrHandshake.cs",
+      "Sha256": "f56fe20e82fbfec40711c8cc07e02acb10d15775e16bf594221bd41da9aebf80"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrMessageParser.cs",
+      "Sha256": "3eea10c5646f4ca17ac05254bbc1aa2ee3b0f0bceb4ce1dd3fc8dcfb4bebc9c3"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrMessages.cs",
+      "Sha256": "d18303657ff27661b61360b3ef8b90faf1fc0f89830112349378c4eb0cecfbf5"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/Notices/SonyConnect-protocol-NOTICE.txt",
+      "Sha256": "df66fc4c27dd93042e6875cfb0b06dd271563b7bc9ed6b57047d142df61a598c"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/Notices/SonyHeadphonesClient-MIT.txt",
+      "Sha256": "915e766600639d41714a1c8b0e09e49e0ac3e8f3c90264c8e08d70195bc485c1"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/Notices/sony-tray-MIT.txt",
+      "Sha256": "e2fb2e96c1dc263c78cb704f3c06a86ac970cd6041ea5321c4e260f545157a81"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/TandemCodec.cs",
+      "Sha256": "0537d300bb19a23b508b337c1b00b28c53038ca1bb13195e8a924374a73ed7b9"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/TandemFrame.cs",
+      "Sha256": "befdc5310da9f6a4d38a31787329ae7eb4c48518ccbb8799738b22724485ff3d"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/TandemStreamDecoder.cs",
+      "Sha256": "86272e48695b3340040e011a211f86a05d901522d3b20960245da1e001feb86b"
+    },
+    {
+      "File": "src/SonyConnect.Core/SonyConnect.Core.csproj",
+      "Sha256": "93a0477bdf1a80575984820b600c8b9c239a05cb17a84c674c650ddc27037c1e"
+    },
+    {
+      "File": "src/SonyConnect.Core/State/DeviceValue.cs",
+      "Sha256": "3a80759b0e8de31aa10989390a85dc6ff4dec5d115143f2233af49e65b9b4505"
+    },
+    {
+      "File": "src/SonyConnect.Core/State/OperationResult.cs",
+      "Sha256": "048630b156a79789c1b503b861738cf5857c0cb78c11f18a83747648e47abb92"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/Devices/PairedHeadphoneDiscovery.cs",
+      "Sha256": "7a9585206f857719e7740bc4e95b0da6d06e78f42cc286ae0a3fa149648dc72f"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/Devices/SimulatedDeviceBackend.cs",
+      "Sha256": "6646a7ed4821ff7e349858f28e649e1d33e01e2cce7cf2e798a9698155510962"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/Devices/TransportDeviceBackend.cs",
+      "Sha256": "25cecf2984502ae2109d9d6b45d8abb98a6a50f58e9f4126741b2519f7902d2f"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/Devices/UnavailableDeviceBackend.cs",
+      "Sha256": "1c32fbf242b15419fa7ebdff8500106a93f88066f31a0112cc70bb7d15a8fdd0"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/packages.lock.json",
+      "Sha256": "9ee1abaa3e95af2cd04a9aa34d923358c269e4efa193f3e49b5c9ea650addbf0"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/SonyConnect.Infrastructure.csproj",
+      "Sha256": "84ef332d1a6e8ab423d13eaf64ca2090f4b6d808d5e02388325fe57c8a6cf5f2"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/Transports/Notices/SonyConnect-rfcomm-NOTICE.txt",
+      "Sha256": "e198693c60105c7ee21a2626e3479ad7ef3b7f3d583dc2e1c188416c8c735325"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/Transports/RfcommTransport.cs",
+      "Sha256": "d17c98c4f1d60c60fd874ca7877a1b3ece4f883ce352c3e18c409d16ff98925d"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/Transports/ScriptedByteTransport.cs",
+      "Sha256": "2b764b63449cbe11fb7d3b7f235f51e3963c52047a5820fdc148564ac0b21a67"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/Windows/WindowsConnectionEnvironment.cs",
+      "Sha256": "259330bca187ca870c6762ff8aa0de0da4e9dcae499d7bf4097c0cd6d637b4c2"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/Windows/WindowsRfcomm.cs",
+      "Sha256": "cd4159ba259d19166c9f55fb262ca2123aa74f0e86aa4f6ac04c8a34b1362623"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/AsyncCommand.cs",
+      "Sha256": "0a88ce1c965198424ae0ee899ed9403354e390e915b6460b262454129fdce32a"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/DeviceViewModel.cs",
+      "Sha256": "2af6c92187e7769bd819638db28224dc502c453adfd5426896dbc0e84d8e8f17"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/IUiScheduler.cs",
+      "Sha256": "d3fdec2215a400986b5246a98479815ca1da14352b32bb6b302b5ceb1e22f03c"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/packages.lock.json",
+      "Sha256": "f4aa89d6432d9ec9df4134132b48c7b4d0e561d21bf727c901af2a1a9919b9dd"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/SonyConnect.Presentation.csproj",
+      "Sha256": "34b56c9997498d20876457cddc8b1f4fec7573bc55dc84aa0f8f1e5a50aa69d8"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/ValueFormatter.cs",
+      "Sha256": "6ad1d2e7c9387dab2ccfad63378369b62c0c88b309bba3d7202d17af78e96099"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/Views/ControlPanelViewFactory.cs",
+      "Sha256": "b6ce3d946f0692d2def2492562e33b2e371c94c13b831812942271fd406f04fc"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml",
+      "Sha256": "9daf5ad6e5500eb2b27fe4dbebaa650c22b4589b88053b80db2aaac9fb4ccc7d"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml.cs",
+      "Sha256": "fa2767c525226617ff99620fe5d828fbf759d5c18d6379e06f1fd906380a7b9e"
+    },
+    {
+      "File": "tests/SonyConnect.ProtocolTests/Fixtures/frames.json",
+      "Sha256": "77b7d4730c5012c79ba0534477862cabec136368dc4972a894821c945f935c3a"
+    },
+    {
+      "File": "tests/SonyConnect.ProtocolTests/packages.lock.json",
+      "Sha256": "b6ffbc76ebeaa15dcc12f3763e5e37445365ea5cce83f53786766de4e8f6bb17"
+    },
+    {
+      "File": "tests/SonyConnect.ProtocolTests/Program.cs",
+      "Sha256": "8915da5a8fd8b68d697197119c82f171019ca08c0cd70e0b00f0dca1d7c06c42"
+    },
+    {
+      "File": "tests/SonyConnect.ProtocolTests/SonyConnect.ProtocolTests.csproj",
+      "Sha256": "86c7d486cb7585f8561b9b247dd5a85c9f36f88561c9201faa7855c41c1b9aa9"
+    },
+    {
+      "File": "tests/SonyConnect.RegressionTests/ControlledBackend.cs",
+      "Sha256": "527e1946aa74e9d55ba8f7921d9984791b6482ca9c34e45ddc34a50bff3d81cd"
+    },
+    {
+      "File": "tests/SonyConnect.RegressionTests/packages.lock.json",
+      "Sha256": "45c8afdd8aabd7a939e1a31c631be69da63eb73c511eedab5b3bde098f6ba306"
+    },
+    {
+      "File": "tests/SonyConnect.RegressionTests/Program.cs",
+      "Sha256": "9f8d118feaf1fe85402793e668584d0d9a59e6e86ae3c8f785a0ac9714029439"
+    },
+    {
+      "File": "tests/SonyConnect.RegressionTests/SonyConnect.RegressionTests.csproj",
+      "Sha256": "bc60ffe78aaf720d71940ce867157db2df0dd46dbdda84ece2ff68f4ca572b12"
+    },
+    {
+      "File": "tests/SonyConnect.TransportTests/Fakes.cs",
+      "Sha256": "e0af48121a52bbb577715cb91b7d53a4c388c0e090fc40203050d47e56bff45f"
+    },
+    {
+      "File": "tests/SonyConnect.TransportTests/packages.lock.json",
+      "Sha256": "45c8afdd8aabd7a939e1a31c631be69da63eb73c511eedab5b3bde098f6ba306"
+    },
+    {
+      "File": "tests/SonyConnect.TransportTests/Program.cs",
+      "Sha256": "a6772d8ac8d052ed15dde0f0a05bc0e5b18fcdeb4d7d9ede4039ce30ec022a04"
+    },
+    {
+      "File": "tests/SonyConnect.TransportTests/SonyConnect.TransportTests.csproj",
+      "Sha256": "bc60ffe78aaf720d71940ce867157db2df0dd46dbdda84ece2ff68f4ca572b12"
+    }
+  ],
+  "HardwareVerified": false,
+  "CommandsSentToHeadphones": false,
+  "Sc5Committed": false,
+  "Pushed": false,
+  "ValidationScope": "Implementation and offline/native inventory checks complete; actual RFCOMM socket and headphone features unverified.",
+  "VisualQa": {
+    "Inspected": true,
+    "Mode": "offline default and explicit simulation",
+    "Snapshots": [
+      "published-default-snapshots/default.png",
+      "published-simulation-snapshots/wf-connected.png",
+      "published-simulation-snapshots/wh-connected.png"
+    ],
+    "HardwareEvidence": false
+  },
+  "PreservedRefs": {
+    "Main": "458b7a86e3042b3d7b06e7cb0e72d29665d4311c",
+    "Dev": "f8e94cf67e2f740a2cd7bd9507d17870aaf1e344"
+  }
+}

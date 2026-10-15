@@ -1,0 +1,1214 @@
+{
+  "AutomatedProbe": {
+    "Passed": true,
+    "RecordedAt": "2026-10-12T02:26:22.8136724+08:00",
+    "Origin": "Device",
+    "RequestedModel": "Wf1000Xm5",
+    "Result": "Succeeded",
+    "Error": null,
+    "First": {
+      "Model": "WF-1000XM5",
+      "Firmware": "6.1.0",
+      "Layout": "LeftRightCase",
+      "Left": {
+        "Status": "Known",
+        "Percent": 100,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:26:21.9542667+00:00"
+      },
+      "Right": {
+        "Status": "Known",
+        "Percent": 100,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:26:21.9542667+00:00"
+      },
+      "Case": {
+        "Status": "Known",
+        "Percent": 71,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:26:21.9710244+00:00"
+      },
+      "Single": {
+        "Status": "Unsupported",
+        "Percent": null,
+        "ChargingStatus": "Unsupported",
+        "Charging": null,
+        "ObservedAt": null
+      },
+      "Capabilities": [
+        {
+          "Feature": "Firmware",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "CONNECT_RET_DEVICE_INFO / firmware"
+        },
+        {
+          "Feature": "LeftBattery",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x29; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "RightBattery",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x29; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "CaseBattery",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x2A; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "SingleBattery",
+          "Access": {
+            "Read": 1,
+            "Write": 1,
+            "Notify": 1
+          },
+          "Reason": "V2 Table 1: no mapped function was advertised."
+        },
+        {
+          "Feature": "SoundMode",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x6B; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "AmbientLevel",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x6B; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "Equalizer",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x50; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "ConnectedSources",
+          "Access": {
+            "Read": 1,
+            "Write": 1,
+            "Notify": 1
+          },
+          "Reason": "V2 Table 2: no mapped function was advertised."
+        },
+        {
+          "Feature": "SourceSwitch",
+          "Access": {
+            "Read": 1,
+            "Write": 1,
+            "Notify": 1
+          },
+          "Reason": "V2 Table 2: no mapped function was advertised."
+        },
+        {
+          "Feature": "FixedPlayback",
+          "Access": {
+            "Read": 1,
+            "Write": 1,
+            "Notify": 1
+          },
+          "Reason": "V2 Table 2: no mapped function was advertised."
+        },
+        {
+          "Feature": "ConnectionPreference",
+          "Access": {
+            "Read": 1,
+            "Write": 1,
+            "Notify": 1
+          },
+          "Reason": "V2 Table 1: no mapped function was advertised."
+        },
+        {
+          "Feature": "NegotiatedCodec",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x12; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "Dsee",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0xE2; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "SpeakToChat",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0xFC; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "WearDetectionPause",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0xF1; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "AutoPowerOff",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x25; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "TouchAssignment",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0xF3; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "PromptVolume",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 2: 0x42; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "PowerOff",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x23; write/notify require operation-specific confirmation."
+        }
+      ]
+    },
+    "Refreshed": {
+      "Model": "WF-1000XM5",
+      "Firmware": "6.1.0",
+      "Layout": "LeftRightCase",
+      "Left": {
+        "Status": "Known",
+        "Percent": 100,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:26:22.1674371+00:00"
+      },
+      "Right": {
+        "Status": "Known",
+        "Percent": 100,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:26:22.1674371+00:00"
+      },
+      "Case": {
+        "Status": "Known",
+        "Percent": 71,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:26:22.204826+00:00"
+      },
+      "Single": {
+        "Status": "Unsupported",
+        "Percent": null,
+        "ChargingStatus": "Unsupported",
+        "Charging": null,
+        "ObservedAt": null
+      },
+      "Capabilities": [
+        {
+          "Feature": "Firmware",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "CONNECT_RET_DEVICE_INFO / firmware"
+        },
+        {
+          "Feature": "LeftBattery",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x29; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "RightBattery",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x29; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "CaseBattery",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x2A; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "SingleBattery",
+          "Access": {
+            "Read": 1,
+            "Write": 1,
+            "Notify": 1
+          },
+          "Reason": "V2 Table 1: no mapped function was advertised."
+        },
+        {
+          "Feature": "SoundMode",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x6B; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "AmbientLevel",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x6B; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "Equalizer",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x50; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "ConnectedSources",
+          "Access": {
+            "Read": 1,
+            "Write": 1,
+            "Notify": 1
+          },
+          "Reason": "V2 Table 2: no mapped function was advertised."
+        },
+        {
+          "Feature": "SourceSwitch",
+          "Access": {
+            "Read": 1,
+            "Write": 1,
+            "Notify": 1
+          },
+          "Reason": "V2 Table 2: no mapped function was advertised."
+        },
+        {
+          "Feature": "FixedPlayback",
+          "Access": {
+            "Read": 1,
+            "Write": 1,
+            "Notify": 1
+          },
+          "Reason": "V2 Table 2: no mapped function was advertised."
+        },
+        {
+          "Feature": "ConnectionPreference",
+          "Access": {
+            "Read": 1,
+            "Write": 1,
+            "Notify": 1
+          },
+          "Reason": "V2 Table 1: no mapped function was advertised."
+        },
+        {
+          "Feature": "NegotiatedCodec",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x12; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "Dsee",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0xE2; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "SpeakToChat",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0xFC; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "WearDetectionPause",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0xF1; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "AutoPowerOff",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x25; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "TouchAssignment",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0xF3; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "PromptVolume",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 2: 0x42; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "PowerOff",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x23; write/notify require operation-specific confirmation."
+        }
+      ]
+    },
+    "Reconnected": {
+      "Model": "WF-1000XM5",
+      "Firmware": "6.1.0",
+      "Layout": "LeftRightCase",
+      "Left": {
+        "Status": "Known",
+        "Percent": 100,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:26:22.7561175+00:00"
+      },
+      "Right": {
+        "Status": "Known",
+        "Percent": 100,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:26:22.7561175+00:00"
+      },
+      "Case": {
+        "Status": "Known",
+        "Percent": 71,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:26:22.8049519+00:00"
+      },
+      "Single": {
+        "Status": "Unsupported",
+        "Percent": null,
+        "ChargingStatus": "Unsupported",
+        "Charging": null,
+        "ObservedAt": null
+      },
+      "Capabilities": [
+        {
+          "Feature": "Firmware",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "CONNECT_RET_DEVICE_INFO / firmware"
+        },
+        {
+          "Feature": "LeftBattery",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x29; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "RightBattery",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x29; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "CaseBattery",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x2A; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "SingleBattery",
+          "Access": {
+            "Read": 1,
+            "Write": 1,
+            "Notify": 1
+          },
+          "Reason": "V2 Table 1: no mapped function was advertised."
+        },
+        {
+          "Feature": "SoundMode",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x6B; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "AmbientLevel",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x6B; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "Equalizer",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x50; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "ConnectedSources",
+          "Access": {
+            "Read": 1,
+            "Write": 1,
+            "Notify": 1
+          },
+          "Reason": "V2 Table 2: no mapped function was advertised."
+        },
+        {
+          "Feature": "SourceSwitch",
+          "Access": {
+            "Read": 1,
+            "Write": 1,
+            "Notify": 1
+          },
+          "Reason": "V2 Table 2: no mapped function was advertised."
+        },
+        {
+          "Feature": "FixedPlayback",
+          "Access": {
+            "Read": 1,
+            "Write": 1,
+            "Notify": 1
+          },
+          "Reason": "V2 Table 2: no mapped function was advertised."
+        },
+        {
+          "Feature": "ConnectionPreference",
+          "Access": {
+            "Read": 1,
+            "Write": 1,
+            "Notify": 1
+          },
+          "Reason": "V2 Table 1: no mapped function was advertised."
+        },
+        {
+          "Feature": "NegotiatedCodec",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x12; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "Dsee",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0xE2; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "SpeakToChat",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0xFC; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "WearDetectionPause",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0xF1; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "AutoPowerOff",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x25; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "TouchAssignment",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0xF3; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "PromptVolume",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 2: 0x42; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "PowerOff",
+          "Access": {
+            "Read": 2,
+            "Write": 0,
+            "Notify": 0
+          },
+          "Reason": "V2 Table 1: 0x23; write/notify require operation-specific confirmation."
+        }
+      ]
+    },
+    "SettingWritesAllowed": false,
+    "PhysicalPercentageComparison": "未与官方 App 对照；仅验证协议读取、刷新和手动重连。",
+    "HardwareVerified": true,
+    "NotificationValidation": "本探测不验证电量自然变化通知。",
+    "LogDirectory": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-8\\wf-readonly-host\\battery-logs"
+  },
+  "UserConfirmation": {
+    "OfficialAppMatches": true,
+    "Left": 100,
+    "Right": 100,
+    "Case": 71,
+    "Statement": "用户确认官方 App 显示一致",
+    "Date": "2026-10-12"
+  },
+  "WhHardwareVerified": false,
+  "UnavailableAttempt": {
+    "Passed": false,
+    "Error": "未发现已连接的目标型号；未尝试其他设备。",
+    "HardwareVerified": false
+  },
+  "FinalProbe": {
+    "Passed": true,
+    "RecordedAt": "2026-10-12T02:31:00.2394823+08:00",
+    "Origin": "Device",
+    "RequestedModel": "Wf1000Xm5",
+    "Result": "Succeeded",
+    "Error": null,
+    "First": {
+      "Model": "WF-1000XM5",
+      "Firmware": "6.1.0",
+      "Layout": "LeftRightCase",
+      "Left": {
+        "Status": "Known",
+        "Percent": 100,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:30:59.3909818+00:00"
+      },
+      "Right": {
+        "Status": "Known",
+        "Percent": 100,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:30:59.3909818+00:00"
+      },
+      "Case": {
+        "Status": "Known",
+        "Percent": 71,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:30:59.4091698+00:00"
+      },
+      "Single": {
+        "Status": "Unsupported",
+        "Percent": null,
+        "ChargingStatus": "Unsupported",
+        "Charging": null,
+        "ObservedAt": null
+      },
+      "Capabilities": [
+        {
+          "Feature": "Firmware",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "CONNECT_RET_DEVICE_INFO / firmware"
+        },
+        {
+          "Feature": "LeftBattery",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x29; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "RightBattery",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x29; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "CaseBattery",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x2A; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "SingleBattery",
+          "Read": "Unsupported",
+          "Write": "Unsupported",
+          "Notify": "Unsupported",
+          "Reason": "V2 Table 1: no mapped function was advertised."
+        },
+        {
+          "Feature": "SoundMode",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x6B; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "AmbientLevel",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x6B; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "Equalizer",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x50; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "ConnectedSources",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 2: 0x32; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "SourceSwitch",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 2: 0x31; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "FixedPlayback",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 2: 0x31; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "ConnectionPreference",
+          "Read": "Unsupported",
+          "Write": "Unsupported",
+          "Notify": "Unsupported",
+          "Reason": "V2 Table 1: no mapped function was advertised."
+        },
+        {
+          "Feature": "NegotiatedCodec",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x12; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "Dsee",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0xE2; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "SpeakToChat",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0xFC; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "WearDetectionPause",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0xF1; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "AutoPowerOff",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x25; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "TouchAssignment",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0xF3; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "PromptVolume",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 2: 0x42; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "PowerOff",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x23; write/notify require operation-specific confirmation."
+        }
+      ]
+    },
+    "Refreshed": {
+      "Model": "WF-1000XM5",
+      "Firmware": "6.1.0",
+      "Layout": "LeftRightCase",
+      "Left": {
+        "Status": "Known",
+        "Percent": 100,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:30:59.5816633+00:00"
+      },
+      "Right": {
+        "Status": "Known",
+        "Percent": 100,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:30:59.5816633+00:00"
+      },
+      "Case": {
+        "Status": "Known",
+        "Percent": 71,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:30:59.6017096+00:00"
+      },
+      "Single": {
+        "Status": "Unsupported",
+        "Percent": null,
+        "ChargingStatus": "Unsupported",
+        "Charging": null,
+        "ObservedAt": null
+      },
+      "Capabilities": [
+        {
+          "Feature": "Firmware",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "CONNECT_RET_DEVICE_INFO / firmware"
+        },
+        {
+          "Feature": "LeftBattery",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x29; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "RightBattery",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x29; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "CaseBattery",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x2A; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "SingleBattery",
+          "Read": "Unsupported",
+          "Write": "Unsupported",
+          "Notify": "Unsupported",
+          "Reason": "V2 Table 1: no mapped function was advertised."
+        },
+        {
+          "Feature": "SoundMode",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x6B; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "AmbientLevel",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x6B; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "Equalizer",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x50; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "ConnectedSources",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 2: 0x32; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "SourceSwitch",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 2: 0x31; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "FixedPlayback",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 2: 0x31; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "ConnectionPreference",
+          "Read": "Unsupported",
+          "Write": "Unsupported",
+          "Notify": "Unsupported",
+          "Reason": "V2 Table 1: no mapped function was advertised."
+        },
+        {
+          "Feature": "NegotiatedCodec",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x12; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "Dsee",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0xE2; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "SpeakToChat",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0xFC; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "WearDetectionPause",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0xF1; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "AutoPowerOff",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x25; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "TouchAssignment",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0xF3; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "PromptVolume",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 2: 0x42; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "PowerOff",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x23; write/notify require operation-specific confirmation."
+        }
+      ]
+    },
+    "Reconnected": {
+      "Model": "WF-1000XM5",
+      "Firmware": "6.1.0",
+      "Layout": "LeftRightCase",
+      "Left": {
+        "Status": "Known",
+        "Percent": 100,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:31:00.1705553+00:00"
+      },
+      "Right": {
+        "Status": "Known",
+        "Percent": 100,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:31:00.1705553+00:00"
+      },
+      "Case": {
+        "Status": "Known",
+        "Percent": 71,
+        "ChargingStatus": "Known",
+        "Charging": false,
+        "ObservedAt": "2026-10-11T18:31:00.2005016+00:00"
+      },
+      "Single": {
+        "Status": "Unsupported",
+        "Percent": null,
+        "ChargingStatus": "Unsupported",
+        "Charging": null,
+        "ObservedAt": null
+      },
+      "Capabilities": [
+        {
+          "Feature": "Firmware",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "CONNECT_RET_DEVICE_INFO / firmware"
+        },
+        {
+          "Feature": "LeftBattery",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x29; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "RightBattery",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x29; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "CaseBattery",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x2A; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "SingleBattery",
+          "Read": "Unsupported",
+          "Write": "Unsupported",
+          "Notify": "Unsupported",
+          "Reason": "V2 Table 1: no mapped function was advertised."
+        },
+        {
+          "Feature": "SoundMode",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x6B; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "AmbientLevel",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x6B; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "Equalizer",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x50; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "ConnectedSources",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 2: 0x32; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "SourceSwitch",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 2: 0x31; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "FixedPlayback",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 2: 0x31; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "ConnectionPreference",
+          "Read": "Unsupported",
+          "Write": "Unsupported",
+          "Notify": "Unsupported",
+          "Reason": "V2 Table 1: no mapped function was advertised."
+        },
+        {
+          "Feature": "NegotiatedCodec",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x12; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "Dsee",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0xE2; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "SpeakToChat",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0xFC; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "WearDetectionPause",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0xF1; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "AutoPowerOff",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x25; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "TouchAssignment",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0xF3; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "PromptVolume",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 2: 0x42; write/notify require operation-specific confirmation."
+        },
+        {
+          "Feature": "PowerOff",
+          "Read": "Supported",
+          "Write": "Unknown",
+          "Notify": "Unknown",
+          "Reason": "V2 Table 1: 0x23; write/notify require operation-specific confirmation."
+        }
+      ]
+    },
+    "SettingWritesAllowed": false,
+    "PhysicalPercentageComparison": "未与官方 App 对照；仅验证协议读取、刷新和手动重连。",
+    "HardwareVerified": true,
+    "NotificationValidation": "本探测不验证电量自然变化通知。",
+    "LogDirectory": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-8\\wf-multipoint\\battery-logs",
+    "DiagnosticArchive": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-8\\wf-multipoint\\battery-diagnostics.scdiag"
+  },
+  "Conditions": "用户在手机启用同时连接两台设备后，执行限定 WF 型号的只读探测。"
+}

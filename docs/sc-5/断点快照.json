@@ -1,0 +1,112 @@
+{
+  "Task": "SC-5",
+  "Status": "in-progress-checkpoint",
+  "RecordedAt": "2026-10-11T16:53:04.2613659+08:00",
+  "Branch": "FLEETING/sc-5-windows-rfcomm",
+  "Baseline": "3d34074f0485dc837f5034d3847e703ebb083407",
+  "LocalChangesCommitted": false,
+  "Pushed": false,
+  "DebugBuild": {
+    "Passed": true,
+    "Warnings": 0,
+    "Errors": 0,
+    "Sdk": "10.0.401",
+    "Evidence": "successful full solution Debug build in the current tool session"
+  },
+  "ExistingStateRegression": {
+    "Passed": true,
+    "Scenarios": 24,
+    "Configuration": "Debug",
+    "Report": "artifacts/sc-5/checkpoint-regression.json"
+  },
+  "ExistingProtocolRegression": {
+    "Passed": true,
+    "Scenarios": 36,
+    "Configuration": "Debug",
+    "Report": "artifacts/sc-5/checkpoint-protocol.json"
+  },
+  "Sc5SpecificTestsImplemented": false,
+  "ReleaseWpfAndPublishRevalidated": false,
+  "WindowsBluetoothRuntimeProbed": false,
+  "HardwareVerified": false,
+  "CommandsSentToHeadphones": false,
+  "SourceHashes": [
+    {
+      "File": "README.md",
+      "Sha256": "916f75b3f35d63bce27896f4dde2ff22e9ac523163d72cce805ac51bb544bc4f"
+    },
+    {
+      "File": "scripts/Test-SC3.ps1",
+      "Sha256": "fe16af6e067fef92c4aa5ace2ba842839af877d3c2ea92dd22d19a089240c38e"
+    },
+    {
+      "File": "src/SonyConnect.App/App.xaml.cs",
+      "Sha256": "e0b90db54677049c9c7719178aa60e03bbfdc49193803c30c680560c1cc2d7e2"
+    },
+    {
+      "File": "src/SonyConnect.App/CompositionRoot.cs",
+      "Sha256": "0bed577de3931e327f24252f0b3ec9132007585b193f67ee9d828f6b59133e15"
+    },
+    {
+      "File": "src/SonyConnect.App/packages.lock.json",
+      "Sha256": "389edd3149ef9c5b1d67764a3183c0a0bd99294d5fdf0ea81edc41962548dbdc"
+    },
+    {
+      "File": "src/SonyConnect.App/SonyConnect.App.csproj",
+      "Sha256": "410f54f739f3c5e85ea1d1993ba0fe566936c6ca135a37c4179cd69b8b7bf723"
+    },
+    {
+      "File": "src/SonyConnect.Application/DeviceController.cs",
+      "Sha256": "09883c4ac6033e8be0c2580aa6d303d3c156abd57ffe00ca5353531227e50c21"
+    },
+    {
+      "File": "src/SonyConnect.Application/Ports/DevicePorts.cs",
+      "Sha256": "a60f7661a98ef2c3e2023109072bf98ffe7338577a11e45675edff1e94ceadc2"
+    },
+    {
+      "File": "src/SonyConnect.Application/Ports/TransportPorts.cs",
+      "Sha256": "bf094b8f5d463a4ea5703522f126f70fe4f0aed1b90a67bd5d5e704f2b3b7112"
+    },
+    {
+      "File": "src/SonyConnect.Application/TransportSession.cs",
+      "Sha256": "f4046a7f0e2298d21a3cca4a327fc1e1c5ecb00d3e3de1e4e8c3880072d0e5c9"
+    },
+    {
+      "File": "src/SonyConnect.Core/Devices/DeviceIdentity.cs",
+      "Sha256": "b1faeb29c8a86678185de0632c6d92220f53c13d76699a911eb8c7c4d3171ba3"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/Devices/TransportDeviceBackend.cs",
+      "Sha256": "5f35cceccb81e25de4f67ecfe3481fe89b9cea4c94b649b901d93a5134b094b1"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/packages.lock.json",
+      "Sha256": "9ee1abaa3e95af2cd04a9aa34d923358c269e4efa193f3e49b5c9ea650addbf0"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/SonyConnect.Infrastructure.csproj",
+      "Sha256": "a4621e8dad907e2e887290701e7bd803e910ac6c00bacfa3e32b1ca5b27ed5e1"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/Transports/RfcommTransport.cs",
+      "Sha256": "e50cab5afac994006f3ee3860cea83729cd1368767b2ec7a0dc91a2035b06cc2"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/Transports/ScriptedByteTransport.cs",
+      "Sha256": "2b764b63449cbe11fb7d3b7f235f51e3963c52047a5820fdc148564ac0b21a67"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/Windows/WindowsConnectionEnvironment.cs",
+      "Sha256": "aec2fed8b67a44f07be63c2172792150767dd6af9d45fc72e06a1a7209d59fbf"
+    },
+    {
+      "File": "src/SonyConnect.Infrastructure/Windows/WindowsRfcomm.cs",
+      "Sha256": "5da5754366e91f33302106168477891c11adb8fccbcef98956e82b4c0da630ba"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/DeviceViewModel.cs",
+      "Sha256": "2af6c92187e7769bd819638db28224dc502c453adfd5426896dbc0e84d8e8f17"
+    }
+  ],
+  "NextEntry": "docs/sc-5/执行断点.md"
+}

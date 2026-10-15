@@ -1,0 +1,23 @@
+{
+  "Passed": true,
+  "RecordedAtUtc": "2026-10-14T21:43:47.4698326+08:00",
+  "Repository": "FLEETING-XHX/SonyConnect-CSharp",
+  "Visibility": "PRIVATE",
+  "Commit": "7a441c4c133ca07f7c95cf1a91cc8c43a0db2d7e",
+  "SourceFiles": 164,
+  "GitFiles": 167,
+  "FreshCloneTreeMatches": true,
+  "ReleaseTag": "csharp-archive-20261014",
+  "ExecutableBytes": 201113433,
+  "ExecutableDigest": "sha256:70170199032a7dec8c48138b997002abcb436a4c2533e5ea7cd6a348370cd82a",
+  "LocalRemovalAuthorized": true,
+  "LocalCsharpDirectoryRemoved": true,
+  "SharedArtifactsPreserved": true,
+  "NativeTestsAfterRemoval": {
+    "DebugGroupsPassed": 4,
+    "ReleaseGroupsPassed": 4,
+    "UiScenarios": 72,
+    "SessionScenarios": 52,
+    "ProtocolScenarios": 57
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "Passed": true,
+  "RecordedAtUtc": "2026-10-14T11:33:52.0778488+00:00",
+  "Branch": "C++",
+  "HardwareVerified": false,
+  "BluetoothApisCalled": false,
+  "ExternalNetworkCalled": false,
+  "UserReportedNormal": [
+    "保存原始设置",
+    "发现与握手",
+    "基础声音控制",
+    "EQ/BASS基础控制",
+    "扩展设置功能",
+    "恢复与稳定性"
+  ],
+  "UserReadOnlyStatus": "未填写结果",
+  "ProtocolScenarios": 57,
+  "SessionScenarios": 36,
+  "UiScenarios": 35,
+  "DebugUiScenarios": 35,
+  "DebugAndReleaseCTestSuites": 4,
+  "ReleaseWarnings": 0,
+  "DebugWarnings": 0,
+  "Sources": [
+    {
+      "Path": "projects/cpp/native/src/main.cpp",
+      "Sha256": "8e681f9c2866358108cf7352247c3666e956297060a5678ea84b8a0475d9406a"
+    },
+    {
+      "Path": "projects/cpp/native/src/session.cpp",
+      "Sha256": "99dfa03e6e0d22793319e268816b130db7372e3f4928c4dd567d8284ab4df6a6"
+    },
+    {
+      "Path": "projects/cpp/native/tests/session_tests.cpp",
+      "Sha256": "a8008e09be16fb0242933d0dbb223980b40a6efaa649c5bea6115f7dabbe8173"
+    }
+  ],
+  "ReleaseBuildLog": "artifacts/native/ui-feedback/release-build.log",
+  "DebugBuildLog": "artifacts/native/ui-feedback/debug-build.log",
+  "Package": {
+    "Passed": true,
+    "RecordedAtUtc": "2026-10-14T19:33:08.8976447+08:00",
+    "HardwareVerified": false,
+    "BluetoothApisCalled": false,
+    "ExternalNetworkCalled": false,
+    "Executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-113307-574\\portable\\SonyConnect.exe",
+    "ExecutableBytes": 1066496,
+    "ExecutableSha256": "29b3ca67404d99b4480eacca95bb21f84a930475bc18180b7c98b0a2f1c7e9f6",
+    "Machine": "AMD64",
+    "ManagedClrRva": 0,
+    "ManagedClrSize": 0,
+    "Archive": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-113307-574\\SonyConnect-Cpp-Windows-x64.zip",
+    "ArchiveBytes": 512478,
+    "ArchiveSha256": "7c0e81cfcd7c07ad5538b6e3a1f2bff631247e2c2b3c482259fa6961e1d596a8",
+    "PortableUiReport": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-113307-574\\portable-ui-test\\report.json",
+    "UiScenarios": 35
+  },
+  "FeedbackDocument": "docs/native/实机反馈与界面调整-20261014.md"
+}

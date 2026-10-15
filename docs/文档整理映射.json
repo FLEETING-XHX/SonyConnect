@@ -1,0 +1,292 @@
+{
+  "docs/sc-1/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-57214e1ac1fc",
+    "sha256": "25d7e3c5bca7e817badbcc8b4665f08350f83894668b8ad566a0144982fc0b4f"
+  },
+  "docs/sc-1/执行断点.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-a08121c35bd4",
+    "sha256": "f4399312833a4525883af247c69d00529167c3526f566e26dd21c16afed2daad"
+  },
+  "docs/sc-10/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-cfe16b0a041c",
+    "sha256": "701a31ebf40cbf471e5f459bc1fec764f0355472b59ed01eef8a963cfd66d8e9"
+  },
+  "docs/sc-11/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-a8098652b2c9",
+    "sha256": "e03443c816060bc6d0bc1a593d78dfd8e1c8bbe24c07b829a7dc96ab026449eb"
+  },
+  "docs/sc-12/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-c18701fc260d",
+    "sha256": "fa7d349df9dff0681f335a24cf9963c4b8b450f6a04c4c6cdd58e696a25119ed"
+  },
+  "docs/sc-13/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-4a4c04df97db",
+    "sha256": "d7f32423082bf023b183b0499e3e865d6b717e5853b98865f63ecafa9c56a1c8"
+  },
+  "docs/sc-13-15/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-fabee8a084e0",
+    "sha256": "7cd06227ef0600fd57c89e0fe81dd29f98a9c8eb61aca4a1e8ac88f06787e443"
+  },
+  "docs/sc-14/E7核查与修复-20261013.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-c50597884cca",
+    "sha256": "ee04ee7b8a810acc330b40eb24bb5cb63af7ee64463cadf656eaf02fe80dadf2"
+  },
+  "docs/sc-14/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-f7c64f759c35",
+    "sha256": "1f6c2bc8483e0beb79e78521d066624c563345c72d128d3661df0fff3eb138d6"
+  },
+  "docs/sc-15/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-85993c0f24b5",
+    "sha256": "723cf1248a4536b9cdb122fe7bfdb058b40b6ffbe31a4afd65d1ade42cfbe515"
+  },
+  "docs/sc-16-18/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-be303400e0aa",
+    "sha256": "bf78abf163e94c65382701789b3217d278e04dcfdd74282dccf365fa781aabce"
+  },
+  "docs/sc-16-18/WF循环布局核查-20261013.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-db17131189b7",
+    "sha256": "a0d7b72492d54331d9be2bd3c5aa570ffbdd0dd4d6c429daca19bb0333dc1a08"
+  },
+  "docs/sc-16-18/协议核对记录.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-0f43ba71a103",
+    "sha256": "710b744842b6eca589f3ecba821f700eeb289be61d10466a5fa1abb894033709"
+  },
+  "docs/sc-16-18/右耳分配修复-20261013.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-90597438d066",
+    "sha256": "9cf8a3877a60210bdb598edbe21d3c7cc25aed493302c48b7e29080ba2ece589"
+  },
+  "docs/sc-16-18/提交合并前核查-20261013.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-4a44d5decc8c",
+    "sha256": "2ffadf4de6496f1e808558bd12c1adaf1ce0b5bdebfec1b8aee87410aa7da1a0"
+  },
+  "docs/sc-16-18/语音助手关联恢复-20261013.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-2f931beb8fc9",
+    "sha256": "d0c3defaff9503bc0fe784d5726e6110850d39d3205c34bffb371e82daeae4ab"
+  },
+  "docs/sc-2/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-6b78a2647257",
+    "sha256": "2080fae12ce7aa90b07ffa1c9d68d3fabacc315e0a31cf6d7557ed0252300566"
+  },
+  "docs/sc-2/发布与验证.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-955aac4d6f6d",
+    "sha256": "5e3dc0dc5c6a41674cc831fcd042d407495710f5ea57b075b90f343e295f2a8a"
+  },
+  "docs/sc-2/执行断点.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-314c15b5f5d3",
+    "sha256": "cecf8c4d431652c6edccaf181f6b73607388b6591cc2f2ecd623654c2c1c695b"
+  },
+  "docs/sc-2/技术决策.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-7afb0fd9fd10",
+    "sha256": "52fcd5466e5053693728d005b197ee655bbc8590b60103ba5e31daafa2975668"
+  },
+  "docs/sc-2/本机依赖.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-3d8967f29000",
+    "sha256": "fba961a7625e3c91891c7b247c19dc3aaf95de5f4e998713840659732ff42a71"
+  },
+  "docs/sc-3/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-84e0258de3e8",
+    "sha256": "0219209e157619a39c5c339c7aed6e19e885aecdb1c42254a90cbbaf8d2f8ad7"
+  },
+  "docs/sc-3/执行断点.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-483963a15c4c",
+    "sha256": "fe4888952066cfcaacfa3510d5efc031eecf0fa54746ba8f23a2b0cc70b8e12c"
+  },
+  "docs/sc-3/状态与接口.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-fab3633dc685",
+    "sha256": "bf3a9da600d45a6cb92b02d80d1d7d98d284df65c4d3dc250aa6b970598a42c4"
+  },
+  "docs/sc-4/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-47ccef92a75d",
+    "sha256": "0e93d57dca4580e7f51220ba67a77d7bce097f9f20440ceac5fa1a00d1e72d14"
+  },
+  "docs/sc-4/协议与来源.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-b35c71419ea3",
+    "sha256": "0a4f1c2c762a5181132a0c69e7ade39bf9a1a42975e813b8dffdff06ba3ed80e"
+  },
+  "docs/sc-4/执行断点.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-1468c25749b2",
+    "sha256": "a8322b887ad2c14b55593cc4764e48025275e6d936c820245e231f1d70456e8b"
+  },
+  "docs/sc-5/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-faf1b6700f55",
+    "sha256": "ab462ee0b65c983d6ad7ea085ce01d7192cc2a40a5692d43d88db7336c1ded5a"
+  },
+  "docs/sc-5/执行断点.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-21a0dbd711b9",
+    "sha256": "8d9503a06bcdb4efc68b7e2955d21b4e72f1ae72b0968b5e4f44fc6b0a7b33b6"
+  },
+  "docs/sc-5/蓝牙故障复现记录.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-cd850dffac6e",
+    "sha256": "2419cfebf8f2b1ff94c1f663e473e079cc761a08f554eb4c5afb03896315424e"
+  },
+  "docs/sc-6/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-cb43d1ae18d8",
+    "sha256": "a2576c51c2b01e9275eb29c9157b74d05cd4114d1e6ad750bfbde5fdcf894258"
+  },
+  "docs/sc-7/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-d48c59a74753",
+    "sha256": "6edfdec36a425c3bb3f3c7ef0c3dcc9c7d43bbdd4a6fb57a6fb2266c0743299f"
+  },
+  "docs/sc-8/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-67374e73ede4",
+    "sha256": "822fd61bafe0930960c1841695ec837c68b1bb8a7a155b1031bd3639b59b7fd5"
+  },
+  "docs/sc-9/README.md": {
+    "destination": "docs/开发与协议记录.md",
+    "anchor": "doc-81e75ee7b107",
+    "sha256": "9faad33b2761e0dd2a2e62a7be0a7fd59aa9f776a459aad27ef4dd2a298f6e06"
+  },
+  "docs/sc-10/WF-EQ备份.md": {
+    "destination": "docs/测试与验收.md",
+    "anchor": "doc-fc28519ff2c5",
+    "sha256": "7c52ef0ffa2ffb9057039ca1ceaa7710b331070308c0e6b9858b4ea56804ec85"
+  },
+  "docs/sc-10/WF实机写入与恢复记录.md": {
+    "destination": "docs/测试与验收.md",
+    "anchor": "doc-5e6e2dbb64bd",
+    "sha256": "b4403031a3b0e741d5117f3e2954c9de473f84cb0276e3eb572e10011dabe471"
+  },
+  "docs/sc-10/实测步骤.md": {
+    "destination": "docs/测试与验收.md",
+    "anchor": "doc-e24b1d7253ed",
+    "sha256": "c8a6a01356593de8bf22b48f4f222b0a0843964b26fddf46cff719bf2043bafb"
+  },
+  "docs/sc-13-15/实测反馈-20261013.md": {
+    "destination": "docs/测试与验收.md",
+    "anchor": "doc-e0ba8c177674",
+    "sha256": "514f902a3a3e435ea2596d4aecad2375f5584d82fbb38c80928e907e964bf327"
+  },
+  "docs/sc-13-15/实测补充-20261013.md": {
+    "destination": "docs/测试与验收.md",
+    "anchor": "doc-a467f79c0536",
+    "sha256": "f5e660dd76138a017acc951a5c4a425f4fd17f855ede7fda53b4d5e3bec28385"
+  },
+  "docs/sc-16-18/实机待验收.md": {
+    "destination": "docs/测试与验收.md",
+    "anchor": "doc-e5eeceb314ea",
+    "sha256": "af01d26f1d216426ebfa6dde2bbf8a05ac51b522d8bb8143da67212cb86b8e40"
+  },
+  "docs/sc-16-18/实测反馈-20261013.md": {
+    "destination": "docs/测试与验收.md",
+    "anchor": "doc-67acea0b3f38",
+    "sha256": "d1c0429b61ac36e6865265680db85d7ca5e8c9913e92e103f8978b28bd139e5c"
+  },
+  "docs/sc-6/实测步骤.md": {
+    "destination": "docs/测试与验收.md",
+    "anchor": "doc-cb3e34e4bbac",
+    "sha256": "b2dcf976fc3c00af35846a718274672d84f35aeed0a843a4de72e96bcf932d04"
+  },
+  "docs/sc-8/实测步骤.md": {
+    "destination": "docs/测试与验收.md",
+    "anchor": "doc-17be25916c2f",
+    "sha256": "ac716f6bbbb345ed7548ebd29ccd2ef84d313a4779f2074037fcb9c59e8f2c95"
+  },
+  "docs/sc-9/实测步骤.md": {
+    "destination": "docs/测试与验收.md",
+    "anchor": "doc-eef12c6ce548",
+    "sha256": "0d02e1b79665e9ead9b87ace65c8fd9e3462dcc23aaf4545d8e2998f4b1bbf0b"
+  },
+  "docs/sc-9/用户手动验收记录.md": {
+    "destination": "docs/测试与验收.md",
+    "anchor": "doc-6414559c531b",
+    "sha256": "8bb1c90d162678d8a5b6c33d9ec661d064c9c09509494dd20756e4dfa7ff80f6"
+  },
+  "docs/sc-9/简易UI日志核查.md": {
+    "destination": "docs/测试与验收.md",
+    "anchor": "doc-d8ccbb747cc8",
+    "sha256": "c6d92bcb039a3cc749065acd5e9620e92b29abc7ec481a5c49b87e7c04ed238e"
+  },
+  "docs/sc-1/WF-WH能力与验证矩阵.md": {
+    "destination": "docs/范围与许可.md",
+    "anchor": "doc-92d6e1804f67",
+    "sha256": "29921c27a106773e769a09c01ab122cef7b472700c26f9295d485115f9685caa"
+  },
+  "docs/sc-1/第三方许可矩阵.md": {
+    "destination": "docs/范围与许可.md",
+    "anchor": "doc-feebff915ed8",
+    "sha256": "8a61ff422c6ff067e0339acc3e7dc62b4f35fb989c010b199186e5a9f94c011f"
+  },
+  "docs/sc-1/首版范围矩阵.md": {
+    "destination": "docs/范围与许可.md",
+    "anchor": "doc-4de9c13c675b",
+    "sha256": "9eef95c134c414b4d7600aec4e5ccb08231c60cd9de556aed96b07a5075bfe69"
+  },
+  "docs/linear/阶段任务.md": {
+    "destination": "docs/任务与验收状态.md",
+    "anchor": "doc-c5c9f8ea93c7",
+    "sha256": "6537fe2603fc6df5f9bb6aa00af4c8dadf150e90ac8e3ff11613c06e2226029d"
+  },
+  "docs/linear/状态核查与型号拆分-20261013.md": {
+    "destination": "docs/任务与验收状态.md",
+    "anchor": "doc-be902300216b",
+    "sha256": "62bf0b50606076e1104f6fc9e547f191b97d119f4b3a2743468ec6aec2b78993"
+  },
+  "docs/维护与分支说明.md": {
+    "destination": "docs/项目维护.md",
+    "anchor": "doc-7440a0aeb9f8",
+    "sha256": "11618a46d759d7b8ff3f140897ece7d64ef8c1f246ebcb016bdf0f21443e72d0"
+  },
+  "docs/research/01-协议文档/README.md": {
+    "destination": "docs/research/README.md",
+    "anchor": "doc-c675d0f8be14",
+    "sha256": "f74bec57eb7d7f5a863c91ded59c8d27b9bbe0b5b221351d77a95bc4bd408c45"
+  },
+  "docs/research/02-设备支持/README.md": {
+    "destination": "docs/research/README.md",
+    "anchor": "doc-5acb24ce6735",
+    "sha256": "f7c91fb4f9ad3f4e6e9962f2e9cdf69fddbedc0cab3c6753e224597d70935546"
+  },
+  "docs/research/03-双设备与固定播放/README.md": {
+    "destination": "docs/research/README.md",
+    "anchor": "doc-520583633485",
+    "sha256": "f2dec11a444e78a16d2e9dbd22eb7271aa0371efcbce7df8f0211e5538514135"
+  },
+  "docs/research/04-抓包与调试/README.md": {
+    "destination": "docs/research/README.md",
+    "anchor": "doc-6a0c314fced6",
+    "sha256": "84ff8715b79c4b0f96b8aad397ed14ae4185c785d00a6cb00ffa50dee8dac945"
+  },
+  "docs/research/05-APK分析工具/README.md": {
+    "destination": "docs/research/README.md",
+    "anchor": "doc-2b9589dabf4e",
+    "sha256": "1c01f606063b8db52a328a43d8213f97a51c6b3e25f827d525041de9dced9648"
+  },
+  "docs/research/06-Windows开发/README.md": {
+    "destination": "docs/research/README.md",
+    "anchor": "doc-92709104ddd5",
+    "sha256": "1c209ec081e1a3f27bc7409b19085027f36ce2da2b2fe3ad45aad60524d70fde"
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "Passed": true,
+  "RecordedAtUtc": "2026-10-14T12:20:22.9250966+00:00",
+  "Branch": "C++",
+  "HardwareVerified": false,
+  "BluetoothApisCalled": false,
+  "ExternalNetworkCalled": false,
+  "ProductSource": "projects/cpp/native/src/main.cpp",
+  "SourceSha256": "51c98003ac771ea6df1ffe3a4c5ec09c6c31ecc06d72c7e2dcd3317cd534031d",
+  "OtherCppProductSourcesUnchanged": true,
+  "DebugAndReleaseCTestSuites": 4,
+  "UiScenarios": 57,
+  "DebugUiScenarios": 57,
+  "ReleaseWarnings": 0,
+  "DebugWarnings": 0,
+  "DiscoveryScenarios": [
+    {
+      "Name": "discovery-dropdown-opened",
+      "Passed": true
+    },
+    {
+      "Name": "background-refresh-keeps-discovery-popup-and-selection",
+      "Passed": true
+    },
+    {
+      "Name": "changed-discovery-is-deferred-while-popup-open",
+      "Passed": true
+    },
+    {
+      "Name": "discovery-selection-follows-device-address-after-reorder",
+      "Passed": true
+    },
+    {
+      "Name": "removed-selection-does-not-connect-a-different-device",
+      "Passed": true
+    },
+    {
+      "Name": "empty-discovery-clears-list",
+      "Passed": true
+    }
+  ],
+  "Package": {
+    "Passed": true,
+    "RecordedAtUtc": "2026-10-14T20:19:34.5389741+08:00",
+    "HardwareVerified": false,
+    "BluetoothApisCalled": false,
+    "ExternalNetworkCalled": false,
+    "Executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-121932-972\\portable\\SonyConnect.exe",
+    "ExecutableBytes": 1087488,
+    "ExecutableSha256": "ee9ae8a9c4b81413ed09c1e2950d8ee1e78315ff6b9382edbbe29fbbf8a58305",
+    "Machine": "AMD64",
+    "ManagedClrRva": 0,
+    "ManagedClrSize": 0,
+    "Archive": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-121932-972\\SonyConnect-Cpp-Windows-x64.zip",
+    "ArchiveBytes": 522352,
+    "ArchiveSha256": "03d91d532b0020470cd9741a42d1dbf8a10d240caa4f2c8b30568807db0251bc",
+    "PortableUiReport": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\native\\packages\\20261014-121932-972\\portable-ui-test\\report.json",
+    "UiScenarios": 57
+  },
+  "Notes": "docs/native/发现列表稳定性修复-20261014.md"
+}

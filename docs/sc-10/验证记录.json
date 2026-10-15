@@ -1,0 +1,100 @@
+{
+  "Stage": "SC-10",
+  "RecordedAt": "2026-10-12T05:34:35.1682677+00:00",
+  "Branch": "FLEETING/sc-10-equalizer",
+  "Baseline": "f95e45c",
+  "Passed": true,
+  "HardwareWritesVerified": false,
+  "EqualizerScenarios": 14,
+  "CoordinationScenarios": 85,
+  "ProtocolScenarios": 36,
+  "TransportScenarios": 44,
+  "StateRegressionScenarios": 24,
+  "BuildConfigurations": [
+    "Debug",
+    "Release"
+  ],
+  "UiExecutables": [
+    {
+      "Executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\src\\SonyConnect.App\\bin\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\SonyConnect.exe",
+      "Passed": true,
+      "ScenarioCount": 23,
+      "HardwareVerified": false,
+      "LogEntries": 386
+    },
+    {
+      "Executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-053346-901\\publish\\SonyConnect.exe",
+      "Passed": true,
+      "ScenarioCount": 23,
+      "HardwareVerified": false,
+      "LogEntries": 386
+    }
+  ],
+  "OriginalSummary": "artifacts/sc-10/run-20261012-053344-686/summary.json",
+  "OriginalSummarySha256": "eded41e1c7a139e9373c7ae7308529350939920b9f3843e139cf3c9fc3dc2adb",
+  "SourceHashes": [
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrEqualizerParameters.cs",
+      "Sha256": "4af938f1e2dc8c82446e923befbe2f7673c95b374e589bc41816cb45103ec523"
+    },
+    {
+      "File": "src/SonyConnect.Core/Devices/SoundState.cs",
+      "Sha256": "1bf961541a612af2721a48a552e1d39ed11faa38862a82b683abc7a1626f3aea"
+    },
+    {
+      "File": "src/SonyConnect.Application/ProtocolEqualizerBackend.cs",
+      "Sha256": "60872de5789fddaad3fc0d399e82f36a054a029e84b4c63bc23138e45b6418d3"
+    },
+    {
+      "File": "src/SonyConnect.Application/ProtocolDeviceBackend.cs",
+      "Sha256": "200e3d9d9bc067d326d02760606057ff8ff516796201d040de3171e04ec69aa8"
+    },
+    {
+      "File": "src/SonyConnect.Application/DeviceController.cs",
+      "Sha256": "fb36b5ade7e7054e7b6adae65cba5bd961e91938f4b0947375048e6c19c5964d"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/DeviceViewModel.cs",
+      "Sha256": "cb0583fc78297110e766ac0bdbf88506f40246129bed8799dcb9c16ea8764b53"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml",
+      "Sha256": "c861aa5933dc98a3bdc427efed9f7ee6328b806cbf80d6fab3c5ca23ece40d97"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml.cs",
+      "Sha256": "5392ab070d8ac9a94edee6b907238ca26140acdf3f47417fce0a3858c0973cfd"
+    },
+    {
+      "File": "src/SonyConnect.App/App.xaml.cs",
+      "Sha256": "c96fdd2580e12d3f984cbd520135defad0aa84d34c580bd1dc05b57b74c44aab"
+    },
+    {
+      "File": "src/SonyConnect.App/ReadOnlyReplay.cs",
+      "Sha256": "c42024d3ad66937ac68e155454925d4df89ca66ce4a9f82c6c07f74b88d053c0"
+    },
+    {
+      "File": "src/SonyConnect.App/WindowsEqualizerReadProbe.cs",
+      "Sha256": "86ac72d780c7e1d2c4631d5b8059f6e017149dd20cc73f8ee4e836a16e9b1dd6"
+    },
+    {
+      "File": "src/SonyConnect.App/WindowsEqualizerWriteProbe.cs",
+      "Sha256": "ca88fcd00ea2c42e7f6a39528c02621b951217eda3b6d69fac1f52599361a7fc"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/EqualizerScenarios.cs",
+      "Sha256": "0d63b88c99268483d10c7bbad5c670cb95a2f9b22ce581d4dbc884fb329b6263"
+    },
+    {
+      "File": "scripts/Test-SC10.ps1",
+      "Sha256": "954230857d0d5776de3e3e2bb837d17886497d9a64c169a701f05b290785d723"
+    }
+  ],
+  "Pending": [
+    "Actual external modification notification",
+    "WH-1000XM5 capability and hardware verification"
+  ],
+  "TotalOfflineScenarios": 189,
+  "SeparateHardwareEvidence": "docs/sc-10/WF实机写入与恢复记录.json",
+  "PhoneReconnectSyncUserReportedCompleted": true
+}

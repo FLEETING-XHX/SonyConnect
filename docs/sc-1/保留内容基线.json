@@ -1,0 +1,413 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "458b7a86e3042b3d7b06e7cb0e72d29665d4311c",
+  "preExistingUntracked": [
+    "docs/linear/"
+  ],
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "5ec8e568a9a3f6be8a2633498b31ed8083230de0c2bb5906537c34b03a93c254"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "408894f2e812b0f9323de75a2e89df954a55cd01aa3059b3bf7a04bb0a586f3c"
+    },
+    {
+      "path": "README.md",
+      "sha256": "2d620404dee659ef48788e07b5ae05626c235201fb8dc4d19b4a84eb4cef6165"
+    },
+    {
+      "path": "config/update-source.json",
+      "sha256": "593ea15952087af31f14bde7915ad6771c5a6e31baad3299f4e32d6eb40e5100"
+    },
+    {
+      "path": "docs/research/01-协议文档/README.md",
+      "sha256": "f74bec57eb7d7f5a863c91ded59c8d27b9bbe0b5b221351d77a95bc4bd408c45"
+    },
+    {
+      "path": "docs/research/02-设备支持/Gadgetbridge-Sony支持情况.html",
+      "sha256": "36e80f591e59780b632fce0bfa079f197a546b5a74c4119be3c590100dd1d9e4"
+    },
+    {
+      "path": "docs/research/02-设备支持/README.md",
+      "sha256": "f7c91fb4f9ad3f4e6e9962f2e9cdf69fddbedc0cab3c6753e224597d70935546"
+    },
+    {
+      "path": "docs/research/03-双设备与固定播放/PR57-固定播放.patch",
+      "sha256": "9578741bfd2b3540359c48896b7e55686f24d530ebfbdfe1e69c71e629596f44"
+    },
+    {
+      "path": "docs/research/03-双设备与固定播放/PR57-讨论与实机记录.html",
+      "sha256": "446c2f2a7238f85ad914ac69b3cd1fc666b9ecbd95d9d3596c30a8d8b4de0eaa"
+    },
+    {
+      "path": "docs/research/03-双设备与固定播放/PR57-讨论与实机记录.html.source.json",
+      "sha256": "60366765c4eeb704a5a5f4e5557a924bcb8e39ba8054515b1df3d95c5d9cdf96"
+    },
+    {
+      "path": "docs/research/03-双设备与固定播放/README.md",
+      "sha256": "f2dec11a444e78a16d2e9dbd22eb7271aa0371efcbce7df8f0211e5538514135"
+    },
+    {
+      "path": "docs/research/04-抓包与调试/Android-蓝牙HCI日志.html",
+      "sha256": "77e0156a2849a47280f41b3f37a5db549a1754221b7d6325f7381615c8dec6d5"
+    },
+    {
+      "path": "docs/research/04-抓包与调试/README.md",
+      "sha256": "84ff8715b79c4b0f96b8aad397ed14ae4185c785d00a6cb00ffa50dee8dac945"
+    },
+    {
+      "path": "docs/research/05-APK分析工具/JADX-LICENSE",
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1"
+    },
+    {
+      "path": "docs/research/05-APK分析工具/JADX-README.md",
+      "sha256": "3cea1d7e9ff4f7c041c3d802be0d237f9931fba823b9a608bd0f74c6d3ec5ae8"
+    },
+    {
+      "path": "docs/research/05-APK分析工具/README.md",
+      "sha256": "1c01f606063b8db52a328a43d8213f97a51c6b3e25f827d525041de9dced9648"
+    },
+    {
+      "path": "docs/research/06-Windows开发/GitHub-Releases接口.html",
+      "sha256": "905ac43db4a53fed84e2399ceb07aa5218fd32d5e15b865732c43f3b7d5f7508"
+    },
+    {
+      "path": "docs/research/06-Windows开发/NET-单文件发布.html",
+      "sha256": "15654b58db7d619623e83d333f5068cbbcce59afc0dff89be3296a69fe7c54ac"
+    },
+    {
+      "path": "docs/research/06-Windows开发/NET-裁剪不兼容情况.html",
+      "sha256": "b50e8207a2d3d8876e153ddd77fb32e67f20950a419d54cc0f899a1fb7e6b5d8"
+    },
+    {
+      "path": "docs/research/06-Windows开发/NET-运行时计数器.html",
+      "sha256": "4da35f6e03f7ab39e96ef5fa3dfe6aa9b5be4976d80abe5c0a353fbecf943864"
+    },
+    {
+      "path": "docs/research/06-Windows开发/README.md",
+      "sha256": "1c209ec081e1a3f27bc7409b19085027f36ce2da2b2fe3ad45aad60524d70fde"
+    },
+    {
+      "path": "docs/research/06-Windows开发/VisualStudio-性能分析.html",
+      "sha256": "0ad05d8b656106a2a8a1c1f6140bd268ef6c0a78e84f06ce7d0e89e0f5109a72"
+    },
+    {
+      "path": "docs/research/06-Windows开发/WPF-概览.html",
+      "sha256": "8b4ee70acb5a534dcc24e1d240aa953f5a6d20b8323334b3352b00fe46389f3e"
+    },
+    {
+      "path": "docs/research/06-Windows开发/Windows-RFCOMM接口.html",
+      "sha256": "ad9a10cb23cc5928648688010c19c554516e490c1d18a3404868f352e7225b8c"
+    },
+    {
+      "path": "docs/research/06-Windows开发/Windows-全局快捷键.html",
+      "sha256": "a68f05bf4cfd5ebf347ed79be1d17e964e4f45366e85ee7d0f7c0d1d9443f812"
+    },
+    {
+      "path": "docs/research/06-Windows开发/Windows-媒体会话接口.html",
+      "sha256": "1771864b2d45d104baabd9bd3aa29b3bb23dc3b21d984dee2a7a819b82ca6fb7"
+    },
+    {
+      "path": "docs/research/06-Windows开发/Windows-系统音量接口.html",
+      "sha256": "e5ea284adda9ff550f0d43a0afbd4009c12c09633581d02b5dbe5cdada363f64"
+    },
+    {
+      "path": "docs/research/06-Windows开发/Windows-蓝牙设备类型.html",
+      "sha256": "d6e50855c4405bfd54d82bffe2a16ed443279d0b92d32c718b7fc4097169bb7d"
+    },
+    {
+      "path": "docs/research/README.md",
+      "sha256": "53bb66e648ecbca1f87408b1b7005100345cb698911454309911a56c4860efad"
+    },
+    {
+      "path": "docs/research/Windows补充下载记录.json",
+      "sha256": "9fb0c940b063670dc785273145c9b93bd6f3aea5de2218abfe7d8b21f435e206"
+    },
+    {
+      "path": "docs/research/网页下载记录.json",
+      "sha256": "6b43831ba1b8be475c65377bfae88426f8289fd861cfa2c82a01dfe5c7c1b8de"
+    },
+    {
+      "path": "docs/research/资料清单.json",
+      "sha256": "bee541e8aaf4dcde0ebe03fe6b3f0441fa486f0e9c6dcd0e4fe882846282e577"
+    },
+    {
+      "path": "docs/ui/DSEE-Extreme-wordmark.png",
+      "sha256": "040e9fc419f610400aed7197f96caf560438af8e9eb6b35773c6f36e3e135508"
+    },
+    {
+      "path": "docs/ui/DSEE-Extreme-wordmark.svg",
+      "sha256": "cc4569909e62ae38ce875495c24701490dc084471464efc898d83634a010a656"
+    },
+    {
+      "path": "docs/ui/三窗口弹出位置.png",
+      "sha256": "cc97357723404f0ec4a4093bdfec37d70821e05c7b2f4d5edfd9efbfde1a1047"
+    },
+    {
+      "path": "docs/ui/个性化设置.png",
+      "sha256": "aa968d492ab1cff51d113a50e165cfc9d28275987464e0f0419fffd198e7df00"
+    },
+    {
+      "path": "docs/ui/中等版-DSEE开启状态.png",
+      "sha256": "e4dee2cad422d36f3c61e688ddf3a13d93797d44445c114e6fae581f6fefd7a1"
+    },
+    {
+      "path": "docs/ui/中等版-Elastic按住.png",
+      "sha256": "da25b4d767d66ad22d3eb2b3d2fabb4ab9ffc96c70fd3e4b9a171a0f7142faed"
+    },
+    {
+      "path": "docs/ui/中等版-Wake拖动.png",
+      "sha256": "280287b2e5e7fd2151a8addf81603b35db05f6acfce7bccd04dc88a5a7c2dd0d"
+    },
+    {
+      "path": "docs/ui/中等版-主窗口-双设备已关闭.png",
+      "sha256": "daca83d5f7d19cb44eccefec254e3b34667a47cc4e0170f096c21a6840935b18"
+    },
+    {
+      "path": "docs/ui/中等版-主窗口-通透-Elastic.png",
+      "sha256": "175b659d6924a6e903565cbca6571c455ee67a64fc15c0063bd1e25d547ac16a"
+    },
+    {
+      "path": "docs/ui/中等版-主窗口-通透.png",
+      "sha256": "151a00fb28654a6939a79e3cb613dcd2942063b3f1ce757ad26bb20d7d8db28b"
+    },
+    {
+      "path": "docs/ui/中等版-主窗口-降噪-Elastic.png",
+      "sha256": "effdc526947423d48855ce8d5585788f6417fe0c1ce2197f6da0272495fa03aa"
+    },
+    {
+      "path": "docs/ui/中等版-主窗口-降噪.png",
+      "sha256": "f1fc8e51ee709e0f5599b7c6cf6da2a17885745f639cc04bd4853df213ad1513"
+    },
+    {
+      "path": "docs/ui/中等版-发现软件更新.png",
+      "sha256": "a1d062eff4a00c272098bc5ad75d7efa0c79e210d5f00a7741eecf9488cf93ae"
+    },
+    {
+      "path": "docs/ui/中等版-更多功能.png",
+      "sha256": "a0ec1c161f3245b75b97299bcf2f7d10dd2eef2dff1f387247fc4c183e77eaeb"
+    },
+    {
+      "path": "docs/ui/主窗口-双设备已关闭.png",
+      "sha256": "a3446442ae6cad3a0116a39fae15fcdf6335e350b7240bd0379605f17aaef1e0"
+    },
+    {
+      "path": "docs/ui/主窗口-通透.png",
+      "sha256": "1e0c42d801334ead8993a21342745c15c2edc4471c5701434bd9a4d2d8d44965"
+    },
+    {
+      "path": "docs/ui/主窗口-降噪.png",
+      "sha256": "393b4c6777416191b68d4f5d13a8f7c4a96e14eea34f68bd1f59f4841dbb230b"
+    },
+    {
+      "path": "docs/ui/主窗口.png",
+      "sha256": "1e0c42d801334ead8993a21342745c15c2edc4471c5701434bd9a4d2d8d44965"
+    },
+    {
+      "path": "docs/ui/四窗口弹出位置.png",
+      "sha256": "8df7e4f954dc447a1cd718e1d5fe655d5fe961a0ad4d0f82cec5683f9df5dcb6"
+    },
+    {
+      "path": "docs/ui/宽版-主窗口-通透-Elastic.png",
+      "sha256": "094424f721e931849846f821e3e191d9a0fcb19da16f15e4a6cdc94c0844a964"
+    },
+    {
+      "path": "docs/ui/宽版-主窗口-降噪-Elastic.png",
+      "sha256": "d350bafe139b6dff50d7801bcae3b020fc10207bad66e7168c3f76d6e62720c6"
+    },
+    {
+      "path": "docs/ui/快捷键设置.png",
+      "sha256": "6dedd3c2965d8a57cf7dd0d48eda3c0c2af01bdd31fb798b76b327dfc36241cf"
+    },
+    {
+      "path": "docs/ui/更多功能.png",
+      "sha256": "a0f0a910cad954f02b0bd243bea1d0df1abe0c2bfe400300be11cc27027676fd"
+    },
+    {
+      "path": "docs/ui/未连接耳机.png",
+      "sha256": "a90d430eb5ed9dd61777aa9093884922a0551ea40dc5578b4eedb22e3ba19f94"
+    },
+    {
+      "path": "docs/ui/状态-EQ-BASS-Elastic.png",
+      "sha256": "0c9bc7c0bbb60c285e257e50eaa7a4d466ce2ff7f861ce79250e8082b0a625ce"
+    },
+    {
+      "path": "docs/ui/状态-EQ预设展开.png",
+      "sha256": "36255eae55f72551a9d3b25cafb0add546c0817a64b7e76f8172dbf0f0f7e56a"
+    },
+    {
+      "path": "docs/ui/状态-WH单电量.png",
+      "sha256": "bd5a5932c2669e7479ddbb9a2c31eba7fc5f61981bca91300a6648db714edc6b"
+    },
+    {
+      "path": "docs/ui/状态-个性化-Elastic已选.png",
+      "sha256": "57ddfb474b35f5b775ebf82c438ac7551b44fd7b83b69e0f4d5f36a47bc027f7"
+    },
+    {
+      "path": "docs/ui/状态-个性化-缩略菜单.png",
+      "sha256": "fa320390f1c00e5f03fc1922aab778d87efcded19f6c92b2c599d765fab53be4"
+    },
+    {
+      "path": "docs/ui/状态-仅快捷键窗口.png",
+      "sha256": "c314582d418c47d78975864a4e30437a3ddffc524f8da69c4fb817e21c39453a"
+    },
+    {
+      "path": "docs/ui/状态-写入失败重试.png",
+      "sha256": "4e0c647da37afaa48cd94a1ee1b8c939939db24c8c1f633d4d3ddce9a69c71ca"
+    },
+    {
+      "path": "docs/ui/状态-单设备连接.png",
+      "sha256": "cf2f273b28246d49afeccbdb89692bee61f68a9915715ec71b8c89b4927003dc"
+    },
+    {
+      "path": "docs/ui/状态-固定播放.png",
+      "sha256": "e4cacc8ab8c6a356ac7fb1c5c09bf188c9f07545f54849fdca2f9f16c484a225"
+    },
+    {
+      "path": "docs/ui/状态-外部音源.png",
+      "sha256": "f0d0075cb9547650525255658a74337d7f303ff5c9071d1b6ca10ba8398ece8c"
+    },
+    {
+      "path": "docs/ui/状态-媒体暂停.png",
+      "sha256": "0799baeba16af4df8bdc557f6854f33c5002ed8ececd5b77c482bbf48d96cf34"
+    },
+    {
+      "path": "docs/ui/状态-左耳控制展开.png",
+      "sha256": "ce848d946a54a87f96696d4621bea0075b531fba0b9e6cbe4abb2e4ad7043962"
+    },
+    {
+      "path": "docs/ui/状态-快捷键冲突.png",
+      "sha256": "147b0dce8a0e4fc61b5d85aba558f7772f3e8a9268eb1c11cf24859e2a8380dc"
+    },
+    {
+      "path": "docs/ui/状态-快捷键向上避让.png",
+      "sha256": "cc77602bf5e90f1e2071bcb5f0f697da3e49e23772f602087811d207f6b72635"
+    },
+    {
+      "path": "docs/ui/状态-快捷键录入.png",
+      "sha256": "f723508eddf88411e42adeb25fe7a9aa05b69f360035ab3781904b8a957e8822"
+    },
+    {
+      "path": "docs/ui/状态-托盘菜单.png",
+      "sha256": "c85acd6af2579f9109c6587ce292fc98be182a1c961a89e6b989438d54cead86"
+    },
+    {
+      "path": "docs/ui/状态-控制连接失败.png",
+      "sha256": "02f53b06d7c783631048c16bb9d3448a6a18bd51b4ade1ae3fcc13e26a59f512"
+    },
+    {
+      "path": "docs/ui/状态-暂无媒体.png",
+      "sha256": "5a8677a04f20d9649ee1d5a6308fdc49e773da1c5287db2f16b93c7c8f6a11d1"
+    },
+    {
+      "path": "docs/ui/状态-未知设备类型.png",
+      "sha256": "9d8c51db91483ba0bf9dd5bd1cc5a4aaa10febd602eaf5ed019b351f28088e21"
+    },
+    {
+      "path": "docs/ui/状态-正在锁定.png",
+      "sha256": "a638aae57b57942481fc70214ef702d7e26ef8de6f57d3b7421eea335b60df98"
+    },
+    {
+      "path": "docs/ui/状态-移动音源-LDAC.png",
+      "sha256": "52663fb023d49f1d25c456d05528302a2871ff94cdb71faa80b93acb545a90b1"
+    },
+    {
+      "path": "docs/ui/状态-稳定连接-SBC.png",
+      "sha256": "e80f1d32e54abf71598ac5f99e6a4418a3ddf45874dd10994c520832aa236ffe"
+    },
+    {
+      "path": "docs/ui/状态-缩放边界.png",
+      "sha256": "2d797279450ce85d51f36163ecbdde64ed9cfa253b63be731ad1d4ea7b8a9bf8"
+    },
+    {
+      "path": "docs/ui/状态-耳机选择展开.png",
+      "sha256": "9ee05d8e27a5c777dd0ae8afe70b7baa063ff0408d60141f77ca42dfd8faffae"
+    },
+    {
+      "path": "docs/ui/状态-能力不可用.png",
+      "sha256": "9dd192e45b3b14a84aa19f8df0bdb15ed995f7c282af680a4dbcdb735433ff63"
+    },
+    {
+      "path": "docs/ui/状态-解除固定中.png",
+      "sha256": "f471ba69f889b9aaf29af29637210d983579628a75fbc4b3188f6d6bb3c3c1bf"
+    },
+    {
+      "path": "docs/ui/状态-设置依赖禁用.png",
+      "sha256": "63da93f3bdb246cb619ed06f382e88b120ad850920e814149786bbc723cb5895"
+    },
+    {
+      "path": "docs/ui/状态-质量切换重连.png",
+      "sha256": "c39e3485338797d7c12f85ef4955bad92318c1f6a357aac6d70e2f3ed50c3241"
+    },
+    {
+      "path": "docs/ui/状态-连接中.png",
+      "sha256": "a62277554c4504ace89376bca7d9ae9bfacc3b89279c87834d042f8eeef1197a"
+    },
+    {
+      "path": "docs/ui/状态-通透-Elastic.png",
+      "sha256": "c68e3f949d4b714735f64f97493274bfbe306db39ae3f6deea0c367c215fd73a"
+    },
+    {
+      "path": "docs/ui/状态-长按固定.png",
+      "sha256": "4c356e120dbf282830aad4b97ade9b88e5e8b830b7fa8cccda1b6da9b0c46aa1"
+    },
+    {
+      "path": "docs/ui/环境声音循环模式.png",
+      "sha256": "a6f5313f1e7ef0473502edc52f933a1bab04d131e71b89e3bf779f1f774908e1"
+    },
+    {
+      "path": "docs/ui/窄版-主窗口-双设备已关闭.png",
+      "sha256": "42f313d00db22d55c0cd280ffb4d4e6fe49610b9a08750eca88ad029376f4d5b"
+    },
+    {
+      "path": "docs/ui/窄版-主窗口-通透-Elastic.png",
+      "sha256": "5f7cd88765788850a0419c1b23f8d385abe874ecb0f4cf537bfcfdb36c4a8415"
+    },
+    {
+      "path": "docs/ui/窄版-主窗口-通透.png",
+      "sha256": "da7cbb313bf9842154c738a2041f799baa386daca3ecc501bab6bef9821877a4"
+    },
+    {
+      "path": "docs/ui/窄版-主窗口-降噪-Elastic.png",
+      "sha256": "9e87d6c8e42e35684ae772ea8279f77de91fc0fa0ddabc1246345eec8dedfbda"
+    },
+    {
+      "path": "docs/ui/窄版-主窗口-降噪.png",
+      "sha256": "6bde0182e09a9ed6108a6d7f0c8884f08d2497d5a044185c4bda4bf3ab648d93"
+    },
+    {
+      "path": "docs/ui/窄版-更多功能.png",
+      "sha256": "b66b64da98d1b9cf0e15c41e7a91322f00aef7dcbfa3883c6debbca07dd3943a"
+    },
+    {
+      "path": "docs/ui/设计快照索引.json",
+      "sha256": "a3b1ed4a594e3cfd74a462bed9a50aaa3a46655587e266173e19fb167433b2c3"
+    },
+    {
+      "path": "docs/功能与交互说明.md",
+      "sha256": "c07e5f0350e9df9cc14e572ec1910fc86044d4c9baa0e62fe4ba642269fa5a3e"
+    },
+    {
+      "path": "docs/协议研究路线与资料索引.md",
+      "sha256": "1285ca5681a3da05ac791ad255f2201e7227bb1090612f72b175ede81a6e8118"
+    },
+    {
+      "path": "docs/模块化架构与分阶段开发.md",
+      "sha256": "1d5b34d6d82363c46cd31bcfc4438199e838a489a5026decc5ff642ba3315962"
+    },
+    {
+      "path": "download-manifest.json",
+      "sha256": "c22f090c558d74d0675c74a76de5fe2e71bb05d53cb565ff04f727b529e9fa5b"
+    },
+    {
+      "path": "docs/linear/阶段任务.md",
+      "sha256": "6537fe2603fc6df5f9bb6aa00af4c8dadf150e90ac8e3ff11613c06e2226029d"
+    },
+    {
+      "path": "docs/linear/GitHub同步已连接.png",
+      "sha256": "bb985f4b673be009e0bffb706ce271fbb7048fc6a95731c4c98c3a9758cbef66"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "RecordedAtUtc": "2026-10-14T13:45:58.0405742+00:00",
+  "EvidenceType": "UserReport",
+  "UserStatement": "所有功能实测没问题",
+  "UserReportedPassed": true,
+  "Package": "artifacts/native/packages/20261014-132318-110/portable/SonyConnect.exe",
+  "PackageSha256": "8fbad1263c0ff073571ca49a874b2a7fad43b33f3c23aa04fe8db6a66321f39e",
+  "DeviceModelFromPriorContext": "WF-1000XM5",
+  "FirmwareNotProvided": true,
+  "Scope": "Current implemented C++ functions on the device used in this conversation. Does not establish WH or other model support.",
+  "HardwareVerifiedByAgent": false,
+  "WhChecklist": "docs/native/WH设备取回后待测.md"
+}

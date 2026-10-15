@@ -1,0 +1,153 @@
+{
+  "RecordedAt": "2026-10-12T01:12:05.5858255+08:00",
+  "TestedAt": "2026-10-12 01:09:08-01:10:24 +08:00",
+  "Model": "WF-1000XM5",
+  "Firmware": "6.1.0",
+  "BluetoothDriver": "24.70.0.4",
+  "TestConductedBy": "User",
+  "UserFeedback": "我测试好了这个软件没问题，都可以识别到",
+  "Executable": "artifacts/sc-6/settings-test-20261012-003937/SonyConnect.exe",
+  "ExecutableSha256": "d09c1cb194dbaf6f15855c919a066a5862033b32ccf91e39f4cb1f080d0efd12",
+  "SourceLogFile": "run-20261011-170908179-82a8cd0d737a42a8813c367a93f7225a-0.jsonl",
+  "SourceLogSha256": "cdea1d2b73e982ab4050db3ed7b98e14cc94cac01f665ab024bbc3ca78c3900c",
+  "LogEntries": 295,
+  "Origin": "Device",
+  "SoundReadHardwareVerified": true,
+  "SettingsHardwareVerified": true,
+  "ExternalStateSyncHardwareVerified": true,
+  "SettingsIntents": 45,
+  "SettingsWrites": 9,
+  "Confirmations": [
+    {
+      "Parameter": "sound-mode",
+      "Requested": 1,
+      "Confirmed": 1,
+      "Status": "Succeeded",
+      "Commands": [
+        104,
+        102
+      ],
+      "Sends": 2,
+      "Generation": 2
+    },
+    {
+      "Parameter": "ambient-level",
+      "Requested": 1,
+      "Confirmed": 1,
+      "Status": "Succeeded",
+      "Commands": [
+        104,
+        102
+      ],
+      "Sends": 2,
+      "Generation": 21
+    },
+    {
+      "Parameter": "ambient-level",
+      "Requested": 20,
+      "Confirmed": 20,
+      "Status": "Succeeded",
+      "Commands": [
+        104,
+        102
+      ],
+      "Sends": 2,
+      "Generation": 40
+    },
+    {
+      "Parameter": "sound-mode",
+      "Requested": 0,
+      "Confirmed": 0,
+      "Status": "Succeeded",
+      "Commands": [
+        104,
+        102
+      ],
+      "Sends": 2,
+      "Generation": 41
+    },
+    {
+      "Parameter": "sound-mode",
+      "Requested": 2,
+      "Confirmed": 2,
+      "Status": "Succeeded",
+      "Commands": [
+        104,
+        102
+      ],
+      "Sends": 2,
+      "Generation": 42
+    },
+    {
+      "Parameter": "sound-mode",
+      "Requested": 0,
+      "Confirmed": 0,
+      "Status": "Succeeded",
+      "Commands": [
+        104,
+        102
+      ],
+      "Sends": 2,
+      "Generation": 43
+    },
+    {
+      "Parameter": "sound-mode",
+      "Requested": 2,
+      "Confirmed": 2,
+      "Status": "Succeeded",
+      "Commands": [
+        104,
+        102
+      ],
+      "Sends": 2,
+      "Generation": 44
+    },
+    {
+      "Parameter": "sound-mode",
+      "Requested": 0,
+      "Confirmed": 0,
+      "Status": "Succeeded",
+      "Commands": [
+        104,
+        102
+      ],
+      "Sends": 2,
+      "Generation": 45
+    },
+    {
+      "Parameter": "sound-mode",
+      "Requested": 2,
+      "Confirmed": 2,
+      "Status": "Succeeded",
+      "Commands": [
+        104,
+        102
+      ],
+      "Sends": 2,
+      "Generation": 46
+    }
+  ],
+  "SentCommands": 27,
+  "AcknowledgedCommands": 27,
+  "MatchedResponses": 18,
+  "Notifications": 11,
+  "AppliedNotifications": 10,
+  "UnsolicitedBeforeFirstSetting": [
+    {
+      "Timestamp": "2026-10-12T01:09:18.0436682+08:00",
+      "Mode": 2,
+      "ReceiveOrder": 10
+    }
+  ],
+  "Errors": 0,
+  "Dropped": 0,
+  "NormalExit": true,
+  "Sc6AcceptancePassed": true,
+  "EvidenceLimits": [
+    "Notifications after own writes also counted; first applied notification precedes all writes and is unsolicited. User confirms touch/official App synchronization, but log cannot identify the physical trigger.",
+    "Phone/multipoint and adaptive sound control conditions were not recorded.",
+    "Settings run has one connection and no explicit disconnect/reconnect or refresh. Old readonly hardware record covers metadata refresh/reconnect; lifecycle edge cases use offline tests.",
+    "Short user test does not establish long-term system Bluetooth stability or support for other models.",
+    "Final source changes only remove misleading readonly prefix from run-start diagnostic; hardware control code remains identical to tested candidate."
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "FrozenAt": "2026-10-13T10:33:12.0957043+08:00",
+  "Branch": "FLEETING/sc-13-15-offline",
+  "NextBranch": "FLEETING/sc-16-plus-offline",
+  "Executable": "artifacts/sc-3/run-20261013-004736-717/publish/SonyConnect.exe",
+  "ExecutableSha256": "d48c9c8aa971996eba9112488533a88906cf802c40f43b0145e9533b09745e90",
+  "FixedShortcut": "artifacts/sc-3/03-SC12-15实测冻结版.lnk",
+  "OfflinePassed": true,
+  "FullStageHardwareVerified": false,
+  "CurrentReleaseHardwareRetested": false,
+  "OfflineReport": "artifacts/sc-13-15/run-20261013-004733-573/summary.json",
+  "SourceHashes": [
+    {
+      "File": "src/SonyConnect.App/DesktopLifecycle.cs",
+      "Sha256": "4116ad50c667bd6b1ad49004efbdcf26ea606fb4ff637efa740b92a5f2685220"
+    },
+    {
+      "File": "src/SonyConnect.App/DesktopValidation.cs",
+      "Sha256": "2f9a79fdc64449e3b286355a266973d72ffa0a03065e0caa3125376688794999"
+    },
+    {
+      "File": "src/SonyConnect.App/App.xaml.cs",
+      "Sha256": "df687083804ee32122f95ab06e4bf951dda821b4000dc407ec306dfaa329dcd0"
+    },
+    {
+      "File": "src/SonyConnect.App/ReadOnlyReplay.cs",
+      "Sha256": "fd4a7e92ad99481c573c6b6dda65ce76678bb3c0f5d0cebbd44baf168013f9b5"
+    },
+    {
+      "File": "src/SonyConnect.App/CompositionRoot.cs",
+      "Sha256": "08716afd89c634ee386bd83a6aa151f3df7babf6037eb521827155bbc6a2cb22"
+    },
+    {
+      "File": "src/SonyConnect.App/SonyConnect.App.csproj",
+      "Sha256": "0e1c4524cb9ab3f9a8a2804a855c5c5ff64bf9455ceed7e44531f339b197d71b"
+    },
+    {
+      "File": "src/SonyConnect.Core/Devices/ExtendedSettings.cs",
+      "Sha256": "e48403a3d4c7e312cdff1eb6fb63a8d17bdd1a24082549c21429bdf2056a6bad"
+    },
+    {
+      "File": "src/SonyConnect.Core/Devices/HeadphoneState.cs",
+      "Sha256": "3b1a54201ab2320f464ab516295633e0675fbd47e379c4493a00023df846f26a"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrExtendedParameters.cs",
+      "Sha256": "4eec5af54a088cd4115572cea09635028447c7616fe4cfae6273bf774b5a35ce"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrMessageParser.cs",
+      "Sha256": "0a9a38c6647206e8c33ee4eaa903bddc449a9c383cf076de6b26d5d20544021c"
+    },
+    {
+      "File": "src/SonyConnect.Core/State/OperationResult.cs",
+      "Sha256": "7812ffacc68976b9e14ae59ee941afc5250065473d3f466ed7fcc97842ac033a"
+    },
+    {
+      "File": "src/SonyConnect.Application/ProtocolExtendedBackend.cs",
+      "Sha256": "e7f855d8649587704bcfa33b2f9300814e20f6a7d69beada676e08aa2bf92fdb"
+    },
+    {
+      "File": "src/SonyConnect.Application/ProtocolDeviceBackend.cs",
+      "Sha256": "3243f5226296056728b390bf035d0a511a9d05b5cdb57c071c1041e2d33b6766"
+    },
+    {
+      "File": "src/SonyConnect.Application/ProtocolAudioSourceBackend.cs",
+      "Sha256": "0cb61bf4e6571c8db630aec8c41c85005bcbe86c29c4b1202e056fbfccd60119"
+    },
+    {
+      "File": "src/SonyConnect.Application/DeviceController.cs",
+      "Sha256": "6f8466086b6562625aa058fca73bfbf3975da5cf797ef89ce6017b4a3f805e8c"
+    },
+    {
+      "File": "src/SonyConnect.Application/IDeviceUseCases.cs",
+      "Sha256": "20a01a47c4aad9e22fe07fa186723c42db880ed8ea23199abcb558c27eeb28f6"
+    },
+    {
+      "File": "src/SonyConnect.Application/Ports/DevicePorts.cs",
+      "Sha256": "37d6482a71268a6c0e8efc2f97836ea4acac8a792667be2ab99b7c7d6f59093e"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/DeviceViewModel.cs",
+      "Sha256": "1970100edcae3e4e1c18f6b29a01e10abe028f2f99a74e10fbd9e6ab8735f1fb"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml",
+      "Sha256": "5567955083a73cac5f8ca03a0c465cc8736605e58acf89d091d8f326b8071df0"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml.cs",
+      "Sha256": "737ebb218b24dd69b349235b746f9d09d8ae42ec22c6636f3b76dcd680912a3c"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/ExtendedSettingsScenarios.cs",
+      "Sha256": "f06e220bbf828d6ec6e6b9c0aad7935ba127309fa3e9c4dd3e9cd4ac48a890d0"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/Program.cs",
+      "Sha256": "4e08cfd0edca8354048b509824c9931c9787d3481ce0a196da682c375b84d5a6"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/SonyConnect.CoordinationTests.csproj",
+      "Sha256": "b56a1e77f7035f7b86cdb7c054e679825aa3a98c9672c98f66935437c5e2a021"
+    },
+    {
+      "File": "scripts/Test-SC13-15.ps1",
+      "Sha256": "6ee8fec9d237999b9d727f18332ffcb5cc960ccfe2098749eaa2250e8b7fee81"
+    }
+  ],
+  "Pending": [
+    "新版主窗口本机设置入口、关闭到托盘与隐藏按钮的用户验收",
+    "实际登录启动、重复启动及跨 Windows 登录会话单实例验收",
+    "连接质量在当前 WF 上的能力布局核查；未知布局保持禁写",
+    "实际自动断电行为及原值恢复确认",
+    "WH 实机行为及未覆盖的排他组合",
+    "用户报告结果的日志、测试版本及具体编码条件核查"
+  ],
+  "RemotePushed": false,
+  "PreserveExecutable": true,
+  "Notes": "Local checkpoint for later hardware acceptance; preserve this executable and fixed shortcut during subsequent offline development."
+}

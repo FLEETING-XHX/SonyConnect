@@ -1,0 +1,87 @@
+{
+  "Stage": "SC-14",
+  "Date": "2026-10-13",
+  "Branch": "FLEETING/sc-16-18-offline",
+  "OfflinePassed": true,
+  "CumulativeRegressionCount": 230,
+  "CoordinationCount": 126,
+  "E7ProtocolGroups": 3,
+  "UiVariants": [
+    "three-byte-parameter",
+    "four-byte-parameter"
+  ],
+  "UiConfigurations": [
+    "Debug",
+    "Release"
+  ],
+  "UiChecksPerVariant": 20,
+  "AggregateReport": "artifacts/sc-16-18/run-20261013-120443-383/summary.json",
+  "Publish": {
+    "File": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261013-120446-972\\publish\\SonyConnect.exe",
+    "Bytes": 201015129,
+    "Sha256": "0ea5aa0f99c7d9d170d74acdb9a75865659c2358a62028382f46021cb381946c",
+    "FileCount": 1,
+    "SelfContained": true,
+    "SingleFile": true
+  },
+  "CurrentShortcut": "artifacts/sc-3/01-当前测试版.lnk",
+  "HardwareReadVerified": true,
+  "HardwareOrdinaryQualityWriteVerified": true,
+  "HardwareOriginalRestored": true,
+  "Model": "WF-1000XM5",
+  "Firmware": "6.1.0",
+  "Original": 1,
+  "Final": 1,
+  "HardwareReadReport": "artifacts/sc-14/wf-e7-read-20261013-195708/report.json",
+  "HardwareWriteReport": "artifacts/sc-14/wf-quality-write-20261013-200324/report.json",
+  "HardwareNotificationVerified": false,
+  "OtherModelsVerified": false,
+  "LeAudioWritesAllowed": false,
+  "CodeCommitted": false,
+  "RemotePushed": false,
+  "LinearMarkedDone": false,
+  "SourceHashes": [
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrExtendedParameters.cs",
+      "Sha256": "8ca05b816ee4f27619603969cad6673c42a82deef4df62e919a9023361135fa9"
+    },
+    {
+      "File": "src/SonyConnect.Application/ProtocolExtendedBackend.cs",
+      "Sha256": "d26d57432a804499e9416a524fcbfbe0a3016edc693d1ea264cf0940a06149bf"
+    },
+    {
+      "File": "src/SonyConnect.App/ReadOnlyReplay.cs",
+      "Sha256": "b4599d3c2e24141dd5e458614812b0ca79f3ead046721cc28d60e83066c2ff60"
+    },
+    {
+      "File": "src/SonyConnect.App/App.xaml.cs",
+      "Sha256": "f99d6c0e6ba3c38135fdfb2c0dca1794093662b586198a84d717fbd2f280cdce"
+    },
+    {
+      "File": "src/SonyConnect.App/WindowsQualityWriteProbe.cs",
+      "Sha256": "36239056072c5985b4019b9f7bd8b775efdf4e5e8c2756c1e7d4a2283b8e9be9"
+    },
+    {
+      "File": "src/SonyConnect.App/WindowsInteractionReadProbe.cs",
+      "Sha256": "494928fb79b1e9eb81fc7cac6bf9d3325c7da1c065e8abda283499c203091374"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/ExtendedSettingsScenarios.cs",
+      "Sha256": "580a73da870083aef6c7ad36e9309fa49b8fe582ef65a9868768a593cbb4be2e"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/Program.cs",
+      "Sha256": "c06f187a6a26c51417f8d3f75484cb70b8375de15e6d54edbdf81d3da339e3c2"
+    },
+    {
+      "File": "scripts/Test-SC13-15.ps1",
+      "Sha256": "4ab26451e7bd394277d61b5a55d3c03c5d383775d2924d024d8942f13c15f2de"
+    }
+  ],
+  "Pending": [
+    "用户核对新版界面及正常使用",
+    "其他型号／固件独立验证",
+    "真实通知、连接重建及长期稳定性效果未扩展验收"
+  ],
+  "Research": "docs/sc-14/E7核查与修复-20261013.md"
+}

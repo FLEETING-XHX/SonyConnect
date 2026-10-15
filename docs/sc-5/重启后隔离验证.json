@@ -1,0 +1,1120 @@
+{
+  "RecordedAt": "2026-10-11T20:18:18.4893165+08:00",
+  "TimeZone": "Asia/Singapore",
+  "Conclusion": "Bluetooth is currently stable after the user rebooted. Bounded discovery and WF-1000XM5 RFCOMM isolation checks did not reproduce adapter disappearance. Original cause remains unknown.",
+  "FinalSystem": {
+    "ObservedAt": "2026-10-11T20:17:25.3487845+08:00",
+    "BootAt": "2026-10-11T20:01:34.5+08:00",
+    "AdapterPresent": true,
+    "AdapterStatus": "OK",
+    "DriverVersion": "24.10.0.4",
+    "DriverInf": "oem66.inf",
+    "AdapterProblem": 0,
+    "ParentName": "USB 根集线器(USB 3.0)",
+    "ParentPresent": true,
+    "ParentStatus": "OK",
+    "ParentProblem": 0,
+    "AppProcesses": 0
+  },
+  "UserObservations": [
+    {
+      "Stage": "PostBoot",
+      "Observation": "Windows switch normal; Bluetooth off; adapter disappearance not observed with SonyConnect closed."
+    },
+    {
+      "Stage": "WindowsBluetoothOn",
+      "Observation": "Stable before connecting headphones."
+    },
+    {
+      "Stage": "WindowsAudio",
+      "Observation": "WF-1000XM5 connection and sound stable."
+    },
+    {
+      "Stage": "SustainedSocket",
+      "Observation": "Sound and Windows Bluetooth switch remained normal."
+    }
+  ],
+  "Stages": [
+    {
+      "Stage": "WindowsBaseline",
+      "ArtifactDirectory": "artifacts/sc-5/system-baseline-20261011-120522",
+      "FirstSampleAt": "2026-10-11T20:05:23.2092267+08:00",
+      "LastSampleAt": "2026-10-11T20:06:53.0549643+08:00",
+      "SampleCount": 17,
+      "AdapterAbsentSamples": 0,
+      "AdapterNonOkSamples": 0,
+      "AppRunningSamples": 0,
+      "Samples": [
+        {
+          "ObservedAt": "2026-10-11T20:05:23.2092267+08:00",
+          "BluetoothDevices": 46,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:05:28.8563566+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:05:34.4639629+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:05:40.1157788+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:05:45.7501959+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:05:51.3162259+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:05:56.8870076+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:06:02.4902325+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:06:08.0768105+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:06:13.7018678+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:06:19.2922345+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:06:24.8668232+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:06:30.4836878+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:06:36.1237977+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:06:41.8819317+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:06:47.4835077+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        },
+        {
+          "ObservedAt": "2026-10-11T20:06:53.0549643+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AdapterProblem": "CM_PROB_NONE",
+          "SonyConnectProcesses": 0,
+          "Services": [
+            {
+              "Name": "BTAGService",
+              "Status": "Running"
+            },
+            {
+              "Name": "bthserv",
+              "Status": "Running"
+            }
+          ]
+        }
+      ],
+      "Events": [
+        {
+          "ObservedAt": "2026-10-11T20:05:25.3484425+08:00",
+          "ProviderName": "BTHUSB",
+          "Id": 10,
+          "LevelDisplayName": "信息"
+        },
+        {
+          "ObservedAt": "2026-10-11T20:05:24.7795438+08:00",
+          "ProviderName": "BTHUSB",
+          "Id": 10,
+          "LevelDisplayName": "信息"
+        }
+      ]
+    },
+    {
+      "Stage": "DiscoveryOnly",
+      "ArtifactDirectory": "artifacts/sc-5/discovery-isolation-20261011-120818",
+      "FirstSampleAt": "2026-10-11T20:08:20.148804+08:00",
+      "LastSampleAt": "2026-10-11T20:09:21.5468954+08:00",
+      "SampleCount": 12,
+      "AdapterAbsentSamples": 0,
+      "AdapterNonOkSamples": 0,
+      "AppRunningSamples": 0,
+      "Samples": [
+        {
+          "ObservedAt": "2026-10-11T20:08:20.148804+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:08:25.7389455+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:08:31.3250781+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:08:36.9024872+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:08:42.4835058+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:08:48.0241491+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:08:53.6035634+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:08:59.2078904+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:09:04.7812482+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:09:10.3645548+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:09:15.9335321+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:09:21.5468954+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        }
+      ],
+      "Events": [],
+      "Probe": {
+        "Passed": true,
+        "RecordedAt": "2026-10-11T20:08:19.3624548+08:00",
+        "WindowsApisCalled": true,
+        "Mode": "Device",
+        "WindowsVersion": "Microsoft Windows NT 10.0.26100.0",
+        "Bluetooth": "On",
+        "Suspended": false,
+        "DiscoverySucceeded": true,
+        "DiscoveryErrorCode": null,
+        "Devices": [
+          {
+            "AnonymousId": "75F25D64C600",
+            "ModelHint": "Wf1000Xm5",
+            "BluetoothConnected": true
+          },
+          {
+            "AnonymousId": "0CC34D983CA8",
+            "ModelHint": "Wh1000Xm5",
+            "BluetoothConnected": false
+          }
+        ],
+        "ConnectionRequested": false,
+        "ConnectionAttempted": false,
+        "SelectedModelHint": null,
+        "SocketConnectionSucceeded": null,
+        "ConnectionErrorCode": null,
+        "BytesReceived": 0,
+        "BytesWritten": 0,
+        "CommandsSentToHeadphones": false,
+        "CleanupSucceeded": true,
+        "RemainingSubscriptions": 0,
+        "BackgroundRefreshActive": false,
+        "ProbeError": null,
+        "CleanupError": null,
+        "MissingAssembly": null,
+        "ErrorFrames": null,
+        "CleanupFrames": null,
+        "HardwareVerified": false,
+        "EvidenceScope": "Windows API inventory / resource cleanup and optional RFCOMM socket only; no protocol handshake, firmware or feature validation"
+      }
+    },
+    {
+      "Stage": "SingleSocketConnectClose",
+      "ArtifactDirectory": "artifacts/sc-5/socket-isolation-20261011-121000",
+      "FirstSampleAt": "2026-10-11T20:10:01.8122842+08:00",
+      "LastSampleAt": "2026-10-11T20:11:14.2290019+08:00",
+      "SampleCount": 14,
+      "AdapterAbsentSamples": 0,
+      "AdapterNonOkSamples": 0,
+      "AppRunningSamples": 0,
+      "Samples": [
+        {
+          "ObservedAt": "2026-10-11T20:10:01.8122842+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:10:07.4136287+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:10:12.965187+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:10:18.5324667+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:10:24.1171305+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:10:29.5942712+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:10:35.1933182+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:10:40.7797781+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:10:46.3561347+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:10:51.9324405+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:10:57.5202344+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:11:03.0731423+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:11:08.6497044+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        },
+        {
+          "ObservedAt": "2026-10-11T20:11:14.2290019+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0
+        }
+      ],
+      "Events": [],
+      "Probe": {
+        "Passed": true,
+        "RecordedAt": "2026-10-11T20:10:01.0221907+08:00",
+        "WindowsApisCalled": true,
+        "Mode": "Device",
+        "WindowsVersion": "Microsoft Windows NT 10.0.26100.0",
+        "Bluetooth": "On",
+        "Suspended": false,
+        "DiscoverySucceeded": true,
+        "DiscoveryErrorCode": null,
+        "Devices": [
+          {
+            "AnonymousId": "886CE41A96BF",
+            "ModelHint": "Wf1000Xm5",
+            "BluetoothConnected": true
+          },
+          {
+            "AnonymousId": "ED7ACE00B130",
+            "ModelHint": "Wh1000Xm5",
+            "BluetoothConnected": false
+          }
+        ],
+        "ConnectionRequested": true,
+        "ConnectionAttempted": true,
+        "SelectedModelHint": "Wf1000Xm5",
+        "SocketConnectionSucceeded": true,
+        "ConnectionErrorCode": null,
+        "BytesReceived": 0,
+        "BytesWritten": 0,
+        "CommandsSentToHeadphones": false,
+        "CleanupSucceeded": true,
+        "RemainingSubscriptions": 0,
+        "BackgroundRefreshActive": false,
+        "ProbeError": null,
+        "CleanupError": null,
+        "MissingAssembly": null,
+        "ErrorFrames": null,
+        "CleanupFrames": null,
+        "HardwareVerified": false,
+        "EvidenceScope": "Windows API inventory / resource cleanup and optional RFCOMM socket only; no protocol handshake, firmware or feature validation"
+      }
+    },
+    {
+      "Stage": "SingleSustainedSocket",
+      "ArtifactDirectory": "artifacts/sc-5/sustained-isolation-20261011-121606",
+      "FirstSampleAt": "2026-10-11T20:16:07.7573687+08:00",
+      "LastSampleAt": "2026-10-11T20:17:32.7962331+08:00",
+      "SampleCount": 16,
+      "AdapterAbsentSamples": 0,
+      "AdapterNonOkSamples": 0,
+      "AppRunningSamples": 0,
+      "Samples": [
+        {
+          "ObservedAt": "2026-10-11T20:16:07.7573687+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": true
+        },
+        {
+          "ObservedAt": "2026-10-11T20:16:13.3379609+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": true
+        },
+        {
+          "ObservedAt": "2026-10-11T20:16:18.8882178+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": true
+        },
+        {
+          "ObservedAt": "2026-10-11T20:16:24.4860152+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": true
+        },
+        {
+          "ObservedAt": "2026-10-11T20:16:30.0831679+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": true
+        },
+        {
+          "ObservedAt": "2026-10-11T20:16:35.7176727+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": true
+        },
+        {
+          "ObservedAt": "2026-10-11T20:16:41.6455333+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": false
+        },
+        {
+          "ObservedAt": "2026-10-11T20:16:47.4635278+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": false
+        },
+        {
+          "ObservedAt": "2026-10-11T20:16:53.3569321+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": false
+        },
+        {
+          "ObservedAt": "2026-10-11T20:16:58.9686348+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": false
+        },
+        {
+          "ObservedAt": "2026-10-11T20:17:04.5077751+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": false
+        },
+        {
+          "ObservedAt": "2026-10-11T20:17:10.1141286+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": false
+        },
+        {
+          "ObservedAt": "2026-10-11T20:17:16.0233152+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": false
+        },
+        {
+          "ObservedAt": "2026-10-11T20:17:21.6320983+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": false
+        },
+        {
+          "ObservedAt": "2026-10-11T20:17:27.2216061+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": false
+        },
+        {
+          "ObservedAt": "2026-10-11T20:17:32.7962331+08:00",
+          "BluetoothDevices": 36,
+          "AdapterPresent": true,
+          "AdapterStatus": "OK",
+          "AppProcesses": 0,
+          "DiagnosticActive": false
+        }
+      ],
+      "Events": [],
+      "Session": {
+        "StartedAt": "2026-10-11T20:16:07.2051246+08:00",
+        "RecordedAt": "2026-10-11T20:16:38.0177892+08:00",
+        "Bluetooth": "On",
+        "SelectedModelHint": "Wf1000Xm5",
+        "MaximumAttempts": 1,
+        "ConnectionAttempted": true,
+        "SocketConnectionSucceeded": true,
+        "ConnectionErrorCode": null,
+        "RequestedHoldSeconds": 30,
+        "ObservedHoldSeconds": 30.2203369,
+        "SustainedSessionStable": true,
+        "StatusBeforeCleanup": "Connected",
+        "Timeline": [
+          {
+            "ElapsedSeconds": 0.1511552,
+            "Status": "Connecting",
+            "Attempt": 0,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 0.1573595,
+            "Status": "Connecting",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 0.5680474,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 30.7938953,
+            "Status": "Disconnected",
+            "Attempt": 1,
+            "ErrorCode": "Canceled"
+          },
+          {
+            "ElapsedSeconds": 30.7991097,
+            "Status": "Disconnected",
+            "Attempt": 1,
+            "ErrorCode": null
+          }
+        ],
+        "Samples": [
+          {
+            "ElapsedSeconds": 6.13E-05,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 1.0053776,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 2.015752,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 3.0211143,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 4.0302882,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 5.0369453,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 6.0411186,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 7.0491813,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 8.056457,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 9.0655788,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 10.0671649,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 11.0798578,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 12.0854059,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 13.0986333,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 14.1034524,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 15.1097976,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 16.1224233,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 17.1277068,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 18.1344791,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 19.1449911,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 20.1488934,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 21.1564654,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 22.1665759,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 23.1742191,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 24.1808144,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 25.1868388,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 26.1885568,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 27.1974077,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 28.2054121,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          },
+          {
+            "ElapsedSeconds": 29.2094446,
+            "Status": "Connected",
+            "Attempt": 1,
+            "ErrorCode": null
+          }
+        ],
+        "BytesReceived": 0,
+        "BytesWritten": 0,
+        "CommandsSentToHeadphones": false,
+        "CleanupSucceeded": true,
+        "RemainingSubscriptions": 0,
+        "BackgroundRefreshActive": false,
+        "ProbeError": null,
+        "CleanupError": null,
+        "HardwareVerified": false,
+        "EvidenceScope": "One RFCOMM connection held for up to 30 seconds without writes or retries. No handshake, firmware or feature validation."
+      }
+    }
+  ],
+  "InputIntegrity": {
+    "RecordedAt": "2026-10-11T20:17:51.850685+08:00",
+    "VerifiedInputCount": 79,
+    "ChangedInputCount": 0,
+    "PublishedPath": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261011-112836-178\\publish\\SonyConnect.exe",
+    "PublishedHashMatches": true,
+    "ComponentBinaries": [
+      {
+        "Component": "Core",
+        "Original": "src/SonyConnect.Core/bin/Release/net10.0/SonyConnect.Core.dll",
+        "Sha256": "ec17126c570c2c580a934b655ee2ff08d7b3dec0d4423b6fbf09832c9365727e",
+        "DiagnosticCopyMatches": true
+      },
+      {
+        "Component": "Application",
+        "Original": "src/SonyConnect.Application/bin/Release/net10.0/SonyConnect.Application.dll",
+        "Sha256": "4e4cdac7fe6d2435bd13c3ab996071af2955c28f9ae17271f104135b2143552c",
+        "DiagnosticCopyMatches": true
+      },
+      {
+        "Component": "Infrastructure",
+        "Original": "src/SonyConnect.Infrastructure/bin/Release/net10.0-windows10.0.26100.0/SonyConnect.Infrastructure.dll",
+        "Sha256": "de6274879fa7d505bf7723cec54e121e3f5925b202fdb1986678df41260206e6",
+        "DiagnosticCopyMatches": true
+      }
+    ]
+  },
+  "DiagnosticImplementation": {
+    "Project": "artifacts/sc-5/session-diagnostics/SessionDiagnostics.csproj",
+    "ProductionSourcesChanged": false,
+    "UsesExistingReleaseAssemblies": true,
+    "MaximumAttempts": 1,
+    "HoldSeconds": 30,
+    "BytesWritten": 0,
+    "CommandsSentToHeadphones": false,
+    "DriverChanges": false,
+    "ServiceChanges": false,
+    "UsbChanges": false,
+    "SystemSwitchChanges": false,
+    "SystemRebootByAssistant": false,
+    "HelperSourceHashes": [
+      {
+        "File": "artifacts/sc-5/session-diagnostics/SessionDiagnostics.csproj",
+        "Sha256": "8a00c128f8ce9f5f4470d0100bbab117e460dfa8f0edea6479b660e123025d60"
+      },
+      {
+        "File": "artifacts/sc-5/session-diagnostics/Program.cs",
+        "Sha256": "e6f92a1628c4bb6d53ffdacd19615c5527f6d0a592246d1adb92b024cb23c1e9"
+      }
+    ]
+  },
+  "HardwareVerified": false,
+  "EvidenceScope": "WF-1000XM5 socket connection, up to 30 seconds of idle reception and cleanup only. No device handshake, firmware, battery, feature control, hardware fault trigger, sustained reconnection, or WH-1000XM5 runtime validation.",
+  "Sc5Committed": false,
+  "Pushed": false,
+  "SustainedMonitor": {
+    "StartedAt": "2026-10-11T20:16:06.4104602+08:00",
+    "RecordedAt": "2026-10-11T20:17:38.0540739+08:00",
+    "DiagnosticInterrupted": false,
+    "SampleCount": 16,
+    "AdapterAbsentSamples": 0,
+    "Events": 0,
+    "ReportDirectory": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-5\\sustained-isolation-20261011-121606"
+  },
+  "UserIncidentClarification": {
+    "Source": "User recollection supplied after the isolation checks",
+    "FirstDisappearanceTimeKnown": false,
+    "Sequence": [
+      "Played games before resuming SC-5; suspects prolonged laptop heat.",
+      "Watched video while SC-5 continued.",
+      "Assistant reported Bluetooth unavailable; user noticed the missing adapter when testing the app afterward.",
+      "User disabled and re-enabled the USB path; Bluetooth returned.",
+      "Repeated disconnections occurred during testing and adapter disappearance continued after closing the app.",
+      "User rebooted; subsequent bounded checks were stable."
+    ],
+    "TemperatureMeasurementsAvailable": false,
+    "HeatHypothesisConfirmed": false,
+    "InitialTriggerKnown": false,
+    "EarlierAppDriverInteractionExcluded": false
+  }
+}

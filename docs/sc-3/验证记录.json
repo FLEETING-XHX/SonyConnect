@@ -1,0 +1,397 @@
+{
+  "schemaVersion": 1,
+  "task": "SC-3",
+  "recordedAt": "2026-10-11T15:00:49.0714416+08:00",
+  "branch": "FLEETING/sc-3-modular-state-capability",
+  "baseline": "326fbcc",
+  "acceptance": {
+    "moduleBoundaries": true,
+    "buildAndViewSwitchSeam": true,
+    "explicitValueStates": true,
+    "batteryLayoutsAndSessionReset": true
+  },
+  "sdk": "10.0.401",
+  "buildConfigurations": [
+    "Debug",
+    "Release"
+  ],
+  "buildWarnings": 0,
+  "buildErrors": 0,
+  "regression": {
+    "Passed": true,
+    "Scenarios": [
+      {
+        "Name": "absent-values-never-zero-or-off",
+        "Passed": true
+      },
+      {
+        "Name": "battery-layouts-and-unknown-model",
+        "Passed": true
+      },
+      {
+        "Name": "validated-battery-and-eq-ranges",
+        "Passed": true
+      },
+      {
+        "Name": "core-and-application-dependency-boundaries",
+        "Passed": true
+      },
+      {
+        "Name": "unavailable-default-has-no-sample-devices",
+        "Passed": true
+      },
+      {
+        "Name": "model-name-does-not-imply-capabilities",
+        "Passed": true
+      },
+      {
+        "Name": "wf-to-wh-clears-every-old-reading",
+        "Passed": true
+      },
+      {
+        "Name": "read-failure-preserves-last-confirmed",
+        "Passed": true
+      },
+      {
+        "Name": "write-rejection-restores-confirmed-mode",
+        "Passed": true
+      },
+      {
+        "Name": "pending-write-does-not-change-confirmed-mode",
+        "Passed": true
+      },
+      {
+        "Name": "ack-alone-is-not-confirmed-success",
+        "Passed": true
+      },
+      {
+        "Name": "success-without-readback-is-rejected",
+        "Passed": true
+      },
+      {
+        "Name": "incorrect-session-readback-is-rejected",
+        "Passed": true
+      },
+      {
+        "Name": "mismatched-mode-readback-is-not-write-success",
+        "Passed": true
+      },
+      {
+        "Name": "unknown-and-unsupported-writes-are-blocked",
+        "Passed": true
+      },
+      {
+        "Name": "late-read-after-device-switch-is-ignored",
+        "Passed": true
+      },
+      {
+        "Name": "late-notification-after-reconnect-is-ignored",
+        "Passed": true
+      },
+      {
+        "Name": "control-loss-invalidates-data-and-keeps-audio-separate",
+        "Passed": true
+      },
+      {
+        "Name": "older-response-does-not-overwrite-notification",
+        "Passed": true
+      },
+      {
+        "Name": "simultaneous-use-cases-do-not-send-duplicate-writes",
+        "Passed": true
+      },
+      {
+        "Name": "canceled-write-keeps-confirmed-value",
+        "Passed": true
+      },
+      {
+        "Name": "failed-connect-is-not-audio-or-control-success",
+        "Passed": true
+      },
+      {
+        "Name": "dispose-cancels-and-rejects-late-results",
+        "Passed": true
+      },
+      {
+        "Name": "simulated-capabilities-never-hardware-validation",
+        "Passed": true
+      }
+    ],
+    "HardwareVerified": false
+  },
+  "wpf": {
+    "default": {
+      "Passed": true,
+      "WpfRendered": true,
+      "Simulated": false,
+      "HardwareVerified": false,
+      "View": "Simple",
+      "Scenarios": [
+        "default-no-fake-device-data",
+        "default-controls-disabled",
+        "render:default",
+        "views-share-live-viewmodel",
+        "core-no-windows-references"
+      ]
+    },
+    "visualQa": {
+      "feedbackFixedAtBottom": true,
+      "inspected": [
+        "default",
+        "wf-connected",
+        "read-failed",
+        "write-failed",
+        "wh-not-read",
+        "wh-connected"
+      ],
+      "passed": true
+    },
+    "validationKind": "offscreen-render-and-viewmodel",
+    "simulation": {
+      "Passed": true,
+      "WpfRendered": true,
+      "Simulated": true,
+      "HardwareVerified": false,
+      "View": "Simple",
+      "Scenarios": [
+        "unread-not-off",
+        "render:wf-not-read",
+        "wf-simulated-connect",
+        "render:wf-connected",
+        "read-failure-visible",
+        "render:read-failed",
+        "write-failure-preserves-confirmed",
+        "render:write-failed",
+        "confirmed-off-distinct-from-unread",
+        "wh-selection-clears-wf-state",
+        "render:wh-not-read",
+        "wh-simulated-connect",
+        "render:wh-connected",
+        "views-share-live-viewmodel",
+        "core-no-windows-references"
+      ]
+    },
+    "publishedSimulation": {
+      "Passed": true,
+      "WpfRendered": true,
+      "Simulated": true,
+      "HardwareVerified": false,
+      "View": "Simple",
+      "Scenarios": [
+        "unread-not-off",
+        "render:wf-not-read",
+        "wf-simulated-connect",
+        "render:wf-connected",
+        "read-failure-visible",
+        "render:read-failed",
+        "write-failure-preserves-confirmed",
+        "render:write-failed",
+        "confirmed-off-distinct-from-unread",
+        "wh-selection-clears-wf-state",
+        "render:wh-not-read",
+        "wh-simulated-connect",
+        "render:wh-connected",
+        "views-share-live-viewmodel",
+        "core-no-windows-references"
+      ]
+    },
+    "publishedDefault": {
+      "Passed": true,
+      "WpfRendered": true,
+      "Simulated": false,
+      "HardwareVerified": false,
+      "View": "Simple",
+      "Scenarios": [
+        "default-no-fake-device-data",
+        "default-controls-disabled",
+        "render:default",
+        "views-share-live-viewmodel",
+        "core-no-windows-references"
+      ]
+    }
+  },
+  "publish": {
+    "File": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261011-070035-955\\publish\\SonyConnect.exe",
+    "Bytes": 140032634,
+    "Sha256": "49e4d38f0429a6520f2f0764344014ee3cc6995ac8787d2648b62327a0a1383d",
+    "FileCount": 1,
+    "SelfContained": true,
+    "SingleFile": true
+  },
+  "offline": true,
+  "nugetAuditPerformed": false,
+  "hardware": {
+    "firmware": "not-read-from-real-device",
+    "wh1000xm5": "unverified",
+    "conditions": "offline simulation, no headphone commands",
+    "wf1000xm5": "unverified"
+  },
+  "cleanWindowsWithoutDotnet": "not-retested-for-SC3",
+  "git": {
+    "recordedBeforeCommit": true,
+    "linearStatusUpdated": false,
+    "mainAndDevMoved": false,
+    "committed": false,
+    "pullRequest": null,
+    "pushed": false
+  },
+  "localRun": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261011-070035-955",
+  "sourceHashes": [
+    {
+      "file": "src/Directory.Build.props",
+      "sha256": "dd32e1d60d2446ded944d4c4851a58ea4bf5df2fddebd78da9ef3f5b5e902d6a"
+    },
+    {
+      "file": "src/SonyConnect.App/App.xaml",
+      "sha256": "2bfccff67eb28925fbef22348354890a63272f17f28bd4dcb68771f06dbbe652"
+    },
+    {
+      "file": "src/SonyConnect.App/App.xaml.cs",
+      "sha256": "37d388b6f28d61ede690ebc426600ba2ceca856fe3ee7efc2692fd438725b828"
+    },
+    {
+      "file": "src/SonyConnect.App/CompositionRoot.cs",
+      "sha256": "7108ae80a741cbf6216e24de83e39c2982f3a31cc3c48f3409a4191ffb3bbf2f"
+    },
+    {
+      "file": "src/SonyConnect.App/Notices/Windows-runtime-NOTICE.txt",
+      "sha256": "aa2e6c2d5b112685ec7bdb8f0588e21ec3a6de3cb6ac67d87a4aae3a9af41754"
+    },
+    {
+      "file": "src/SonyConnect.App/packages.lock.json",
+      "sha256": "36210f40459762885045d148bdf3d6b359ce91a9d52b290b2ca11bf13bcc24d8"
+    },
+    {
+      "file": "src/SonyConnect.App/SonyConnect.App.csproj",
+      "sha256": "e7f4edd8f6711843303ba6850633854fbc6c93dff45e5f9f6a01d6e32bc7f878"
+    },
+    {
+      "file": "src/SonyConnect.Application/DeviceController.cs",
+      "sha256": "a62eb405dd1a2f6270e46509aec1394ddddd8c909bd611021be8d2392760d37a"
+    },
+    {
+      "file": "src/SonyConnect.Application/IDeviceUseCases.cs",
+      "sha256": "f53db8eefea58665598f864b0b22c40ea0140279596cf70670ebecbfa153efc0"
+    },
+    {
+      "file": "src/SonyConnect.Application/packages.lock.json",
+      "sha256": "b6ffbc76ebeaa15dcc12f3763e5e37445365ea5cce83f53786766de4e8f6bb17"
+    },
+    {
+      "file": "src/SonyConnect.Application/Ports/DevicePorts.cs",
+      "sha256": "fd984ecf409f614cecb464fde9e02d64967299e9a7b0a2de457acbe789a1f548"
+    },
+    {
+      "file": "src/SonyConnect.Application/SonyConnect.Application.csproj",
+      "sha256": "7b4968d7a5f5e3255a8679384331001a1ad7f55e0a0ae2244cd561d68773c22f"
+    },
+    {
+      "file": "src/SonyConnect.Core/Devices/AudioSourceState.cs",
+      "sha256": "86e17caa403d07ecae9113e615aa308126813dd5398c5f5562e139178bd4fbb8"
+    },
+    {
+      "file": "src/SonyConnect.Core/Devices/BatteryState.cs",
+      "sha256": "26b3fcdd38c44ff4d8fd1f69ce71122a572f96c5944b878b6caf1d28729eb6d9"
+    },
+    {
+      "file": "src/SonyConnect.Core/Devices/Capabilities.cs",
+      "sha256": "459537b3f849ae85fe4f96323e1e132a1d0425f81e12a66827fca06a100579fd"
+    },
+    {
+      "file": "src/SonyConnect.Core/Devices/DeviceIdentity.cs",
+      "sha256": "d81c101f631d535f062952c2f1a5bdfa0174cf33810a4afa627900fb2e97da4d"
+    },
+    {
+      "file": "src/SonyConnect.Core/Devices/HeadphoneState.cs",
+      "sha256": "1e7fa5161f158c2ef6d57a638df1fab09c4e8a72b4d9cabe97d969a2381b7b25"
+    },
+    {
+      "file": "src/SonyConnect.Core/Devices/SoundState.cs",
+      "sha256": "c040b9fff89fb9a61119495edeccc857f91b76893eee85d0c488d3bd83fad1af"
+    },
+    {
+      "file": "src/SonyConnect.Core/packages.lock.json",
+      "sha256": "a4364d81a6de2707d66fbced18fbbc926c882ab96e1d1aebbb17e871285b9d75"
+    },
+    {
+      "file": "src/SonyConnect.Core/SonyConnect.Core.csproj",
+      "sha256": "ed7c0f20902846adddafbfc178137e3a0dd399bba0a8c656195f76855d2233bb"
+    },
+    {
+      "file": "src/SonyConnect.Core/State/DeviceValue.cs",
+      "sha256": "3a80759b0e8de31aa10989390a85dc6ff4dec5d115143f2233af49e65b9b4505"
+    },
+    {
+      "file": "src/SonyConnect.Core/State/OperationResult.cs",
+      "sha256": "048630b156a79789c1b503b861738cf5857c0cb78c11f18a83747648e47abb92"
+    },
+    {
+      "file": "src/SonyConnect.Infrastructure/Devices/SimulatedDeviceBackend.cs",
+      "sha256": "6646a7ed4821ff7e349858f28e649e1d33e01e2cce7cf2e798a9698155510962"
+    },
+    {
+      "file": "src/SonyConnect.Infrastructure/Devices/UnavailableDeviceBackend.cs",
+      "sha256": "1c32fbf242b15419fa7ebdff8500106a93f88066f31a0112cc70bb7d15a8fdd0"
+    },
+    {
+      "file": "src/SonyConnect.Infrastructure/packages.lock.json",
+      "sha256": "30e3a53e2ffd8556c3b569772a091f91edc400ff27233c4ff67fc9264032844d"
+    },
+    {
+      "file": "src/SonyConnect.Infrastructure/SonyConnect.Infrastructure.csproj",
+      "sha256": "330173ec6d29056265edb0d946cc64454b3408e8271a9259a00111b70e7bcd68"
+    },
+    {
+      "file": "src/SonyConnect.Presentation/AsyncCommand.cs",
+      "sha256": "0a88ce1c965198424ae0ee899ed9403354e390e915b6460b262454129fdce32a"
+    },
+    {
+      "file": "src/SonyConnect.Presentation/DeviceViewModel.cs",
+      "sha256": "445877ab717c7af6b7ae0568d2099d60ade63e4ac15c60710b3363bfe522fbde"
+    },
+    {
+      "file": "src/SonyConnect.Presentation/IUiScheduler.cs",
+      "sha256": "d3fdec2215a400986b5246a98479815ca1da14352b32bb6b302b5ceb1e22f03c"
+    },
+    {
+      "file": "src/SonyConnect.Presentation/packages.lock.json",
+      "sha256": "f4aa89d6432d9ec9df4134132b48c7b4d0e561d21bf727c901af2a1a9919b9dd"
+    },
+    {
+      "file": "src/SonyConnect.Presentation/SonyConnect.Presentation.csproj",
+      "sha256": "34b56c9997498d20876457cddc8b1f4fec7573bc55dc84aa0f8f1e5a50aa69d8"
+    },
+    {
+      "file": "src/SonyConnect.Presentation/ValueFormatter.cs",
+      "sha256": "6ad1d2e7c9387dab2ccfad63378369b62c0c88b309bba3d7202d17af78e96099"
+    },
+    {
+      "file": "src/SonyConnect.Presentation/Views/ControlPanelViewFactory.cs",
+      "sha256": "b6ce3d946f0692d2def2492562e33b2e371c94c13b831812942271fd406f04fc"
+    },
+    {
+      "file": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml",
+      "sha256": "9daf5ad6e5500eb2b27fe4dbebaa650c22b4589b88053b80db2aaac9fb4ccc7d"
+    },
+    {
+      "file": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml.cs",
+      "sha256": "fa2767c525226617ff99620fe5d828fbf759d5c18d6379e06f1fd906380a7b9e"
+    },
+    {
+      "file": "tests/SonyConnect.RegressionTests/ControlledBackend.cs",
+      "sha256": "527e1946aa74e9d55ba8f7921d9984791b6482ca9c34e45ddc34a50bff3d81cd"
+    },
+    {
+      "file": "tests/SonyConnect.RegressionTests/packages.lock.json",
+      "sha256": "45c8afdd8aabd7a939e1a31c631be69da63eb73c511eedab5b3bde098f6ba306"
+    },
+    {
+      "file": "tests/SonyConnect.RegressionTests/Program.cs",
+      "sha256": "9f8d118feaf1fe85402793e668584d0d9a59e6e86ae3c8f785a0ac9714029439"
+    },
+    {
+      "file": "tests/SonyConnect.RegressionTests/SonyConnect.RegressionTests.csproj",
+      "sha256": "bc60ffe78aaf720d71940ce867157db2df0dd46dbdda84ece2ff68f4ca572b12"
+    }
+  ]
+}

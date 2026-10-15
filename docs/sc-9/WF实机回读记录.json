@@ -1,0 +1,481 @@
+{
+  "Passed": true,
+  "HardwareVerified": true,
+  "RecordedAt": "2026-10-12T02:58:46.5242017+00:00",
+  "Origin": "Device",
+  "Initial": {
+    "Model": "WF-1000XM5",
+    "Firmware": "6.1.0",
+    "Mode": "Off",
+    "Level": 20,
+    "VoiceFocus": true,
+    "NormalRange": {
+      "Minimum": 1,
+      "Maximum": 20,
+      "Step": 1
+    },
+    "VoiceRange": {
+      "Minimum": 1,
+      "Maximum": 20,
+      "Step": 1
+    }
+  },
+  "Final": {
+    "Model": "WF-1000XM5",
+    "Firmware": "6.1.0",
+    "Mode": "Off",
+    "Level": 20,
+    "VoiceFocus": true,
+    "NormalRange": {
+      "Minimum": 1,
+      "Maximum": 20,
+      "Step": 1
+    },
+    "VoiceRange": {
+      "Minimum": 1,
+      "Maximum": 20,
+      "Step": 1
+    }
+  },
+  "Restored": true,
+  "Error": null,
+  "RestoreError": null,
+  "Steps": [
+    {
+      "Name": "connect-read-original",
+      "RecordedAt": "2026-10-12T02:58:42.1126606+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Off",
+        "Level": 20,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "ambient-mode",
+      "RecordedAt": "2026-10-12T02:58:42.2776932+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 20,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "common-level",
+      "RecordedAt": "2026-10-12T02:58:42.5124089+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 1,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "normal-focus",
+      "RecordedAt": "2026-10-12T02:58:42.7326927+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 1,
+        "VoiceFocus": false,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "normal-minimum",
+      "RecordedAt": "2026-10-12T02:58:42.963937+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 1,
+        "VoiceFocus": false,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "normal-maximum",
+      "RecordedAt": "2026-10-12T02:58:43.1812515+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 20,
+        "VoiceFocus": false,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "common-level-for-voice",
+      "RecordedAt": "2026-10-12T02:58:43.3850387+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 1,
+        "VoiceFocus": false,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "voice-focus-on",
+      "RecordedAt": "2026-10-12T02:58:43.644335+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 1,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "voice-focus-off",
+      "RecordedAt": "2026-10-12T02:58:43.8676592+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 1,
+        "VoiceFocus": false,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "off-mode",
+      "RecordedAt": "2026-10-12T02:58:44.0839446+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Off",
+        "Level": 1,
+        "VoiceFocus": false,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "noise-canceling-mode",
+      "RecordedAt": "2026-10-12T02:58:44.2775145+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "NoiseCanceling",
+        "Level": 1,
+        "VoiceFocus": false,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "refresh-actual",
+      "RecordedAt": "2026-10-12T02:58:44.8224525+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "NoiseCanceling",
+        "Level": 1,
+        "VoiceFocus": false,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "restore-ambient",
+      "RecordedAt": "2026-10-12T02:58:45.0352343+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 1,
+        "VoiceFocus": false,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "restore-common-level",
+      "RecordedAt": "2026-10-12T02:58:45.2674502+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 1,
+        "VoiceFocus": false,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "restore-voice",
+      "RecordedAt": "2026-10-12T02:58:45.5168528+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 1,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "restore-level",
+      "RecordedAt": "2026-10-12T02:58:45.7099862+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 20,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "restore-mode",
+      "RecordedAt": "2026-10-12T02:58:45.9450145+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Off",
+        "Level": 20,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "restore-refresh",
+      "RecordedAt": "2026-10-12T02:58:46.4714175+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Off",
+        "Level": 20,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    }
+  ],
+  "OfficialAppComparison": "\u5F85\u7528\u6237\u6838\u5BF9",
+  "ExternalNotificationValidation": "\u81EA\u52A8\u63A2\u6D4B\u672A\u9A8C\u8BC1\u624B\u673A\u53D8\u5316\u901A\u77E5",
+  "AcousticValidation": "\u534F\u8BAE\u786E\u8BA4\u4E0D\u7B49\u540C\u4E8E\u542C\u611F\u9A8C\u8BC1",
+  "DiagnosticArchive": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-9\\wf-hardware\\sound-diagnostics.scdiag"
+}

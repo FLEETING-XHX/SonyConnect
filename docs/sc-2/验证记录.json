@@ -1,0 +1,564 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-11T14:06:04.5873980+08:00",
+  "issue": "SC-2",
+  "branch": "FLEETING/sc-2-wpf-single-exe",
+  "sc1Commit": "f5504292a30fe22ec87ecfc6afd5d1d21ab3e9cd",
+  "completion": "technical-acceptance-passed",
+  "remotePush": false,
+  "linear": {
+    "status": "Done",
+    "completedAt": "2026-10-11T06:28:56.046Z",
+    "acceptanceItemsPassed": 4,
+    "remotePullRequest": null
+  },
+  "build": {
+    "debug": "passed",
+    "release": "passed",
+    "warnings": 0,
+    "errors": 0
+  },
+  "publication": {
+    "schemaVersion": 1,
+    "recordedAt": "2026-10-11T13:30:52.721332+08:00",
+    "sdk": "10.0.401",
+    "targetFramework": "net10.0-windows10.0.26100.0",
+    "runtimeIdentifier": "win-x64",
+    "runtime": "10.0.12",
+    "selfContained": true,
+    "singleFile": true,
+    "nativeSelfExtract": true,
+    "trimmed": false,
+    "readyToRun": false,
+    "compressed": false,
+    "executable": "SonyConnect.SC2Probe.exe",
+    "bytes": 166773798,
+    "sha256": "f177011d496bff587a8498cfa5f84323baa28a94e3161ec8ad4877cd2875dc48",
+    "dependencies": [
+      {
+        "package": "microsoft.netcore.app.runtime.win-x64",
+        "version": "10.0.12",
+        "bytes": 39968868,
+        "sha256": "0f63dee7ca4383cb16848966f81e439399e2058e1671ebe27e5eaf4b200e8691"
+      },
+      {
+        "package": "microsoft.windowsdesktop.app.runtime.win-x64",
+        "version": "10.0.12",
+        "bytes": 39172884,
+        "sha256": "68bce56d2402969d82ac77fbd2b2a54f55fda86ea060366e6ddb832353dab80a"
+      },
+      {
+        "package": "microsoft.windows.sdk.net.ref",
+        "version": "10.0.26100.57",
+        "bytes": 13193759,
+        "sha256": "eaa0e3b938319f75beac5c046c84ef57212c2743e9263e0db33b2019ab70b524"
+      }
+    ],
+    "notices": [
+      {
+        "package": "microsoft.netcore.app.runtime.win-x64",
+        "version": "10.0.12",
+        "file": "LICENSE.TXT",
+        "sha256": "d7a68596ab69b06f51ca278a6545148e4269a9381c26d597c13df5d88e08cf5b"
+      },
+      {
+        "package": "microsoft.netcore.app.runtime.win-x64",
+        "version": "10.0.12",
+        "file": "THIRD-PARTY-NOTICES.TXT",
+        "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21"
+      },
+      {
+        "package": "microsoft.windowsdesktop.app.runtime.win-x64",
+        "version": "10.0.12",
+        "file": "LICENSE",
+        "sha256": "a89886665765362eb77e0f8e26602c924520041d1711b2eedc136434fe4d01ab"
+      }
+    ],
+    "embeddedNotices": [
+      {
+        "file": "NET-Library-License.txt",
+        "bytes": 9378,
+        "sha256": "c08af77b6e26a8e5b8c7c549065beeaf67ea74ad77703ac7668b688a494e43c2"
+      },
+      {
+        "file": "NETCore-LICENSE.txt",
+        "bytes": 1139,
+        "sha256": "d7a68596ab69b06f51ca278a6545148e4269a9381c26d597c13df5d88e08cf5b"
+      },
+      {
+        "file": "NETCore-THIRD-PARTY-NOTICES.txt",
+        "bytes": 78041,
+        "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21"
+      },
+      {
+        "file": "Windows-Native-Binary-NOTICE.txt",
+        "bytes": 1153,
+        "sha256": "49f1b8fd9d2378c5567628aecbb68b4393172fc3673ee891b90d242b098eb98d"
+      },
+      {
+        "file": "WindowsDesktop-LICENSE.txt",
+        "bytes": 1137,
+        "sha256": "a89886665765362eb77e0f8e26602c924520041d1711b2eedc136434fe4d01ab"
+      },
+      {
+        "file": "WindowsSDK-current-LICENSE.txt",
+        "bytes": 27597,
+        "sha256": "574a1547d1a3954a24a25abbc5a585fc8fc214b905a67bd4dd214c2e328c5152"
+      },
+      {
+        "file": "WindowsSDK-LICENSE.txt",
+        "bytes": 28095,
+        "sha256": "aba32b705ea9716ba8b6e1cb464016e1709256214022fc132d49bb0572c33406"
+      },
+      {
+        "file": "WindowsSDK-projection-NOTICE.txt",
+        "bytes": 1029,
+        "sha256": "6a7fcb97470d214627dac8bb2ebb9dd669385eeecce73baeb716b8a32af0a4f1"
+      }
+    ]
+  },
+  "hostValidation": {
+    "schemaVersion": 1,
+    "passed": true,
+    "validationKind": "host-with-isolated-process-paths",
+    "cleanWindowsWithoutDotnet": "not-verified-by-this-script",
+    "executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\publish\\SonyConnect.SC2Probe.exe",
+    "executableSha256": "f177011d496bff587a8498cfa5f84323baa28a94e3161ec8ad4877cd2875dc48",
+    "runRoot": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496",
+    "extractedFiles": [
+      {
+        "Name": "D3DCompiler_47_cor3.dll",
+        "Length": 4741488
+      },
+      {
+        "Name": "PenImc_cor3.dll",
+        "Length": 158032
+      },
+      {
+        "Name": "PresentationNative_cor3.dll",
+        "Length": 1235240
+      },
+      {
+        "Name": "vcruntime140_cor3.dll",
+        "Length": 124544
+      },
+      {
+        "Name": "wpfgfx_cor3.dll",
+        "Length": 1956136
+      }
+    ],
+    "results": [
+      {
+        "name": "cold",
+        "exitCode": 0,
+        "elapsedMs": 987,
+        "report": {
+          "recordedAt": "2026-10-11T13:30:54.3337279+08:00",
+          "framework": ".NET 10.0.12",
+          "operatingSystem": "Microsoft Windows 10.0.26100",
+          "processArchitecture": "X64",
+          "executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\publish\\SonyConnect.SC2Probe.exe",
+          "runtimeDirectory": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\publish\\",
+          "dataRoot": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\profile",
+          "extractionOverride": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\extracted",
+          "wpfRendered": true,
+          "corePassed": true,
+          "storage": {
+            "writable": true,
+            "detail": "中文写入、原子移动与回读通过",
+            "settingsState": "无设置文件（使用默认值）"
+          },
+          "bluetooth": {
+            "status": "available",
+            "detail": "适配器可读取，Classic=True，LE=True"
+          },
+          "rfcomm": {
+            "status": "available",
+            "detail": "AF_BTH/RFCOMM socket 创建与释放通过，未连接耳机"
+          },
+          "media": {
+            "status": "available",
+            "detail": "媒体会话 API 可调用；会话数量=1"
+          },
+          "nativeModules": {
+            "PresentationNative_cor3.dll": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\extracted\\SonyConnect.SC2Probe\\YX5iof-UXh2S\\PresentationNative_cor3.dll"
+          },
+          "runtimeEmbeddedInExecutable": true,
+          "limitations": [
+            "Sony 协议未实现；WF/WH 固件及实机链路未验证",
+            "系统 API 可调用不等于耳机控制可用"
+          ]
+        },
+        "reportFile": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\cold.json",
+        "snapshotFile": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\cold.png"
+      },
+      {
+        "name": "warm",
+        "exitCode": 0,
+        "elapsedMs": 598,
+        "report": {
+          "recordedAt": "2026-10-11T13:30:54.9651564+08:00",
+          "framework": ".NET 10.0.12",
+          "operatingSystem": "Microsoft Windows 10.0.26100",
+          "processArchitecture": "X64",
+          "executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\publish\\SonyConnect.SC2Probe.exe",
+          "runtimeDirectory": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\publish\\",
+          "dataRoot": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\profile",
+          "extractionOverride": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\extracted",
+          "wpfRendered": true,
+          "corePassed": true,
+          "storage": {
+            "writable": true,
+            "detail": "中文写入、原子移动与回读通过",
+            "settingsState": "无设置文件（使用默认值）"
+          },
+          "bluetooth": {
+            "status": "available",
+            "detail": "适配器可读取，Classic=True，LE=True"
+          },
+          "rfcomm": {
+            "status": "available",
+            "detail": "AF_BTH/RFCOMM socket 创建与释放通过，未连接耳机"
+          },
+          "media": {
+            "status": "available",
+            "detail": "媒体会话 API 可调用；会话数量=1"
+          },
+          "nativeModules": {
+            "PresentationNative_cor3.dll": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\extracted\\SonyConnect.SC2Probe\\YX5iof-UXh2S\\PresentationNative_cor3.dll"
+          },
+          "runtimeEmbeddedInExecutable": true,
+          "limitations": [
+            "Sony 协议未实现；WF/WH 固件及实机链路未验证",
+            "系统 API 可调用不等于耳机控制可用"
+          ]
+        },
+        "reportFile": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\warm.json",
+        "snapshotFile": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\warm.png"
+      },
+      {
+        "name": "damaged-settings",
+        "exitCode": 0,
+        "elapsedMs": 604,
+        "report": {
+          "recordedAt": "2026-10-11T13:30:55.5737735+08:00",
+          "framework": ".NET 10.0.12",
+          "operatingSystem": "Microsoft Windows 10.0.26100",
+          "processArchitecture": "X64",
+          "executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\publish\\SonyConnect.SC2Probe.exe",
+          "runtimeDirectory": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\publish\\",
+          "dataRoot": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\profile",
+          "extractionOverride": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\extracted",
+          "wpfRendered": true,
+          "corePassed": true,
+          "storage": {
+            "writable": true,
+            "detail": "中文写入、原子移动与回读通过",
+            "settingsState": "设置格式损坏，保留原文件，未覆盖"
+          },
+          "bluetooth": {
+            "status": "available",
+            "detail": "适配器可读取，Classic=True，LE=True"
+          },
+          "rfcomm": {
+            "status": "available",
+            "detail": "AF_BTH/RFCOMM socket 创建与释放通过，未连接耳机"
+          },
+          "media": {
+            "status": "available",
+            "detail": "媒体会话 API 可调用；会话数量=1"
+          },
+          "nativeModules": {
+            "PresentationNative_cor3.dll": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\extracted\\SonyConnect.SC2Probe\\YX5iof-UXh2S\\PresentationNative_cor3.dll"
+          },
+          "runtimeEmbeddedInExecutable": true,
+          "limitations": [
+            "Sony 协议未实现；WF/WH 固件及实机链路未验证",
+            "系统 API 可调用不等于耳机控制可用"
+          ]
+        },
+        "reportFile": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\damaged-settings.json",
+        "snapshotFile": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\damaged-settings.png"
+      },
+      {
+        "name": "invalid-data-root",
+        "exitCode": 2,
+        "elapsedMs": 613,
+        "report": {
+          "recordedAt": "2026-10-11T13:30:56.1963189+08:00",
+          "framework": ".NET 10.0.12",
+          "operatingSystem": "Microsoft Windows 10.0.26100",
+          "processArchitecture": "X64",
+          "executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\publish\\SonyConnect.SC2Probe.exe",
+          "runtimeDirectory": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\publish\\",
+          "dataRoot": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\not-a-directory",
+          "extractionOverride": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\extracted",
+          "wpfRendered": true,
+          "corePassed": false,
+          "storage": {
+            "writable": false,
+            "detail": "目录不可写：IOException",
+            "settingsState": "未修改设置"
+          },
+          "bluetooth": {
+            "status": "available",
+            "detail": "适配器可读取，Classic=True，LE=True"
+          },
+          "rfcomm": {
+            "status": "available",
+            "detail": "AF_BTH/RFCOMM socket 创建与释放通过，未连接耳机"
+          },
+          "media": {
+            "status": "available",
+            "detail": "媒体会话 API 可调用；会话数量=1"
+          },
+          "nativeModules": {
+            "PresentationNative_cor3.dll": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\extracted\\SonyConnect.SC2Probe\\YX5iof-UXh2S\\PresentationNative_cor3.dll"
+          },
+          "runtimeEmbeddedInExecutable": true,
+          "limitations": [
+            "Sony 协议未实现；WF/WH 固件及实机链路未验证",
+            "系统 API 可调用不等于耳机控制可用"
+          ]
+        },
+        "reportFile": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\invalid-data-root.json",
+        "snapshotFile": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\host-20261011-133053-496\\invalid-data-root.png"
+      }
+    ]
+  },
+  "sandbox": {
+    "status": "passed",
+    "reason": "Clean Windows Sandbox validation passed after restart, using system Windows PowerShell 5.1 and official wsb CLI",
+    "featureResult": {
+      "recordedAt": "2026-10-11T13:28:11.9788021+08:00",
+      "feature": "Containers-DisposableClientVM",
+      "before": "Disabled",
+      "after": "Enabled",
+      "restartNeeded": true,
+      "automaticRestart": false,
+      "passed": true
+    },
+    "preparedConfiguration": "artifacts/sc-2/sandbox-20261011-140324-724/SC2.wsb",
+    "nextCommand": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/Invoke-SC2Sandbox.ps1",
+    "guestResult": {
+      "schemaVersion": 1,
+      "passed": true,
+      "validationKind": "clean-windows-sandbox",
+      "recordedAt": "2026-10-11T14:03:42.8156248+08:00",
+      "preinstalledModernDotnet": false,
+      "registryRuntime": [],
+      "runtimeDirectories": [],
+      "readonlyExecutableMapping": "C:\\SC2Input",
+      "executableSha256": "f177011d496bff587a8498cfa5f84323baa28a94e3161ec8ad4877cd2875dc48",
+      "os": "Microsoft Windows NT 10.0.26100.0",
+      "elapsedMs": 4955,
+      "probe": {
+        "recordedAt": "2026-10-11T14:03:41.5945577+08:00",
+        "framework": ".NET 10.0.12",
+        "operatingSystem": "Microsoft Windows 10.0.26100",
+        "processArchitecture": "X64",
+        "executable": "C:\\SC2Input\\SonyConnect.SC2Probe.exe",
+        "runtimeDirectory": "C:\\SC2Input\\",
+        "dataRoot": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\SonyConnect\\SC2Sandbox\\profile",
+        "extractionOverride": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\SonyConnect\\SC2Sandbox\\extracted",
+        "wpfRendered": true,
+        "corePassed": true,
+        "storage": {
+          "writable": true,
+          "detail": "中文写入、原子移动与回读通过",
+          "settingsState": "无设置文件（使用默认值）"
+        },
+        "bluetooth": {
+          "status": "unavailable",
+          "detail": "没有可用适配器（不代表发布失败）"
+        },
+        "rfcomm": {
+          "status": "available",
+          "detail": "AF_BTH/RFCOMM socket 创建与释放通过，未连接耳机"
+        },
+        "media": {
+          "status": "available",
+          "detail": "媒体会话 API 可调用；会话数量=0"
+        },
+        "nativeModules": {
+          "PresentationNative_cor3.dll": "C:\\Users\\WDAGUtilityAccount\\AppData\\Local\\SonyConnect\\SC2Sandbox\\extracted\\SonyConnect.SC2Probe\\YX5iof-UXh2S\\PresentationNative_cor3.dll"
+        },
+        "runtimeEmbeddedInExecutable": true,
+        "limitations": [
+          "Sony 协议未实现；WF/WH 固件及实机链路未验证",
+          "系统 API 可调用不等于耳机控制可用"
+        ]
+      }
+    },
+    "launcherReport": {
+      "recordedAt": "2026-10-11T14:03:27.5523207+08:00",
+      "launcher": "wsb-cli",
+      "sandboxId": "48bd057a-b602-4437-beb6-d18f703017c6",
+      "configuration": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-2\\sandbox-20261011-140324-724\\SC2.wsb"
+    },
+    "clientVersion": "0.8.107.0",
+    "hostBootTime": "2026-10-11T13:41:03.5000000+08:00",
+    "artifactHashes": [
+      {
+        "path": "artifacts\\sc-2\\sandbox-20261011-140324-724\\output\\sandbox-result.json",
+        "sha256": "0e8cb92a4f7c20531436015f542ece5bd5507da6d6894ef66abf91d587f72c4d"
+      },
+      {
+        "path": "artifacts\\sc-2\\sandbox-20261011-140324-724\\output\\probe.json",
+        "sha256": "ba6a6012d4085b866c3eea0c860515ac2a25cb584c2abc53d24e62e33266cd75"
+      },
+      {
+        "path": "artifacts\\sc-2\\sandbox-20261011-140324-724\\output\\probe.png",
+        "sha256": "d43fdc5c1bfbbdfb3fa057c98a670c2d177ef5f1a2fe6e38032cfcb0ceccfef8"
+      },
+      {
+        "path": "artifacts\\sc-2\\sandbox-20261011-140324-724\\output\\launch.json",
+        "sha256": "7410bc487d03afc8dfe62947fde9ef83cc3f9cf53cd4dab4d5d5d6e3fbd133e6"
+      }
+    ]
+  },
+  "nativeFiles": [
+    {
+      "file": "D3DCompiler_47_cor3.dll",
+      "bytes": 4741488,
+      "sha256": "a05f99734f7c4822fefc12b367af21fd0976ed6608752fb1e1e80b6ece7ecbbb",
+      "matchesFixedPackage": true
+    },
+    {
+      "file": "PenImc_cor3.dll",
+      "bytes": 158032,
+      "sha256": "c4c9cd3d9d4d8ee175575545048d38328c09f12ba15c606bda49ba0d2ee73bac",
+      "matchesFixedPackage": true
+    },
+    {
+      "file": "PresentationNative_cor3.dll",
+      "bytes": 1235240,
+      "sha256": "42e2e543c17e1b37499baf00d956433b8afb655348ec0fae89c926fb7d149b6e",
+      "matchesFixedPackage": true
+    },
+    {
+      "file": "vcruntime140_cor3.dll",
+      "bytes": 124544,
+      "sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+      "matchesFixedPackage": true
+    },
+    {
+      "file": "wpfgfx_cor3.dll",
+      "bytes": 1956136,
+      "sha256": "501a1cd67d51bb1663870b12af0f8c0ba29b3d37b8b509be896d2aaf32db214a",
+      "matchesFixedPackage": true
+    }
+  ],
+  "preservation": {
+    "baselineFiles": 101,
+    "unchanged": 100,
+    "intentionalChange": [
+      ".gitattributes"
+    ],
+    "unchangedUiFiles": 63,
+    "sc1Documents": "unchanged",
+    "existingUntrackedDirectory": "docs/linear/"
+  },
+  "licenseSourceSnapshots": [
+    {
+      "file": "NET-Library-License.html",
+      "bytes": 31654,
+      "sha256": "bab5ce669dca2e17559925da7c5b02d294b85eead8ef82f49ed3fb5dcf6139ee"
+    },
+    {
+      "file": "NET-Windows-binary-licenses.md",
+      "bytes": 1500,
+      "sha256": "3bdf7142d570f11780d1a5fcb6cbe47f5cf4a15bc634acf8db93fe3be8837119"
+    },
+    {
+      "file": "WindowsSDK-current-license.html",
+      "bytes": 49424,
+      "sha256": "f8affc0069c21d5cad87afc876b549533879c2a5a07b95d0f3cf8dbefeffb7f7"
+    },
+    {
+      "file": "WindowsSDK-package-license.rtf",
+      "bytes": 246945,
+      "sha256": "dd07eb178e00c6bba4148457fc00ff77cd4887eb521d504186fe59c9ec8bbe62"
+    },
+    {
+      "file": "WindowsSDK-redist.html",
+      "bytes": 38644,
+      "sha256": "67e1ebfc72820c482642dbf9f978a26850a59992b87d97b74ce9336a4585e406"
+    }
+  ],
+  "hardware": {
+    "sonyCommands": "not-implemented",
+    "wf1000xm5": "unverified",
+    "wh1000xm5": "unverified",
+    "reconnectNotifications": "unverified"
+  },
+  "compressionExperiment": {
+    "status": "pre-final-notice-comparison-only",
+    "manifest": {
+      "schemaVersion": 1,
+      "recordedAt": "2026-10-11T13:28:51.6310908+08:00",
+      "sdk": "10.0.401",
+      "targetFramework": "net10.0-windows10.0.26100.0",
+      "runtimeIdentifier": "win-x64",
+      "runtime": "10.0.12",
+      "selfContained": true,
+      "singleFile": true,
+      "nativeSelfExtract": true,
+      "trimmed": false,
+      "readyToRun": false,
+      "compressed": true,
+      "executable": "SonyConnect.SC2Probe.exe",
+      "bytes": 71559164,
+      "sha256": "dd378d9ae8acbe5b2cce417be34ca2cd4f9c4b79ed6ce95b34695c6b111088cb",
+      "dependencies": [
+        {
+          "package": "microsoft.netcore.app.runtime.win-x64",
+          "version": "10.0.12",
+          "bytes": 39968868,
+          "sha256": "0f63dee7ca4383cb16848966f81e439399e2058e1671ebe27e5eaf4b200e8691"
+        },
+        {
+          "package": "microsoft.windowsdesktop.app.runtime.win-x64",
+          "version": "10.0.12",
+          "bytes": 39172884,
+          "sha256": "68bce56d2402969d82ac77fbd2b2a54f55fda86ea060366e6ddb832353dab80a"
+        },
+        {
+          "package": "microsoft.windows.sdk.net.ref",
+          "version": "10.0.26100.57",
+          "bytes": 13193759,
+          "sha256": "eaa0e3b938319f75beac5c046c84ef57212c2743e9263e0db33b2019ab70b524"
+        }
+      ],
+      "notices": [
+        {
+          "package": "microsoft.netcore.app.runtime.win-x64",
+          "version": "10.0.12",
+          "file": "LICENSE.TXT",
+          "sha256": "d7a68596ab69b06f51ca278a6545148e4269a9381c26d597c13df5d88e08cf5b"
+        },
+        {
+          "package": "microsoft.netcore.app.runtime.win-x64",
+          "version": "10.0.12",
+          "file": "THIRD-PARTY-NOTICES.TXT",
+          "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21"
+        },
+        {
+          "package": "microsoft.windowsdesktop.app.runtime.win-x64",
+          "version": "10.0.12",
+          "file": "LICENSE",
+          "sha256": "a89886665765362eb77e0f8e26602c924520041d1711b2eedc136434fe4d01ab"
+        }
+      ]
+    },
+    "hostRun": "artifacts/sc-2/host-20261011-132852-249",
+    "adopted": false
+  },
+  "systemPowerShellValidation": {
+    "version": "5.1",
+    "invokeSandbox": "passed",
+    "hostTests": "passed",
+    "hostRun": "artifacts/sc-2/host-20261011-135740-605",
+    "pwshRequired": false
+  }
+}

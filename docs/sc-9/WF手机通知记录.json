@@ -1,0 +1,258 @@
+{
+  "Passed": false,
+  "HardwareVerified": false,
+  "RecordedAt": "2026-10-12T03:04:35.5064209+00:00",
+  "Origin": "Device",
+  "Initial": {
+    "Model": "WF-1000XM5",
+    "Firmware": "6.1.0",
+    "Mode": "Off",
+    "Level": 20,
+    "VoiceFocus": true,
+    "NormalRange": {
+      "Minimum": 1,
+      "Maximum": 20,
+      "Step": 1
+    },
+    "VoiceRange": {
+      "Minimum": 1,
+      "Maximum": 20,
+      "Step": 1
+    }
+  },
+  "Final": {
+    "Model": "WF-1000XM5",
+    "Firmware": "6.1.0",
+    "Mode": "Off",
+    "Level": 20,
+    "VoiceFocus": true,
+    "NormalRange": {
+      "Minimum": 1,
+      "Maximum": 20,
+      "Step": 1
+    },
+    "VoiceRange": {
+      "Minimum": 1,
+      "Maximum": 20,
+      "Step": 1
+    }
+  },
+  "Restored": true,
+  "Error": "refresh-after-phone-observation: \u63A7\u5236\u8FDE\u63A5\u5C1A\u672A\u5EFA\u7ACB\u3002",
+  "RestoreError": null,
+  "Steps": [
+    {
+      "Name": "connect-read-original",
+      "RecordedAt": "2026-10-12T03:03:02.4074829+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Off",
+        "Level": 20,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "refresh-after-phone-observation",
+      "RecordedAt": "2026-10-12T03:04:32.4244846+00:00",
+      "Passed": false,
+      "Status": "Failed",
+      "Error": "\u63A7\u5236\u8FDE\u63A5\u5C1A\u672A\u5EFA\u7ACB\u3002",
+      "Snapshot": {
+        "Model": null,
+        "Firmware": null,
+        "Mode": null,
+        "Level": null,
+        "VoiceFocus": null,
+        "NormalRange": null,
+        "VoiceRange": null
+      }
+    },
+    {
+      "Name": "restore-reconnect-read",
+      "RecordedAt": "2026-10-12T03:04:33.7460182+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "NoiseCanceling",
+        "Level": 7,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "restore-ambient",
+      "RecordedAt": "2026-10-12T03:04:33.9898051+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 7,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "restore-common-level",
+      "RecordedAt": "2026-10-12T03:04:34.2158989+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 1,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "restore-voice",
+      "RecordedAt": "2026-10-12T03:04:34.4373539+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 1,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "restore-level",
+      "RecordedAt": "2026-10-12T03:04:34.7061476+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Ambient",
+        "Level": 20,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "restore-mode",
+      "RecordedAt": "2026-10-12T03:04:34.8921045+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Off",
+        "Level": 20,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    },
+    {
+      "Name": "restore-refresh",
+      "RecordedAt": "2026-10-12T03:04:35.4649027+00:00",
+      "Passed": true,
+      "Status": "Succeeded",
+      "Error": null,
+      "Snapshot": {
+        "Model": "WF-1000XM5",
+        "Firmware": "6.1.0",
+        "Mode": "Off",
+        "Level": 20,
+        "VoiceFocus": true,
+        "NormalRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        },
+        "VoiceRange": {
+          "Minimum": 1,
+          "Maximum": 20,
+          "Step": 1
+        }
+      }
+    }
+  ],
+  "OfficialAppComparison": "\u5F85\u7528\u6237\u6838\u5BF9",
+  "ExternalStates": [],
+  "ExternalNotificationValidation": "\u63A5\u6536\u7684\u5916\u90E8\u72B6\u6001\u53CA\u65E5\u5FD7\u9700\u4E0E\u7528\u6237\u624B\u673A\u64CD\u4F5C\u6838\u5BF9",
+  "AcousticValidation": "\u534F\u8BAE\u786E\u8BA4\u4E0D\u7B49\u540C\u4E8E\u542C\u611F\u9A8C\u8BC1",
+  "DiagnosticArchive": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-9\\wf-phone-long\\sound-diagnostics.scdiag"
+}

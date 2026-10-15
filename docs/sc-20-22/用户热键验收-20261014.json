@@ -1,0 +1,14 @@
+{
+  "RecordedDate": "2026-10-14",
+  "Task": "SC-20",
+  "Source": "UserReport",
+  "Feedback": "新版热键一切正常",
+  "Acceptance": "PassedByUserReport",
+  "Scope": "当前共用实现与已确认 WF 基线，不扩大为其他型号或全部系统环境",
+  "TestedExecutableHash": null,
+  "PerScenarioLogsProvided": false,
+  "PriorAutomatedReport": "artifacts/sc-20-22/run-20261014-023956-307/summary.json",
+  "OriginalAutomatedHardwareFlagsModified": false,
+  "LinearStatusUpdated": false,
+  "GitCommittedMergedOrPushed": false
+}

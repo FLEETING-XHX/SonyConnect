@@ -1,0 +1,32 @@
+SonyConnect native C++ migration, 2026-10-14.
+
+The native protocol/session implementation independently ports the project's
+existing SonyConnect C# behavior. No .NET runtime, reference checkout or external
+protocol library is a native build/runtime dependency.
+
+Wire definitions and existing capture fixtures were consulted at these pinned
+MIT references. Their complete original licenses accompany this notice:
+
+SonyHeadphonesClient:
+https://github.com/mos9527/SonyHeadphonesClient/tree/193c1e053836119eb875c97331dd10c1aef206bc
+Tandem, MDR V2 Table 1/Table 2 definitions and existing test fixtures.
+
+sony-tray:
+https://github.com/abhiinhii/sony-tray/tree/497baa39ee5a940ba9ef2d1f9489d40ec10d1952
+Existing SonyConnect framing/bootstrap/session behavior cross-check.
+
+sony-device-center:
+https://github.com/marconvcm/sony-device-center/tree/0bf98223c1ba402dd6c5136c21e6ab35482e4390
+C++20 separation of transport/protocol/device/UI and build organization consulted.
+No Qt, ImGui or upstream runtime source is linked or bundled.
+
+Sound Connect 13.2.2 APK derived static handshake evidence was checked against
+the existing implementation. APK code, UI assets, strings and audio were not
+incorporated. Gadgetbridge AGPL code/tests/fixtures/binaries are not included.
+
+Constructed tests, static analysis and an ACK do not establish hardware support.
+Native hardware validation remains separate from historical C# device evidence.
+
+Windows SDK and C++/WinRT are used through the installed Microsoft developer
+toolchain and Windows APIs. Portable builds statically link the licensed MSVC
+runtime and depend on Windows system libraries; no .NET distribution is bundled.

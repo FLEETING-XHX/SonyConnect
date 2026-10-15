@@ -1,0 +1,265 @@
+{
+  "RecordedAt": "2026-10-12T01:22:25.0712951+08:00",
+  "Scope": "Local generated artifacts only",
+  "DeletedFiles": 12,
+  "DeletedDirectories": 28,
+  "DeletedBytes": 2136973671.0,
+  "ProtectedExecutablesVerified": 11,
+  "EvidenceFilesHashVerified": 784,
+  "Targets": [
+    {
+      "RelativePath": "artifacts/sc-2/sandbox-20261011-132639-149/input/SonyConnect.SC2Probe.exe",
+      "Kind": "File",
+      "Bytes": 166732838,
+      "Reason": "Unreferenced superseded stage binary; reports and logs retained"
+    },
+    {
+      "RelativePath": "artifacts/sc-2/sandbox-20261011-132816-428/input/SonyConnect.SC2Probe.exe",
+      "Kind": "File",
+      "Bytes": 166732838,
+      "Reason": "Unreferenced superseded stage binary; reports and logs retained"
+    },
+    {
+      "RelativePath": "artifacts/sc-2/sandbox-20261011-133057-027/input/SonyConnect.SC2Probe.exe",
+      "Kind": "File",
+      "Bytes": 166773798,
+      "Reason": "Unreferenced superseded stage binary; reports and logs retained"
+    },
+    {
+      "RelativePath": "artifacts/sc-2/sandbox-20261011-135709-733/input/SonyConnect.SC2Probe.exe",
+      "Kind": "File",
+      "Bytes": 166773798,
+      "Reason": "Unreferenced superseded stage binary; reports and logs retained"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-065451-091/publish/SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 139990138,
+      "Reason": "Unreferenced superseded stage binary; reports and logs retained"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-065557-074/publish/SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 140032122,
+      "Reason": "Unreferenced superseded stage binary; reports and logs retained"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-072820-175/publish/SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 140077690,
+      "Reason": "Unreferenced superseded stage binary; reports and logs retained"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-073400-365/publish/SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 140077690,
+      "Reason": "Unreferenced superseded stage binary; reports and logs retained"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-135241-696/publish/SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167125322,
+      "Reason": "Unreferenced superseded stage binary; reports and logs retained"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-135403-888/publish/SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167125322,
+      "Reason": "Unreferenced superseded stage binary; reports and logs retained"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-163609-347/publish/SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167163210,
+      "Reason": "Unreferenced superseded stage binary; reports and logs retained"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-163910-737/publish/SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167163210,
+      "Reason": "Unreferenced superseded stage binary; reports and logs retained"
+    },
+    {
+      "RelativePath": "artifacts/sc-2/host-20261011-132440-383/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-2/host-20261011-132610-688/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-2/host-20261011-132812-773/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-2/host-20261011-132852-249/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-2/host-20261011-133053-496/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-2/host-20261011-135740-605/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-065557-074/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-070035-955/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-070846-037/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-072820-175/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-073400-365/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-075256-427/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-112836-178/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-135241-696/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-135403-888/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-135512-345/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-163609-347/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-163910-737/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-3/run-20261011-171115-204/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-5/run-20261011-112835-670/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-6/run-20261011-135240-585/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-6/run-20261011-135402-837/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-6/run-20261011-135511-290/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-6/run-20261011-163608-261/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-6/run-20261011-163909-620/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-6/run-20261011-171114-070/extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440.0,
+      "Reason": "Generated single EXE extraction cache; recreated on next validation"
+    },
+    {
+      "RelativePath": "artifacts/sc-5/session-diagnostics/bin",
+      "Kind": "Directory",
+      "Bytes": 27333036.0,
+      "Reason": "Troubleshooting helper build output; source retained"
+    },
+    {
+      "RelativePath": "artifacts/sc-5/session-diagnostics/obj",
+      "Kind": "Directory",
+      "Bytes": 271219.0,
+      "Reason": "Troubleshooting helper build output; source retained"
+    }
+  ],
+  "Preserved": [
+    "Stage reports/logs/screenshots",
+    "SC-6 accepted and hardware-tested EXEs",
+    "Referenced stage EXEs",
+    "NuGet and SDK dependency caches",
+    "Source/tests/scripts/tools/SC2Probe",
+    "UI/research/reference repositories/APK",
+    "IDE configuration",
+    "Untracked docs/linear",
+    "System Bluetooth configuration and logs"
+  ],
+  "GitBranchesChanged": false,
+  "RemotePushed": false,
+  "TemporaryExecutionScriptsRemoved": 2
+}

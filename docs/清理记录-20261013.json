@@ -1,0 +1,398 @@
+{
+  "RecordedAt": "2026-10-13T01:05:30.5769408+08:00",
+  "Scope": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3",
+  "Status": "Completed",
+  "Latest": "run-20261012-165400-817",
+  "Fallback": "run-20261012-084508-408",
+  "Targets": [
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261011-182921-199\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167249226,
+      "Sha256": "a04418d4fea42acd2ad688ad0dc3b4b92303a098e5346f5ef64b28fbce5885b7"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261011-182921-199\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-025255-153\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167256394,
+      "Sha256": "1306ee351e13471772aaa6e1a455bb65b14f6bf08cd3dd8a73f3618e631e198c"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-025255-153\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-025425-597\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167256394,
+      "Sha256": "f63fa06e9f91206c657a962eb28ff6d4012c9338f772fa76950791e5bdd6a21b"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-025425-597\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-030100-863\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167276874,
+      "Sha256": "c47d7296c9d3bae7c27cacb6f0857213fdaddea22be9c99dde18566fb1c2fb3c"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-030100-863\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-030337-222\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167276874,
+      "Sha256": "1f62b28b6becfda2debf6c870280f011f7f720e9eccfe79aa48cce0d91b1e04a"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-030337-222\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-030543-880\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167276874,
+      "Sha256": "b56ba0e9897e19fbc9468939cb3e1dde4a1e81b729469e2d2c5f1a78c6e222ed"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-030543-880\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-035724-760\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167332682,
+      "Sha256": "9287f11162cb769cf2174983a73602ac7c33f2ab0cc65b4ddcb493e4585d0179"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-035724-760\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-040017-313\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167336778,
+      "Sha256": "48e8d3f507992b6c5f04186006d9499f5e493da3824a589f3a68bedf434393b1"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-040017-313\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-040311-880\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167353162,
+      "Sha256": "cc6b7c342cf4ea43d96a01217e8dd1e3dbd55f23b66f8039b87eab449d65ebe4"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-040311-880\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-040458-405\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167353674,
+      "Sha256": "6761368b8c10cf1d3bf46664a441196af57be562ce8db17d582cd07eca3b3fbb"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-040458-405\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-040845-306\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167358282,
+      "Sha256": "2a84c08fd83e3800e7d65ce465a4f4392de2b43a8f56cfcbcc275da2fcb2cb66"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-040845-306\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-041126-237\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167358282,
+      "Sha256": "8335e9babf9ea2b051a0fe02437d6b753f298448dfb392a9f4765e4f03f73b85"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-041126-237\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-051357-584\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167362378,
+      "Sha256": "7901f005ec0dffd31022a83417f9446a43b8392067216a9f634109affcd97ea0"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-051357-584\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-053346-901\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-055316-193\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167422794,
+      "Sha256": "316b86ed00eddc0c3a2de20fcc634b7ddd62019f3a17d297f0f1f7c8d8ebc00c"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-055316-193\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-055618-612\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167422794,
+      "Sha256": "8ffa7ffc0e92f4ebe3513e8301fba259defc8c9bd70d0770820acce4dcb77048"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-055618-612\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-060620-011\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-063323-984\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167472458,
+      "Sha256": "1288f03f8a3da607208cdd4773214cf7dc6694cfc63c6567c0384f80365865d3"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-063323-984\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-063710-438\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167472458,
+      "Sha256": "39d243c7ee80007723e738acb286ac13559c460b3ecf285d9f4fb8813182e773"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-063710-438\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-063911-763\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167472458,
+      "Sha256": "a62a04f8f46eb7bde22a572ef32242efac8624862d3a0fcfa3606110632bccd4"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-063911-763\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-065210-004\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167497034,
+      "Sha256": "0918d721dc6538e15f2ac3f0e4763f51cfd241bbd4dd4c5fc0a7db1b1d32bda2"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-065210-004\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-070040-602\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167505226,
+      "Sha256": "128e9aad5ccc604f80bdb6f3b8d52cd359c528cd0dea441b8790e8dae497871b"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-070040-602\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-084203-161\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167513930,
+      "Sha256": "a97bfa3f4f7e6125118de04f43f07dd6726a2a27c9832f44c6b3e9e54582ca0b"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-084203-161\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-084508-408\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-095442-340\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-095811-618\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 200824665,
+      "Sha256": "5b8b9eb751c97a513ae86736f58967447d2c9a3a06715b4cfce206895d16f4ae"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-095811-618\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-100049-772\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 200824665,
+      "Sha256": "e2e06b5b067001122575f95b84b27a7afb028b6420d8d8eb0d156ef39c689b6a"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-100049-772\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-165400-817\\extracted",
+      "Kind": "Directory",
+      "Bytes": 8215440,
+      "Reason": "Generated per-run DOTNET_BUNDLE_EXTRACT_BASE_DIR cache"
+    }
+  ],
+  "ProtectedExecutables": [
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261011-070035-955\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 140032634,
+      "Sha256": "49e4d38f0429a6520f2f0764344014ee3cc6995ac8787d2648b62327a0a1383d"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261011-070846-037\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 140032634,
+      "Sha256": "49e4d38f0429a6520f2f0764344014ee3cc6995ac8787d2648b62327a0a1383d"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261011-075256-427\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 140077690,
+      "Sha256": "810c4addcb489747fc3b38849ec598eea1e8892d750aeca6dc66b0b0c6279023"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261011-112836-178\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167063370,
+      "Sha256": "d180d34c7f8a68d86581539e8767e71a484f902498ade1e9e7c944b8402c4b85"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261011-135512-345\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167125322,
+      "Sha256": "2e0405238378ab93a318410cd956e348088aa04b64b6532b33940449c8e342ad"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261011-171115-204\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167163210,
+      "Sha256": "2e335e40ac517f949ed8b13547517f3947d7f12f8ee8b0613847946dc8686e9d"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-053346-901\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167362378,
+      "Sha256": "f069553492e72fdea985c54d64f8825bc6c7b9c39cf327746a6c78869523ea75"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-060620-011\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167422794,
+      "Sha256": "46c4701f0c40fcc55634227fcd4ea9192bed4e9a11b4020ed8676616f37ba987"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-084508-408\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 167513930,
+      "Sha256": "3391a0d27a2325cfeb65c6165313ab5b7baac0387991ec35ccb5f0d66aa5dd82"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-095442-340\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 200820569,
+      "Sha256": "c47367d06a38e69cbdcb16de6a42bda88fe32a98e3ce9eddc50bfdd93605f367"
+    },
+    {
+      "Path": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-165400-817\\publish\\SonyConnect.exe",
+      "Kind": "File",
+      "Bytes": 200824665,
+      "Sha256": "d17723be350edc940bb3ae8c64fdadca1a88d03bc20122381b99bb14ca76c20a"
+    }
+  ],
+  "EvidenceFileCount": 1343,
+  "DeletedBytes": 4146508676,
+  "DeletedFiles": 23,
+  "DeletedDirectories": 28,
+  "EvidenceFilesHashVerified": 1343,
+  "ShortcutTargets": [
+    {
+      "Run": "run-20261012-165400-817",
+      "Name": "01-当前测试版.lnk"
+    },
+    {
+      "Run": "run-20261012-084508-408",
+      "Name": "02-回退版本.lnk"
+    }
+  ]
+}

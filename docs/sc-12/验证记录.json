@@ -1,0 +1,138 @@
+{
+  "Stage": "SC-12",
+  "Branch": "FLEETING/sc-12-multipoint-audio-sources",
+  "Baseline": "12051ee",
+  "RecordedAt": "2026-10-12T16:45:57.6715254+08:00",
+  "Passed": true,
+  "HardwareVerified": false,
+  "BluetoothApisCalled": false,
+  "SourceScenarios": 12,
+  "CoordinationScenarios": 106,
+  "TotalOfflineScenarios": 210,
+  "UiChecks": [
+    {
+      "Executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\src\\SonyConnect.App\\bin\\Debug\\net10.0-windows10.0.26100.0\\win-x64\\SonyConnect.exe",
+      "Passed": true,
+      "ScenarioCount": 19,
+      "StageScenarioCount": 11,
+      "HardwareVerified": false
+    },
+    {
+      "Executable": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261012-084508-408\\publish\\SonyConnect.exe",
+      "Passed": true,
+      "ScenarioCount": 19,
+      "StageScenarioCount": 11,
+      "HardwareVerified": false
+    }
+  ],
+  "Report": "artifacts/sc-12/run-20261012-084505-674/summary.json",
+  "SourceHashes": [
+    {
+      "File": "src/SonyConnect.Core/Devices/AudioSourceState.cs",
+      "Sha256": "afd7fe2461767e6b39ab58c58d613cce4e799dde91d70dbc9930e8376998e16a"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrAudioSourceParameters.cs",
+      "Sha256": "d3e66b609f1f0655819fbeb23b3abeb923f43c6498a1b47b2556511b3c8ab302"
+    },
+    {
+      "File": "src/SonyConnect.Core/Protocol/MdrMessageParser.cs",
+      "Sha256": "37cbdb6371806608517a5557920da0109ed9f51eb7e28ca8d82604b35f7761ef"
+    },
+    {
+      "File": "src/SonyConnect.Core/State/OperationResult.cs",
+      "Sha256": "5d3818cf4193bb5b0bf906408d850ea36ed32446ff3dcdd1686d5e0c8a10a769"
+    },
+    {
+      "File": "src/SonyConnect.Application/ProtocolAudioSourceBackend.cs",
+      "Sha256": "ff060f6219199200b165ccda25ffa9cea8328c7057ce02921b8fee3dd5775206"
+    },
+    {
+      "File": "src/SonyConnect.Application/ProtocolDeviceBackend.cs",
+      "Sha256": "4b8b87ee640d29f504825dd94800b5a22613c0d852727076db6d3283630dcdb0"
+    },
+    {
+      "File": "src/SonyConnect.Application/Ports/DevicePorts.cs",
+      "Sha256": "52f2c01a25ac7facee929acafbe78a396f0c997f6a2187f3f466d2dd15e0694e"
+    },
+    {
+      "File": "src/SonyConnect.Application/IDeviceUseCases.cs",
+      "Sha256": "2c227d35b42faf888aa49b83ee631c9e77a6aa5f0c8f31be3f2f5c3b5add3e7d"
+    },
+    {
+      "File": "src/SonyConnect.Application/DeviceController.cs",
+      "Sha256": "2441ae66732a1462a5a3fddd7f0da8af831881cfbd1aab71980b5a5af15a3a60"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/DeviceViewModel.cs",
+      "Sha256": "84de3f3358fa93564b636c5bd43d7f68e839066ad6cb4e987cd21d7d8b012501"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml",
+      "Sha256": "ce07100872dd4a924e8162bbc013889caf46eacb9d1e56beb5695ad1b27347d2"
+    },
+    {
+      "File": "src/SonyConnect.Presentation/Views/SimpleControlPanel.xaml.cs",
+      "Sha256": "f40374596177b453a3956d5365e1610d82e9057b2cf38e870aab8ba105b97284"
+    },
+    {
+      "File": "src/SonyConnect.App/ReadOnlyReplay.cs",
+      "Sha256": "e35135388bccf125e8886538dd98dfe7487ee7e93aca42b4bf414a9e35049feb"
+    },
+    {
+      "File": "src/SonyConnect.App/CompositionRoot.cs",
+      "Sha256": "1d3f941d89c2da40877aa531da7c8fdf798a669aeca60207aa987a4a6b2ef3fa"
+    },
+    {
+      "File": "src/SonyConnect.App/App.xaml.cs",
+      "Sha256": "e5da112a1be51b693e5a7de79288b28f4dac6f7007eef809fd2b5111308c787a"
+    },
+    {
+      "File": "src/SonyConnect.App/WindowsAudioSourceProbe.cs",
+      "Sha256": "91706621c048a1099ba6fe42f60a041d113018b7c937e9092aea480fd47f1ca0"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/AudioSourceScenarios.cs",
+      "Sha256": "f79f9360583d70e221ec9aeb9fae42a0502d3a6babc85f346a17cf158ffff514"
+    },
+    {
+      "File": "tests/SonyConnect.CoordinationTests/Program.cs",
+      "Sha256": "2b901bf71bfe09939cdfd16842d1b884d8f911d7f965fc7af87bc6398287ba7b"
+    },
+    {
+      "File": "scripts/Test-SC12.ps1",
+      "Sha256": "2bc4b70f64159313d3ef7f7141ab01578dde8dbfafcab705c8e8ee35adeb59ca"
+    }
+  ],
+  "Hardware": {
+    "WF1000XM5": "Prior hardware readback and restoration verified; reconnect guidance changes verified offline only",
+    "WH1000XM5": "Not tested; writes remain disabled"
+  },
+  "HardwareProgress": {
+    "Model": "WF-1000XM5",
+    "Firmware": "6.1.0",
+    "SourceReadbackVerified": true,
+    "OrdinarySwitchReadbackVerified": true,
+    "ActualAudioRoutingConfirmedByUser": false,
+    "MultipointRebuildObserved": true,
+    "AutomaticRestorePassed": false,
+    "OriginalValuesRestored": true,
+    "RestorationReport": "artifacts/sc-12/restore-only-20261012-070115/report.json",
+    "FinalConnectedCount": 2,
+    "FinalCheckSettingWrites": 0,
+    "Remaining": "新恢复流程实机复测；实际声音路由用户确认；WH 未实测"
+  },
+  "ReconnectRecovery": {
+    "OfflinePassed": true,
+    "HardwareVerified": false,
+    "RepeatedWrites": 0,
+    "Covers": [
+      "transport-loss guidance",
+      "query failure before transport notification",
+      "readback matches target",
+      "readback differs from target",
+      "device selection clears target",
+      "WPF controls disabled until fresh readback"
+    ]
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "schemaVersion": 1,
+  "task": "SC-4",
+  "acceptance": {
+    "framingAndClassification": true,
+    "traceableHandshakeAndUnknownMessages": true,
+    "fixedByteSamplesAndFaultRegression": true,
+    "noUiOrWindowsProtocolDependency": true
+  },
+  "validation": {
+    "Passed": true,
+    "RecordedAt": "2026-10-11T15:53:15.417439+08:00",
+    "Branch": "FLEETING/sc-4-sony-protocol",
+    "Baseline": "63a128cd872e1fec2a172da45ff4334eddec371e",
+    "Sdk": "10.0.401",
+    "RunRoot": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-4\\run-20261011-075256-040",
+    "Integration": {
+      "Passed": true,
+      "RecordedAt": "2026-10-11T15:53:14.190954+08:00",
+      "Sdk": "10.0.401",
+      "RunRoot": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261011-075256-427",
+      "BuildConfigurations": [
+        "Debug",
+        "Release"
+      ],
+      "RegressionScenarios": 24,
+      "WpfChecks": [
+        "default",
+        "simulation"
+      ],
+      "Publish": {
+        "File": "C:\\Users\\FLEETING\\Documents\\Project\\SonyConnect\\artifacts\\sc-3\\run-20261011-075256-427\\publish\\SonyConnect.exe",
+        "Bytes": 140077690,
+        "Sha256": "810c4addcb489747fc3b38849ec598eea1e8892d750aeca6dc66b0b0c6279023",
+        "FileCount": 1,
+        "SelfContained": true,
+        "SingleFile": true
+      },
+      "Offline": true,
+      "NuGetAuditPerformed": false,
+      "HardwareVerified": false,
+      "CleanWindowsWithoutDotnet": "not-retested-for-SC3",
+      "VisualQa": "inspect generated PNGs separately"
+    },
+    "Protocol": {
+      "Passed": true,
+      "Scenarios": [
+        {
+          "Name": "fixed-fixtures-have-provenance-and-source-hashes",
+          "Passed": true
+        },
+        {
+          "Name": "fixed-wire-frames-roundtrip-byte-for-byte",
+          "Passed": true
+        },
+        {
+          "Name": "payload-and-checksum-markers-are-escaped",
+          "Passed": true
+        },
+        {
+          "Name": "every-fixture-split-and-one-byte-feed",
+          "Passed": true
+        },
+        {
+          "Name": "sticky-frames-and-noise-return-in-order",
+          "Passed": true
+        },
+        {
+          "Name": "nested-start-marker-recovers-next-frame",
+          "Passed": true
+        },
+        {
+          "Name": "bad-checksum-does-not-hide-following-frame",
+          "Passed": true
+        },
+        {
+          "Name": "invalid-escape-and-escaped-tail-rejected",
+          "Passed": true
+        },
+        {
+          "Name": "every-truncated-prefix-reported-at-eof",
+          "Passed": true
+        },
+        {
+          "Name": "short-bodies-never-read-outside-buffer",
+          "Passed": true
+        },
+        {
+          "Name": "oversized-and-negative-wire-lengths-bounded",
+          "Passed": true
+        },
+        {
+          "Name": "exact-limit-and-worst-case-escaping",
+          "Passed": true
+        },
+        {
+          "Name": "length-mismatch-and-trailing-body-rejected",
+          "Passed": true
+        },
+        {
+          "Name": "reset-discards-old-connection-fragments",
+          "Passed": true
+        },
+        {
+          "Name": "deterministic-arbitrary-bytes-cannot-crash-parser",
+          "Passed": true
+        },
+        {
+          "Name": "ack-shape-and-complementary-sequence",
+          "Passed": true
+        },
+        {
+          "Name": "wf-capture-version-and-enable-flags",
+          "Passed": true
+        },
+        {
+          "Name": "malformed-protocol-fields-not-guessed",
+          "Passed": true
+        },
+        {
+          "Name": "function-priorities-and-unknown-ids-preserved",
+          "Passed": true
+        },
+        {
+          "Name": "function-count-zero-and-maximum-255",
+          "Passed": true
+        },
+        {
+          "Name": "truncated-and-extra-function-pairs-rejected",
+          "Passed": true
+        },
+        {
+          "Name": "model-and-firmware-utf8-lengths-validated",
+          "Passed": true
+        },
+        {
+          "Name": "capability-counter-and-anonymous-id",
+          "Passed": true
+        },
+        {
+          "Name": "response-notification-and-query-separated-by-table",
+          "Passed": true
+        },
+        {
+          "Name": "unknown-types-and-commands-remain-recordable",
+          "Passed": true
+        },
+        {
+          "Name": "wf-bootstrap-completes-from-fixed-samples",
+          "Passed": true
+        },
+        {
+          "Name": "ack-notification-and-bad-reply-cannot-complete-query",
+          "Passed": true
+        },
+        {
+          "Name": "out-of-order-and-duplicate-replies-ignored",
+          "Passed": true
+        },
+        {
+          "Name": "disabled-table2-skips-query-and-maps-absence",
+          "Passed": true
+        },
+        {
+          "Name": "disabled-table1-and-v1-stop-explicitly",
+          "Passed": true
+        },
+        {
+          "Name": "stale-session-and-reconnect-clear-bootstrap-data",
+          "Passed": true
+        },
+        {
+          "Name": "wf-wh-capability-layout-and-evidence-separation",
+          "Passed": true
+        },
+        {
+          "Name": "pure-core-has-no-ui-or-windows-dependency",
+          "Passed": true
+        },
+        {
+          "Name": "query-fields-and-table-routing-are-explicit",
+          "Passed": true
+        },
+        {
+          "Name": "decoder-limit-policy-is-validated",
+          "Passed": true
+        },
+        {
+          "Name": "protocol-notices-match-pinned-license-bytes",
+          "Passed": true
+        }
+      ],
+      "FixedFixtures": 13,
+      "UpstreamCaptures": 6,
+      "SourceCommit": "193c1e053836119eb875c97331dd10c1aef206bc",
+      "HardwareVerified": false,
+      "WhHardwareCapture": false
+    },
+    "SourceHashes": [
+      {
+        "File": "scripts/Test-SC4.ps1",
+        "Sha256": "7c2f59200118323a2246c375834447356657912b950b6e0f05aaecb5d6ed3184"
+      },
+      {
+        "File": "SonyConnect.sln",
+        "Sha256": "8fdab533920c76f9f92a7f70028cf46a1270c71eb68abb06608e68a1389be42c"
+      },
+      {
+        "File": "src/SonyConnect.App/App.xaml.cs",
+        "Sha256": "d07aae6fccb544734edaaefb61a6c9eed447691c52815f183cfe533c0a53e092"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/MdrCapabilityMapper.cs",
+        "Sha256": "f6893c1ce540baffdccf7b95fdf0405113c3baa8b77bc2ad5e98f76880762bf2"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/MdrHandshake.cs",
+        "Sha256": "f56fe20e82fbfec40711c8cc07e02acb10d15775e16bf594221bd41da9aebf80"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/MdrMessageParser.cs",
+        "Sha256": "3eea10c5646f4ca17ac05254bbc1aa2ee3b0f0bceb4ce1dd3fc8dcfb4bebc9c3"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/MdrMessages.cs",
+        "Sha256": "d18303657ff27661b61360b3ef8b90faf1fc0f89830112349378c4eb0cecfbf5"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/Notices/SonyConnect-protocol-NOTICE.txt",
+        "Sha256": "df66fc4c27dd93042e6875cfb0b06dd271563b7bc9ed6b57047d142df61a598c"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/Notices/SonyHeadphonesClient-MIT.txt",
+        "Sha256": "915e766600639d41714a1c8b0e09e49e0ac3e8f3c90264c8e08d70195bc485c1"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/Notices/sony-tray-MIT.txt",
+        "Sha256": "e2fb2e96c1dc263c78cb704f3c06a86ac970cd6041ea5321c4e260f545157a81"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/TandemCodec.cs",
+        "Sha256": "0537d300bb19a23b508b337c1b00b28c53038ca1bb13195e8a924374a73ed7b9"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/TandemFrame.cs",
+        "Sha256": "befdc5310da9f6a4d38a31787329ae7eb4c48518ccbb8799738b22724485ff3d"
+      },
+      {
+        "File": "src/SonyConnect.Core/Protocol/TandemStreamDecoder.cs",
+        "Sha256": "86272e48695b3340040e011a211f86a05d901522d3b20960245da1e001feb86b"
+      },
+      {
+        "File": "src/SonyConnect.Core/SonyConnect.Core.csproj",
+        "Sha256": "93a0477bdf1a80575984820b600c8b9c239a05cb17a84c674c650ddc27037c1e"
+      },
+      {
+        "File": "tests/SonyConnect.ProtocolTests/Fixtures/frames.json",
+        "Sha256": "77b7d4730c5012c79ba0534477862cabec136368dc4972a894821c945f935c3a"
+      },
+      {
+        "File": "tests/SonyConnect.ProtocolTests/packages.lock.json",
+        "Sha256": "b6ffbc76ebeaa15dcc12f3763e5e37445365ea5cce83f53786766de4e8f6bb17"
+      },
+      {
+        "File": "tests/SonyConnect.ProtocolTests/Program.cs",
+        "Sha256": "8915da5a8fd8b68d697197119c82f171019ca08c0cd70e0b00f0dca1d7c06c42"
+      },
+      {
+        "File": "tests/SonyConnect.ProtocolTests/SonyConnect.ProtocolTests.csproj",
+        "Sha256": "86c7d486cb7585f8561b9b247dd5a85c9f36f88561c9201faa7855c41c1b9aa9"
+      }
+    ],
+    "HardwareVerified": false,
+    "WhHardwareCapture": false,
+    "Pushed": false
+  },
+  "buildWarnings": 0,
+  "buildErrors": 0,
+  "protocolRegressionConfiguration": "Release",
+  "wpfValidationKind": "offscreen-render-and-viewmodel",
+  "hardware": {
+    "wf1000xm5": "unverified-by-SonyConnect; six upstream 6.1.0 frame samples replayed",
+    "wh1000xm5": "unverified; synthetic function-list fixture only",
+    "commandsSentToHeadphones": false
+  },
+  "git": {
+    "sc3Committed": true,
+    "sc3Commit": "63a128cd872e1fec2a172da45ff4334eddec371e",
+    "sc4Committed": false,
+    "mainAndDevMoved": false,
+    "pushed": false,
+    "linearStatusUpdated": false,
+    "pullRequest": null,
+    "recordedBeforeCommit": true,
+    "snapshotMeaning": "Git fields describe the validation snapshot before the local SC-4 commit; see Git history for the archival commit."
+  }
+}
