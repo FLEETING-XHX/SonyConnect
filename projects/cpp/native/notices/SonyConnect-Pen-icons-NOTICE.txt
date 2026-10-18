@@ -1,0 +1,23 @@
+SonyConnect prototype icon resources, 2026-10-15.
+
+The native PenIcons renderer uses the exact Lucide font glyph outlines exported
+by the approved Pen design. Path coordinates are preserved; rendering color and
+layout size are selected by the application. The build contains generated D2D
+geometry, not a copied icon-font binary or a JavaScript runtime.
+
+Lucide Icons and Contributors, ISC license. Several icons originate in Feather
+by Cole Bemis under MIT terms. The complete unmodified upstream combined license
+is provided in Lucide-LICENSE.txt and must accompany redistributions.
+
+Official upstream SVG references are pinned to:
+https://github.com/lucide-icons/lucide/tree/d672fc43dbf60962d9d829e35bc3b3e5ed89a178/icons
+The removed/renamed history reference is retained from official release 0.468.0:
+https://github.com/lucide-icons/lucide/blob/0.468.0/icons/history.svg
+
+The Pen-exported glyph outlines are the authoritative visual asset for this
+prototype. Upstream current SVGs are included as attribution/source references
+and are not substituted for the confirmed glyphs at runtime.
+
+Noto Sans SC is selected by its registered family name when installed. This
+resource change does not redistribute or install a font. No research checkout,
+APK asset, or unlicensed reference font is incorporated.

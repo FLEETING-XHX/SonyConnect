@@ -20,8 +20,8 @@ https://github.com/marconvcm/sony-device-center/tree/0bf98223c1ba402dd6c5136c21e
 C++20 separation of transport/protocol/device/UI and build organization consulted.
 No Qt, ImGui or upstream runtime source is linked or bundled.
 
-Sound Connect 13.2.2 APK derived static handshake evidence was checked against
-the existing implementation. APK code, UI assets, strings and audio were not
+Sound Connect 13.2.2 APK derived static handshake and Safe Listening wire/display
+semantics were checked against the implementation. APK code, UI assets, strings and audio were not
 incorporated. Gadgetbridge AGPL code/tests/fixtures/binaries are not included.
 
 Constructed tests, static analysis and an ACK do not establish hardware support.

@@ -1,0 +1,27 @@
+React Bits presentation motion adaptation
+
+Copyright (c) 2026 David Haz
+License: MIT + Commons Clause License Condition v1.0
+The complete upstream license accompanies this notice in React-Bits-LICENSE.md.
+
+Upstream sources consulted on 2026-10-15:
+https://reactbits.dev/r/WakeSlider-TS-TW.json
+https://reactbits.dev/r/RubberSegment-TS-TW.json
+https://github.com/DavidHDev/react-bits/blob/main/LICENSE.md
+
+native/include/sonyconnect/ui_motion.hpp adapts the WakeSlider wake formulas and
+RubberSegment non-draggable, stretch=0 motion sequence for SonyConnect's native
+C++ application. Win32/Direct2D integration, stable spring stepping and perimeter
+progress sampling are implemented locally. React, Tailwind and the Motion
+runtime are not bundled or required. This component is part of SonyConnect and
+is not distributed as a standalone ported component library.
+
+2026-10-15 smooth-control revision
+Source reference: user-supplied SonyConnect_4_Controls_Pen_4C5ED6_Wheel/
+- RubberSegment: fixed-width 220ms tween; no spring, squash, stretch or bounce.
+- WakeSlider: fixed-height bars with tweened fill; previous velocity wake removed.
+- SquishSwitch: 220ms thumb movement, 180ms color transition, direct dragging.
+- ElasticSlider: continuous fill, 6/12 DIP hover thickness, no rubber or spring.
+The original upstream notice/license above is retained for provenance. The native
+revision follows the supplied smooth variants and wheel interaction contract.
+Geometry and window layout use the confirmed Pen design; React is not bundled.

@@ -1,9 +1,13 @@
 #include "sonyconnect/desktop.hpp"
+#include "sonyconnect/desktop_async.hpp"
+#include "sonyconnect/tray_icon.hpp"
 #include <winrt/base.h>
 #include <windows.h>
 #include <fstream>
 #include <iostream>
 #include <stdexcept>
+#include <functional>
+#include <thread>
 
 using namespace sonyconnect::desktop;
 namespace {
@@ -31,41 +35,117 @@ std::string read(const std::filesystem::path &path) {
     std::ifstream in(path, std::ios::binary);
     return {std::istreambuf_iterator<char>(in), {}};
 }
+struct PendingAsync {
+    struct State {
+        std::function<void()> complete;
+        unsigned cancellations{}, results{};
+        HRESULT error{S_OK};
+        bool immediate{};
+    };
+    std::shared_ptr<State> state = std::make_shared<State>();
+    template <class Handler> void Completed(Handler handler) const {
+        state->complete = [handler] { handler(0, winrt::Windows::Foundation::AsyncStatus::Completed); };
+        if (state->immediate) state->complete();
+    }
+    void Cancel() const { ++state->cancellations; } // Provider deliberately ignores cancellation.
+    int GetResults() const {
+        ++state->results;
+        winrt::check_hresult(state->error);
+        return 42;
+    }
+};
+void async_checks() {
+    using namespace std::chrono;
+    PendingAsync pending;
+    const auto begin = steady_clock::now();
+    HRESULT failure{};
+    try { detail::await_async([&] { return pending; }, nullptr, milliseconds(40)); }
+    catch (const winrt::hresult_error &e) { failure = e.code(); }
+    require(failure == HRESULT_FROM_WIN32(ERROR_TIMEOUT) && pending.state->cancellations == 1 &&
+                pending.state->results == 0 && steady_clock::now() - begin < seconds(1),
+            "Ignored provider cancellation must not keep the worker waiting");
+    pending.state->complete(); // Late completion after the wait frame was destroyed.
+    PendingAsync immediate;
+    immediate.state->immediate = true;
+    require(detail::await_async([&] { return immediate; }) == 42,
+            "An operation after a timeout must still run");
+    immediate.state->error = E_ACCESSDENIED;
+    failure = S_OK;
+    try { detail::await_async([&] { return immediate; }); }
+    catch (const winrt::hresult_error &e) { failure = e.code(); }
+    require(failure == E_ACCESSDENIED, "Provider failures must be propagated");
+    std::atomic_bool closing{true};
+    bool started = false;
+    rejects([&] { detail::await_async([&] { started = true; return pending; }, &closing); },
+            "A closing host must reject new asynchronous work");
+    require(!started, "Cancellation must be checked before invoking the provider");
+    closing = false;
+    const auto cancel_begin = steady_clock::now();
+    std::jthread cancel([&] { std::this_thread::sleep_for(milliseconds(10)); closing = true; });
+    failure = S_OK;
+    try { detail::await_async([&] { return pending; }, &closing); }
+    catch (const winrt::hresult_error &e) { failure = e.code(); }
+    require(failure == HRESULT_FROM_WIN32(ERROR_CANCELLED) &&
+                steady_clock::now() - cancel_begin < seconds(1), "Exit must interrupt the async wait");
+    pending.state->complete();
+}
+void tray_checks() {
+    unsigned added = 0, removed = 0;
+    bool available = true;
+    {
+        TrayIcon icon(nullptr, WM_APP + 2, nullptr, [&](DWORD command, NOTIFYICONDATAW *data) {
+            require(data->uCallbackMessage == WM_APP + 2 && data->uID == 1, "Tray identity must remain stable");
+            if (command == NIM_DELETE) { ++removed; return TRUE; }
+            ++added; return available ? TRUE : FALSE;
+        });
+        require(icon.restore() && icon.added(), "Initial tray add failed");
+        require(icon.taskbar_created(RegisterWindowMessageW(L"TaskbarCreated")), "Restart message is not registered");
+        require(icon.restore() && added == 2, "Taskbar restart must re-add the icon");
+        available = false;
+        require(!icon.restore() && !icon.added(), "Failed restoration must clear the added flag");
+        available = true;
+        require(icon.restore(), "Tray must recover after a failed add");
+    }
+    require(added == 4 && removed == 1, "Tray lifecycle dispatch mismatch");
+}
+void retention_checks(const std::filesystem::path &temp) {
+    const auto root = temp / L"retention";
+    DiagnosticLog first(root, {1, 1});
+    auto first_file = std::filesystem::directory_iterator(root)->path();
+    for (const auto &entry : std::filesystem::directory_iterator(root))
+        if (entry.path().extension() == L".jsonl") first_file = entry.path();
+    {
+        DiagnosticLog second(root, {1, 1});
+        require(std::filesystem::exists(first_file), "Retention must preserve another live writer");
+    }
+    const std::string stale = "run-20000101-000000000-00000000000000000000000000000001";
+    const auto crashed = root / (stale + "-0.jsonl"), lease = root / (stale + ".lock");
+    write(crashed, "unfinished\n");
+    write(root / "user-note.jsonl", "unrelated\n");
+    {
+        winrt::file_handle live{CreateFileW(lease.c_str(), GENERIC_READ | GENERIC_WRITE,
+                                           FILE_SHARE_READ, nullptr, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, nullptr)};
+        require(static_cast<bool>(live), "Cannot create fixture lease");
+        first.apply_options({1, 1});
+        require(std::filesystem::exists(crashed), "An open lease must protect unfinished logs");
+    }
+    first.apply_options({1, 1});
+    require(!std::filesystem::exists(crashed) && !std::filesystem::exists(lease),
+            "Abandoned logs without log-end must obey retention");
+    require(std::filesystem::exists(first_file) && std::filesystem::exists(root / "user-note.jsonl"),
+            "Cleanup must preserve live and unrelated files");
+    // A pre-lease version's unfinished owned log has no running writer once
+    // the product's single-instance guard admits this version.
+    write(crashed, "legacy unfinished\n");
+    first.apply_options({1, 1});
+    require(!std::filesystem::exists(crashed), "Legacy abandoned logs must obey retention too");
+}
 std::string unhex(const std::string &hex) {
     std::string result;
     for (std::size_t i = 0; i < hex.size(); i += 2)
         result.push_back(static_cast<char>(std::stoi(hex.substr(i, 2), nullptr, 16)));
     return result;
 }
-bool same_bindings(const HotkeyBindings &left, const HotkeyBindings &right) {
-    for (std::size_t i = 0; i < left.size(); ++i)
-        if (left[i].mode != right[i].mode || left[i].gesture != right[i].gesture)
-            return false;
-    return true;
-}
-struct FakeHotkeyPlatform {
-    std::optional<HotkeyBindings> occupied;
-    std::vector<HotkeyBindings> probed;
-    bool start_fails{}, active{};
-    unsigned start_calls{}, stop_calls{};
-    detail::HotkeyPlatform callbacks() {
-        return {[this](const HotkeyBindings &bindings) {
-                    probed.push_back(bindings);
-                    if (occupied && same_bindings(*occupied, bindings))
-                        throw std::runtime_error("Simulated occupied hotkey");
-                },
-                [this] {
-                    ++start_calls;
-                    if (start_fails)
-                        throw std::runtime_error("Simulated hook installation failure");
-                    active = true;
-                },
-                [this] {
-                    ++stop_calls;
-                    active = false;
-                }};
-    }
-};
 // Real .NET ZipArchive CompressionLevel.Optimal output: fixed and dynamic DEFLATE.
 const std::string legacy_fixture = unhex(
     "504B0304140000000800B6604E5D0E9112EB31000000290000000D0000006D616E69666573742E6A736F6EAA560A4ECE48CD4D54"
@@ -85,171 +165,9 @@ int main() {
                     (L"SonyConnect-native-desktop-tests-" + std::to_wstring(GetCurrentProcessId()) + L"-" +
                      std::to_wstring(GetTickCount64()));
         std::filesystem::create_directories(temp);
-        auto defaults = default_hotkeys();
-        validate_hotkeys(defaults);
-        HotkeyMatcher matcher;
-        matcher.feed(VK_LCONTROL, true, false, false, defaults);
-        require(!matcher.feed(VK_F1, true, false, false, defaults).mode,
-                "Left control must not trigger right control binding");
-        matcher.reset();
-        matcher.feed(VK_RCONTROL, true, false, false, defaults);
-        auto first = matcher.feed(VK_F1, true, false, false, defaults);
-        require(first.mode == SoundMode::noise_canceling && first.consume, "Default chord missing");
-        require(!matcher.feed(VK_F1, true, false, false, defaults).mode, "Repeat must not retrigger");
-        require(matcher.feed(VK_F1, false, false, false, defaults).consume,
-                "Matched key-up must be consumed");
-        matcher.reset();
-        matcher.feed(VK_RCONTROL, true, true, false, defaults);
-        require(!matcher.feed(VK_F1, true, false, false, defaults).mode,
-                "Injected modifier must not activate chord");
-        matcher.reset();
-        matcher.feed(VK_RCONTROL, true, false, true, defaults);
-        require(!matcher.feed(VK_F1, true, false, true, defaults).mode, "Paused listener must not dispatch");
-        HotkeyCapture capture;
-        capture.begin();
-        capture.feed(VK_RCONTROL, true);
-        capture.feed(VK_LSHIFT, true);
-        require(!capture.feed('A', true).gesture, "Multiple recognizers cannot be captured");
-        capture.end();
-        capture.begin();
-        capture.feed(VK_TAB, true);
-        auto captured = capture.feed('A', true);
-        require(captured.gesture && captured.finished, "Tab recognizer capture failed");
-        auto invalid = defaults;
-        invalid[1].gesture = invalid[0].gesture;
-        rejects([&] { validate_hotkeys(invalid); }, "Duplicate bindings accepted");
-        require(!is_free_key(VK_BACK) && !is_free_key(VK_DELETE) && !is_free_key(VK_SNAPSHOT) &&
-                    !is_free_key(VK_LWIN),
-                "Forbidden keys accepted");
-        HotkeyStore store(temp / L"hotkeys.json");
-        store.save(defaults);
-        auto loaded = store.load();
-        require(loaded[2].gesture == defaults[2].gesture, "Hotkey persistence changed gesture");
-        auto changed = defaults;
-        changed[2].gesture = {Recognizer::tab, 'Z'};
-        store.save(changed);
-        require(std::filesystem::exists(temp / L"hotkeys.json.bak"), "Previous settings backup missing");
-        auto future = std::string("{\"Version\":2,\"Bindings\":[]}");
-        write(temp / L"future.json", future);
-        HotkeyStore future_store(temp / L"future.json");
-        future_store.load();
-        rejects([&] { future_store.save(defaults); }, "Unknown version overwritten");
-        require(read(temp / L"future.json") == future, "Future settings changed");
-        auto fractional = read(temp / L"hotkeys.json");
-        auto key_offset = fractional.find("\"Key\":");
-        require(key_offset != std::string::npos, "Missing fixture key");
-        auto number_end = fractional.find_first_of(",}", key_offset + 6);
-        fractional.replace(key_offset + 6, number_end - key_offset - 6, "112.5");
-        write(temp / L"fractional.json", fractional);
-        HotkeyStore fractional_store(temp / L"fractional.json");
-        fractional_store.load();
-        require(!fractional_store.warning().empty(), "Fractional virtual key silently rounded");
-        require(read(temp / L"fractional.json") == fractional, "Invalid settings were rewritten");
-        auto replacement = defaults;
-        replacement[0].gesture.key = VK_F4;
-        replacement[1].gesture.key = VK_F5;
-        replacement[2].gesture.key = VK_F6;
-        auto recovery_path = temp / L"hotkey-recovery.json";
-        HotkeyStore recovery_store(recovery_path);
-        recovery_store.save(defaults);
-        auto original_settings = read(recovery_path);
-        FakeHotkeyPlatform recovery_platform;
-        recovery_platform.occupied = defaults;
-        {
-            GlobalHotkeys listener(recovery_path, [](SoundMode) {}, recovery_platform.callbacks());
-            rejects([&] { listener.start(); }, "Occupied previous bindings should fail startup");
-            require(recovery_platform.start_calls == 0 && read(recovery_path) == original_settings,
-                    "Failed startup changed settings or installed a listener");
-            listener.save(replacement);
-            require(recovery_platform.probed.size() == 2 &&
-                        same_bindings(recovery_platform.probed.back(), replacement) &&
-                        recovery_platform.start_calls == 1,
-                    "Saving replacement must not probe occupied previous bindings again");
-            require(same_bindings(listener.bindings(), replacement) &&
-                        same_bindings(recovery_store.load(), replacement),
-                    "Replacement did not become active and persistent after conflict recovery");
-            require(read(recovery_path.wstring() + L".bak") == original_settings,
-                    "Conflict recovery did not retain the previous settings backup");
-            listener.start();
-            require(recovery_platform.start_calls == 1 && recovery_platform.probed.size() == 2,
-                    "Starting an active listener must not reprobe or reinstall it");
-            auto saved = read(recovery_path);
-            auto old_status = listener.status();
-            rejects([&] { listener.save(defaults); }, "Occupied candidate was accepted");
-            require(same_bindings(listener.bindings(), replacement) && read(recovery_path) == saved &&
-                        listener.status() == old_status && recovery_platform.start_calls == 1,
-                    "Rejected candidate changed active bindings, status, persistence or listener");
-            auto probes = recovery_platform.probed.size();
-            rejects([&] { listener.save(invalid); }, "Invalid candidate was accepted");
-            require(recovery_platform.probed.size() == probes && read(recovery_path) == saved &&
-                        same_bindings(listener.bindings(), replacement),
-                    "Invalid candidate reached platform side effects or changed settings");
-        }
-        require(recovery_platform.stop_calls == 1, "Recovered listener was not released exactly once");
-        auto hook_failure_path = temp / L"hotkey-hook-failure.json";
-        HotkeyStore(hook_failure_path).save(defaults);
-        auto before_hook_failure = read(hook_failure_path);
-        FakeHotkeyPlatform hook_failure_platform;
-        hook_failure_platform.start_fails = true;
-        {
-            GlobalHotkeys listener(hook_failure_path, [](SoundMode) {}, hook_failure_platform.callbacks());
-            rejects([&] { listener.save(replacement); }, "Hook installation failure was ignored");
-            require(same_bindings(listener.bindings(), defaults) &&
-                        read(hook_failure_path) == before_hook_failure,
-                    "Failed hook installation activated or persisted uninstalled bindings");
-            hook_failure_platform.start_fails = false;
-            listener.save(replacement);
-            require(hook_failure_platform.start_calls == 2 && same_bindings(listener.bindings(), replacement),
-                    "Failed listener installation could not be retried with the candidate");
-        }
-        require(hook_failure_platform.stop_calls == 1, "Failed installation produced a stale listener");
-        FakeHotkeyPlatform persistence_failure_platform;
-        {
-            GlobalHotkeys listener(
-                temp / L"future.json", [](SoundMode) {}, persistence_failure_platform.callbacks());
-            auto before_status = listener.status();
-            rejects([&] { listener.save(replacement); }, "Persistence refusal was ignored");
-            require(same_bindings(listener.bindings(), defaults) && read(temp / L"future.json") == future &&
-                        listener.status() == before_status,
-                    "Persistence failure changed previous bindings, settings file or status");
-            require(persistence_failure_platform.stop_calls == 1 && !persistence_failure_platform.active,
-                    "Persistence failure did not immediately undo the newly started listener");
-        }
-        require(persistence_failure_platform.stop_calls == 1,
-                "Listener cleanup was lost after a settings write failure");
-        FakeHotkeyPlatform running_failure_platform;
-        {
-            GlobalHotkeys listener(
-                temp / L"future.json", [](SoundMode) {}, running_failure_platform.callbacks());
-            listener.start();
-            rejects([&] { listener.save(replacement); }, "Active listener ignored persistence refusal");
-            require(running_failure_platform.active && running_failure_platform.stop_calls == 0 &&
-                        same_bindings(listener.bindings(), defaults) && read(temp / L"future.json") == future,
-                    "Persistence failure stopped an existing listener or changed its previous bindings");
-        }
-        require(running_failure_platform.stop_calls == 1 && !running_failure_platform.active,
-                "Existing listener was not released on destruction");
-        auto retry_path = temp / L"hotkey-write-retry.json";
-        FakeHotkeyPlatform retry_platform;
-        {
-            GlobalHotkeys listener(retry_path, [](SoundMode) {}, retry_platform.callbacks());
-            // The fixture belongs to this exclusively created test directory. An empty
-            // directory at the file path makes ReplaceFile fail without changing OS permissions.
-            std::filesystem::create_directory(retry_path);
-            rejects([&] { listener.save(replacement); }, "Unwritable settings path was accepted");
-            require(!retry_platform.active && retry_platform.start_calls == 1 &&
-                        retry_platform.stop_calls == 1 && same_bindings(listener.bindings(), defaults) &&
-                        std::filesystem::is_directory(retry_path),
-                    "Write failure did not restore the inactive listener and previous settings");
-            require(std::filesystem::remove(retry_path), "Exclusive write failure fixture cleanup failed");
-            listener.save(replacement);
-            require(retry_platform.active && retry_platform.start_calls == 2 &&
-                        retry_platform.stop_calls == 1 && same_bindings(listener.bindings(), replacement) &&
-                        same_bindings(HotkeyStore(retry_path).load(), replacement),
-                    "Saving a valid candidate could not retry after persistence rollback");
-        }
-        require(retry_platform.stop_calls == 2 && !retry_platform.active,
-                "Retried listener was not released exactly once");
+        async_checks();
+        tray_checks();
+        retention_checks(temp);
         require(!ReleaseVersion::parse("1.02.3") && !ReleaseVersion::parse("1.2.3-01") &&
                     !ReleaseVersion::parse("1.2.2147483648"),
                 "Invalid SemVer accepted");

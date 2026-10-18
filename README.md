@@ -1,12 +1,14 @@
 # SonyConnect for Windows
 
-Windows 版 Sony 耳机控制程序。当前主工程采用 C++20、Win32、Windows SDK 和 CMake；界面仍为功能验证界面，正式 UI 与动效按后续阶段推进。
+Windows 版 Sony 耳机控制程序。v0.1（版本号 0.1.0）采用 C++20、Win32、Windows SDK 和 CMake，使用正式主界面、更多设置、个性化、高级设置与诊断页面。简易 UI 和旧全局热键已移除，已完成清理后的针对性回归；最终候选实机验收边界见 [发布说明](docs/releases/v0.1.0.md)。
+
+发行版入口：[GitHub](https://github.com/FLEETING-XHX/SonyConnect/releases) · [Gitee](https://gitee.com/fleetingxhx/SonyConnect/releases)。下载 Windows x64 ZIP 后完整解压运行；请保留 config 与 notices。
 
 2026-10-14，用户确认当前 C++ 测试版的所有功能实测正常，记录见 [用户实测验收](docs/native/用户实测验收-20261014.json)。本次为当前 WF 使用范围的用户反馈，WH 等其他型号继续独立验收，不据此推断兼容。
 
 ## 运行与构建
 
-已验收测试程序：[SonyConnect.exe](artifacts/native/packages/20261014-132318-110/portable/SonyConnect.exe)。
+当前构建程序：[SonyConnect.exe](build/native-ninja/Release/SonyConnect.exe)。历史验收包继续保留在 artifacts 中，不能替代当前清理版本的验收。
 
 安装 Visual Studio“使用 C++ 的桌面开发”、Windows SDK 和 CMake 后，在工作区根目录运行：
 
@@ -17,7 +19,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/Publish-Native.p
 
 编译输出为 `build/native-ninja/Release/SonyConnect.exe`，便携包位于 `artifacts/native/packages/`。构建不依赖 C# 工程或参考项目 checkout。
 
-Debug/Release 的协议、会话、桌面、界面四组回归均已通过。离线验证与用户实测分别记录，详见 [迁移与验证](docs/native/迁移与验证.md) 和 [状态刷新修复](docs/native/P2与状态刷新修复-20261014.md)。
+历史验证与用户实测分别记录，详见 [迁移与验证](docs/native/迁移与验证.md) 和 [状态刷新修复](docs/native/P2与状态刷新修复-20261014.md)。本次依赖分离、清理范围及当前验证边界见 [旧界面与热键清理](docs/ui/旧界面与热键清理-20261018.md)。
 
 ## 目录
 
@@ -40,4 +42,4 @@ C++、参考源码、官方 App 和逆向资料继续保留本地。旧 C# Git �
 
 从 [文档目录](docs/README.md) 查看测试、实现、许可、型号待测与维护说明。WH 取回后的待测事项见 [WH 清单](docs/native/WH设备取回后待测.md)。
 
-本地开发分支先提交，再集成到 `dev`；`main` 和主仓库远端不随本次整理更新。参考项目、APK、逆向资料与用户诊断/EQ 备份不进入 C# 私有归档。
+开发分支先提交，再集成到 `dev` 和 `main`；发行标签使用可比较的三段版本号。参考项目、APK、逆向资料与用户诊断/EQ 备份不进入原生便携包。

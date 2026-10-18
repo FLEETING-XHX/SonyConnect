@@ -110,6 +110,34 @@ const ExtendedProfile &profile(Feature feature, Byte type) {
 } // namespace
 int main() {
     const std::vector<std::pair<const char *, std::function<void()>>> tests{
+        {"safe-listening-wire-layout-and-table-isolation", [] {
+             check(SafeListeningParameters::current(3).payload == Bytes({0x5a, 3}));
+             check(SafeListeningParameters::set(3, true).payload == Bytes({0x58, 3, 0, 1}));
+             check(SafeListeningParameters::set(0, false).payload == Bytes({0x58, 0, 1, 1}));
+             const auto cap = value<SafeListeningCapability>(t2({0x51, 3, 1, 0x12, 0x34, 0x56, 0x78, 5, 9}));
+             check(cap.timestamp_base == 0x12345678 && cap.minimum_interval == 5 && cap.log_capacity == 9);
+             check(value<SafeListeningAvailability>(t2({0x57, 3, 0})).available);
+             check(value<SafeListeningMode>(t2({0x59, 3, 0, 1})).enabled);
+             check(!value<SafeListeningMode>(t2({0x59, 3, 0, 1})).preview);
+             check(!std::holds_alternative<SafeListeningMode>(parsed({0x59, 3, 0, 1}).message.information));
+             throws([] { SafeListeningParameters::current(4); });
+             bad2({0x51, 3, 1});
+             bad2({0x57, 3, 0, 1});
+             bad2({0x59, 3, 2, 1});
+             bad2({0x5b, 3, 0xff, 0xff});
+             bad2({0x5b, 3, 72});
+         }},
+        {"sound-pressure-status-is-not-a-success-code", [] {
+             // Synthetic semantic cases; these numbers are not hardware measurements.
+             check(value<SoundPressure>(t2({0x5b, 3, 72, 0xff})).valid_level());
+             check(value<SoundPressure>(t2({0x5b, 3, 72, 3})).valid_level());
+             for (auto cause : {0, 1, 2})
+                 check(!value<SoundPressure>(t2({0x5b, 3, 72, static_cast<Byte>(cause)})).valid_level());
+             check(!value<SoundPressure>(t2({0x5b, 3, 0xff, 0})).valid_level());
+             check(!SafeListeningParameters::select_type({Table::Table1, {{0x53, 0xff}}}));
+             check(SafeListeningParameters::select_type({Table::Table2, {{0x53, 0xff}}}) == 3);
+             check(!SafeListeningParameters::select_type({Table::Table2, {{0x51, 0}, {0x53, 1}}}));
+         }},
         {"fixed-fixtures-roundtrip",
          [] {
              for (auto text : fixtures) {

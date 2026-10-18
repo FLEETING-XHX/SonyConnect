@@ -375,10 +375,12 @@ struct ProtocolSession::Impl {
     void emit(std::string event, std::optional<Frame> frame = {}, std::uint64_t receive_order = 0) {
         std::function<void(const ProtocolTrace &)> handler;
         std::uint64_t link;
+        std::string reason;
         {
             std::lock_guard lock(gate);
             handler = trace;
             link = identity;
+            if (event == "link-failed") reason = error;
         }
         if (handler)
             try {
@@ -386,7 +388,7 @@ struct ProtocolSession::Impl {
                          frame ? std::optional<Byte>{frame->type} : std::nullopt,
                          frame ? std::optional<Byte>{frame->sequence} : std::nullopt,
                          frame && !frame->payload.empty() ? std::optional<Byte>{frame->payload.front()}
-                                                          : std::nullopt});
+                                                          : std::nullopt, std::move(reason)});
             } catch (...) {
             }
     }
@@ -636,6 +638,7 @@ Reply ProtocolSession::exchange(const Query &query) {
             std::lock_guard lock(impl_->gate);
             impl_->pending.reset();
         }
+        impl_->emit("query-timeout", sent);
         impl_->fail("ACK or response timeout; late replies quarantined until reconnect.");
         return {failure(ResultCode::Timeout,
                         "ACK or device response timed out; reconnect to isolate late replies.")};
@@ -655,6 +658,9 @@ struct DeviceController::Impl {
     std::mutex operations;
     std::condition_variable alerts_changed;
     std::condition_variable recovery_changed;
+    std::condition_variable safe_listening_changed;
+    Milliseconds mode_confirmation_timeout;
+    std::chrono::steady_clock::time_point next_pressure_read{};
     std::thread recovery;
     std::atomic<bool> stopping{false};
     bool desired_connected{}, system_suspended{}, radio_available{true}, recovery_in_progress{};
@@ -684,13 +690,15 @@ struct DeviceController::Impl {
     std::optional<SourceSwitchResult> switch_result;
     std::uint64_t switch_result_order{}, fixation_result_order{}, alert_order{};
     std::optional<Byte> fixation_result;
+    std::uint64_t fixation_generation{};
+    std::optional<std::pair<std::uint64_t, std::uint64_t>> fixation_query;
     Bytes key_availability;
     Byte limitation{}, assistant_key_type{0xff};
     bool ambiguous_multipoint{}, source_switch_reported{}, codec_reported{}, fixation_reported{},
         volume_reported{}, cycle_reported{}, cycle_available{}, cycle_details{}, guidance_available{},
         guidance_switch_reported{}, alerts_registered{}, voice_assistant_reported{};
     Impl(std::unique_ptr<ByteTransport> transport, SessionPolicy policy)
-        : session(std::move(transport), policy) {
+        : session(std::move(transport), policy), mode_confirmation_timeout(policy.request_timeout) {
         state.status = "Disconnected";
         session.set_observer([this](const Observation &value) {
             std::lock_guard lock(gate);
@@ -703,6 +711,7 @@ struct DeviceController::Impl {
     ~Impl() {
         stopping = true;
         recovery_changed.notify_all();
+        safe_listening_changed.notify_all();
         session.disconnect();
         if (recovery.joinable())
             recovery.join();
@@ -730,6 +739,8 @@ struct DeviceController::Impl {
         alert_order = 0;
         switch_result.reset();
         switch_result_order = fixation_result_order = 0;
+        ++fixation_generation;
+        fixation_query.reset();
         profiles.clear();
         last_selected.clear();
         cycle_key.reset();
@@ -740,6 +751,7 @@ struct DeviceController::Impl {
         ++codec_generation;
         codec_query_in_flight.reset();
         buffered_codec_notification.reset();
+        next_pressure_read = {};
     }
     void maintain() {
         while (!stopping) {
@@ -898,6 +910,9 @@ struct DeviceController::Impl {
     }
     void access() {
         const bool checked = model_checked();
+        auto &sl = state.safe_listening;
+        sl.writable = state.connected && state.ready && sl.type && sl.available &&
+                      sl.minimum_interval_seconds && *sl.minimum_interval_seconds > 0;
         auto &eq = state.equalizer;
         eq.five_band_layout = equalizer_cap && equalizer_cap->band_count == 6 &&
                               equalizer_cap->step_count == 21 && equalizer &&
@@ -974,6 +989,7 @@ struct DeviceController::Impl {
         set_access(Feature::Notifications, state.touch.guidance_writable, guidance_available);
         set_access(Feature::PromptVolume, state.touch.volume_writable, state.touch.prompt_volume.known());
         set_access(Feature::FixedPlayback, state.touch.fixation_writable, state.touch.playback_fixed.known());
+        set_access(Feature::SoundPressure, sl.writable, sl.available);
         for (const auto &[f, profile] : profiles) {
             (void)profile;
             state.capabilities.features[f].access.write =
@@ -995,7 +1011,50 @@ struct DeviceController::Impl {
                std::optional<CodecQueryContext> codec_query = {}) {
         const auto &info = message.information;
         const bool notification = message.kind == Kind::Notification;
-        if (const auto parsedBatteryStatus = std::get_if<BatteryStatus>(&info)) {
+        if (const auto cap = std::get_if<SafeListeningCapability>(&info)) {
+            auto &sl = state.safe_listening;
+            if (sl.type == cap->type) {
+                sl.minimum_interval_seconds = cap->minimum_interval;
+                sl.reason = cap->minimum_interval ? "" : "Device reported a zero polling interval.";
+            }
+        } else if (const auto available = std::get_if<SafeListeningAvailability>(&info)) {
+            auto &sl = state.safe_listening;
+            if (sl.type == available->type) {
+                sl.available = available->available;
+                if (!sl.available) {
+                    unknown(sl.decibels, "Safe Listening is unavailable.", order);
+                    sl.updated_at.reset();
+                    sl.reason = "Safe Listening is unavailable on the device.";
+                }
+            }
+        } else if (const auto mode = std::get_if<SafeListeningMode>(&info)) {
+            auto &sl = state.safe_listening;
+            if (sl.type == mode->type && order > sl.enabled.receive_order) {
+                const bool changed = !sl.enabled.known() || *sl.enabled.value != mode->enabled ||
+                                     !sl.preview.known() || *sl.preview.value != mode->preview;
+                observe(sl.enabled, mode->enabled, order, notification);
+                observe(sl.preview, mode->preview, order, notification);
+                if (changed || !mode->enabled) {
+                    unknown(sl.decibels, "Waiting for a current sound pressure reading.", order);
+                    unknown(sl.cause, "Waiting for a current sound pressure reading.", order);
+                    sl.updated_at.reset();
+                    next_pressure_read = {};
+                }
+                safe_listening_changed.notify_all();
+            }
+        } else if (const auto pressure = std::get_if<SoundPressure>(&info)) {
+            auto &sl = state.safe_listening;
+            if (sl.type == pressure->type && sl.enabled.known() && *sl.enabled.value &&
+                order > sl.cause.receive_order) {
+                observe(sl.cause, static_cast<int>(pressure->cause), order, notification);
+                if (pressure->valid_level())
+                    observe(sl.decibels, static_cast<int>(pressure->level), order, notification);
+                else
+                    unknown(sl.decibels, "No valid current sound pressure measurement.", order);
+                sl.updated_at = std::chrono::steady_clock::now();
+                sl.reason.clear();
+            }
+        } else if (const auto parsedBatteryStatus = std::get_if<BatteryStatus>(&info)) {
             auto unit = [&](const BatteryUnit &source, Value<int> &level, Value<bool> &charging) {
                 if (source.level <= 100)
                     observe(level, static_cast<int>(source.level), order, notification);
@@ -1179,6 +1238,7 @@ struct DeviceController::Impl {
                         unknown(state.sources.active_source, "No unique active playback source.", order);
                 }
                 if (old_source != state.sources.active_source.value) {
+                    ++fixation_generation;
                     invalidate_codec("Source changed; refresh negotiated codec.");
                     unknown(state.touch.playback_fixed, "Source changed; refresh fixation state.");
                 }
@@ -1309,7 +1369,8 @@ struct DeviceController::Impl {
                         static_cast<int>(static_cast<std::int8_t>(parsedGuidanceValue->data[0])), order,
                         notification);
         } else if (const auto parsedFixValue = std::get_if<FixValue>(&info)) {
-            if (fixation_reported) {
+            if (fixation_reported && (!fixation_query ||
+                (fixation_query->first == state.link && fixation_query->second == fixation_generation))) {
                 observe(state.touch.playback_fixed, parsedFixValue->fixed, order, notification);
                 if (parsedFixValue->result && order > fixation_result_order) {
                     fixation_result = *parsedFixValue->result;
@@ -1450,6 +1511,18 @@ struct DeviceController::Impl {
             state.firmware = hs.firmware.value_or("");
             state.family = hs.protocol->family;
             state.capabilities = map_capabilities(hs);
+            const auto sl_type = SafeListeningParameters::select_type(t2);
+            if (state.safe_listening.type != sl_type)
+                state.safe_listening = {};
+            state.safe_listening.type = sl_type;
+            if (!sl_type)
+                state.safe_listening.reason = "No unambiguous Safe Listening capability was advertised.";
+            else {
+                state.safe_listening.available = false;
+                state.safe_listening.minimum_interval_seconds.reset();
+                queries.push_back(SafeListeningParameters::capability(*sl_type));
+                queries.push_back(SafeListeningParameters::availability(*sl_type));
+            }
             for (const auto &[feature, capability] : state.capabilities.features) {
                 auto &item = state.features[feature];
                 item.advertised = capability.access.read == Support::Supported;
@@ -1673,6 +1746,11 @@ DeviceSnapshot DeviceController::snapshot() const {
             copy.sources.switch_writable = false;
         copy.touch.writable = copy.touch.cycle_writable = copy.touch.guidance_writable =
             copy.touch.volume_writable = copy.touch.fixation_writable = copy.touch.assistant_writable = false;
+        copy.safe_listening.writable = copy.safe_listening.available = false;
+        stale(copy.safe_listening.enabled);
+        stale(copy.safe_listening.preview);
+        stale(copy.safe_listening.decibels);
+        stale(copy.safe_listening.cause);
         for (auto &[feature, item] : copy.features) {
             (void)feature;
             item.writable = false;
@@ -1761,6 +1839,7 @@ void DeviceController::disconnect() noexcept {
     impl_->access();
     ++impl_->state.revision;
     impl_->alerts_changed.notify_all();
+    impl_->safe_listening_changed.notify_all();
 }
 void DeviceController::suspend() noexcept {
     {
@@ -1779,6 +1858,7 @@ void DeviceController::suspend() noexcept {
         ++impl_->state.revision;
     }
     impl_->alerts_changed.notify_all();
+    impl_->safe_listening_changed.notify_all();
 }
 Result DeviceController::resume() {
     {
@@ -1827,6 +1907,130 @@ Result DeviceController::refresh() {
             return failure(ResultCode::NotConnected, "Connect the MDR control channel first.");
         return impl_->bootstrap();
     });
+}
+Result DeviceController::set_safe_listening(bool enabled) {
+    return impl_->command([&] {
+        Byte type;
+        std::uint64_t baseline{}, link{};
+        {
+            std::lock_guard lock(impl_->gate);
+            impl_->access();
+            auto &sl = impl_->state.safe_listening;
+            if (!sl.writable || !sl.type)
+                return failure(ResultCode::Unavailable, "安全聆听能力、可用性或更新间隔尚未确认。");
+            if (sl.enabled.known() && *sl.enabled.value == enabled && sl.preview.known() && !*sl.preview.value)
+                return Result{};
+            type = *sl.type;
+            link = impl_->state.link;
+            baseline = sl.enabled.receive_order;
+            unknown(sl.enabled, "Waiting for Safe Listening mode confirmation.");
+            unknown(sl.decibels, "Waiting for Safe Listening mode confirmation.");
+            unknown(sl.cause, "Waiting for Safe Listening mode confirmation.");
+            sl.updated_at.reset();
+        }
+        const auto sent = impl_->query(SafeListeningParameters::set(type, enabled));
+        if (!sent.ok())
+            return sent;
+        std::unique_lock lock(impl_->gate);
+        const auto confirmed = impl_->safe_listening_changed.wait_for(
+            lock, impl_->mode_confirmation_timeout, [&] {
+                return impl_->stopping || !impl_->session.connected() || impl_->state.link != link ||
+                       impl_->state.safe_listening.enabled.receive_order > baseline;
+            });
+        auto &sl = impl_->state.safe_listening;
+        if (impl_->stopping || !impl_->session.connected() || impl_->state.link != link)
+            return failure(ResultCode::NotConnected, "确认安全聆听时连接已断开。");
+        if (!confirmed || !sl.enabled.known() || !sl.preview.known()) {
+            unknown(sl.enabled, "Safe Listening mode was not confirmed.");
+            sl.reason = "耳机已接收指令，但未确认安全聆听状态；请重试。";
+            return failure(ResultCode::Timeout, sl.reason);
+        }
+        if (*sl.enabled.value != enabled || *sl.preview.value)
+            return failure(ResultCode::DeviceRejected, "耳机返回的安全聆听状态与请求不一致。");
+        sl.reason.clear();
+        impl_->next_pressure_read = {};
+        return Result{};
+    });
+}
+Result DeviceController::poll_playback_fixed() {
+    std::unique_lock operation(impl_->operations, std::try_to_lock);
+    if (!operation.owns_lock())
+        return failure(ResultCode::Busy, "Another device operation is running.");
+    std::pair<std::uint64_t, std::uint64_t> expected;
+    {
+        std::lock_guard lock(impl_->gate);
+        if (!impl_->session.connected() || !impl_->state.ready || !impl_->fixation_reported ||
+            !impl_->state.sources.available || !impl_->state.sources.multipoint.known() ||
+            !*impl_->state.sources.multipoint.value || !impl_->state.sources.active_source.known())
+            return failure(ResultCode::Unavailable, "Playback fixation readback is not available.");
+        if (impl_->state.touch.playback_fixed.known()) return {};
+        expected = {impl_->state.link, impl_->fixation_generation};
+        impl_->fixation_query = expected;
+    }
+    auto result = impl_->query(InteractionParameters::fix_read());
+    {
+        std::lock_guard lock(impl_->gate);
+        if (impl_->fixation_query == expected) impl_->fixation_query.reset();
+        if (impl_->state.link != expected.first)
+            return failure(ResultCode::Canceled, "Fixation readback belongs to an old connection.");
+        if (impl_->fixation_generation != expected.second) {
+            unknown(impl_->state.touch.playback_fixed, "Source changed; refresh fixation state.");
+            impl_->access();
+            ++impl_->state.revision;
+            return failure(ResultCode::Canceled, "Active source changed during fixation readback.");
+        }
+    }
+    return result;
+}
+Result DeviceController::poll_codec() {
+    std::unique_lock operation(impl_->operations, std::try_to_lock);
+    if (!operation.owns_lock())
+        return failure(ResultCode::Busy, "Another device operation is running.");
+    {
+        std::lock_guard lock(impl_->gate);
+        if (!impl_->session.connected() || !impl_->state.ready || !impl_->codec_reported ||
+            !impl_->state.sources.active_source.known())
+            return failure(ResultCode::Unavailable, "Codec readback is not available.");
+        if (!impl_->codec_needs_query) return {};
+    }
+    auto result = impl_->read_codec();
+    std::lock_guard lock(impl_->gate);
+    if (result.ok() && impl_->codec_needs_query)
+        return failure(ResultCode::Superseded, "Source changed during codec readback.");
+    return result;
+}
+Result DeviceController::poll_sound_pressure() {
+    std::unique_lock operation(impl_->operations, std::try_to_lock);
+    if (!operation.owns_lock())
+        return failure(ResultCode::Busy, "Another device operation is running.");
+    Byte type;
+    std::uint64_t link{};
+    {
+        std::lock_guard lock(impl_->gate);
+        const auto &sl = impl_->state.safe_listening;
+        if (!impl_->session.connected() || !impl_->state.ready || !sl.available || !sl.type ||
+            !sl.enabled.known() || !*sl.enabled.value || !sl.minimum_interval_seconds ||
+            *sl.minimum_interval_seconds == 0)
+            return failure(ResultCode::Unavailable, "Safe Listening is not enabled or available.");
+        const auto now = std::chrono::steady_clock::now();
+        if (now < impl_->next_pressure_read)
+            return {};
+        type = *sl.type;
+        link = impl_->state.link;
+        impl_->next_pressure_read = now + std::chrono::seconds(*sl.minimum_interval_seconds);
+    }
+    auto result = impl_->query(SafeListeningParameters::current(type));
+    if (!result.ok()) {
+        std::lock_guard lock(impl_->gate);
+        if (impl_->state.link == link) {
+            auto &sl = impl_->state.safe_listening;
+            stale(sl.decibels);
+            stale(sl.cause);
+            sl.reason = "音压读取失败，等待下一次更新或重新连接。";
+            ++impl_->state.revision;
+        }
+    }
+    return result;
 }
 Result DeviceController::set_sound(std::optional<SoundMode> mode, std::optional<int> level,
                                    std::optional<bool> voice) {

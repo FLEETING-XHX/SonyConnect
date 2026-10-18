@@ -555,6 +555,35 @@ std::optional<ParseResult> parse_interaction(const Frame &frame) {
                                                                                  : Kind::Response,
                   information);
 }
+std::optional<ParseResult> parse_safe_listening(const Frame &frame) {
+    const auto &p = frame.payload;
+    if (frame.type != table2_type || p.empty() || !one_of(p[0], {0x51, 0x57, 0x59, 0x5b}))
+        return {};
+    if (p.size() < 2)
+        return malformed(frame);
+    // Volume-limit types 4/5 use other layouts; never interpret them as sound pressure.
+    if (p[1] > 3)
+        return result(frame, p[0] == 0x59 ? Kind::Notification : Kind::Response);
+    if (p[0] == 0x51) {
+        if (p.size() != 9)
+            return malformed(frame);
+        return result(frame, Kind::Response,
+                      SafeListeningCapability{p[1], p[2], p[7], p[8], big_endian(std::span(p).subspan(3, 4))});
+    }
+    if (p[0] == 0x57) {
+        if (p.size() != 3 || p[2] > 1)
+            return malformed(frame);
+        return result(frame, Kind::Response, SafeListeningAvailability{p[1], p[2] == 0});
+    }
+    if (p[0] == 0x59) {
+        if (p.size() != 4 || p[2] > 1 || p[3] > 1)
+            return malformed(frame);
+        return result(frame, Kind::Notification, SafeListeningMode{p[1], p[2] == 0, p[3] == 0});
+    }
+    if (p.size() != 4 || (p[2] == 0xff && p[3] != 0 && p[3] != 1 && p[3] != 2))
+        return malformed(frame);
+    return result(frame, Kind::Response, SoundPressure{p[1], p[2], p[3]});
+}
 Kind classify(Byte table, Byte command) {
     if (table == table1_type) {
         if (one_of(command, {0x15, 0x19, 0x25, 0x29, 0x35, 0x39, 0x3f, 0x45, 0x49, 0x4d, 0x55,
@@ -1025,6 +1054,37 @@ Query InteractionParameters::fix_write(bool fixed) {
     return write_query(table2_type, {0x38, 1, static_cast<Byte>(fixed ? 0 : 1)});
 }
 
+std::optional<Byte> SafeListeningParameters::select_type(const SupportFunctions &functions) {
+    if (functions.table != Table::Table2)
+        return {};
+    std::optional<Byte> selected;
+    for (const auto &f : functions.functions)
+        if (f.id >= 0x50 && f.id <= 0x53) {
+            const auto type = static_cast<Byte>(f.id - 0x50);
+            if (selected && *selected != type)
+                return {}; // Do not guess between multiple advertised layouts.
+            selected = type;
+        }
+    return selected;
+}
+Query SafeListeningParameters::capability(Byte type) {
+    if (type > 3) throw std::invalid_argument("Unsupported Safe Listening type");
+    return read_query(table2_type, 0x50, type);
+}
+Query SafeListeningParameters::availability(Byte type) {
+    if (type > 3) throw std::invalid_argument("Unsupported Safe Listening type");
+    return read_query(table2_type, 0x56, type);
+}
+Query SafeListeningParameters::current(Byte type) {
+    if (type > 3) throw std::invalid_argument("Unsupported Safe Listening type");
+    return read_query(table2_type, 0x5a, type);
+}
+Query SafeListeningParameters::set(Byte type, bool enabled) {
+    if (type > 3) throw std::invalid_argument("Unsupported Safe Listening type");
+    // Explicit normal mode; preview is off. NTFY_PARAM confirms both fields.
+    return write_query(table2_type, {0x58, type, static_cast<Byte>(enabled ? 0 : 1), 1});
+}
+
 ParseResult parse(const Frame &frame, Family family) {
     if (frame.type == ack_type) {
         if (frame.sequence > 1 || !frame.payload.empty())
@@ -1053,6 +1113,8 @@ ParseResult parse(const Frame &frame, Family family) {
     if (family != Family::V2)
         return unknown(frame, ParseError::ProtocolNotNegotiated);
     try {
+        if (auto value = parse_safe_listening(frame))
+            return *value;
         if (auto value = parse_interaction(frame))
             return *value;
         if (auto value = parse_sound(frame))
@@ -1211,7 +1273,8 @@ Capabilities map_capabilities(const HandshakeState &state) {
     const std::vector<std::pair<Feature, Bytes>> table2{{Feature::ConnectedSources, {0x30, 0x32, 0x33}},
                                                         {Feature::SourceSwitch, {0x31}},
                                                         {Feature::FixedPlayback, {0x31}},
-                                                        {Feature::PromptVolume, {0x42, 0x43}}};
+                                                        {Feature::PromptVolume, {0x42, 0x43}},
+                                                        {Feature::SoundPressure, {0x50, 0x51, 0x52, 0x53}}};
     auto map = [&](const SupportFunctions &functions, const auto &mappings, const char *source) {
         for (const auto &[feature, ids] : mappings) {
             const bool advertised =

@@ -302,6 +302,23 @@ struct VoiceAssistantCapability {
 struct VoiceAssistantValue {
     Byte value{};
 };
+struct SafeListeningCapability {
+    Byte type{}, round_base{}, minimum_interval{}, log_capacity{};
+    std::uint32_t timestamp_base{};
+};
+struct SafeListeningAvailability {
+    Byte type{};
+    bool available{};
+};
+struct SafeListeningMode {
+    Byte type{};
+    bool enabled{}, preview{};
+};
+struct SoundPressure {
+    Byte type{}, level{}, cause{};
+    // Sony maps every other cause to OUT_OF_RANGE and uses its numeric branch.
+    bool valid_level() const { return cause != 0 && cause != 1 && cause != 2 && level != 0xff; }
+};
 using Information =
     std::variant<std::monostate, ProtocolInformation, CapabilityInformation, DeviceInformation,
                  SupportFunctions, BatteryStatus, SoundCapability, SoundAvailability, SoundParameter,
@@ -309,7 +326,8 @@ using Information =
                  GeneralSettingCapability, GeneralSettingAvailability, GeneralSettingParameter,
                  SourceCapability, SourceAvailability, MultipointAlert, SourceList, SourceSwitchResult,
                  TouchCapability, TouchStatus, TouchSelection, TouchDetails, CycleValue, GuidanceValue,
-                 FixValue, VoiceAssistantCapability, VoiceAssistantValue>;
+                 FixValue, VoiceAssistantCapability, VoiceAssistantValue, SafeListeningCapability,
+                 SafeListeningAvailability, SafeListeningMode, SoundPressure>;
 struct Message {
     Frame frame;
     Kind kind{Kind::Unknown};
@@ -418,5 +436,12 @@ struct InteractionParameters {
     static Query volume_write(int);
     static Query fix_read();
     static Query fix_write(bool);
+};
+struct SafeListeningParameters {
+    static std::optional<Byte> select_type(const SupportFunctions &);
+    static Query capability(Byte type);
+    static Query availability(Byte type);
+    static Query current(Byte type);
+    static Query set(Byte type, bool enabled);
 };
 } // namespace sonyconnect::protocol

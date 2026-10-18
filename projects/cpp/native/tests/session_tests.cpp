@@ -131,6 +131,10 @@ struct Headphones {
     bool guidance_available{true};
     unsigned guidance_writes{};
     Bytes last_guidance_write;
+    Byte safe_interval{1}, safe_level{72}, safe_cause{3};
+    bool safe_available{true}, safe_enabled{}, safe_preview{}, safe_confirm{true}, safe_accept{true};
+    unsigned safe_reads{}, safe_writes{};
+    std::function<void()> during_safe_read;
     Byte key_status{}, limitation{};
     Byte playback_slot{1};
     bool multipoint{true}, fixed{}, custom_touch{}, ordinary_cycle{}, reject_source{};
@@ -342,6 +346,33 @@ struct Headphones {
                 return;
             }
         } else {
+            if (command == 0x50 && type <= 3) {
+                transport.reply(request, {0x51, type, 1, 0, 0, 0, 0, safe_interval, 10});
+                return;
+            }
+            if (command == 0x56 && type <= 3) {
+                transport.reply(request, {0x57, type, static_cast<Byte>(safe_available ? 0 : 1)});
+                return;
+            }
+            if (command == 0x58 && type <= 3) {
+                ++safe_writes;
+                if (safe_accept) {
+                    safe_enabled = p[2] == 0;
+                    safe_preview = p[3] == 0;
+                }
+                if (safe_confirm)
+                    transport.reply(request, {0x59, type, static_cast<Byte>(safe_enabled ? 0 : 1),
+                                              static_cast<Byte>(safe_preview ? 0 : 1)});
+                else
+                    transport.acknowledge(request);
+                return;
+            }
+            if (command == 0x5a && type <= 3) {
+                ++safe_reads;
+                if (during_safe_read) during_safe_read();
+                transport.reply(request, {0x5b, type, safe_level, safe_cause});
+                return;
+            }
             if (command == 0x30) {
                 transport.reply(request, {0x31, type, 2, 2, 0});
                 return;
@@ -443,8 +474,147 @@ Bytes source_notification(const Headphones &model, Byte playback_slot) {
     return response;
 }
 } // namespace
-int main() {
+int main(int argc, char **argv) {
+    std::string filter;
+    if (argc > 2 || (argc == 2 && !std::string(argv[1]).starts_with("--filter="))) return 2;
+    if (argc == 2) filter = std::string(argv[1]).substr(9);
     const std::vector<std::pair<const char *, std::function<void()>>> tests{
+        {"trace-diagnostics-timeout-contains-request-summary-and-failure-reason", [] {
+             std::mutex trace_gate;
+             std::vector<ProtocolTrace> traces;
+             auto fake = std::make_unique<FakeTransport>();
+             auto *transport = fake.get();
+             ProtocolSession session(std::move(fake), policy());
+             prime(session, *transport);
+             session.set_trace([&](const auto &trace) {
+                 std::lock_guard lock(trace_gate);
+                 traces.push_back(trace);
+             });
+             transport->handler = [](auto &, const auto &) {};
+             check(session.exchange(SafeListeningParameters::current(1)).result.code == ResultCode::Timeout);
+             check(!session.connected(), "Timeout must retain the existing connection quarantine");
+             session.disconnect();
+             const auto timeout = std::find_if(traces.begin(), traces.end(), [](const auto &trace) {
+                 return trace.event == "query-timeout";
+             });
+             check(timeout != traces.end() && timeout->type == table2_type && timeout->command == 0x5a &&
+                   timeout->sequence.has_value(), "Timeout must identify the existing pressure query without payload");
+             check(std::any_of(traces.begin(), traces.end(), [](const auto &trace) {
+                 return trace.event == "link-failed" && trace.failure_reason.find("timeout") != std::string::npos;
+             }), "Link failure must retain the timeout reason");
+         }},
+        {"trace-diagnostics-peer-close-preserves-transport-reason", [] {
+             std::mutex trace_gate;
+             std::vector<ProtocolTrace> traces;
+             auto fake = std::make_unique<FakeTransport>();
+             auto *transport = fake.get();
+             ProtocolSession session(std::move(fake), policy());
+             prime(session, *transport);
+             session.set_trace([&](const auto &trace) {
+                 std::lock_guard lock(trace_gate);
+                 traces.push_back(trace);
+             });
+             transport->close();
+             eventually([&] {
+                 std::lock_guard lock(trace_gate);
+                 return std::any_of(traces.begin(), traces.end(), [](const auto &trace) {
+                     return trace.event == "link-failed" &&
+                            trace.failure_reason == "Headphones closed the RFCOMM control channel.";
+                 });
+             });
+             session.disconnect();
+             check(std::none_of(traces.begin(), traces.end(), [](const auto &trace) {
+                 return trace.event == "query-timeout";
+             }), "A peer closure must not be logged as a request timeout");
+         }},
+        {"trace-diagnostics-success-keeps-normal-traffic-and-empty-reason", [] {
+             std::mutex trace_gate;
+             std::vector<ProtocolTrace> traces;
+             auto fake = std::make_unique<FakeTransport>();
+             auto *transport = fake.get();
+             ProtocolSession session(std::move(fake), policy());
+             prime(session, *transport);
+             session.set_trace([&](const auto &trace) {
+                 std::lock_guard lock(trace_gate);
+                 traces.push_back(trace);
+             });
+             transport->handler = [](auto &t, const auto &frame) {
+                 t.reply(frame, {0x67, 0x17, 1, 1, 0, 0, 7});
+             };
+             check(session.exchange(SoundParameters::read()).result.confirmed());
+             session.set_trace({});
+             session.disconnect();
+             check(std::any_of(traces.begin(), traces.end(), [](const auto &trace) { return trace.event == "send"; }));
+             check(std::all_of(traces.begin(), traces.end(), [](const auto &trace) {
+                 return trace.failure_reason.empty() && trace.event != "query-timeout" && trace.event != "link-failed";
+             }), "Successful traffic must not acquire a failure reason");
+         }},
+        {"safe-listening-confirmation-poll-throttle-and-disable", [] {
+             Headphones headphones;
+             headphones.functions2 = {0x53};
+             DeviceController controller(fake_for(headphones), policy());
+             check(controller.connect(device()).ok());
+             auto snap = controller.snapshot();
+             check(snap.safe_listening.writable && !snap.safe_listening.enabled.known());
+             check(headphones.safe_writes == 0 && headphones.safe_reads == 0);
+             check(!controller.poll_sound_pressure().ok());
+             check(controller.set_safe_listening(true).confirmed());
+             headphones.during_safe_read = [&] { check(!controller.snapshot().busy); };
+             check(controller.poll_sound_pressure().ok());
+             snap = controller.snapshot();
+             check(snap.safe_listening.decibels.known() && snap.safe_listening.decibels.value == 72);
+             check(snap.safe_listening.updated_at.has_value());
+             const auto prior = snap.last_result.code;
+             check(controller.poll_sound_pressure().ok() && headphones.safe_reads == 1);
+             check(controller.snapshot().last_result.code == prior);
+             check(controller.set_safe_listening(false).confirmed());
+             check(!controller.snapshot().safe_listening.decibels.known());
+             check(!controller.poll_sound_pressure().ok() && headphones.safe_reads == 1);
+             check(headphones.safe_writes == 2);
+         }},
+        {"safe-listening-ack-does-not-confirm-mode-or-display-values", [] {
+             Headphones headphones;
+             headphones.functions2 = {0x53};
+             headphones.safe_confirm = false;
+             DeviceController controller(fake_for(headphones), policy());
+             check(controller.connect(device()).ok());
+             check(controller.set_safe_listening(true).code == ResultCode::Timeout);
+             check(!controller.snapshot().safe_listening.enabled.known());
+             check(!controller.poll_sound_pressure().ok() && headphones.safe_reads == 0);
+         }},
+        {"safe-listening-rejection-unavailability-and-zero-interval", [] {
+             for (int condition = 0; condition < 3; ++condition) {
+                 Headphones headphones;
+                 headphones.functions2 = {0x53};
+                 headphones.safe_accept = false;
+                 if (condition == 1) headphones.safe_available = false;
+                 if (condition == 2) headphones.safe_interval = 0;
+                 DeviceController controller(fake_for(headphones), policy());
+                 check(controller.connect(device()).ok());
+                 check(controller.set_safe_listening(true).code ==
+                       (condition == 0 ? ResultCode::DeviceRejected : ResultCode::Unavailable));
+                 check(headphones.safe_writes == (condition == 0 ? 1u : 0u));
+                 check(!controller.poll_sound_pressure().ok());
+             }
+         }},
+        {"safe-listening-special-states-and-disconnection-never-become-decibels", [] {
+             for (auto cause : {0, 1, 2}) {
+                 Headphones headphones;
+                 headphones.functions2 = {0x51};
+                 headphones.safe_level = cause == 0 ? Byte{0xff} : Byte{72};
+                 headphones.safe_cause = static_cast<Byte>(cause);
+                 DeviceController controller(fake_for(headphones), policy());
+                 check(controller.connect(device()).ok());
+                 check(controller.snapshot().safe_listening.type == 1);
+                 check(controller.set_safe_listening(true).confirmed());
+                 check(controller.poll_sound_pressure().ok());
+                 check(!controller.snapshot().safe_listening.decibels.known());
+                 check(controller.snapshot().safe_listening.cause.value == cause);
+                 controller.disconnect();
+                 check(!controller.snapshot().safe_listening.writable);
+                 check(!controller.snapshot().safe_listening.enabled.known());
+             }
+         }},
         {"discovery-excludes-paired-disconnected-headphones",
          [] {
              auto wf = device();
@@ -920,6 +1090,121 @@ int main() {
              check(controller.set(Feature::Multipoint, 0).confirmed());
              check(!controller.snapshot().sources.switch_writable);
          }},
+        {"external-source-change-fixation-readback-restores-controls-without-writes",
+         [] {
+             Headphones headphones;
+             headphones.functions1 = {0xd1};
+             headphones.functions2 = {0x30, 0x31};
+             auto fake = fake_for(headphones);
+             auto *transport = fake.get();
+             DeviceController controller(std::move(fake), policy());
+             check(controller.connect(device()).ok());
+             // Preserve a foreground error while the read-only follow-up runs.
+             check(controller.switch_source("invalid-source").code == ResultCode::InvalidValue);
+             const auto prior = controller.snapshot().last_result;
+             headphones.playback_slot = 2;
+             transport->push({table2_type, 0, source_notification(headphones, 2)});
+             eventually([&] { return controller.snapshot().sources.active_source.value == headphones.second_source; });
+             check(!controller.snapshot().touch.playback_fixed.known());
+             check(!controller.snapshot().touch.fixation_writable && !controller.snapshot().sources.switch_writable);
+             unsigned reads = 0;
+             transport->handler = [&](auto &t, const auto &frame) {
+                 check(!controller.snapshot().busy, "Background fixation read must not mark the UI busy");
+                 check(controller.poll_playback_fixed().code == ResultCode::Busy,
+                       "A second fixation poll must respect the existing operation lock");
+                 check(frame.type == table2_type && frame.payload == Bytes{0x36, 1},
+                       "Fixation follow-up must only use the existing read command");
+                 ++reads;
+                 headphones(t, frame);
+             };
+             check(controller.poll_playback_fixed().ok());
+             const auto restored = controller.snapshot();
+             check(restored.touch.playback_fixed.known() && !*restored.touch.playback_fixed.value);
+             check(restored.touch.fixation_writable && restored.sources.switch_writable);
+             check(restored.last_result.code == prior.code && restored.last_result.message == prior.message);
+             check(controller.poll_playback_fixed().ok() && reads == 1, "Known fixation must not be polled again");
+             check(headphones.source_writes == 0 && headphones.fix_writes == 0);
+             transport->handler = [&](auto &t, const auto &frame) { headphones(t, frame); };
+             check(controller.set(Feature::FixedPlayback, 1).confirmed());
+             check(controller.set(Feature::FixedPlayback, 0).confirmed());
+             check(controller.switch_source(headphones.first_source).confirmed());
+         }},
+        {"fixation-readback-discards-source-away-and-back-generation",
+         [] {
+             Headphones headphones;
+             headphones.functions1 = {0xd1};
+             headphones.functions2 = {0x30, 0x31};
+             auto fake = fake_for(headphones);
+             auto *transport = fake.get();
+             DeviceController controller(std::move(fake), policy());
+             check(controller.connect(device()).ok());
+             headphones.playback_slot = 2;
+             transport->push({table2_type, 0, source_notification(headphones, 2)});
+             eventually([&] { return controller.snapshot().sources.active_source.value == headphones.second_source; });
+             transport->handler = [&](auto &t, const auto &frame) {
+                 check(frame.payload == Bytes{0x36, 1});
+                 t.push({table2_type, 0, source_notification(headphones, 1)});
+                 t.push({table2_type, 1, source_notification(headphones, 2)});
+                 t.reply(frame, {0x37, 1, 0}); // An obsolete source generation says fixed.
+             };
+             check(controller.poll_playback_fixed().code == ResultCode::Canceled);
+             check(controller.snapshot().sources.active_source.value == headphones.second_source);
+             check(!controller.snapshot().touch.playback_fixed.known());
+             check(!controller.snapshot().touch.fixation_writable && !controller.snapshot().sources.switch_writable);
+             transport->handler = [&](auto &t, const auto &frame) { headphones(t, frame); };
+             check(controller.poll_playback_fixed().ok());
+             check(controller.snapshot().touch.playback_fixed.known() && !*controller.snapshot().touch.playback_fixed.value);
+             check(controller.snapshot().sources.switch_writable);
+             check(headphones.source_writes == 0 && headphones.fix_writes == 0);
+         }},
+        {"fixation-readback-requires-current-link-capability-multipoint-and-source",
+         [] {
+             for (int condition = 0; condition < 4; ++condition) {
+                 Headphones headphones;
+                 headphones.functions1 = {0xd1};
+                 headphones.functions2 = condition == 0 ? Bytes{0x30} : Bytes{0x30, 0x31};
+                 if (condition == 1) headphones.multipoint = false;
+                 auto fake = fake_for(headphones);
+                 auto *transport = fake.get();
+                 DeviceController controller(std::move(fake), policy());
+                 check(controller.connect(device()).ok());
+                 if (condition == 2) controller.disconnect();
+                 if (condition == 3) {
+                     transport->push({table2_type, 0, source_notification(headphones, 0)});
+                     eventually([&] { return !controller.snapshot().sources.active_source.known(); });
+                 }
+                 const auto requests = transport->requests.load();
+                 check(controller.poll_playback_fixed().code == ResultCode::Unavailable);
+                 check(transport->requests == requests && headphones.source_writes == 0 && headphones.fix_writes == 0);
+             }
+         }},
+        {"fixation-readback-rejects-malformed-data-and-keeps-unknown-controls-disabled",
+         [] {
+             Headphones headphones;
+             headphones.functions1 = {0xd1};
+             headphones.functions2 = {0x30, 0x31};
+             auto fake = fake_for(headphones);
+             auto *transport = fake.get();
+             DeviceController controller(std::move(fake), policy());
+             check(controller.connect(device()).ok());
+             transport->push({table2_type, 0, source_notification(headphones, 2)});
+             eventually([&] { return controller.snapshot().sources.active_source.value == headphones.second_source; });
+             transport->handler = [&](auto &t, const auto &frame) { t.reply(frame, {0x37, 1, 0xff}); };
+             transport->fail_opens = 9;
+             check(!controller.poll_playback_fixed().ok(), "Malformed fixation must not confirm the readback");
+             check(!controller.snapshot().touch.playback_fixed.known(), "Malformed fixation must remain unknown");
+             check(!controller.snapshot().touch.fixation_writable && !controller.snapshot().sources.switch_writable,
+                   "Malformed fixation must not enable source writes");
+             check(headphones.source_writes == 0 && headphones.fix_writes == 0);
+             // A timed-out exchange poisons its channel by design. Retain the
+             // existing recovery contract instead of bypassing that check.
+             controller.disconnect();
+             transport->fail_opens = 0;
+             transport->handler = [&](auto &t, const auto &frame) { headphones(t, frame); };
+             check(controller.connect(device()).ok());
+             check(controller.poll_playback_fixed().ok());
+             check(controller.snapshot().touch.fixation_writable);
+         }},
         {"source-switch-rejection-not-hidden-by-ack",
          [] {
              Headphones headphones;
@@ -958,6 +1243,61 @@ int main() {
              check(controller.snapshot().codec.value == "LDAC");
              transport->push({table1_type, 0, {0x15, 2, 0x30}});
              eventually([&] { return controller.snapshot().codec.value == "LC3"; });
+         }},
+        {"background-codec-poll-recovers-external-source-without-foreground-result-change",
+         [] {
+             Headphones headphones;
+             headphones.functions1 = {0x12};
+             headphones.functions2 = {0x30};
+             auto fake = fake_for(headphones);
+             auto *transport = fake.get();
+             DeviceController controller(std::move(fake), policy());
+             check(controller.connect(device()).ok());
+             const auto before = controller.snapshot().last_result;
+             check(controller.poll_codec().ok());
+             headphones.playback_slot = 2;
+             transport->push({table2_type, 0, source_notification(headphones, 2)});
+             eventually([&] { return controller.snapshot().sources.active_source.value == headphones.second_source; });
+             check(!controller.snapshot().codec.known());
+             transport->handler = [&](auto &t, const auto &frame) {
+                 if (frame.payload[0] == 0x12) {
+                     check(controller.poll_codec().code == ResultCode::Busy, "Poll must not overlap an existing query");
+                     t.reply(frame, {0x13, 2, 0x10});
+                 }
+                 else headphones(t, frame);
+             };
+             const auto requests = transport->requests.load();
+             check(controller.poll_codec().ok());
+             check(controller.snapshot().codec.value == "LDAC");
+             check(transport->requests == requests + 1, "Background poll must only read the codec");
+             check(controller.snapshot().last_result.code == before.code && controller.snapshot().last_result.message == before.message);
+             check(controller.poll_codec().ok() && transport->requests == requests + 1,
+                   "Known codec must not trigger repeated queries");
+             controller.disconnect();
+             check(!controller.poll_codec().ok() && transport->requests == requests + 1);
+         }},
+        {"background-codec-poll-rejects-changed-generation-and-retries-current-source",
+         [] {
+             Headphones headphones;
+             headphones.functions1 = {0x12};
+             headphones.functions2 = {0x30};
+             auto fake = fake_for(headphones);
+             auto *transport = fake.get();
+             DeviceController controller(std::move(fake), policy());
+             check(controller.connect(device()).ok());
+             headphones.playback_slot = 2;
+             transport->push({table2_type, 0, source_notification(headphones, 2)});
+             eventually([&] { return controller.snapshot().sources.active_source.value == headphones.second_source; });
+             transport->handler = [&](auto &t, const auto &frame) {
+                 if (frame.payload[0] == 0x12) {
+                     t.push({table2_type, 1, source_notification(headphones, 1)});
+                     t.reply(frame, {0x13, 2, 0x10});
+                 } else headphones(t, frame);
+             };
+             check(controller.poll_codec().code == ResultCode::Superseded);
+             check(!controller.snapshot().codec.known(), "Old-source reply must not release the fence");
+             transport->handler = [&](auto &t, const auto &frame) { headphones(t, frame); };
+             check(controller.poll_codec().ok() && controller.snapshot().codec.value == "AAC");
          }},
         {"codec-query-discards-reply-after-source-changes-away-and-back",
          [] {
@@ -1325,8 +1665,10 @@ int main() {
              check(snapshot.sound.ambient_level.value == 7);
              check(controller.set_sound({}, 10).code == ResultCode::Unavailable);
          }}};
-    unsigned passed = 0;
-    for (const auto &[name, test] : tests)
+    unsigned passed = 0, selected = 0;
+    for (const auto &[name, test] : tests) {
+        if (!filter.empty() && std::string(name).find(filter) == std::string::npos) continue;
+        ++selected;
         try {
             test();
             ++passed;
@@ -1334,7 +1676,8 @@ int main() {
         } catch (const std::exception &error) {
             std::cerr << "FAIL " << name << ": " << error.what() << '\n';
         }
-    std::cout << passed << '/' << tests.size()
+    }
+    std::cout << passed << '/' << selected
               << " offline session scenarios passed. HardwareVerified=false\n";
-    return passed == tests.size() ? 0 : 1;
+    return selected && passed == selected ? 0 : 1;
 }

@@ -1,0 +1,301 @@
+{
+  "penDocument": "63db19b9-f01e-4c69-9d7a-c29249d5a1cd/untitled.pen",
+  "exportDate": "2026-10-15",
+  "fillRule": "nonzero",
+  "icons": [
+    {
+      "icon": "activity",
+      "penNode": "usrko",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 58,
+      "sha256": "f33888122d2c4cc2a69e62f5229772d9e6c02624f2208a21f3a5e8e5ccc48a22"
+    },
+    {
+      "icon": "arrow-up-right",
+      "penNode": "R7aHS6",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 33,
+      "sha256": "4fe4f7c1bb0270bec03d0fbe180f651b3db7615331e8c87e28977c224a9a4b45"
+    },
+    {
+      "icon": "audio-lines",
+      "penNode": "PlcP7",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 103,
+      "sha256": "468e83c1729e39bdda0a42423c3e2ea3a0a7e8e42748cf2ccc4dbd1fa7a0d275"
+    },
+    {
+      "icon": "battery-medium",
+      "penNode": "bePLy",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 91,
+      "sha256": "e115023cbf3befb8f81be8f9a58c5d7c0a2bac632f007a69b756d25ddf271285"
+    },
+    {
+      "icon": "bluetooth",
+      "penNode": "Bhe9N",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 64,
+      "sha256": "ef3df6a95b257ff2009aedb2d1fa971e6f5b1f4a7ec96b7b90e27d369a65c07e"
+    },
+    {
+      "icon": "check",
+      "penNode": "scIEg",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 34,
+      "sha256": "f39cba9766f117ac1757604113330a9495d671e72d09c96147fef498614af0cc"
+    },
+    {
+      "icon": "chevron-down",
+      "penNode": "Xk41D",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 25,
+      "sha256": "6936cdc015d0f71d097f24273df4bd8519132def1951a631e42acaa09dabc026"
+    },
+    {
+      "icon": "chevron-right",
+      "penNode": "jz2yQ",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 25,
+      "sha256": "97e799f6c540d60b01a131b29a55013ef04b70261c6d73c849c2ade6a4ebcb7f"
+    },
+    {
+      "icon": "circle-alert",
+      "penNode": "Q8bjJq",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 81,
+      "sha256": "585cb4c15313e9f8c50eb6a456a3b6198600cdcdb17f4df71416353d915f9e7b"
+    },
+    {
+      "icon": "download",
+      "penNode": "s0jdy",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 72,
+      "sha256": "74fc3c6b56be3d6ca0196e5116e1735da0cdbd35fae6ae7e13ee5883ec64dba6"
+    },
+    {
+      "icon": "ear",
+      "penNode": "cxvYX",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 107,
+      "sha256": "d1bd98ad86003c9e1656629a6bcb681e4a389af9ca86b98661d3e6f63cac9bb0"
+    },
+    {
+      "icon": "file-text",
+      "penNode": "N1bWQU",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 107,
+      "sha256": "cf440eccff6f8427977ee9ec1905498365e353bd88e153920789ef0137cac5ae"
+    },
+    {
+      "icon": "hand",
+      "penNode": "v1blCI",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 127,
+      "sha256": "0d5fe29bc1cfcf07a9606f498dc85844035526706ebfaed56cc66f463675f505"
+    },
+    {
+      "icon": "headphones",
+      "penNode": "pVPZJ",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 94,
+      "sha256": "a1e416a48638988811a694162649b938b27180f439db74d3a1aaa2133f7feb04"
+    },
+    {
+      "icon": "history",
+      "penNode": "BV8sq",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 90,
+      "sha256": "ad2f37300d6aea048edebe91eed8e51b6efd8fdfab7565d735cc7d95eea0a2ab"
+    },
+    {
+      "icon": "keyboard",
+      "penNode": "JvlJf",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 142,
+      "sha256": "86e077697d417f21a510ee34d4287b1d7a4de6959e98a151a5c8886f325d5beb"
+    },
+    {
+      "icon": "laptop-minimal",
+      "penNode": "Vs7Wt",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 64,
+      "sha256": "59b63a1f6e81b63dd0a487f1831ecf610b2c7b9d631a23c00002a02dbd203da9"
+    },
+    {
+      "icon": "loader-circle",
+      "penNode": "OL4l4",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 53,
+      "sha256": "8270e55f3422b10b29182cb9cab86178002e4be5c09543c3883fb418524f6bae"
+    },
+    {
+      "icon": "lock-keyhole",
+      "penNode": "j1Wy81",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 87,
+      "sha256": "d4e437044fa7b6449622e2bbb45131e0ad89df1a6a0cf7840b6cf077865e1241"
+    },
+    {
+      "icon": "log-out",
+      "penNode": "r2hYRk",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 74,
+      "sha256": "73116d92f72462beb18a75f8b2a89a3e4f02c7c80aab9a6120c076e093727cbb"
+    },
+    {
+      "icon": "mic",
+      "penNode": "A7CjB",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 98,
+      "sha256": "0a0d70239d6e679629098127c35cdafeb4766124869faea253f4eb3fd678d068"
+    },
+    {
+      "icon": "minus",
+      "penNode": "bdLwE",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 17,
+      "sha256": "2632f1be8e9089484e8a2cf652961fa4c46a2d456c99cd7ce8dc837a475d3a33"
+    },
+    {
+      "icon": "monitor",
+      "penNode": "TcxTR",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 71,
+      "sha256": "4172da63dd5686bf885ec29cbd4126d38613a762f657d40245cb6480cc8169d8"
+    },
+    {
+      "icon": "music-2",
+      "penNode": "a5c0jE",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 54,
+      "sha256": "41365161d75a2be1b7879bdf02f613fe49eb77bc60ddbaf47a6b2cf7644c2764"
+    },
+    {
+      "icon": "panel-top",
+      "penNode": "QsrXX",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 50,
+      "sha256": "c7cdeb86615cc93200d901a7b3cef16f9e62ea58d26ddc4c78c3bf49b6535c08"
+    },
+    {
+      "icon": "pause",
+      "penNode": "BcsfR",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 62,
+      "sha256": "614dd015cd4a9bc9cc9affe2c9b2c4807658b974f77eeeb36f0eb4d4f5f0291b"
+    },
+    {
+      "icon": "pencil",
+      "penNode": "GtIO3",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 51,
+      "sha256": "2dec7389b9d65b4b31511bdb6bf57c9113caa68b50d30fe18df1f323835419ce"
+    },
+    {
+      "icon": "play",
+      "penNode": "Z4yU0",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 40,
+      "sha256": "85eac5ae1820c44babbe5dd1dbeb7a5ebd811d4ec4bbe87c223a518542bddaf6"
+    },
+    {
+      "icon": "plus",
+      "penNode": "mjBM3",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 38,
+      "sha256": "f0c5b0feb39a2b91c4dac24c991e8bf84fe05aefede03f0145f7046b84e567e9"
+    },
+    {
+      "icon": "power",
+      "penNode": "OglOd",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 70,
+      "sha256": "4e902048b651a895d51e59ca71bf17a889a27d190b684d23b1970a4949792128"
+    },
+    {
+      "icon": "radio",
+      "penNode": "ShGN7",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 127,
+      "sha256": "b7631d3eb7bb200af3a8cb350112a66066b423853fc8bceb27c3722a4cda2106"
+    },
+    {
+      "icon": "rotate-ccw",
+      "penNode": "Fdkam",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 67,
+      "sha256": "eef6b06778a63b422f5bf321d565612713312b657afd1e18cd4fd051eae7ba70"
+    },
+    {
+      "icon": "rotate-cw",
+      "penNode": "MAM0F",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 74,
+      "sha256": "071ed9d81609f2163b86d311f9b209bc1e16e1e694196d9f45477653175d4b73"
+    },
+    {
+      "icon": "settings-2",
+      "penNode": "tqmyf",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 94,
+      "sha256": "4daea25b8272468efcfc2634840c3c29ad7d5b19be33c8dca9b62cc0ba20d891"
+    },
+    {
+      "icon": "shield-check",
+      "penNode": "yjG5J",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 82,
+      "sha256": "cf7c497c0d238951de8ae56673d081a30d23fea9f33da73cc87c1530b236cb13"
+    },
+    {
+      "icon": "skip-back",
+      "penNode": "lQ0RK",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 59,
+      "sha256": "01531edf0596fdac18f13f255d92e6ebe0b993494d2a579409144c2aed69c81c"
+    },
+    {
+      "icon": "skip-forward",
+      "penNode": "ot7ct",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 59,
+      "sha256": "f3f4ae36528f97d336863417da1a3b411dc1fc660f02943463b0cb940b267850"
+    },
+    {
+      "icon": "sliders-horizontal",
+      "penNode": "uGWeT",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 131,
+      "sha256": "fad0013db9bb15172e520d1fa8fc18172d173f9938ae552affec898c350bd116"
+    },
+    {
+      "icon": "smartphone",
+      "penNode": "NWtCw",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 55,
+      "sha256": "46671faab269594e9bad34b4a9a1b500f79ebe9723278da40db8f74676b98796"
+    },
+    {
+      "icon": "volume-1",
+      "penNode": "ClLZI",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 74,
+      "sha256": "2b7de95ed7373b9580594632ceafaf8856ef5339e174b5656455be7ee3271c42"
+    },
+    {
+      "icon": "volume-2",
+      "penNode": "xm6hK",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 99,
+      "sha256": "2f7c08ff8e31f1412485a5d0be041bad6e2ac19aa638b76bfa51d1c6c07ba878"
+    },
+    {
+      "icon": "x",
+      "penNode": "OxakL",
+      "viewBox": "0 0 13.99993896484375 14",
+      "commands": 43,
+      "sha256": "782837c00453623d644cb11e2bd58d08ad490e81a3c37bdf73a54bfc2b96d1dd"
+    }
+  ]
+}

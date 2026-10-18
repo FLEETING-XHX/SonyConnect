@@ -1,0 +1,9 @@
+/* SonyConnect UI color tokens. Primary comes from the Pen design file. */
+:root {
+  --sony-primary: #4C5ED6;
+  --sony-surface: #EDEFF5;
+  --sony-track: #D9DEEA;
+  --sony-foreground-muted: #626B7E;
+  --sony-selected: #FFFFFF;
+  --sony-foreground: #333B50;
+}

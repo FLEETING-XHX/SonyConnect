@@ -81,6 +81,7 @@ struct ProtocolTrace {
     std::string event;
     std::uint64_t link{}, receive_order{};
     std::optional<protocol::Byte> type, sequence, command;
+    std::string failure_reason;
 };
 class ProtocolSession {
   public:
@@ -155,6 +156,15 @@ struct TouchSnapshot {
     bool writable{}, cycle_writable{}, guidance_writable{}, volume_writable{}, fixation_writable{},
         assistant_writable{};
 };
+struct SafeListeningSnapshot {
+    std::optional<protocol::Byte> type;
+    Value<bool> enabled, preview;
+    Value<int> decibels, cause;
+    std::optional<unsigned> minimum_interval_seconds;
+    bool available{}, writable{};
+    std::string reason;
+    std::optional<std::chrono::steady_clock::time_point> updated_at;
+};
 struct DeviceSnapshot {
     bool connected{}, ready{}, busy{}, hardware_verified{false};
     std::uint64_t link{}, revision{};
@@ -168,6 +178,7 @@ struct DeviceSnapshot {
     EqualizerSnapshot equalizer;
     SourceSnapshot sources;
     TouchSnapshot touch;
+    SafeListeningSnapshot safe_listening;
     Value<std::string> codec;
     std::vector<protocol::MultipointAlert> pending_alerts;
     Result last_result;
@@ -198,6 +209,13 @@ class DeviceController {
     Result restore_touch_linked_backup();
     Result set_touch_details(const std::vector<protocol::TouchPresetState> &);
     Result set_voice_assistant(protocol::Byte);
+    Result set_safe_listening(bool enabled);
+    // Background read: does not toggle global busy or replace the last command result.
+    Result poll_sound_pressure();
+    // Read-only follow-up after an external source change; preserves last_result.
+    Result poll_playback_fixed();
+    // Read-only follow-up for source changes. Keeps the foreground result intact.
+    Result poll_codec();
     void set_trace(std::function<void(const ProtocolTrace &)>);
 
   private:

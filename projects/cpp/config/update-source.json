@@ -13,6 +13,6 @@
   "gitee": {
     "repository": "fleetingxhx/SonyConnect",
     "releasesPageUrl": "https://gitee.com/fleetingxhx/SonyConnect/releases",
-    "manifestUrl": "https://gitee.com/fleetingxhx/SonyConnect/raw/main/update.json"
+    "latestReleasesApiUrl": "https://gitee.com/api/v5/repos/fleetingxhx/SonyConnect/releases"
   }
 }

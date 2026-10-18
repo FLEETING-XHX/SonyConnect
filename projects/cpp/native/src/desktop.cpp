@@ -1,4 +1,5 @@
 #include "sonyconnect/desktop.hpp"
+#include "sonyconnect/desktop_async.hpp"
 
 #ifndef NOMINMAX
 #define NOMINMAX
@@ -23,10 +24,10 @@
 #include <condition_variable>
 #include <deque>
 #include <fstream>
-#include <future>
 #include <map>
 #include <mutex>
 #include <regex>
+#include <set>
 #include <sstream>
 #include <stdexcept>
 #include <thread>
@@ -38,7 +39,6 @@ using winrt::Windows::Data::Json::JsonArray;
 using winrt::Windows::Data::Json::JsonObject;
 using winrt::Windows::Data::Json::JsonValue;
 std::wstring wide(const std::string &text) { return winrt::to_hstring(text).c_str(); }
-std::string narrow(const std::wstring &text) { return winrt::to_string(text); }
 void checked(HRESULT result) { winrt::check_hresult(result); }
 std::string read_file(const std::filesystem::path &path, std::size_t limit) {
     std::ifstream file(path, std::ios::binary);
@@ -84,430 +84,7 @@ void atomic_write(const std::filesystem::path &path, const std::string &text, bo
         throw;
     }
 }
-std::uint32_t bits(Recognizer value) { return static_cast<std::uint32_t>(value); }
-bool single(std::uint32_t value) { return value && !(value & (value - 1)); }
-int json_integer(const JsonObject &object, const wchar_t *name, int minimum, int maximum) {
-    double value = object.GetNamedNumber(name);
-    if (!std::isfinite(value) || value < minimum || value > maximum || std::trunc(value) != value)
-        throw std::runtime_error("Invalid numeric setting");
-    return static_cast<int>(value);
-}
-std::wstring recognizer_label(Recognizer value) {
-    switch (value) {
-    case Recognizer::left_ctrl:
-        return L"L-Ctrl";
-    case Recognizer::right_ctrl:
-        return L"R-Ctrl";
-    case Recognizer::left_alt:
-        return L"L-Alt";
-    case Recognizer::right_alt:
-        return L"R-Alt";
-    case Recognizer::left_shift:
-        return L"L-Shift";
-    case Recognizer::right_shift:
-        return L"R-Shift";
-    case Recognizer::caps_lock:
-        return L"Caps Lock";
-    case Recognizer::tab:
-        return L"Tab";
-    default:
-        return L"?";
-    }
-}
-void conflict_probe(const HotkeyBindings &bindings) {
-    std::vector<int> ids;
-    std::set<std::pair<unsigned, int>> gestures;
-    try {
-        for (const auto &binding : bindings) {
-            auto r = bits(binding.gesture.recognizer);
-            unsigned modifiers =
-                ((r & 3) ? MOD_CONTROL : 0) | ((r & 12) ? MOD_ALT : 0) | ((r & 48) ? MOD_SHIFT : 0);
-            // CapsLock/Tab are not RegisterHotKey modifiers; probing bare F keys would falsely reject them.
-            if (!modifiers || binding.gesture.key == VK_F12 ||
-                !gestures.emplace(modifiers, binding.gesture.key).second)
-                continue;
-            int id = 0x5300 + static_cast<int>(ids.size());
-            if (!RegisterHotKey(nullptr, id, modifiers | MOD_NOREPEAT, binding.gesture.key))
-                throw std::system_error(GetLastError(), std::system_category(), "Hotkey occupied");
-            ids.push_back(id);
-        }
-    } catch (...) {
-        for (int id : ids)
-            UnregisterHotKey(nullptr, id);
-        throw;
-    }
-    for (int id : ids)
-        UnregisterHotKey(nullptr, id);
-}
 } // namespace
-
-Recognizer recognizer_for_key(int key) {
-    switch (key) {
-    case VK_LCONTROL:
-        return Recognizer::left_ctrl;
-    case VK_RCONTROL:
-        return Recognizer::right_ctrl;
-    case VK_LMENU:
-        return Recognizer::left_alt;
-    case VK_RMENU:
-        return Recognizer::right_alt;
-    case VK_LSHIFT:
-        return Recognizer::left_shift;
-    case VK_RSHIFT:
-        return Recognizer::right_shift;
-    case VK_CAPITAL:
-        return Recognizer::caps_lock;
-    case VK_TAB:
-        return Recognizer::tab;
-    default:
-        return Recognizer::none;
-    }
-}
-bool is_free_key(int key) {
-    if (key < 8 || key > 254)
-        return false;
-    switch (key) {
-    case VK_BACK:
-    case VK_TAB:
-    case VK_SHIFT:
-    case VK_CONTROL:
-    case VK_MENU:
-    case VK_CAPITAL:
-    case VK_SNAPSHOT:
-    case VK_DELETE:
-    case VK_LWIN:
-    case VK_RWIN:
-    case VK_APPS:
-    case VK_LSHIFT:
-    case VK_RSHIFT:
-    case VK_LCONTROL:
-    case VK_RCONTROL:
-    case VK_LMENU:
-    case VK_RMENU:
-        return false;
-    }
-    // Reject unmapped/reserved virtual keys rather than persisting an unusable gesture.
-    return (key >= '0' && key <= '9') || (key >= 'A' && key <= 'Z') || (key >= VK_NUMPAD0 && key <= VK_F24) ||
-           (key >= VK_BROWSER_BACK && key <= VK_LAUNCH_APP2) || key == VK_ESCAPE || key == VK_SPACE ||
-           key == VK_RETURN || key == VK_PAUSE || (key >= VK_PRIOR && key <= VK_DOWN) || key == VK_INSERT ||
-           key == VK_NUMLOCK || key == VK_SCROLL || (key >= VK_OEM_1 && key <= VK_OEM_3) ||
-           (key >= VK_OEM_4 && key <= VK_OEM_8) || key == VK_OEM_102;
-}
-std::wstring HotkeyGesture::label() const {
-    wchar_t name[128]{};
-    auto scan = MapVirtualKeyW(key, MAPVK_VK_TO_VSC);
-    if (key >= VK_PRIOR && key <= VK_DOWN || key == VK_INSERT || key == VK_DIVIDE)
-        scan |= 0x100;
-    GetKeyNameTextW(static_cast<LONG>(scan << 16), name, 128);
-    return recognizer_label(recognizer) + L"+" +
-           (name[0] ? std::wstring(name) : L"VK " + std::to_wstring(key));
-}
-HotkeyBindings default_hotkeys() {
-    return {{{SoundMode::noise_canceling, {Recognizer::right_ctrl, VK_F1}},
-             {SoundMode::ambient, {Recognizer::right_ctrl, VK_F2}},
-             {SoundMode::off, {Recognizer::right_ctrl, VK_F3}}}};
-}
-void validate_hotkeys(const HotkeyBindings &bindings) {
-    std::set<int> modes;
-    std::set<std::pair<std::uint32_t, int>> gestures;
-    for (const auto &b : bindings) {
-        auto r = bits(b.gesture.recognizer);
-        int mode = static_cast<int>(b.mode);
-        if (mode < 0 || mode > 2 || !modes.insert(mode).second || !single(r) || (r & ~255u) ||
-            !is_free_key(b.gesture.key) || !gestures.emplace(r, b.gesture.key).second)
-            throw std::invalid_argument("Three distinct modes require one recognizer and one free key each");
-    }
-}
-HotkeyCaptureResult HotkeyCapture::begin() {
-    end();
-    active_ = true;
-    return progress();
-}
-void HotkeyCapture::end() {
-    held_.clear();
-    recognizers_ = 0;
-    active_ = false;
-}
-HotkeyCaptureResult HotkeyCapture::progress() const {
-    if (!recognizers_)
-        return {{}, L"请按识别键…", L"按住一个识别键，再按一个自由键。", false};
-    if (!single(recognizers_))
-        return {{}, L"多个识别键", L"请松开多余识别键。", false};
-    auto label = recognizer_label(static_cast<Recognizer>(recognizers_));
-    return {{}, label + L"+…", L"已识别：" + label + L"；请继续按自由键。", false};
-}
-HotkeyCaptureResult HotkeyCapture::feed(int key, bool down, bool repeat) {
-    if (!active_)
-        return {{}, {}, L"尚未开始录入。", false};
-    auto r = bits(recognizer_for_key(key));
-    if (!down) {
-        held_.erase(key);
-        recognizers_ &= ~r;
-        return progress();
-    }
-    if (repeat || !held_.insert(key).second)
-        return progress();
-    if (key == VK_ESCAPE && !recognizers_) {
-        end();
-        return {{}, {}, L"已退出录入，原草稿保留。", true};
-    }
-    if (r) {
-        recognizers_ |= r;
-        return progress();
-    }
-    if (!is_free_key(key))
-        return {{}, {}, L"该键不支持；原草稿保留。", false};
-    if (!single(recognizers_) || held_.count(VK_LWIN) || held_.count(VK_RWIN) ||
-        std::count_if(held_.begin(), held_.end(),
-                      [](int k) { return recognizer_for_key(k) == Recognizer::none; }) != 1)
-        return {{}, {}, L"必须恰好按住一个识别键和一个自由键。", false};
-    HotkeyGesture gesture{static_cast<Recognizer>(recognizers_), key};
-    end();
-    return {gesture, gesture.label(), L"草稿已修改，保存后生效。", true};
-}
-void HotkeyMatcher::reset() {
-    held_.clear();
-    consumed_.clear();
-    recognizers_ = 0;
-}
-HotkeyMatch HotkeyMatcher::feed(int key, bool down, bool injected, bool paused,
-                                const HotkeyBindings &bindings) {
-    if (injected)
-        return {};
-    auto r = bits(recognizer_for_key(key));
-    if (r) {
-        if (down)
-            recognizers_ |= r;
-        else
-            recognizers_ &= ~r;
-        return {};
-    }
-    if (!down) {
-        held_.erase(key);
-        return {{}, consumed_.erase(key) != 0};
-    }
-    bool first = held_.insert(key).second;
-    if (consumed_.count(key))
-        return {{}, true};
-    if (paused || held_.size() != 1 || !first)
-        return {};
-    for (const auto &b : bindings)
-        if (b.gesture.key == key && bits(b.gesture.recognizer) == recognizers_) {
-            consumed_.insert(key);
-            return {b.mode, true};
-        }
-    return {};
-}
-HotkeyStore::HotkeyStore(std::filesystem::path path) : path_(std::move(path)) {}
-HotkeyBindings HotkeyStore::load() {
-    warning_.clear();
-    if (!std::filesystem::exists(path_))
-        return default_hotkeys();
-    try {
-        auto root = JsonObject::Parse(winrt::to_hstring(read_file(path_, 65536)));
-        if (root.GetNamedNumber(L"Version") != 1) {
-            future_version_ = true;
-            throw std::runtime_error("Future version");
-        }
-        auto values = root.GetNamedArray(L"Bindings");
-        if (values.Size() != 3)
-            throw std::runtime_error("Invalid count");
-        HotkeyBindings bindings{};
-        for (unsigned i = 0; i < 3; ++i) {
-            auto b = values.GetObjectAt(i);
-            auto g = b.GetNamedObject(L"Gesture");
-            bindings[i] = {static_cast<SoundMode>(json_integer(b, L"Mode", 0, 2)),
-                           {static_cast<Recognizer>(json_integer(g, L"Modifiers", 1, 255)),
-                            json_integer(g, L"Key", 8, 254)}};
-        }
-        validate_hotkeys(bindings);
-        return bindings;
-    } catch (...) {
-        warning_ = L"快捷键设置无法读取，原文件保留，本次使用默认值。";
-        return default_hotkeys();
-    }
-}
-void HotkeyStore::save(const HotkeyBindings &bindings) {
-    if (future_version_)
-        throw std::runtime_error("Refusing to overwrite unknown hotkey settings version");
-    validate_hotkeys(bindings);
-    JsonObject root;
-    root.SetNamedValue(L"Version", JsonValue::CreateNumberValue(1));
-    JsonArray values;
-    for (const auto &b : bindings) {
-        JsonObject value, gesture;
-        value.SetNamedValue(L"Mode", JsonValue::CreateNumberValue(static_cast<int>(b.mode)));
-        gesture.SetNamedValue(L"Modifiers", JsonValue::CreateNumberValue(bits(b.gesture.recognizer)));
-        gesture.SetNamedValue(L"Key", JsonValue::CreateNumberValue(b.gesture.key));
-        value.SetNamedValue(L"Gesture", gesture);
-        values.Append(value);
-    }
-    root.SetNamedValue(L"Bindings", values);
-    atomic_write(path_, winrt::to_string(root.Stringify()), true);
-}
-struct GlobalHotkeys::Impl {
-    HotkeyStore store;
-    HotkeyBindings bindings;
-    std::function<void(SoundMode)> dispatch;
-    mutable std::mutex mutex;
-    std::thread thread;
-    std::atomic_bool paused{false};
-    std::atomic<DWORD> thread_id{0};
-    HHOOK hook{};
-    HotkeyMatcher matcher;
-    std::wstring status;
-    std::optional<detail::HotkeyPlatform> platform;
-    bool injected_listener_started{};
-    static thread_local Impl *active;
-    Impl(std::filesystem::path path, std::function<void(SoundMode)> cb,
-         std::optional<detail::HotkeyPlatform> p = std::nullopt)
-        : store(std::move(path)), bindings(store.load()), dispatch(std::move(cb)), status(store.warning()),
-          platform(std::move(p)) {
-        if (platform && (!platform->check_conflicts || !platform->start_listener || !platform->stop_listener))
-            throw std::invalid_argument("Hotkey platform requires conflict, start and stop callbacks");
-    }
-    ~Impl() { stop_listener(); }
-    void stop_listener() {
-        if (platform) {
-            if (injected_listener_started) {
-                injected_listener_started = false;
-                try {
-                    platform->stop_listener();
-                } catch (...) { /* Destruction must not throw. */
-                }
-            }
-            matcher.reset();
-            return;
-        }
-        auto id = thread_id.load();
-        if (id)
-            PostThreadMessageW(id, WM_QUIT, 0, 0);
-        if (thread.joinable())
-            thread.join();
-        matcher.reset();
-    }
-    static LRESULT CALLBACK callback(int code, WPARAM message, LPARAM data) {
-        auto *self = active;
-        if (code >= 0 && self &&
-            (message == WM_KEYDOWN || message == WM_SYSKEYDOWN || message == WM_KEYUP ||
-             message == WM_SYSKEYUP)) {
-            const auto &k = *reinterpret_cast<const KBDLLHOOKSTRUCT *>(data);
-            int key = static_cast<int>(k.vkCode);
-            if (key == VK_CONTROL)
-                key = (k.flags & LLKHF_EXTENDED) ? VK_RCONTROL : VK_LCONTROL;
-            else if (key == VK_MENU)
-                key = (k.flags & LLKHF_EXTENDED) ? VK_RMENU : VK_LMENU;
-            else if (key == VK_SHIFT)
-                key = k.scanCode == 0x36 ? VK_RSHIFT : VK_LSHIFT;
-            HotkeyBindings current;
-            {
-                std::lock_guard lock(self->mutex);
-                current = self->bindings;
-            }
-            auto match = self->matcher.feed(key, message == WM_KEYDOWN || message == WM_SYSKEYDOWN,
-                                            (k.flags & LLKHF_INJECTED) != 0, self->paused.load(), current);
-            if (match.mode) {
-                try {
-                    self->dispatch(*match.mode);
-                } catch (...) { /* Never unwind into Windows. */
-                }
-            }
-            if (match.consume)
-                return 1;
-        }
-        return CallNextHookEx(self ? self->hook : nullptr, code, message, data);
-    }
-    bool listening() const { return platform ? injected_listener_started : thread.joinable(); }
-    void check_conflicts(const HotkeyBindings &candidate) {
-        if (platform)
-            platform->check_conflicts(candidate);
-        else
-            conflict_probe(candidate);
-    }
-    void start() {
-        if (listening())
-            return;
-        check_conflicts(bindings);
-        start_listener();
-    }
-    void start_listener() {
-        if (listening())
-            return;
-        if (platform) {
-            platform->start_listener();
-            injected_listener_started = true;
-            return;
-        }
-        std::promise<void> ready;
-        auto future = ready.get_future();
-        thread = std::thread([this, ready = std::move(ready)]() mutable {
-            active = this;
-            MSG message{};
-            PeekMessageW(&message, nullptr, WM_USER, WM_USER, PM_NOREMOVE);
-            thread_id = GetCurrentThreadId();
-            hook = SetWindowsHookExW(WH_KEYBOARD_LL, callback, GetModuleHandleW(nullptr), 0);
-            if (!hook) {
-                ready.set_exception(std::make_exception_ptr(
-                    std::system_error(GetLastError(), std::system_category(), "SetWindowsHookEx")));
-                thread_id = 0;
-                active = nullptr;
-                return;
-            }
-            ready.set_value();
-            while (GetMessageW(&message, nullptr, 0, 0) > 0) {
-                TranslateMessage(&message);
-                DispatchMessageW(&message);
-            }
-            UnhookWindowsHookEx(hook);
-            hook = nullptr;
-            thread_id = 0;
-            active = nullptr;
-        });
-        try {
-            future.get();
-        } catch (...) {
-            thread.join();
-            throw;
-        }
-    }
-};
-thread_local GlobalHotkeys::Impl *GlobalHotkeys::Impl::active = nullptr;
-GlobalHotkeys::GlobalHotkeys(std::filesystem::path path, std::function<void(SoundMode)> cb)
-    : impl_(std::make_unique<Impl>(std::move(path), std::move(cb))) {}
-GlobalHotkeys::GlobalHotkeys(std::filesystem::path path, std::function<void(SoundMode)> cb,
-                             detail::HotkeyPlatform platform)
-    : impl_(std::make_unique<Impl>(std::move(path), std::move(cb), std::move(platform))) {}
-GlobalHotkeys::~GlobalHotkeys() = default;
-void GlobalHotkeys::start() { impl_->start(); }
-void GlobalHotkeys::save(const HotkeyBindings &b) {
-    validate_hotkeys(b);
-    impl_->check_conflicts(b);
-    // The candidate has passed its conflict check. Starting the listener must not
-    // recheck the previous bindings that may have prevented startup in the first place.
-    const bool already_listening = impl_->listening();
-    try {
-        impl_->start_listener();
-        impl_->store.save(b);
-    } catch (...) {
-        // A rejected save must also preserve an initially inactive listener.
-        // An existing listener keeps the previous bindings and remains active.
-        if (!already_listening)
-            impl_->stop_listener();
-        throw;
-    }
-    std::lock_guard lock(impl_->mutex);
-    impl_->bindings = b;
-    impl_->status = L"快捷键已保存并生效。";
-}
-void GlobalHotkeys::pause(bool value) { impl_->paused = value; }
-HotkeyBindings GlobalHotkeys::bindings() const {
-    std::lock_guard lock(impl_->mutex);
-    return impl_->bindings;
-}
-std::wstring GlobalHotkeys::status() const {
-    std::lock_guard lock(impl_->mutex);
-    return impl_->status;
-}
 
 bool MediaState::allows(MediaAction action) const {
     switch (action) {
@@ -522,12 +99,13 @@ bool MediaState::allows(MediaAction action) const {
     }
     return false;
 }
-std::wstring bluetooth_aep_id(std::uint64_t address) {
+std::wstring bluetooth_aep_id(std::uint64_t address, const std::atomic_bool *closing) {
     if (!address || address > 0xffffffffffffULL)
         return {};
     try {
-        auto device =
-            winrt::Windows::Devices::Bluetooth::BluetoothDevice::FromBluetoothAddressAsync(address).get();
+        auto device = detail::await_async([&] {
+            return winrt::Windows::Devices::Bluetooth::BluetoothDevice::FromBluetoothAddressAsync(address);
+        }, closing);
         if (!device)
             return {};
         std::wstring id = device.DeviceInformation().Id().c_str();
@@ -537,10 +115,10 @@ std::wstring bluetooth_aep_id(std::uint64_t address) {
         return {};
     }
 }
-std::optional<bool> bluetooth_available() {
+std::optional<bool> bluetooth_available(const std::atomic_bool *closing) {
     using namespace winrt::Windows::Devices::Radios;
     try {
-        auto radios = Radio::GetRadiosAsync().get();
+        auto radios = detail::await_async([] { return Radio::GetRadiosAsync(); }, closing);
         bool unknown = false;
         for (const auto &radio : radios) {
             if (radio.Kind() != RadioKind::Bluetooth)
@@ -571,7 +149,8 @@ struct LocalPlaybackBackend::Impl {
     std::wstring media_id;
     std::uint64_t generation{};
     GUID context{};
-    Impl() { checked(CoCreateGuid(&context)); }
+    const std::atomic_bool *closing{};
+    explicit Impl(const std::atomic_bool *stop) : closing(stop) { checked(CoCreateGuid(&context)); }
     VolumeState read_volume(const std::wstring &selected) {
         VolumeState state;
         volume.Reset();
@@ -581,9 +160,9 @@ struct LocalPlaybackBackend::Impl {
         }
         using namespace winrt::Windows::Devices::Enumeration;
         auto properties = winrt::single_threaded_vector<winrt::hstring>({L"System.Devices.Aep.ContainerId"});
-        auto device = DeviceInformation::CreateFromIdAsync(selected, properties,
-                                                           DeviceInformationKind::AssociationEndpoint)
-                          .get();
+        auto device = detail::await_async([&] {
+            return DeviceInformation::CreateFromIdAsync(selected, properties, DeviceInformationKind::AssociationEndpoint);
+        }, closing);
         if (!device || !device.Properties().HasKey(L"System.Devices.Aep.ContainerId")) {
             state.message = L"耳机设备身份关联未确认。";
             return state;
@@ -645,7 +224,7 @@ struct LocalPlaybackBackend::Impl {
         MediaState state;
         state.message = L"仅控制本机系统媒体会话；耳机音源及手机播放状态未验证。";
         if (!manager)
-            manager = Manager::RequestAsync().get();
+            manager = detail::await_async([] { return Manager::RequestAsync(); }, closing);
         auto current = manager.GetCurrentSession();
         if (current != media) {
             media = current;
@@ -654,7 +233,7 @@ struct LocalPlaybackBackend::Impl {
         if (!media)
             return state;
         auto target = media;
-        auto properties = target.TryGetMediaPropertiesAsync().get();
+        auto properties = detail::await_async([&] { return target.TryGetMediaPropertiesAsync(); }, closing);
         if (manager.GetCurrentSession() != target) {
             media = nullptr;
             media_id.clear();
@@ -676,7 +255,7 @@ struct LocalPlaybackBackend::Impl {
         return state;
     }
 };
-LocalPlaybackBackend::LocalPlaybackBackend() : impl_(std::make_unique<Impl>()) {}
+LocalPlaybackBackend::LocalPlaybackBackend(const std::atomic_bool *closing) : impl_(std::make_unique<Impl>(closing)) {}
 LocalPlaybackBackend::~LocalPlaybackBackend() = default;
 LocalPlaybackSnapshot LocalPlaybackBackend::read(const std::wstring &selected) {
     LocalPlaybackSnapshot result;
@@ -719,16 +298,16 @@ DesktopResult LocalPlaybackBackend::execute_media(const std::wstring &expected, 
         bool accepted = false;
         switch (action) {
         case MediaAction::play:
-            accepted = impl_->media.TryPlayAsync().get();
+            accepted = detail::await_async([&] { return impl_->media.TryPlayAsync(); }, impl_->closing);
             break;
         case MediaAction::pause:
-            accepted = impl_->media.TryPauseAsync().get();
+            accepted = detail::await_async([&] { return impl_->media.TryPauseAsync(); }, impl_->closing);
             break;
         case MediaAction::previous:
-            accepted = impl_->media.TrySkipPreviousAsync().get();
+            accepted = detail::await_async([&] { return impl_->media.TrySkipPreviousAsync(); }, impl_->closing);
             break;
         case MediaAction::next:
-            accepted = impl_->media.TrySkipNextAsync().get();
+            accepted = detail::await_async([&] { return impl_->media.TrySkipNextAsync(); }, impl_->closing);
             break;
         }
         return {accepted, accepted ? L"媒体会话已接受操作。" : L"本机媒体会话拒绝操作。"};
@@ -753,8 +332,10 @@ bool valid_gitee(const UpdateSource &s) {
     static const std::regex repo("^[A-Za-z0-9][A-Za-z0-9._-]*/[A-Za-z0-9][A-Za-z0-9._-]*$");
     return std::regex_match(s.gitee_repository, repo) &&
            s.gitee_release_page == "https://gitee.com/" + s.gitee_repository + "/releases" &&
-           s.gitee_manifest.starts_with("https://gitee.com/" + s.gitee_repository + "/raw/") &&
-           s.gitee_manifest.find_first_of("?#\\\r\n\t") == std::string::npos;
+           (!s.gitee_api.empty()
+                ? s.gitee_api == "https://gitee.com/api/v5/repos/" + s.gitee_repository + "/releases"
+                : s.gitee_manifest.starts_with("https://gitee.com/" + s.gitee_repository + "/raw/") &&
+                  s.gitee_manifest.find_first_of("?#\\\r\n\t") == std::string::npos);
 }
 struct InternetHandle {
     HINTERNET value{};
@@ -764,11 +345,7 @@ struct InternetHandle {
     }
     operator HINTERNET() const { return value; }
 };
-struct HttpResponse {
-    DWORD status;
-    std::string body;
-};
-HttpResponse get_https(const std::wstring &url, const std::wstring &token, const std::atomic_bool *canceled) {
+UpdateHttpResponse get_https(const std::wstring &url, const std::wstring &token, const std::atomic_bool *canceled) {
     if (canceled && canceled->load())
         throw std::runtime_error("Canceled");
     URL_COMPONENTS parts{};
@@ -776,10 +353,21 @@ HttpResponse get_https(const std::wstring &url, const std::wstring &token, const
     parts.dwHostNameLength = parts.dwUrlPathLength = parts.dwExtraInfoLength = parts.dwUserNameLength =
         parts.dwPasswordLength = static_cast<DWORD>(-1);
     if (!WinHttpCrackUrl(url.c_str(), 0, 0, &parts) || parts.nScheme != INTERNET_SCHEME_HTTPS ||
-        parts.nPort != 443 || parts.dwUserNameLength || parts.dwPasswordLength || parts.dwExtraInfoLength)
+        parts.nPort != 443 || parts.dwUserNameLength || parts.dwPasswordLength)
         throw std::runtime_error("Invalid update URL");
     std::wstring host(parts.lpszHostName, parts.dwHostNameLength),
         path(parts.lpszUrlPath, parts.dwUrlPathLength);
+    if (parts.dwExtraInfoLength) {
+        // Only the service's bounded, anonymous Gitee pagination is allowed.
+        // Keep arbitrary queries/fragments and authorization redirects blocked.
+        const std::wstring query(parts.lpszExtraInfo, parts.dwExtraInfoLength);
+        static const std::wregex release_path(L"^/api/v5/repos/[A-Za-z0-9][A-Za-z0-9._-]*/[A-Za-z0-9][A-Za-z0-9._-]*/releases$");
+        static const std::wregex page_query(L"^\\?page=([2-9]|10)&per_page=20&direction=asc$");
+        if (host != L"gitee.com" || !token.empty() || !std::regex_match(path, release_path) ||
+            !std::regex_match(query, page_query))
+            throw std::runtime_error("Invalid update URL");
+        path += query;
+    }
     auto deadline = GetTickCount64() + 10000;
     auto remaining = [&]() -> int {
         if (canceled && canceled->load())
@@ -823,7 +411,7 @@ HttpResponse get_https(const std::wstring &url, const std::wstring &token, const
     if (!WinHttpQueryHeaders(request, WINHTTP_QUERY_STATUS_CODE | WINHTTP_QUERY_FLAG_NUMBER,
                              WINHTTP_HEADER_NAME_BY_INDEX, &status, &bytes, WINHTTP_NO_HEADER_INDEX))
         throw std::runtime_error("HTTP status missing");
-    HttpResponse result{status, {}};
+    UpdateHttpResponse result{status, {}};
     std::array<char, 8192> buffer{};
     DWORD count{};
     for (;;) {
@@ -905,6 +493,7 @@ UpdateSource UpdateSource::load(const std::filesystem::path &path) {
         s.gitee_repository = get(L"repository");
         s.gitee_release_page = get(L"releasesPageUrl");
         s.gitee_manifest = get(L"manifestUrl");
+        s.gitee_api = get(L"latestReleasesApiUrl");
     }
     s.validate();
     return s;
@@ -919,8 +508,8 @@ std::wstring UpdateSource::release_page(UpdateChannel channel) const {
            : valid_gitee(*this)             ? wide(gitee_release_page)
                                             : L"";
 }
-SoftwareUpdateService::SoftwareUpdateService(UpdateSource source, std::string current)
-    : source_(std::move(source)), current_(std::move(current)) {
+SoftwareUpdateService::SoftwareUpdateService(UpdateSource source, std::string current, Fetch fetch)
+    : source_(std::move(source)), current_(std::move(current)), fetch_(fetch ? std::move(fetch) : Fetch{get_https}) {
     source_.validate();
 }
 UpdateResult SoftwareUpdateService::check(UpdateChannel channel, const std::wstring &token,
@@ -928,7 +517,7 @@ UpdateResult SoftwareUpdateService::check(UpdateChannel channel, const std::wstr
     if (canceled && canceled->load())
         return {UpdateStatus::canceled, L"已取消更新检测。", {}};
     if (channel == UpdateChannel::gitee &&
-        (source_.gitee_repository.empty() || source_.gitee_manifest.empty() ||
+        (source_.gitee_repository.empty() || (source_.gitee_manifest.empty() && source_.gitee_api.empty()) ||
          source_.gitee_release_page.empty()))
         return {UpdateStatus::not_configured, L"Gitee 尚未配置版本清单。", {}};
     if (channel == UpdateChannel::gitee && !valid_gitee(source_))
@@ -938,27 +527,67 @@ UpdateResult SoftwareUpdateService::check(UpdateChannel channel, const std::wstr
         return {UpdateStatus::needs_authorization, L"私有仓库需本次检查授权，或在 Releases 页面查看。", {}};
     try {
         auto response =
-            get_https(channel == UpdateChannel::github
+            fetch_(channel == UpdateChannel::github
                           ? L"https://api.github.com/repos/FLEETING-XHX/SonyConnect/releases/latest"
-                          : wide(source_.gitee_manifest),
+                          : wide(source_.gitee_api.empty() ? source_.gitee_manifest : source_.gitee_api),
                       channel == UpdateChannel::github ? token : L"", canceled);
+        if (canceled && canceled->load()) return {UpdateStatus::canceled, L"已取消更新检测。", {}};
         if (response.status == 404) {
             if (channel == UpdateChannel::gitee)
-                return {UpdateStatus::failed, L"Gitee 清单不存在或不可访问。", {}};
-            if (source_.private_repository_requires_authentication) {
+                return {UpdateStatus::failed, L"Gitee 发布元数据不存在或不可访问。", {}};
+            {
                 auto repository =
-                    get_https(L"https://api.github.com/repos/FLEETING-XHX/SonyConnect", token, canceled);
+                    fetch_(L"https://api.github.com/repos/FLEETING-XHX/SonyConnect", token, canceled);
+                if (canceled && canceled->load()) return {UpdateStatus::canceled, L"已取消更新检测。", {}};
                 if (repository.status < 200 || repository.status >= 300)
                     return {UpdateStatus::failed, L"仓库不可访问或授权不足。", {}};
             }
             return {UpdateStatus::no_release, L"尚无可比较的正式 Release。", {}};
         }
+        if (channel == UpdateChannel::github && response.status == 403 &&
+            response.body.find("API rate limit exceeded") != std::string::npos)
+            return {UpdateStatus::failed, L"GitHub 匿名 API 请求已限流，请稍后重试或切换 Gitee 渠道。", {}};
         if (response.status < 200 || response.status >= 300)
             return {UpdateStatus::failed,
                     L"更新检测失败（HTTP " + std::to_wstring(response.status) + L"）。",
                     {}};
-        auto json = JsonObject::Parse(winrt::to_hstring(response.body));
+        if (response.body.size() > 262144)
+            return {UpdateStatus::failed, L"发布元数据超过大小限制。", {}};
         std::string tag;
+        if (channel == UpdateChannel::gitee && !source_.gitee_api.empty()) {
+            auto releases = winrt::Windows::Data::Json::JsonArray::Parse(winrt::to_hstring(response.body));
+            std::optional<ReleaseVersion> best;
+            std::size_t metadata_bytes = response.body.size();
+            // The first request uses Gitee's default ascending, 20-item page.
+            // A full page is never enough to conclude that a version is current.
+            for (unsigned page = 1;; ++page) {
+                for (const auto &value : releases) {
+                    auto release = value.GetObject();
+                    if (release.GetNamedBoolean(L"prerelease", false) || release.GetNamedBoolean(L"draft", false)) continue;
+                    const auto candidate = winrt::to_string(release.GetNamedString(L"tag_name"));
+                    const auto parsed = ReleaseVersion::parse(candidate);
+                    if (!parsed) return {UpdateStatus::failed, L"Gitee 正式版本格式无法比较。", {}};
+                    if (parsed->prerelease) continue;
+                    if (!best || parsed->compare(*best) > 0) { best = parsed; tag = candidate; }
+                }
+                if (releases.Size() < 20) break;
+                if (page == 10)
+                    return {UpdateStatus::failed, L"Gitee 版本列表超过检查上限，无法确认最新正式版本，请查看发行版页面。", {}};
+                if (canceled && canceled->load()) return {UpdateStatus::canceled, L"已取消更新检测。", {}};
+                response = fetch_(wide(source_.gitee_api) + L"?page=" + std::to_wstring(page + 1) +
+                                      L"&per_page=20&direction=asc", L"", canceled);
+                if (canceled && canceled->load()) return {UpdateStatus::canceled, L"已取消更新检测。", {}};
+                if (response.status < 200 || response.status >= 300)
+                    return {UpdateStatus::failed, L"Gitee 后续版本列表读取失败（HTTP " +
+                                                     std::to_wstring(response.status) + L"），无法确认最新正式版本。", {}};
+                metadata_bytes += response.body.size();
+                if (response.body.size() > 262144 || metadata_bytes > 1048576)
+                    return {UpdateStatus::failed, L"发布元数据超过大小限制，无法确认最新正式版本。", {}};
+                releases = winrt::Windows::Data::Json::JsonArray::Parse(winrt::to_hstring(response.body));
+            }
+            if (!best) return {UpdateStatus::no_release, L"尚无可比较的正式 Release。", {}};
+        } else {
+        auto json = JsonObject::Parse(winrt::to_hstring(response.body));
         if (channel == UpdateChannel::github) {
             if (json.GetNamedBoolean(L"draft") || json.GetNamedBoolean(L"prerelease"))
                 return {UpdateStatus::no_release, L"草稿或预发布未作为正式更新。", {}};
@@ -967,6 +596,7 @@ UpdateResult SoftwareUpdateService::check(UpdateChannel channel, const std::wstr
             if (winrt::to_string(json.GetNamedString(L"releasePage")) != source_.gitee_release_page)
                 return {UpdateStatus::failed, L"Gitee 清单发行版入口不一致。", {}};
             tag = winrt::to_string(json.GetNamedString(L"version"));
+        }
         }
         auto latest = ReleaseVersion::parse(tag), current = ReleaseVersion::parse(current_);
         if (!latest || !current)
@@ -1500,10 +1130,16 @@ struct DiagnosticLog::Impl {
     std::wstring failure;
     std::mutex files_mutex;
     std::condition_variable drained;
+    winrt::file_handle run_lease;
     Impl(std::filesystem::path dir, DiagnosticOptions opts)
         : directory(std::filesystem::absolute(dir)), prefix(run_prefix()), options(opts) {
         options.validate();
         std::filesystem::create_directories(directory);
+        // Keep a per-run lease open for the entire writer lifetime. Windows
+        // releases it after a crash too; no end-of-log marker is needed.
+        run_lease.attach(CreateFileW(lease_path(prefix).c_str(), GENERIC_READ | GENERIC_WRITE,
+                                     FILE_SHARE_READ, nullptr, CREATE_NEW, FILE_ATTRIBUTE_NORMAL, nullptr));
+        if (!run_lease) winrt::throw_last_error();
         {
             std::ofstream initial(path(0), std::ios::binary | std::ios::trunc);
             if (!initial)
@@ -1520,9 +1156,23 @@ struct DiagnosticLog::Impl {
         wake.notify_one();
         if (writer.joinable())
             writer.join();
+        run_lease.close();
+        std::error_code ec;
+        std::filesystem::remove(lease_path(prefix), ec);
     }
     std::filesystem::path path(unsigned segment) const {
         return directory / (prefix + "-" + std::to_string(segment) + ".jsonl");
+    }
+    std::filesystem::path lease_path(const std::string &name) const { return directory / (name + ".lock"); }
+    bool run_active(const std::string &name) const {
+        winrt::file_handle probe{CreateFileW(lease_path(name).c_str(), GENERIC_READ | GENERIC_WRITE,
+                                        0, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr)};
+        if (probe) return false;
+        const auto error = GetLastError();
+        // Missing leases belong to completed runs or pre-lease versions. The
+        // application single-instance guard prevents an old product writer
+        // from running alongside this version. Unknown access errors retain data.
+        return error != ERROR_FILE_NOT_FOUND;
     }
     void prune() {
         std::lock_guard file_lock(files_mutex);
@@ -1540,36 +1190,26 @@ struct DiagnosticLog::Impl {
         unsigned active = 0;
         std::vector<std::vector<std::filesystem::path>> closed;
         for (const auto &[name, files] : runs) {
-            if (name == prefix) {
+            if (name == prefix || run_active(name)) {
                 ++active;
                 continue;
             }
-            auto newest = *std::max_element(files.begin(), files.end(), [](const auto &a, const auto &b) {
-                return std::filesystem::last_write_time(a) < std::filesystem::last_write_time(b);
-            });
-            bool ended = false;
-            try {
-                std::istringstream input(read_file(newest, 8 * 1024 * 1024 + 65536));
-                std::string last, line;
-                while (std::getline(input, line))
-                    if (!line.empty())
-                        last = line;
-                auto value = parse_diagnostic_line(last);
-                ended = value && value->entry.event == "log-end";
-            } catch (...) {
-                ended = false;
-            }
-            if (ended)
-                closed.push_back(files);
-            else
-                ++active;
+            closed.push_back(files);
         }
         unsigned completed_keep = keep > active ? keep - active : 0;
-        for (std::size_t i = completed_keep; i < closed.size(); ++i)
+        for (std::size_t i = completed_keep; i < closed.size(); ++i) {
+            bool removed = true;
             for (const auto &file : closed[i]) {
                 std::error_code ec;
                 std::filesystem::remove(file, ec);
+                removed &= !ec;
             }
+            if (removed) {
+                auto name = closed[i].front().filename().string();
+                std::error_code ec;
+                std::filesystem::remove(lease_path(name.substr(0, name.size() - 8)), ec);
+            }
+        }
     }
     void run() {
         try {
