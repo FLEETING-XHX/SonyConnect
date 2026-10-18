@@ -1,45 +1,40 @@
-# SonyConnect for Windows
+# SonyConnect
 
-Windows 版 Sony 耳机控制程序。v0.1（版本号 0.1.0）采用 C++20、Win32、Windows SDK 和 CMake，使用正式主界面、更多设置、个性化、高级设置与诊断页面。简易 UI 和旧全局热键已移除，已完成清理后的针对性回归；最终候选实机验收边界见 [发布说明](docs/releases/v0.1.0.md)。
+在 Windows 电脑上调整 Sony 耳机的降噪、环境声音、均衡器等设置。支持托盘操作、双设备音源切换和播放控制，具体功能以耳机支持情况为准。
 
-发行版入口：[GitHub](https://github.com/FLEETING-XHX/SonyConnect/releases) · [Gitee](https://gitee.com/fleetingxhx/SonyConnect/releases)。下载 Windows x64 ZIP 后完整解压运行；请保留 config 与 notices。
+本项目为非官方工具，与 Sony 公司无隶属关系。
 
-2026-10-14，用户确认当前 C++ 测试版的所有功能实测正常，记录见 [用户实测验收](docs/native/用户实测验收-20261014.json)。本次为当前 WF 使用范围的用户反馈，WH 等其他型号继续独立验收，不据此推断兼容。
+## 下载
 
-## 运行与构建
+**[GitHub 下载](https://github.com/FLEETING-XHX/SonyConnect/releases/latest) · [Gitee 下载](https://gitee.com/fleetingxhx/SonyConnect/releases)**
 
-当前构建程序：[SonyConnect.exe](build/native-ninja/Release/SonyConnect.exe)。历史验收包继续保留在 artifacts 中，不能替代当前清理版本的验收。
+请选择发行版附件中的 `SonyConnect-v版本号-Windows-x64.zip`，不要下载 Source code 源码包。
 
-安装 Visual Studio“使用 C++ 的桌面开发”、Windows SDK 和 CMake 后，在工作区根目录运行：
+## 使用方法
 
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/Build-Native.ps1 -Configuration Release
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/Publish-Native.ps1
-```
+1. 解压下载的 ZIP，保留里面的所有文件和文件夹。
+2. 在 Windows 蓝牙设置中配对并连接耳机。
+3. 双击 `SonyConnect.exe`，即可开始使用。未找到耳机时，点击主界面右侧的刷新按钮。
+4. 程序隐藏后，单击任务栏右下角的托盘图标可重新打开；右键图标可以切换声音模式或退出程序。
 
-编译输出为 `build/native-ninja/Release/SonyConnect.exe`，便携包位于 `artifacts/native/packages/`。构建不依赖 C# 工程或参考项目 checkout。
+首次使用不需要安装程序，也不需要另外安装 .NET 或 Visual C++ 运行库。**请完整解压使用，不要只复制 EXE**：`config` 中的文件用于检查更新，`notices` 中保留第三方说明。
 
-历史验证与用户实测分别记录，详见 [迁移与验证](docs/native/迁移与验证.md) 和 [状态刷新修复](docs/native/P2与状态刷新修复-20261014.md)。本次依赖分离、清理范围及当前验证边界见 [旧界面与热键清理](docs/ui/旧界面与热键清理-20261018.md)。
+电脑与手机可以同时连接耳机；调整耳机设置时，建议交替使用本程序和手机 Sony App，避免两个控制程序同时修改设置。
 
-## 目录
+## 支持范围
 
-| 目录 | 内容 |
-| --- | --- |
-| `projects/cpp/` | C++ 源码、测试、资源、配置和原生脚本 |
-| `research/reference-projects/` | 参考源码与原许可，独立 Git 已关闭 |
-| `research/official-app/` | 官方 App 原始 APK |
-| `research/reverse-analysis/` | 逆向输出、派生帧和分析证据 |
-| `docs/` | 验收、协议记录、目录映射、设计资料和历史文档 |
-| `scripts/` | C++ 构建与发布入口 |
-| `artifacts/` | 程序、日志、缓存、验收证据和维护记录，忽略 Git |
-| `build/` | 本地 CMake 构建输出，忽略 Git |
+- **电脑：**Windows 10 / 11 的 64 位 Intel 或 AMD 电脑，需要可正常使用的蓝牙及驱动。
+- **耳机：**目前已完成 WF-1000XM5 的当前范围验收。WH-1000XM5、LinkBuds S、WH-CH720N 等型号仍待独立适配与验证。
+- 不支持的功能会显示为不可用；不能保证所有电脑、耳机型号和固件都能正常使用。当前发布包不面向 Windows 7 / 8、32 位系统或 ARM 设备提供兼容保证。
 
-C# 项目已迁至私有仓库 [FLEETING-XHX/SonyConnect-CSharp](https://github.com/FLEETING-XHX/SonyConnect-CSharp)。可运行程序保存在该仓库的 [私有 Release](https://github.com/FLEETING-XHX/SonyConnect-CSharp/releases/tag/csharp-archive-20261014)，本工作区只保留 C++ 活动工程。目录与核对结果见 [目录与仓库分离](docs/目录与仓库分离.md)。
+## 更新与卸载
 
-C++、参考源码、官方 App 和逆向资料继续保留本地。旧 C# Git 历史及历史验收产物保留，主仓库未改写历史。C# 开发阶段的原 README 保存于 [历史原文](docs/history/README-CSharp-before-native-20261014.md)，其中旧路径按当时布局理解。
+- 在「更多 → 诊断与维护」中检查更新，也可以直接访问上方下载页面。程序不会自动替换安装。
+- 更新前先从托盘退出旧版，再解压新版使用。不要同时运行两个版本。
+- 卸载时先关闭开机启动，再退出程序，删除解压目录即可。设置和日志保存在 `%LOCALAPPDATA%\SonyConnect`，可按需自行保留或删除。
 
-## 文档与维护
+## 问题反馈
 
-从 [文档目录](docs/README.md) 查看测试、实现、许可、型号待测与维护说明。WH 取回后的待测事项见 [WH 清单](docs/native/WH设备取回后待测.md)。
+请在 [GitHub Issues](https://github.com/FLEETING-XHX/SonyConnect/issues) 或 [Gitee Issues](https://gitee.com/fleetingxhx/SonyConnect/issues) 提供耳机型号、Windows 版本、问题描述及复现步骤。需要时可从「诊断与维护」导出诊断包，分享前请核对内容。
 
-开发分支先提交，再集成到 `dev` 和 `main`；发行标签使用可比较的三段版本号。参考项目、APK、逆向资料与用户诊断/EQ 备份不进入原生便携包。
+更多说明见 [项目文档](docs/README.md)，第三方说明随下载包提供。
