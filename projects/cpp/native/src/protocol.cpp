@@ -776,6 +776,12 @@ std::vector<int> EqualizerParameter::bands() const {
 Byte ExtendedProfile::status_type() const {
     return feature == Feature::Dsee && function == 0xed ? static_cast<Byte>(0x0b) : type;
 }
+bool ExtendedProfile::parameter_only() const {
+    // The advertised E1 connection mode has fixed 0/1 values and only
+    // AUDIO_GET_PARAM. E0/E2 subtype 0 are not part of its V2 query flow.
+    return feature == Feature::WearDetectionPause ||
+           (feature == Feature::ConnectionPreference && function == 0xe1);
+}
 bool GeneralSettingCapability::multipoint() const {
     return boolean && string_format == 1 && name == "MULTIPOINT_SETTING";
 }
@@ -871,12 +877,12 @@ const std::vector<ExtendedProfile> &ExtendedParameters::profiles() {
     return values;
 }
 Query ExtendedParameters::capability(const ExtendedProfile &profile) {
-    if (profile.feature == Feature::WearDetectionPause || profile.feature == Feature::PowerOff)
+    if (profile.parameter_only() || profile.feature == Feature::PowerOff)
         throw std::logic_error("No separate capability query");
     return read_query(table1_type, profile.group, profile.type);
 }
 Query ExtendedParameters::availability(const ExtendedProfile &profile) {
-    if (profile.feature == Feature::WearDetectionPause || profile.feature == Feature::PowerOff)
+    if (profile.parameter_only() || profile.feature == Feature::PowerOff)
         throw std::logic_error("No separate availability query");
     return read_query(table1_type, static_cast<Byte>(profile.group + 2), profile.status_type());
 }
@@ -888,7 +894,7 @@ Query ExtendedParameters::read(const ExtendedProfile &profile) {
 std::vector<Query> ExtendedParameters::read_queries(const ExtendedProfile &profile) {
     if (profile.feature == Feature::PowerOff)
         return {};
-    if (profile.feature == Feature::WearDetectionPause)
+    if (profile.parameter_only())
         return {read(profile)};
     return {capability(profile), availability(profile), read(profile)};
 }

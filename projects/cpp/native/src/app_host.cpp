@@ -1,3 +1,4 @@
+#include <unknwn.h>
 #include "sonyconnect/app_host.hpp"
 #include "sonyconnect/session.hpp"
 #include "sonyconnect/desktop.hpp"
@@ -6,11 +7,16 @@
 #include "sonyconnect/settings_flow.hpp"
 #include "sonyconnect/ui_motion.hpp"
 #include "sonyconnect/tray_icon.hpp"
+#include "sonyconnect/licenses_window.hpp"
+#include "sonyconnect/embedded_assets.hpp"
+#include <winrt/Windows.Data.Json.h>
+#include <winrt/Windows.Foundation.Collections.h>
 #include <windows.h>
 #include <commctrl.h>
 #include <commdlg.h>
 #include <shellapi.h>
 #include <shlobj.h>
+#include <urlmon.h>
 #include <winrt/base.h>
 #include <algorithm>
 #include <array>
@@ -31,6 +37,59 @@ namespace sc = sonyconnect;
 namespace p = sc::protocol;
 namespace d = sc::desktop;
 namespace {
+// Materialize clipboard media before testing copy. OleGetClipboard returns a
+// live wrapper, not a backup that can safely survive EmptyClipboard.
+struct TestClipboardSnapshot : winrt::implements<TestClipboardSnapshot, IDataObject, winrt::non_agile> {
+    std::vector<FORMATETC> formats;
+    std::vector<STGMEDIUM> media;
+    ~TestClipboardSnapshot() {
+        for (auto &item : media) ReleaseStgMedium(&item);
+        for (auto &item : formats) CoTaskMemFree(item.ptd);
+    }
+    void capture(IDataObject *source) {
+        formats.reserve(128); media.reserve(128);
+        winrt::com_ptr<IEnumFORMATETC> enumeration;
+        winrt::check_hresult(source->EnumFormatEtc(DATADIR_GET, enumeration.put()));
+        FORMATETC format{};
+        HRESULT next;
+        while ((next = enumeration->Next(1, &format, nullptr)) == S_OK) {
+            if (formats.size() == 128) { CoTaskMemFree(format.ptd); throw std::runtime_error("Clipboard format limit exceeded; copy test canceled"); }
+            STGMEDIUM medium{};
+            const auto result = source->GetData(&format, &medium);
+            if (FAILED(result)) { CoTaskMemFree(format.ptd); winrt::check_hresult(result); }
+            format.tymed = medium.tymed;
+            formats.push_back(format); media.push_back(medium);
+        }
+        winrt::check_hresult(next);
+    }
+    int index(const FORMATETC *format) const noexcept {
+        if (format) for (size_t i = 0; i < formats.size(); ++i)
+            if (formats[i].cfFormat == format->cfFormat && formats[i].dwAspect == format->dwAspect &&
+                formats[i].lindex == format->lindex && (formats[i].tymed & format->tymed)) return static_cast<int>(i);
+        return -1;
+    }
+    HRESULT STDMETHODCALLTYPE GetData(FORMATETC *format, STGMEDIUM *out) noexcept override {
+        if (!out) return E_POINTER;
+        *out = {};
+        const auto i = index(format);
+        return i < 0 ? DV_E_FORMATETC : CopyStgMedium(&media[i], out);
+    }
+    HRESULT STDMETHODCALLTYPE GetDataHere(FORMATETC *, STGMEDIUM *) noexcept override { return E_NOTIMPL; }
+    HRESULT STDMETHODCALLTYPE QueryGetData(FORMATETC *format) noexcept override { return index(format) < 0 ? DV_E_FORMATETC : S_OK; }
+    HRESULT STDMETHODCALLTYPE GetCanonicalFormatEtc(FORMATETC *, FORMATETC *out) noexcept override {
+        if (!out) return E_POINTER;
+        out->ptd = nullptr; return DATA_S_SAMEFORMATETC;
+    }
+    HRESULT STDMETHODCALLTYPE SetData(FORMATETC *, STGMEDIUM *, BOOL) noexcept override { return E_NOTIMPL; }
+    HRESULT STDMETHODCALLTYPE EnumFormatEtc(DWORD direction, IEnumFORMATETC **out) noexcept override {
+        if (!out) return E_POINTER;
+        *out = nullptr;
+        return direction == DATADIR_GET ? SHCreateStdEnumFmtEtc(static_cast<UINT>(formats.size()), formats.data(), out) : E_NOTIMPL;
+    }
+    HRESULT STDMETHODCALLTYPE DAdvise(FORMATETC *, DWORD, IAdviseSink *, DWORD *) noexcept override { return OLE_E_ADVISENOTSUPPORTED; }
+    HRESULT STDMETHODCALLTYPE DUnadvise(DWORD) noexcept override { return OLE_E_ADVISENOTSUPPORTED; }
+    HRESULT STDMETHODCALLTYPE EnumDAdvise(IEnumSTATDATA **) noexcept override { return OLE_E_ADVISENOTSUPPORTED; }
+};
 constexpr UINT changed_message = WM_APP + 1, tray_message = WM_APP + 2;
 constexpr UINT main_close_message = WM_APP + 6;
 constexpr UINT update_done_message = WM_APP + 7;
@@ -731,7 +790,121 @@ class ApplicationHost {
         offline = true;
         return passed && out.good();
     }
+    bool distribution_self_test(const std::filesystem::path &report) {
+        namespace j = winrt::Windows::Data::Json;
+        j::JsonArray checks, resources;
+        bool passed = true;
+        const auto check = [&](const wchar_t *name, bool ok) {
+            j::JsonObject entry;
+            entry.SetNamedValue(L"Name", j::JsonValue::CreateStringValue(name));
+            entry.SetNamedValue(L"Passed", j::JsonValue::CreateBooleanValue(ok));
+            checks.Append(entry); passed &= ok;
+        };
+        for (const auto &notice : d::embedded_notices()) {
+            j::JsonObject entry;
+            entry.SetNamedValue(L"Name", j::JsonValue::CreateStringValue(winrt::to_hstring(notice.name)));
+            entry.SetNamedValue(L"Text", j::JsonValue::CreateStringValue(winrt::to_hstring(notice.text)));
+            resources.Append(entry);
+        }
+        const auto notices = d::embedded_notices();
+        check(L"all_embedded_notices_nonempty", !notices.empty() && std::all_of(
+            notices.begin(), notices.end(), [](const auto &entry) { return !entry.text.empty(); }));
+        const auto source = d::UpdateSource::embedded();
+        for (const auto channel : {d::UpdateChannel::github, d::UpdateChannel::gitee}) {
+            unsigned calls{};
+            const auto r = d::SoftwareUpdateService(source, "0.0.0", [&](const auto &url, const auto &token, auto *) {
+                ++calls;
+                check(L"embedded_channel_uses_exact_anonymous_endpoint", token.empty() && url ==
+                    (channel == d::UpdateChannel::github
+                    ? L"https://api.github.com/repos/FLEETING-XHX/SonyConnect/releases/latest"
+                    : L"https://gitee.com/api/v5/repos/fleetingxhx/SonyConnect/releases"));
+                return d::UpdateHttpResponse{200, channel == d::UpdateChannel::github
+                    ? R"({"tag_name":"v0.1.0","draft":false,"prerelease":false})"
+                    : R"([{"tag_name":"v0.1.0"}])"};
+            }).check(channel);
+            check(L"both_channels_compare_version_without_external_config", calls == 1 && r.status == d::UpdateStatus::available);
+            check(L"release_page_works_without_external_config", source.release_page(channel) ==
+                (channel == d::UpdateChannel::github ? L"https://github.com/FLEETING-XHX/SonyConnect/releases"
+                 : L"https://gitee.com/fleetingxhx/SonyConnect/releases"));
+        }
+        main_view = std::make_unique<sc::ui::MainWindow>([](auto, int, bool, std::uint64_t) {});
+        main_view->create(GetModuleHandleW(nullptr));
+        open_more();
+        check(L"offline_license_entry_enabled", IsWindowEnabled(GetDlgItem(more_view->handle(), 1055)) != FALSE);
+        SendMessageW(GetDlgItem(more_view->handle(), 1055), BM_CLICK, 0, 0);
+        check(L"formal_entry_opens_license_window_offline", licenses_view && IsWindowVisible(licenses_view->handle()));
+        if (licenses_view) {
+            const auto window = licenses_view->handle(), edit = GetDlgItem(window, 401);
+            const auto expected = sc::ui::LicensesWindow::full_text();
+            check(L"entire_license_text_displayed_readonly", window_text(edit) == expected &&
+                  (GetWindowLongPtrW(edit, GWL_STYLE) & ES_READONLY));
+            SendMessageW(edit, EM_LINESCROLL, 0, 10000);
+            check(L"long_text_scrolls", SendMessageW(edit, EM_GETFIRSTVISIBLELINE, 0, 0) > 0);
+            SendMessageW(edit, EM_SETSEL, 0, -1);
+            DWORD begin{}, end{}; SendMessageW(edit, EM_GETSEL, reinterpret_cast<WPARAM>(&begin), reinterpret_cast<LPARAM>(&end));
+            check(L"whole_text_selectable", begin == 0 && end == expected.size());
+            const auto ole = OleInitialize(nullptr);
+            winrt::com_ptr<IDataObject> saved_clipboard;
+            winrt::com_ptr<TestClipboardSnapshot> snapshot;
+            const auto saved = OleGetClipboard(saved_clipboard.put());
+            if (SUCCEEDED(saved)) {
+                snapshot = winrt::make_self<TestClipboardSnapshot>();
+                // Any format-rendering failure exits before modifying the clipboard.
+                snapshot->capture(saved_clipboard.get());
+                check(L"clipboard_snapshot_materialized_before_copy", true);
+                SendMessageW(GetDlgItem(window, 402), BM_CLICK, 0, 0);
+                bool copied{};
+                if (OpenClipboard(window)) {
+                    const auto memory = GetClipboardData(CF_UNICODETEXT);
+                    const auto text = memory ? static_cast<const wchar_t *>(GlobalLock(memory)) : nullptr;
+                    copied = text && expected == text;
+                    if (text) GlobalUnlock(memory);
+                    CloseClipboard();
+                }
+                check(L"copy_all_preserves_complete_text", copied);
+                const auto retry_busy = [](auto operation) {
+                    HRESULT result = operation();
+                    for (int retry = 0; result == CLIPBRD_E_CANT_OPEN && retry < 10; ++retry) { Sleep(20); result = operation(); }
+                    return result;
+                };
+                const auto restored = retry_busy([&] { return OleSetClipboard(snapshot->formats.empty() ? nullptr : snapshot.get()); });
+                const auto flushed = SUCCEEDED(restored) && !snapshot->formats.empty()
+                    ? retry_busy([] { return OleFlushClipboard(); }) : restored;
+                check(L"previous_clipboard_restored", SUCCEEDED(restored) && SUCCEEDED(flushed));
+            } else check(L"clipboard_available_for_copy_test", false);
+            snapshot = nullptr; saved_clipboard = nullptr;
+            if (SUCCEEDED(ole)) OleUninitialize();
+            for (const auto size : {SIZE{520, 380}, SIZE{900, 680}}) {
+                SetWindowPos(window, nullptr, 0, 0, size.cx, size.cy, SWP_NOMOVE | SWP_NOZORDER);
+                RECT client{}, content{}, button{};
+                GetClientRect(window, &client); GetWindowRect(edit, &content); GetWindowRect(GetDlgItem(window, 402), &button);
+                MapWindowPoints(nullptr, window, reinterpret_cast<POINT *>(&content), 2);
+                MapWindowPoints(nullptr, window, reinterpret_cast<POINT *>(&button), 2);
+                check(L"resize_keeps_text_and_copy_button_inside_window", content.left >= 0 && content.right <= client.right &&
+                      content.bottom < button.top && button.bottom <= client.bottom && button.left >= 0);
+                RECT header{}; GetWindowRect(GetDlgItem(window, 403), &header);
+                MapWindowPoints(nullptr, window, reinterpret_cast<POINT *>(&header), 2);
+                check(L"resize_keeps_reading_instructions_inside_window", header.left >= 0 && header.right <= client.right &&
+                      header.bottom <= content.top && header.bottom > header.top);
+            }
+            SendMessageW(window, WM_COMMAND, IDCANCEL, 0);
+            check(L"escape_hides_without_destroying_license_window", IsWindow(window) && !IsWindowVisible(window));
+        }
+        j::JsonObject result;
+        result.SetNamedValue(L"Passed", j::JsonValue::CreateBooleanValue(passed));
+        for (const auto flag : {L"HardwareVerified", L"BluetoothApisCalled", L"ExternalNetworkCalled", L"LegacyWindowShown"})
+            result.SetNamedValue(flag, j::JsonValue::CreateBooleanValue(false));
+        result.SetNamedValue(L"Feedback", j::JsonValue::CreateStringValue(feedback));
+        result.SetNamedValue(L"Checks", checks);
+        result.SetNamedValue(L"Resources", resources);
+        result.SetNamedValue(L"UpdateSource", j::JsonValue::CreateStringValue(winrt::to_hstring(d::embedded_update_json())));
+        std::ofstream out(report); out << winrt::to_string(result.Stringify());
+        return passed && out.good();
+    }
     bool pre_translate(const MSG &message) {
+        if (licenses_view && (message.hwnd == licenses_view->handle() || IsChild(licenses_view->handle(), message.hwnd))) {
+            auto copy = message; return licenses_view->pre_translate(copy);
+        }
         for (auto *view : {personalization_view.get(), advanced_view.get(), diagnostics_view.get(), replay_view.get()})
             if (view && (message.hwnd == view->handle() || IsChild(view->handle(), message.hwnd))) {
                 auto copy = message;
@@ -752,6 +925,7 @@ class ApplicationHost {
   private:
     std::unique_ptr<sc::ui::MainWindow> main_view;
     std::unique_ptr<sc::ui::MoreWindow> more_view, personalization_view, advanced_view, diagnostics_view, replay_view;
+    std::unique_ptr<sc::ui::LicensesWindow> licenses_view;
     d::DiagnosticOptions diagnostic_options;
     std::wstring diagnostic_feedback, replay_name;
     bool diagnostic_error{};
@@ -1016,7 +1190,7 @@ class ApplicationHost {
         update_more();
     }
     void open_release_page() {
-        const auto source = d::UpdateSource::load(executable_path().parent_path() / L"config" / L"update-source.json");
+        const auto source = d::UpdateSource::embedded();
         const auto url = source.release_page(selected_update_channel);
         if (reinterpret_cast<INT_PTR>(ShellExecuteW(settings_owner(), L"open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL)) <= 32)
             throw std::runtime_error("无法打开系统浏览器中的发行版页面。");
@@ -1156,7 +1330,7 @@ class ApplicationHost {
     bool start_update(d::UpdateChannel channel, d::SoftwareUpdateService::Fetch fetch = {}, HWND owner = nullptr) {
         if (update_checking || (offline && !ui_test) || (ui_test && !fetch)) return false;
         if (update_worker.joinable()) update_worker.join();
-        const auto source = d::UpdateSource::load(executable_path().parent_path() / L"config" / L"update-source.json");
+        const auto source = d::UpdateSource::embedded();
         selected_update_channel = channel;
         checked_update_channel = channel;
         update_request_owner = settings_owner(owner);
@@ -1193,7 +1367,7 @@ class ApplicationHost {
         const HWND owner = settings_owner(update_request_owner);
         if (!checked || ui_test || !IsWindowVisible(owner) || IsIconic(owner) || checked->status == d::UpdateStatus::canceled ||
             (diagnostics_view && IsWindowVisible(diagnostics_view->handle()))) return;
-        const auto source = d::UpdateSource::load(executable_path().parent_path() / L"config" / L"update-source.json");
+        const auto source = d::UpdateSource::embedded();
         const auto channel = selected_update_channel;
         const std::wstring details = L"软件版本：v" SONYCONNECT_VERSION L"\n更新渠道：" +
             std::wstring(channel == d::UpdateChannel::github ? L"GitHub" : L"Gitee") + L"\n\n" + checked->message;
@@ -1261,6 +1435,18 @@ class ApplicationHost {
     }
     void more_action(sc::ui::MoreAction action, int value, int detail, bool final) {
         using A = sc::ui::MoreAction;
+        if (action == A::licenses) {
+            try {
+                if (!licenses_view) {
+                    auto view = std::make_unique<sc::ui::LicensesWindow>();
+                    view->create(GetModuleHandleW(nullptr), more_view ? more_view->handle() : main_view->handle());
+                    licenses_view = std::move(view);
+                }
+                licenses_view->show();
+            } catch (const std::exception &e) { settings_error(wide(e.what())); }
+              catch (const winrt::hresult_error &e) { settings_error(e.message().c_str()); }
+            return;
+        }
         if (action == A::personalization || action == A::advanced) {
             open_settings(action == A::personalization ? sc::ui::SettingsPage::personalization : sc::ui::SettingsPage::advanced);
             return;
@@ -2234,6 +2420,7 @@ class ApplicationHost {
             if (main_view) main_view->show();
             return TRUE;
         case main_close_message:
+            if (licenses_view) licenses_view->hide();
             update_cancel = true;
             if (replay_view) replay_view->hide();
             if (diagnostics_view) diagnostics_view->hide();
@@ -2260,6 +2447,7 @@ class ApplicationHost {
             diagnostics_view.reset();
             personalization_view.reset();
             advanced_view.reset();
+            licenses_view.reset();
             more_view.reset();
             main_view.reset();
             KillTimer(hwnd, 1);
@@ -2281,7 +2469,8 @@ int run_application(HINSTANCE instance, const AppOptions &options) {
     app.create(instance);
     if (checking) {
         if (!options.report.parent_path().empty()) std::filesystem::create_directories(options.report.parent_path());
-        const bool passed = options.check == AppCheck::diagnostics ? app.diagnostic_self_test(options.report)
+        const bool passed = options.check == AppCheck::distribution ? app.distribution_self_test(options.report)
+                          : options.check == AppCheck::diagnostics ? app.diagnostic_self_test(options.report)
                           : options.check == AppCheck::updates ? app.update_self_test(options.report)
                           : app.slider_self_test(options.report);
         DestroyWindow(app.hwnd);

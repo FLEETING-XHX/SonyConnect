@@ -3,6 +3,7 @@
 #include "sonyconnect/ui_motion.hpp"
 #include "sonyconnect/ui_layout.hpp"
 #include "sonyconnect/pen_icons.hpp"
+#include "sonyconnect/battery_icon.hpp"
 #include <windowsx.h>
 #include <commctrl.h>
 #include <mmsystem.h>
@@ -215,6 +216,7 @@ class Painter {
     winrt::com_ptr<ID2D1Layer> content_layer;
     winrt::com_ptr<ID2D1Bitmap> headset_bitmap;
     winrt::com_ptr<IWICBitmapSource> headset_source;
+    winrt::com_ptr<ID2D1PathGeometry> battery_outline;
     winrt::com_ptr<ID2D1Bitmap> dsee_bitmap;
     winrt::com_ptr<IWICBitmapSource> dsee_source;
     unsigned generation{};
@@ -291,7 +293,7 @@ class Painter {
         if (headset_source)
             winrt::check_hresult(target->CreateBitmapFromWicBitmap(headset_source.get(), headset_bitmap.put()));
     }
-    void dsee_wordmark(Box box) {
+    void dsee_wordmark(Box box, bool extreme = true) {
         if (!dsee_source) {
             auto module = GetModuleHandleW(nullptr);
             auto resource = FindResourceW(module, MAKEINTRESOURCEW(102), RT_RCDATA);
@@ -322,8 +324,51 @@ class Painter {
         }
         if (!dsee_bitmap)
             winrt::check_hresult(target->CreateBitmapFromWicBitmap(dsee_source.get(), dsee_bitmap.put()));
+        const auto pixels = dsee_bitmap->GetSize();
+        // Original alpha ends at x=992 for DSEE; Extreme begins at x=1112.
+        // Crop at draw time, preserving the original embedded resource unchanged.
+        const auto source = D2D1::RectF(0, 0, extreme ? pixels.width : pixels.width * (992.f / 2400.f), pixels.height);
         target->DrawBitmap(dsee_bitmap.get(), D2D1::RectF(box.x, box.y, box.x + box.w, box.y + box.h),
-                           1, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR);
+                           1, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, &source);
+    }
+    void headphone_battery(Box box, const Value<int> &level, const Value<bool> &charging) {
+        if (!battery_outline) {
+            winrt::check_hresult(factory->CreatePathGeometry(battery_outline.put()));
+            winrt::com_ptr<ID2D1GeometrySink> sink;
+            winrt::check_hresult(battery_outline->Open(sink.put()));
+            sink->SetFillMode(D2D1_FILL_MODE_ALTERNATE);
+            bool open = false;
+            for (const auto &command : battery_path) {
+                const auto &v = command.points;
+                if (command.operation == 1) {
+                    if (open) sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+                    sink->BeginFigure({v[4], v[5]}, D2D1_FIGURE_BEGIN_FILLED);
+                    open = true;
+                } else if (command.operation == 2) sink->AddLine({v[4], v[5]});
+                else sink->AddBezier(D2D1::BezierSegment({v[0], v[1]}, {v[2], v[3]}, {v[4], v[5]}));
+            }
+            if (open) sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+            winrt::check_hresult(sink->Close());
+        }
+        D2D1_MATRIX_3X2_F previous;
+        target->GetTransform(&previous);
+        const auto previous_color = brush->GetColor();
+        target->SetTransform(D2D1::Matrix3x2F::Scale(box.w / 20, box.h / 12) *
+                             D2D1::Matrix3x2F::Translation(box.x, box.y) * previous);
+        const bool is_charging = charging.known() && *charging.value;
+        const auto tint = is_charging ? green : level.known() && *level.value <= 20 ? 0xb56c25 : 0x76767d;
+        brush->SetColor(color(tint));
+        target->FillGeometry(battery_outline.get(), brush.get());
+        const int percent = level.known() ? std::clamp(*level.value, 0, 100) : 0;
+        if (percent > 0) rect({3, 3, 13.f * percent / 100, 6}, tint, .6f);
+        if (is_charging) {
+            const auto bolt = percent >= 75 ? 0xffffff : green;
+            line(10.5f, 3, 8, 6.5f, bolt, 1.2f);
+            line(8, 6.5f, 11.5f, 5.5f, bolt, 1.2f);
+            line(11.5f, 5.5f, 9, 9, bolt, 1.2f);
+        }
+        brush->SetColor(previous_color);
+        target->SetTransform(previous);
     }
     void begin(HDC dc, RECT rect, float scale) {
         winrt::check_hresult(target->BindDC(dc, &rect));
@@ -1456,10 +1501,15 @@ struct MainWindow::Impl {
             p.circle(28, 74, 3.5f, green);
             p.text(L"已连接", {38, 62, 72, 24}, green, 13, true);
             float battery_text_left{};
-            if (d.battery.single.known()) {
-                const auto label = L"电量 " + percent(d.battery.single);
-                battery_text_left = 436 - p.text_width(label, 12);
-                p.text(label, {297, 65.5f, 139, 17}, 0x667084, 12, false,
+            const bool single_battery = d.battery.single.known() ||
+                d.capabilities.readable(protocol::Feature::SingleBattery) || d.model.starts_with("WH-");
+            if (single_battery) {
+                const auto label = percent(d.battery.single);
+                const float text_left = 436 - p.text_width(label, 12);
+                battery_text_left = text_left - 6 - 24;
+                p.headphone_battery({battery_text_left, 66.8f, 24, 14.4f},
+                                   d.battery.single, d.battery.single_charging);
+                p.text(label, {text_left, 65.5f, 436 - text_left, 17}, 0x667084, 12, false,
                        DWRITE_TEXT_ALIGNMENT_TRAILING);
             } else {
                 const auto label = L"L " + percent(d.battery.left) + L"  R " + percent(d.battery.right);
@@ -1473,8 +1523,11 @@ struct MainWindow::Impl {
                 p.rect({393, 73.25f, 12, 3}, 0x111111);
                 p.text(percent(d.battery.case_level), {411, 65.5f, 25, 17}, 0x667084, 12);
             }
-            if (dsee_on)
-                p.dsee_wordmark({battery_text_left - 8 - 96, 69.68f, 96, 8.64f});
+            if (dsee_on) {
+                const bool extreme = more_control_presentation(d).dsee_label == L"DSEE Extreme";
+                const float mark_width = extreme ? 96.f : 96.f * (992.f / 2400.f);
+                p.dsee_wordmark({battery_text_left - 8 - mark_width, 69.68f, mark_width, 8.64f}, extreme);
+            }
             p.icon(Icon::wave, 24, 100, 18, sound_unsupported() ? 0xadb5cb : muted);
             p.text(L"环境声音控制", {50, 99, 170, 22}, sound_unsupported() ? 0xadb5cb : ink, 14, true);
             if (sound_unsupported())
@@ -2586,6 +2639,7 @@ struct MoreWindow::Impl {
         advanced_id,
         diagnostics_id,
         release_id,
+        licenses_id,
         status_id = 1090,
         menu_id = 1100,
         menu_scroll_id = 1200,
@@ -2662,6 +2716,24 @@ struct MoreWindow::Impl {
     int px(int n) const { return px(static_cast<float>(n)); }
     bool writable() const {
         return !model.offline && !model.preview && model.device.ready && !model.busy && !model.device.busy;
+    }
+    bool control_visual_available(int id) const {
+        const auto &d = model.device;
+        const bool ready = d.ready && !model.offline && !model.preview;
+        if (id == left_id || id == right_id)
+            return ready && d.touch.writable && model.touch_indices[id - left_id] >= 0;
+        if (id >= cycle_id && id < cycle_id + 3) return ready && d.touch.cycle_writable;
+        if (id == prompt_id) return ready && d.touch.volume_writable && d.touch.prompt_volume.known();
+        if (id == guidance_id) return ready && d.touch.guidance_writable;
+        if (id == dsee_id || id == speak_id || id == wear_id || id == auto_id) {
+            const auto feature = id == dsee_id ? protocol::Feature::Dsee
+                               : id == speak_id ? protocol::Feature::SpeakToChat
+                               : id == wear_id ? protocol::Feature::WearDetectionPause
+                                               : protocol::Feature::AutoPowerOff;
+            const auto found = d.features.find(feature);
+            return ready && found != d.features.end() && found->second.writable;
+        }
+        return items.at(id).enabled;
     }
     void request_frame() {
         dirty = true;
@@ -2772,7 +2844,8 @@ struct MoreWindow::Impl {
         create_item(personalization_id, button, MoreAction::personalization, {354, 615, 147, 36});
         create_item(advanced_id, button, MoreAction::advanced, {509, 615, 147, 36});
         create_item(diagnostics_id, button, MoreAction::diagnostics, {354, 661, 302, 36});
-        create_item(release_id, button, MoreAction::releases, {24, 730, 100, 26});
+        create_item(release_id, button, MoreAction::releases, {24, 730, 120, 26});
+        create_item(licenses_id, button, MoreAction::licenses, {540, 730, 116, 26});
         create_item(status_id, status_text, MoreAction::releases, {24, 722, 632, 36});
         for (auto &[id, c] : items)
             if (c.slider) {
@@ -2928,6 +3001,20 @@ struct MoreWindow::Impl {
             }
         }
         model = std::move(value);
+        const auto presentation = more_control_presentation(model.device);
+        if (presentation.physical_nc_button) {
+            model.touch_labels = {L"[NC/AMB] 按钮", presentation.no_touch_sensor ? L"触摸控制" : L"右侧触摸"};
+            model.touch_indices[0] = -1; // A fixed physical button is not a touch assignment slot.
+            model.touch_names[0] = L"降噪 / 环境声音";
+            model.touch_choices[0].clear();
+            if (presentation.no_touch_sensor) {
+                model.touch_indices[1] = -1;
+                model.touch_names[1] = L"此型号不支持";
+                model.touch_choices[1].clear();
+            } else if (model.touch_indices[1] < 0) {
+                model.touch_names[1] = L"此版本尚未适配";
+            }
+        }
         const bool write = writable();
         const auto &d = model.device;
         sync_item(close_id, L"关闭更多功能", true, true);
@@ -2968,7 +3055,7 @@ struct MoreWindow::Impl {
                                       : zero_on                              ? actual == 0
                                                                              : actual != 0));
         };
-        feature(dsee_id, protocol::Feature::Dsee, L"DSEE Extreme", false);
+        feature(dsee_id, protocol::Feature::Dsee, presentation.dsee_label.c_str(), false);
         feature(speak_id, protocol::Feature::SpeakToChat, L"智能免摘", true);
         feature(wear_id, protocol::Feature::WearDetectionPause, L"摘下耳机时暂停", true);
         feature(auto_id, protocol::Feature::AutoPowerOff, L"自动断电", false);
@@ -2987,7 +3074,7 @@ struct MoreWindow::Impl {
                       known_value ? (*d.touch.assignments.value)[k] : -1);
             items.at(left_id + i).choices = model.touch_choices[i];
             auto &box = items.at(left_id + i).box;
-            box.x = model.touch_labels[i].size() > 2 ? 432.f : 393.f;
+            box.x = model.touch_labels[i].size() > 2 ? 472.f : 393.f;
             box.w = 656 - box.x;
         }
         const int cycle = d.touch.cycle.value.value_or(0);
@@ -3011,6 +3098,7 @@ struct MoreWindow::Impl {
         const wchar_t *links[] = {L"个性化设置", L"高级设置", L"诊断与维护"};
         for (int i = 0; i < 3; ++i)
             sync_item(personalization_id + i, links[i], true, true);
+        sync_item(licenses_id, L"第三方许可", true, true);
         sync_item(release_id, model.update_canceling ? L"取消中…" : model.update_checking ? L"取消更新检查" : L"软件版本 v" SONYCONNECT_VERSION,
                   !model.offline && !model.preview && !model.update_canceling, true);
         sync_item(status_id, model.feedback_error ? model.feedback : L"", false, true);
@@ -3330,25 +3418,29 @@ struct MoreWindow::Impl {
                DWRITE_TEXT_ALIGNMENT_TRAILING);
         for (int i = 0; i < 3; ++i)
             p.text(i == 0 ? L"−10" : i == 1 ? L"0" : L"+10", {36 + 129.f * i, 386, 20, 17}, muted, 12);
-        auto setting = [&](float x, float y, const wchar_t *label, const wchar_t *hint) {
-            p.text(label, {x, y, 254, 19}, 0x30384b);
-            p.text(hint, {x, y + 25, 254, 18}, muted, 12);
+        auto setting = [&](float x, float y, const wchar_t *label, const wchar_t *hint, int id) {
+            const bool enabled = control_visual_available(id);
+            p.text(label, {x, y, 254, 19}, enabled ? 0x30384b : 0xa2a8b5);
+            p.text(hint, {x, y + 25, 254, 18}, enabled ? muted : 0xb5bac5, 12);
         };
-        setting(24, 442, L"DSEE Extreme", L"补偿压缩音源的高频细节");
-        setting(24, 555, L"通知和语音向导", L"播放耳机提示音与语音通知");
-        p.text(L"提示音量调整", {24, 619, 240, 19}, 0x30384b);
+        const auto presentation = more_control_presentation(model.device);
+        setting(24, 442, presentation.dsee_label.c_str(), L"补偿压缩音源的高频细节", dsee_id);
+        setting(24, 555, L"通知和语音向导", L"播放耳机提示音与语音通知", guidance_id);
+        p.text(L"提示音量调整", {24, 619, 240, 19}, control_visual_available(prompt_id) ? 0x30384b : 0xa2a8b5);
         auto &prompt = items.at(prompt_id);
         p.text(prompt.known ? signed_value(prompt.value) : L"—", {296, 619, 30, 19}, 0x4051c1, 13, false,
                DWRITE_TEXT_ALIGNMENT_TRAILING);
         for (int i = 0; i < 5; ++i)
             p.text(signed_value(i - 2), {24 + 71.5f * i, 680, 20, 16}, muted, 11);
-        p.text(model.touch_labels[0], {354, 106, 72, 19}, 0x59647a);
-        p.text(model.touch_labels[1], {354, 156, 72, 19}, 0x59647a);
-        p.text(L"触摸时切换的声音模式", {354, 198, 302, 17}, muted, 12);
-        setting(354, 318, L"智能免摘", L"说话时启用通透模式");
-        setting(354, 385, L"摘下耳机时暂停", L"重新戴上后恢复播放");
+        for (int i = 0; i < 2; ++i)
+            p.text(model.touch_labels[i], {354, 106.f + 50.f * i, 115, 19},
+                   control_visual_available(left_id + i) || (i == 0 && presentation.physical_nc_button) ? 0x59647a : 0xa2a8b5, 12);
+        p.text(presentation.cycle_label, {354, 198, 302, 17},
+               control_visual_available(cycle_id) ? muted : 0xb5bac5, 12);
+        setting(354, 318, L"智能免摘", presentation.no_touch_sensor ? L"此型号不支持" : L"说话时启用通透模式", speak_id);
+        setting(354, 385, L"摘下耳机时暂停", presentation.no_touch_sensor ? L"此型号不支持" : L"重新戴上后恢复播放", wear_id);
         const auto power_hint = auto_power_hint();
-        setting(354, 451, L"自动断电", power_hint.c_str());
+        setting(354, 451, L"自动断电", power_hint.c_str(), auto_id);
         p.text(L"软件设置", {354, 517, 302, 20}, ink, 14, true);
         p.text(L"开机启动", {354, 555, 254, 19}, 0x30384b);
         p.text(L"关闭窗口时最小化到托盘", {354, 585, 254, 19}, 0x30384b);
@@ -3356,7 +3448,7 @@ struct MoreWindow::Impl {
         p.text(L"耳机固件 " + (model.device.firmware.empty() ? L"未连接" : wtext(model.device.firmware)),
                {135, 735, 280, 17}, muted, 12);
         if (model.preview)
-            p.text(L"离线设计预览 · 示例数据", {435, 735, 221, 17}, muted, 11, false,
+            p.text(L"离线设计预览 · 示例数据", {290, 735, 230, 17}, muted, 11, false,
                    DWRITE_TEXT_ALIGNMENT_TRAILING);
         } else draw_settings();
         for (auto &[id, c] : items)
@@ -3398,6 +3490,12 @@ struct MoreWindow::Impl {
             return;
         auto &p = *painter;
         const auto b = c.box;
+        const bool visual = page == SettingsPage::more ? control_visual_available(c.id)
+                             : c.enabled || ((model.busy || model.device.busy) && c.known);
+        const bool faded = !visual && c.kind != status_text;
+        if (faded)
+            p.target->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), nullptr,
+                D2D1_ANTIALIAS_MODE_PER_PRIMITIVE, D2D1::IdentityMatrix(), .45f), nullptr);
         if (c.kind == slider) {
             const float pct = static_cast<float>(c.wake.head() / 100.0);
             const bool available = c.id == prompt_id ? model.device.touch.volume_writable
@@ -3439,7 +3537,7 @@ struct MoreWindow::Impl {
             const float after = p.text_width(text.substr(0, end), 13);
             if (GetFocus() == c.hwnd && start != end)
                 p.rect({b.x + 12 + before, b.y + 7, std::max(1.f, after - before), b.h - 14}, pale, 2);
-            p.text(text, {b.x + 12, b.y + 4, b.w - 24, b.h - 8}, c.enabled ? ink : muted, 13);
+            p.text(text, {b.x + 12, b.y + 4, b.w - 24, b.h - 8}, visual ? ink : muted, 13);
             if (GetFocus() == c.hwnd && start == end)
                 p.line(b.x + 12 + before, b.y + 9, b.x + 12 + before, b.y + b.h - 9, blue, 1);
         } else if (c.kind == timeline) {
@@ -3475,19 +3573,19 @@ struct MoreWindow::Impl {
             p.rect(b, 0xffffff, 6, border);
             if (c.action == MoreAction::slider_appearance)
                 style_sample({b.x + 12, b.y + 9, b.w - 46, b.h - 18}, static_cast<MainSliderStyle>(c.value), c.detail == 2);
-            else p.text(c.label, {b.x + 12, b.y + 4, b.w - 34, b.h - 8}, c.enabled ? 0x414d63 : muted, 12);
-            pen(PenIcon::chevron_down, b.x + b.w - 26, b.y + 11, 14);
+            else p.text(c.label, {b.x + 12, b.y + 4, b.w - 34, b.h - 8}, visual ? 0x414d63 : muted, 12);
+            if (!c.choices.empty()) pen(PenIcon::chevron_down, b.x + b.w - 26, b.y + 11, 14);
         } else if (c.kind == cycle_button) {
-            p.rect(b, c.on ? pale : 0xffffff, 6, c.on ? 0xd8def7 : border);
+            p.rect(b, c.on && visual ? pale : 0xffffff, 6, c.on && visual ? 0xd8def7 : border);
             // Pen07 centers the icon and label together, with a 4 DIP gap.
             constexpr float icon_size = 13, gap = 4;
             constexpr int font_size = 11;
             const float label_width = p.text_width(c.label, font_size);
             const float left = b.x + (b.w - icon_size - gap - label_width) / 2;
             pen(c.on ? PenIcon::check : PenIcon::x, left, b.y + (b.h - icon_size) / 2, icon_size,
-                c.on ? blue : 0x8a93a6);
+                c.on && visual ? blue : 0x8a93a6);
             p.text(c.label, {left + icon_size + gap, b.y, label_width, b.h},
-                   c.on ? 0x4051c1 : muted, font_size);
+                   c.on && visual ? 0x4051c1 : muted, font_size);
         } else if (c.kind == menu_button) {
             // Selection is device state. Keyboard focus and scroll position
             // must never turn another candidate into the selected preset.
@@ -3506,19 +3604,19 @@ struct MoreWindow::Impl {
             p.rect({b.x + 3, y, 6, thumb}, 0xadb5cb, 3);
         } else if (c.id >= log_mib_id && c.id <= replay_select_id) {
             const bool primary = c.id == export_log_id || c.id == check_update_id;
-            p.rect(b, primary && c.enabled ? blue : 0xffffff, 6, primary && c.enabled ? blue : border);
-            p.text(c.label, b, !c.enabled ? muted : primary ? 0xffffff : ink, 11, false, DWRITE_TEXT_ALIGNMENT_CENTER);
-        } else if (c.id == release_id)
+            p.rect(b, primary && visual ? blue : 0xffffff, 6, primary && visual ? blue : border);
+            p.text(c.label, b, !visual ? muted : primary ? 0xffffff : ink, 11, false, DWRITE_TEXT_ALIGNMENT_CENTER);
+        } else if (c.id == release_id || c.id == licenses_id)
             p.text(c.label, b, muted, 12);
         else if (c.id == restore_id) {
             p.rect(b, 0xffffff, 6, border);
-            p.text(c.label, b, c.enabled ? ink : muted, 12, false, DWRITE_TEXT_ALIGNMENT_CENTER);
+            p.text(c.label, b, visual ? ink : muted, 12, false, DWRITE_TEXT_ALIGNMENT_CENTER);
         } else {
             p.rect(b, 0xffffff, 6, border);
             const PenIcon icons[] = {PenIcon::sliders_horizontal, PenIcon::sliders_horizontal, PenIcon::activity};
-            pen(icons[c.id - personalization_id], b.x + 10, b.y + 10, 16, c.enabled ? 0x59647a : 0xadb5cb);
-            p.text(c.label, {b.x + 34, b.y + 6, b.w - 54, 24}, c.enabled ? 0x30384b : 0xadb5cb);
-            pen(PenIcon::chevron_right, b.x + b.w - 24, b.y + 11, 14, c.enabled ? muted : 0xadb5cb);
+            pen(icons[c.id - personalization_id], b.x + 10, b.y + 10, 16, visual ? 0x59647a : 0xadb5cb);
+            p.text(c.label, {b.x + 34, b.y + 6, b.w - 54, 24}, visual ? 0x30384b : 0xadb5cb);
+            pen(PenIcon::chevron_right, b.x + b.w - 24, b.y + 11, 14, visual ? muted : 0xadb5cb);
         }
         if (c.enabled && keyboard && GetFocus() == c.hwnd) {
             p.brush->SetColor(color(blue));
@@ -3526,6 +3624,7 @@ struct MoreWindow::Impl {
                 D2D1::RoundedRect(D2D1::RectF(b.x + 1, b.y + 1, b.x + b.w - 1, b.y + b.h - 1), 5, 5),
                 p.brush.get(), 1.5f);
         }
+        if (faded) p.target->PopLayer();
     }
     void present() {
         if (presenting || !dirty)
@@ -4434,6 +4533,16 @@ void MoreWindow::capture(const std::filesystem::path &path) {
     winrt::check_hresult(frame->WriteSource(clip.get(), nullptr));
     winrt::check_hresult(frame->Commit());
     winrt::check_hresult(encoder->Commit());
+}
+MoreControlPresentation more_control_presentation(const DeviceSnapshot &device) {
+    MoreControlPresentation result;
+    result.no_touch_sensor = device.model == "WH-CH720N";
+    result.physical_nc_button = result.no_touch_sensor || device.model == "WH-1000XM5";
+    if (result.physical_nc_button)
+        result.cycle_label = L"[NC/AMB] 按钮切换的声音模式";
+    if (device.model == "WF-1000XM5" || device.model == "WH-1000XM5")
+        result.dsee_label = L"DSEE Extreme";
+    return result;
 }
 MoreModel more_preview(MainSliderStyle style) {
     MoreModel m;

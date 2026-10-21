@@ -77,6 +77,8 @@ struct UpdateSource {
     bool private_repository_requires_authentication{true};
     std::string gitee_repository, gitee_release_page, gitee_manifest, gitee_api;
     static UpdateSource load(const std::filesystem::path &path);
+    static UpdateSource embedded();
+    static UpdateSource parse(const std::string &json);
     void validate() const;
     std::wstring release_page(UpdateChannel channel) const;
 };

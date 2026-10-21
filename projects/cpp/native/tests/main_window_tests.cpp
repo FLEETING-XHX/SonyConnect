@@ -577,6 +577,62 @@ int wmain(int argc, wchar_t **argv) {
                     "DSEE indicator must not change volume label rendering");
             report.passed.push_back("embedded_dsee_wordmark_and_disabled_state_keep_other_ui_stable");
         }
+        {
+            const auto saved = model;
+            model = ui::main_preview(L"single");
+            model.preview = false;
+            model.device.model = "WH-CH720N";
+            model.device.features[sc::protocol::Feature::Dsee].value = known(1);
+            update();
+            pump(window, 40);
+            capture(window, report, L"15-ch720n-dsee-horizontal-battery.png");
+            const auto normal_battery = label_pixels(window.handle(), true, {375, 60, 436, 89});
+            model.device.features[sc::protocol::Feature::Dsee].value = known(0);
+            update();
+            pump(window, 30);
+            require(label_pixels(window.handle(), true, {375, 60, 436, 89}) == normal_battery,
+                    "Cropping basic DSEE must not move or overwrite the horizontal battery");
+            model.device.features[sc::protocol::Feature::Dsee].value = known(1);
+            model.device.model = "WH-1000XM5";
+            update();
+            pump(window, 30);
+            require(label_pixels(window.handle(), true, {375, 60, 436, 89}) == normal_battery,
+                    "Full Extreme mark must keep the same gap and battery pixels as basic DSEE");
+            capture(window, report, L"16-wh1000xm5-extreme-horizontal-battery.png");
+            report.passed.push_back("basic_and_extreme_wordmarks_preserve_horizontal_battery_and_percentage");
+            model.device.model = "WH-CH720N";
+            model.device.battery.single = known(20);
+            update();
+            pump(window, 30);
+            const auto low_battery = label_pixels(window.handle(), true, {375, 60, 436, 89});
+            require(low_battery != normal_battery, "Low battery must update the icon fill and warning tint");
+            capture(window, report, L"17-headphone-low-battery.png");
+            model.device.battery.single_charging = known(true);
+            update();
+            pump(window, 30);
+            require(label_pixels(window.handle(), true, {375, 60, 436, 89}) != low_battery,
+                    "Charging must be visible separately from a low battery reading");
+            capture(window, report, L"18-headphone-charging.png");
+            model.device.battery.single = {};
+            model.device.battery.single_charging = {};
+            update();
+            pump(window, 30);
+            capture(window, report, L"19-headphone-unknown-battery.png");
+            model.device.battery.single = known(0);
+            update();
+            pump(window, 30);
+            const auto empty_battery = label_pixels(window.handle(), true, {375, 60, 436, 89});
+            model.device.battery.single = known(100);
+            update();
+            pump(window, 30);
+            require(label_pixels(window.handle(), true, {375, 60, 436, 89}) != empty_battery,
+                    "Empty and full batteries must have different fills without resizing the icon");
+            capture(window, report, L"20-headphone-full-battery.png");
+            report.passed.push_back("headphone_battery_low_charging_unknown_empty_and_full_states");
+            model = saved;
+            update();
+            pump(window, 40);
+        }
         const auto supported_sound = model.device.sound;
         const auto supported_capabilities = model.device.capabilities;
         const auto before_unsupported = actions.size();

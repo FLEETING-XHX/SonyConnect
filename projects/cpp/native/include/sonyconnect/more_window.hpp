@@ -34,13 +34,20 @@ enum class MoreAction {
     diagnostic_replay,
     update_channel,
     check_update,
-    release_page
+    release_page,
+    licenses
 };
 enum class SettingsPage { more, personalization, advanced, diagnostics, replay };
 struct MoreChoice {
     int value{};
     std::wstring label;
 };
+struct MoreControlPresentation {
+    bool physical_nc_button{}, no_touch_sensor{};
+    std::wstring cycle_label{L"触摸时切换的声音模式"};
+    std::wstring dsee_label{L"DSEE"};
+};
+MoreControlPresentation more_control_presentation(const DeviceSnapshot &);
 // Presentation values only. Device commands remain in the existing adapter.
 struct MoreModel {
     DeviceSnapshot device;

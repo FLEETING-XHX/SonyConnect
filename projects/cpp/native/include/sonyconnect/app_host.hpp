@@ -6,7 +6,7 @@
 namespace sonyconnect::ui {
 // Stable class name for single-instance activation; the host has no UI controls.
 inline constexpr wchar_t app_host_class[] = L"SonyConnect.Native.Window";
-enum class AppCheck { none, sliders, updates, diagnostics };
+enum class AppCheck { none, sliders, updates, diagnostics, distribution };
 struct AppOptions {
     bool offline{}, start_hidden{};
     AppCheck check{AppCheck::none};

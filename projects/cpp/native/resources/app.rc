@@ -1,9 +1,12 @@
+#pragma code_page(65001)
 #include <windows.h>
+#include "embedded_assets.rc"
+#include "licenses_dialog.rc"
 101 ICON "sonyconnect.ico"
 102 RCDATA "branding/dsee-extreme.png"
 1 VERSIONINFO
-FILEVERSION 0,1,0,0
-PRODUCTVERSION 0,1,0,0
+FILEVERSION 0,1,1,0
+PRODUCTVERSION 0,1,1,0
 FILEFLAGSMASK 0x3fL
 FILEFLAGS 0
 FILEOS VOS_NT_WINDOWS32
@@ -14,9 +17,9 @@ BEGIN
     BLOCK "040904b0"
     BEGIN
       VALUE "FileDescription", "SonyConnect Native\0"
-      VALUE "FileVersion", "0.1.0\0"
+      VALUE "FileVersion", "0.1.1\0"
       VALUE "ProductName", "SonyConnect\0"
-      VALUE "ProductVersion", "0.1.0\0"
+      VALUE "ProductVersion", "0.1.1\0"
     END
   END
   BLOCK "VarFileInfo"

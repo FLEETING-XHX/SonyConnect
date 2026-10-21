@@ -470,7 +470,10 @@ int ReleaseVersion::compare(const ReleaseVersion &other) const {
     return a.size() == b.size() ? 0 : a.size() > b.size() ? 1 : -1;
 }
 UpdateSource UpdateSource::load(const std::filesystem::path &path) {
-    auto json = JsonObject::Parse(winrt::to_hstring(read_file(path, 65536)));
+    return parse(read_file(path, 65536));
+}
+UpdateSource UpdateSource::parse(const std::string &text) {
+    auto json = JsonObject::Parse(winrt::to_hstring(text));
     UpdateSource s;
     if (json.GetNamedNumber(L"schemaVersion") != 1)
         throw std::runtime_error("Unsupported update source schema");

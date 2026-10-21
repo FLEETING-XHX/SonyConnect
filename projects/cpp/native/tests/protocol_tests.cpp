@@ -497,6 +497,19 @@ int main() {
              bad({0xf3, 2, 0});
              bad({0xf3, 2, 0, 2});
          }},
+        {"classic-connection-mode-reads-parameter-without-capability-or-status",
+         [] {
+             const auto &classic = profile(Feature::ConnectionPreference, 0);
+             const auto queries = ExtendedParameters::read_queries(classic);
+             check(queries.size() == 1 && queries[0].payload == Bytes({0xe6, 0}));
+             throws([&] { ExtendedParameters::capability(classic); });
+             throws([&] { ExtendedParameters::availability(classic); });
+             check(value<ExtendedValue>({0xe7, 0, 1}).data == Bytes({1}));
+             const auto &wf = profile(Feature::ConnectionPreference, 5);
+             const auto wf_queries = ExtendedParameters::read_queries(wf);
+             check(wf_queries.size() == 3 && wf_queries[0].payload == Bytes({0xe0, 5}) &&
+                   wf_queries[1].payload == Bytes({0xe2, 5}) && wf_queries[2].payload == Bytes({0xe6, 5}));
+         }},
         {"extended-query-and-write-shapes",
          [] {
              const auto &dsee = profile(Feature::Dsee, 1);

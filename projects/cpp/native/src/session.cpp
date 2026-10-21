@@ -659,6 +659,7 @@ struct DeviceController::Impl {
     std::condition_variable alerts_changed;
     std::condition_variable recovery_changed;
     std::condition_variable safe_listening_changed;
+    std::condition_variable parameter_changed;
     Milliseconds mode_confirmation_timeout;
     std::chrono::steady_clock::time_point next_pressure_read{};
     std::thread recovery;
@@ -712,6 +713,7 @@ struct DeviceController::Impl {
         stopping = true;
         recovery_changed.notify_all();
         safe_listening_changed.notify_all();
+        parameter_changed.notify_all();
         session.disconnect();
         if (recovery.joinable())
             recovery.join();
@@ -845,7 +847,7 @@ struct DeviceController::Impl {
             }
         }
     }
-    bool model_checked() const { return state.model == "WF-1000XM5" && state.ready; }
+    bool control_ready() const { return state.connected && state.ready && state.family == Family::V2; }
     bool can_assign() const {
         const auto &touch = state.touch;
         return touch.assignments.known() && touch.keys.size() == key_availability.size() &&
@@ -870,7 +872,14 @@ struct DeviceController::Impl {
         return nullptr;
     }
     bool cycle_dependency() const {
-        if (!can_assign() || !cycle_key)
+        if (!cycle_key)
+            return false;
+        // NC/AMB can be an independent physical button (Key 4/5). Devices
+        // advertising only NC_AMB_TOGGLE do not have assignable touch keys.
+        // Retain assignment/availability checks when an assignable layout exists.
+        if (!cycle_details && !touch_type && (*cycle_key == 4 || *cycle_key == 5))
+            return true;
+        if (!can_assign())
             return false;
         const auto &keys = state.touch.keys;
         const auto key =
@@ -904,12 +913,13 @@ struct DeviceController::Impl {
                 for (const auto &action : value.actions)
                     if (action.action == 0 && action.function >= 1 && action.function <= 4) {
                         observe(state.touch.cycle, static_cast<int>(action.function), order, notification);
+                        parameter_changed.notify_all();
                         return;
                     }
         unknown(state.touch.cycle, "Current touch assignment has no editable ambient cycle.", order);
     }
     void access() {
-        const bool checked = model_checked();
+        const bool ready = control_ready();
         auto &sl = state.safe_listening;
         sl.writable = state.connected && state.ready && sl.type && sl.available &&
                       sl.minimum_interval_seconds && *sl.minimum_interval_seconds > 0;
@@ -917,53 +927,54 @@ struct DeviceController::Impl {
         eq.five_band_layout = equalizer_cap && equalizer_cap->band_count == 6 &&
                               equalizer_cap->step_count == 21 && equalizer &&
                               (equalizer->steps.empty() || equalizer->five_bands());
-        eq.writable = checked && eq.available && eq.five_band_layout && equalizer_cap &&
+        eq.writable = ready && state.capabilities.readable(Feature::Equalizer) && eq.available && eq.five_band_layout && equalizer_cap &&
                       std::any_of(equalizer_cap->presets.begin(), equalizer_cap->presets.end(),
                                   [&](const auto &p) { return equalizer && p.id == equalizer->preset_id; });
         eq.reason = eq.writable
                         ? "Reported six-value EQ layout; hardware validation is pending."
-                        : "Model, availability, preset or six-value/21-step EQ layout is not confirmed.";
+                        : "Capability, availability, preset or six-value/21-step EQ layout is not confirmed.";
         state.sound.writable =
-            checked && state.sound.available && sound && sound->settled && !state.sound.ranges.empty();
-        state.sources.multipoint_writable = checked && multipoint_slot && !ambiguous_multipoint &&
+            ready && state.capabilities.readable(Feature::SoundMode) && state.sound.available && sound &&
+            sound->settled && !state.sound.ranges.empty();
+        state.sources.multipoint_writable = ready && multipoint_slot && !ambiguous_multipoint &&
                                             state.features[Feature::Multipoint].available &&
                                             state.sources.multipoint.known();
         state.sources.switch_writable =
-            checked && source_switch_reported && state.sources.available && source_cap &&
+            ready && source_switch_reported && state.sources.available && source_cap &&
             source_cap->maximum_connected > 0 && state.sources.multipoint.known() &&
             *state.sources.multipoint.value && state.sources.active_source.known() &&
             (!fixation_reported || state.touch.playback_fixed.known() && !*state.touch.playback_fixed.value);
         state.touch.writable =
-            checked && can_assign() &&
+            ready && can_assign() &&
             std::any_of(key_availability.begin(), key_availability.end(), [](auto v) { return v == 0; });
         state.touch.cycle_writable =
-            checked && cycle_reported && cycle_available && state.touch.cycle.known() && cycle_dependency();
+            ready && cycle_reported && cycle_available && state.touch.cycle.known() && cycle_dependency();
         state.touch.guidance_writable =
-            checked && guidance_type && guidance_switch_reported && guidance_available &&
+            ready && guidance_type && guidance_switch_reported && guidance_available &&
             state.touch.guidance.known() &&
             ((*guidance_type != 1 && *guidance_type != 2) ||
              (guidance_language && *guidance_language != 0 && *guidance_language != 0xff));
-        state.touch.volume_writable = checked && volume_reported && state.touch.prompt_volume.known() &&
+        state.touch.volume_writable = ready && volume_reported && state.touch.prompt_volume.known() &&
                                       guidance_available && state.touch.guidance.known() &&
                                       *state.touch.guidance.value == 0;
-        state.touch.fixation_writable = checked && fixation_reported && state.sources.available &&
+        state.touch.fixation_writable = ready && fixation_reported && state.sources.available &&
                                         state.sources.multipoint.known() && *state.sources.multipoint.value &&
                                         state.sources.active_source.known() &&
                                         state.touch.playback_fixed.known();
-        state.touch.assistant_writable = checked && voice_assistant_reported &&
+        state.touch.assistant_writable = ready && voice_assistant_reported &&
                                          state.touch.voice_assistant.known() &&
                                          !state.touch.voice_assistant_candidates.empty();
         for (auto &[feature, item] : state.features) {
             const auto profile = profiles.find(feature);
             if (profile != profiles.end()) {
-                item.writable = checked && item.available && item.value.known() && !item.choices.empty();
+                item.writable = ready && item.available && item.value.known() && !item.choices.empty();
                 if (feature == Feature::AutoPowerOff || feature == Feature::SpeakToChat)
                     item.writable &= last_selected.contains(feature) &&
                                      ExtendedParameters::legal(profile->second, last_selected[feature]);
                 if (profile->second.function == 0xe7)
                     item.writable &= last_selected.contains(feature) && last_selected[feature] == 0;
                 if (feature == Feature::PowerOff)
-                    item.writable = checked && item.advertised;
+                    item.writable = ready && item.advertised;
             }
         }
         auto set_access = [&](Feature f, bool writable, bool available) {
@@ -1065,15 +1076,14 @@ struct DeviceController::Impl {
                 else
                     unknown(charging, "Unknown charging state.", order);
             };
-            const bool wf = state.model == "WF-1000XM5", wh = state.model == "WH-1000XM5";
-            if (wh && (parsedBatteryStatus->inquired_type == 0 || parsedBatteryStatus->inquired_type == 8))
+            if (state.capabilities.readable(Feature::SingleBattery) && (parsedBatteryStatus->inquired_type == 0 || parsedBatteryStatus->inquired_type == 8))
                 unit(parsedBatteryStatus->first, state.battery.single, state.battery.single_charging);
-            if (wf && (parsedBatteryStatus->inquired_type == 1 || parsedBatteryStatus->inquired_type == 9) &&
+            if (state.capabilities.readable(Feature::LeftBattery) && (parsedBatteryStatus->inquired_type == 1 || parsedBatteryStatus->inquired_type == 9) &&
                 parsedBatteryStatus->second) {
                 unit(parsedBatteryStatus->first, state.battery.left, state.battery.left_charging);
                 unit(*parsedBatteryStatus->second, state.battery.right, state.battery.right_charging);
             }
-            if (wf && (parsedBatteryStatus->inquired_type == 2 || parsedBatteryStatus->inquired_type == 10))
+            if (state.capabilities.readable(Feature::CaseBattery) && (parsedBatteryStatus->inquired_type == 2 || parsedBatteryStatus->inquired_type == 10))
                 unit(parsedBatteryStatus->first, state.battery.case_level, state.battery.case_charging);
         } else if (const auto parsedSoundCapability = std::get_if<SoundCapability>(&info)) {
             state.sound.ranges = parsedSoundCapability->ranges;
@@ -1090,6 +1100,7 @@ struct DeviceController::Impl {
                         notification);
                 observe(state.sound.voice_focus, parsedSoundParameter->ambient_mode == 1, order,
                         notification);
+                parameter_changed.notify_all();
             }
         } else if (const auto parsedEqualizerCapability = std::get_if<EqualizerCapability>(&info)) {
             equalizer_cap = *parsedEqualizerCapability;
@@ -1180,6 +1191,8 @@ struct DeviceController::Impl {
                     item.available = parsedExtendedValue->data[0] == 0;
                 else if (parsedExtendedValue->field == ExtendedField::Parameter &&
                          !parsedExtendedValue->data.empty()) {
+                    if (profile.parameter_only())
+                        item.available = ExtendedParameters::legal(profile, parsedExtendedValue->data[0]);
                     if (std::find(item.choices.begin(), item.choices.end(), parsedExtendedValue->data[0]) !=
                         item.choices.end())
                         observe(item.value, static_cast<int>(parsedExtendedValue->data[0]), order,
@@ -1332,6 +1345,7 @@ struct DeviceController::Impl {
                                 notification);
                     else
                         unknown(state.touch.cycle, "Unknown ambient cycle.", order);
+                    parameter_changed.notify_all();
                 }
             }
         } else if (const auto parsedGuidanceValue = std::get_if<GuidanceValue>(&info)) {
@@ -1413,19 +1427,49 @@ struct DeviceController::Impl {
         apply(parsed.message, reply.receive_order);
         return {};
     }
-    Result confirm(const Query &write, const Query &read, const std::function<bool()> &matches) {
-        auto result = query(write);
+    Result confirm(const Query &write, const Query &read, const std::function<bool()> &matches,
+                   bool wait_for_state = false) {
+        std::uint64_t link, intent;
+        {
+            std::lock_guard lock(gate);
+            link = state.link;
+            intent = connection_intent;
+        }
+        auto result = query(write); // A setting is sent once; only reads may repeat below.
         if (!result.ok())
             return result;
         result = query(read);
         if (!result.ok())
             return result;
-        std::lock_guard lock(gate);
+        std::unique_lock lock(gate);
+        const auto deadline = std::chrono::steady_clock::now() + mode_confirmation_timeout;
+        const auto interval = std::max(Milliseconds{100}, mode_confirmation_timeout / 10);
+        const auto canceled = [&] {
+            return state.link != link || connection_intent != intent || !desired_connected ||
+                   system_suspended || !radio_available || !session.connected();
+        };
+        while (wait_for_state && !matches()) {
+            if (canceled())
+                return failure(ResultCode::Canceled, "Setting confirmation canceled by connection change.");
+            const auto now = std::chrono::steady_clock::now();
+            if (now >= deadline) break;
+            parameter_changed.wait_until(lock, std::min(deadline, now + interval), [&] {
+                return matches() || canceled();
+            });
+            if (canceled())
+                return failure(ResultCode::Canceled, "Setting confirmation canceled by connection change.");
+            if (matches() || std::chrono::steady_clock::now() >= deadline) break;
+            lock.unlock();
+            result = query(read);
+            lock.lock();
+            if (!result.ok()) return result;
+        }
+        if (wait_for_state && canceled())
+            return failure(ResultCode::Canceled, "Setting confirmation belongs to an old connection.");
         return matches()
                    ? Result{}
-                   : failure(
-                         ResultCode::DeviceRejected,
-                         "Readback did not confirm the requested value; actual device state is retained.");
+                   : failure(ResultCode::DeviceRejected,
+                             "Readback did not confirm the requested value; actual device state is retained.");
     }
     std::optional<MultipointAlert> wait_alert(std::uint64_t baseline) {
         std::unique_lock lock(gate);
@@ -1535,9 +1579,9 @@ struct DeviceController::Impl {
                     profiles[profile.feature] = profile;
             for (const auto &[feature, profile] : profiles) {
                 state.features[feature].advertised = true;
-                if (feature == Feature::WearDetectionPause) {
+                if (profile.parameter_only()) {
                     state.features[feature].choices = {0, 1};
-                    state.features[feature].available = true;
+                    state.features[feature].available = false; // Set only by a valid parameter readback.
                 }
                 if (feature == Feature::PowerOff) {
                     state.features[feature].choices = {1};
@@ -1548,12 +1592,13 @@ struct DeviceController::Impl {
                 const auto list = ExtendedParameters::read_queries(profile);
                 queries.insert(queries.end(), list.begin(), list.end());
             }
-            const auto batteries =
-                BatteryParameters::queries(&t1, state.model == "WF-1000XM5"   ? BatteryLayout::LeftRightCase
-                                                : state.model == "WH-1000XM5" ? BatteryLayout::Single
-                                                                              : BatteryLayout::Unknown);
-            queries.insert(queries.end(), batteries.begin(), batteries.end());
-            if (state.model == "WF-1000XM5" && t1.contains(0x6b))
+            // Battery request subtypes identify single / L+R / case units.
+            // Query only explicitly advertised forms; names do not define layout.
+            for (const auto layout : {BatteryLayout::Single, BatteryLayout::LeftRightCase}) {
+                const auto batteries = BatteryParameters::queries(&t1, layout);
+                queries.insert(queries.end(), batteries.begin(), batteries.end());
+            }
+            if (t1.contains(0x6b))
                 queries.insert(queries.end(), {SoundParameters::capability(), SoundParameters::availability(),
                                                SoundParameters::read()});
             if (t1.contains(0x50))
@@ -1627,7 +1672,7 @@ struct DeviceController::Impl {
         std::vector<Query> audio;
         {
             std::lock_guard lock(gate);
-            alerts_registered = t1.contains(0x90) && state.model == "WF-1000XM5" &&
+            alerts_registered = t1.contains(0x90) &&
                                 (multipoint_slot || profiles.contains(Feature::ConnectionPreference));
             if (alerts_registered)
                 audio.push_back(AudioSourceParameters::enable_alerts());
@@ -1840,6 +1885,7 @@ void DeviceController::disconnect() noexcept {
     ++impl_->state.revision;
     impl_->alerts_changed.notify_all();
     impl_->safe_listening_changed.notify_all();
+    impl_->parameter_changed.notify_all();
 }
 void DeviceController::suspend() noexcept {
     {
@@ -1859,6 +1905,7 @@ void DeviceController::suspend() noexcept {
     }
     impl_->alerts_changed.notify_all();
     impl_->safe_listening_changed.notify_all();
+    impl_->parameter_changed.notify_all();
 }
 Result DeviceController::resume() {
     {
@@ -2041,7 +2088,7 @@ Result DeviceController::set_sound(std::optional<SoundMode> mode, std::optional<
             impl_->access();
             if (!impl_->state.sound.writable || !impl_->sound)
                 return failure(ResultCode::Unavailable,
-                               "Sound layout, model and availability must be confirmed before writing.");
+                               "Sound capability, layout and availability must be confirmed before writing.");
             if (!mode && !level && !voice)
                 return failure(ResultCode::InvalidValue, "No sound change was requested.");
             if (mode && *mode != SoundMode::NoiseCanceling && *mode != SoundMode::Ambient &&
@@ -2066,7 +2113,7 @@ Result DeviceController::set_sound(std::optional<SoundMode> mode, std::optional<
             return impl_->sound && impl_->sound->settled && (!mode || impl_->sound->sound_mode() == *mode) &&
                    (!level || impl_->sound->level == *level) &&
                    (!voice || (impl_->sound->ambient_mode == 1) == *voice);
-        });
+        }, true);
     });
 }
 Result DeviceController::set_equalizer(std::optional<Byte> preset, std::optional<int> band,
@@ -2224,7 +2271,7 @@ Result DeviceController::set(Feature feature, int value) {
                 if (!item.writable ||
                     std::find(item.choices.begin(), item.choices.end(), value) == item.choices.end())
                     return failure(ResultCode::Unavailable,
-                                   "Model, candidate values and setting availability must be confirmed.");
+                                   "Capability, candidate values and setting availability must be confirmed.");
                 profile = impl_->profiles[feature];
                 last = impl_->last_selected[feature];
                 extended = true;
@@ -2350,7 +2397,7 @@ Result DeviceController::set(Feature feature, int value) {
             return touch.playback_fixed.known() && *touch.playback_fixed.value == (value == 1) &&
                    (value == 0 || impl_->state.sources.active_source.value == fixed_target) &&
                    !(impl_->fixation_result_order > fixation_baseline && impl_->fixation_result != 0);
-        });
+        }, feature == Feature::AmbientCycle);
     });
 }
 Result DeviceController::set_touch_details(const std::vector<TouchPresetState> &details) {

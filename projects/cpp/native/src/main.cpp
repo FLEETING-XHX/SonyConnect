@@ -11,7 +11,7 @@ namespace sc = sonyconnect;
 int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR, int) {
     int count{};
     LPWSTR *args = CommandLineToArgvW(GetCommandLineW(), &count);
-    bool offline = false, test = false, slider_test = false, update_test = false, diagnostic_test = false, hidden = false;
+    bool offline = false, test = false, slider_test = false, update_test = false, diagnostic_test = false, distribution_test = false, hidden = false;
     std::wstring preview;
     UINT preview_dpi{};
     std::filesystem::path main_capture;
@@ -26,6 +26,8 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR, int) {
             test = update_test = offline = true;
         } else if (arg == L"--ui-diagnostics-self-test") {
             test = diagnostic_test = offline = true;
+        } else if (arg == L"--distribution-self-test") {
+            test = distribution_test = offline = true;
         } else if (arg == L"--start-hidden")
             hidden = true;
         else if (arg == L"--preview-main" && i + 1 < count) {
@@ -79,7 +81,7 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR, int) {
         sc::ui::AppOptions options;
         options.offline = offline;
         options.start_hidden = hidden;
-        options.check = diagnostic_test ? sc::ui::AppCheck::diagnostics : update_test ? sc::ui::AppCheck::updates
+        options.check = distribution_test ? sc::ui::AppCheck::distribution : diagnostic_test ? sc::ui::AppCheck::diagnostics : update_test ? sc::ui::AppCheck::updates
                       : slider_test ? sc::ui::AppCheck::sliders : sc::ui::AppCheck::none;
         options.preview = std::move(preview);
         options.preview_dpi = preview_dpi;

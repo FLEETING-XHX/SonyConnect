@@ -22,7 +22,8 @@ $portableRoot = Join-Path $runRoot 'portable'
 New-Item -ItemType Directory -Path $portableRoot -Force | Out-Null
 & $cmakePath --install $BuildRoot --config Release --prefix $portableRoot
 if ($LASTEXITCODE -ne 0) { throw 'Native install failed.' }
-if (-not (Test-Path -LiteralPath (Join-Path $portableRoot 'README-native.md'))) { throw 'Portable instructions are missing.' }
+if (@(Get-ChildItem -LiteralPath $portableRoot -Force).Count -ne 1 -or -not (Test-Path -LiteralPath (Join-Path $portableRoot 'SonyConnect.exe'))) { throw 'Expected exactly one distributed EXE.' }
+Copy-Item -LiteralPath (Join-Path $repositoryRoot 'docs/native/便携版使用说明.md') -Destination (Join-Path $runRoot 'README-native.md')
 $executable = Join-Path $portableRoot 'SonyConnect.exe'
 if ((Get-FileHash $executable).Hash -ne (Get-FileHash (Join-Path $BuildRoot 'Release/SonyConnect.exe')).Hash) {
     throw 'Installed executable does not match the selected Release build.'
@@ -43,15 +44,33 @@ if ($clrRva -ne 0 -or $clrSize -ne 0) { throw 'Unexpected managed CLR entry in n
 $testRoot = Join-Path $runRoot 'portable-ui-test'
 New-Item -ItemType Directory -Path $testRoot -Force | Out-Null
 $uiReports = @()
-foreach ($suite in @('slider','update','diagnostics')) {
+foreach ($suite in @('distribution','update','slider','diagnostics')) {
     $testReport = Join-Path $testRoot ($suite + '.json')
-    $nativeProcess = Start-Process -FilePath $executable -ArgumentList @(("--ui-$suite-self-test"),'--report',('"' + $testReport + '"')) -WindowStyle Hidden -PassThru
+    $selfTestArgument = if ($suite -eq 'distribution') { '--distribution-self-test' } else { "--ui-$suite-self-test" }
+    $nativeProcess = Start-Process -FilePath $executable -ArgumentList @($selfTestArgument,'--report',('"' + $testReport + '"')) -WindowStyle Hidden -PassThru
     try {
         if (-not $nativeProcess.WaitForExit(30000)) { $nativeProcess.Kill(); throw "Portable $suite validation timed out." }
         $result = Get-Content -LiteralPath $testReport -Raw | ConvertFrom-Json
         if ($nativeProcess.ExitCode -ne 0 -or -not $result.Passed -or $result.HardwareVerified -or
             $result.BluetoothApisCalled -or $result.ExternalNetworkCalled -or $result.NetworkCalled -or $result.LegacyWindowShown) {
             throw "Portable $suite validation failed."
+        }
+        if ($suite -eq 'distribution') {
+            $noticeFiles = @(Get-ChildItem -LiteralPath (Join-Path $repositoryRoot 'projects/cpp/native/notices') -File)
+            if (@($result.Resources).Count -ne $noticeFiles.Count) { throw 'Embedded notice inventory mismatch.' }
+            foreach ($notice in $noticeFiles) {
+                $embedded = @($result.Resources | Where-Object { $_.Name -ceq $notice.Name })
+                if ($embedded.Count -ne 1) { throw "Missing/duplicate embedded notice: $($notice.Name)" }
+                $sha = [Security.Cryptography.SHA256]::Create()
+                try { $embeddedHash = [BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($embedded[0].Text))).Replace('-','') }
+                finally { $sha.Dispose() }
+                if ($embeddedHash -ne (Get-FileHash -LiteralPath $notice.FullName -Algorithm SHA256).Hash) { throw "Embedded notice differs from original bytes: $($notice.Name)" }
+            }
+            $sourceFile = Join-Path $repositoryRoot 'projects/cpp/config/update-source.json'
+            $sha = [Security.Cryptography.SHA256]::Create()
+            try { $embeddedHash = [BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($result.UpdateSource))).Replace('-','') }
+            finally { $sha.Dispose() }
+            if ($embeddedHash -ne (Get-FileHash -LiteralPath $sourceFile -Algorithm SHA256).Hash) { throw 'Embedded update configuration differs from original bytes.' }
         }
         $checks = if ($result.Checks) { @($result.Checks) } else { @($result.Scenarios) }
         if ($checks.Count -eq 0 -or @($checks | Where-Object { -not $_.Passed }).Count) { throw "Portable $suite checks are incomplete." }
@@ -61,7 +80,7 @@ foreach ($suite in @('slider','update','diagnostics')) {
 $hashLines = @(Get-ChildItem $portableRoot -Recurse -File | Sort-Object FullName | ForEach-Object {
     (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant() + '  ' + $_.FullName.Substring($portableRoot.Length + 1).Replace('\','/')
 })
-$hashLines | Set-Content (Join-Path $portableRoot 'SHA256SUMS.txt') -Encoding utf8
+$hashLines | Set-Content (Join-Path $runRoot 'SHA256SUMS.txt') -Encoding utf8
 $archive = Join-Path $runRoot ("SonyConnect-v$releaseVersion-Windows-x64.zip")
 Compress-Archive -Path (Join-Path $portableRoot '*') -DestinationPath $archive
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -88,7 +107,7 @@ $summary = [ordered]@{
     Archive = $archive; ArchiveBytes = (Get-Item -LiteralPath $archive).Length; ArchiveSha256 = (Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash.ToLowerInvariant();
     SourceBuildRoot = $BuildRoot; PortableUiReports = $uiReports; UiScenarios = ($uiReports | ForEach-Object { $_.Checks } | Measure-Object -Sum).Sum;
     Version = $releaseVersion; ArchiveChecksum = $archiveChecksum;
-    ZipIntegrityVerified = $true; LegacyWindowShown = $false; CleanWindowsVerified = $false; Published = $false
+    SingleExeDistribution = $true; EmbeddedResourcesVerified = $true; ZipIntegrityVerified = $true; LegacyWindowShown = $false; CleanWindowsVerified = $false; Published = $false
 }
 $summary | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $runRoot 'summary.json') -Encoding UTF8
 Write-Output ('Executable: ' + $executable)

@@ -203,6 +203,7 @@ struct ExtendedProfile {
     Feature feature{};
     Byte function{}, group{}, type{};
     Byte status_type() const;
+    bool parameter_only() const;
     bool operator==(const ExtendedProfile &) const = default;
 };
 struct GeneralSettingCapability {

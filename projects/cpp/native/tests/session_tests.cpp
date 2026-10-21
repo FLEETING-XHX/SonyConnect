@@ -138,10 +138,13 @@ struct Headphones {
     Byte key_status{}, limitation{};
     Byte playback_slot{1};
     bool multipoint{true}, fixed{}, custom_touch{}, ordinary_cycle{}, reject_source{};
-    Byte cycle_value{1}, detail_function{1};
+    Byte cycle_value{1}, cycle_key{}, cycle_status{}, detail_function{1};
+    unsigned cycle_writes{};
     unsigned source_writes{}, fix_writes{}, detail_writes{};
     const std::string first_source = "AA:BB:CC:DD:EE:01", second_source = "AA:BB:CC:DD:EE:02";
     bool accept_sound = true, accept_eq = true, accept_extended = true;
+    bool sound_available = true;
+    Byte eq_band_count{6}, eq_step_count{21};
     std::atomic<unsigned> sound_writes{};
     unsigned eq_writes{}, extended_writes{}, touch_writes{}, assistant_writes{};
     Bytes functions(Byte command, const Bytes &list) {
@@ -175,12 +178,22 @@ struct Headphones {
             return;
         }
         if (request.type == table1_type) {
+            if (command == 0x22 && (type <= 2 || type >= 8 && type <= 10)) {
+                Bytes response{0x23, type, 80, 0};
+                if (type == 1 || type == 9) response.insert(response.end(), {70, 1});
+                if (type >= 8) {
+                    response.push_back(10);
+                    if (type == 9) response.push_back(10);
+                }
+                transport.reply(request, response);
+                return;
+            }
             if (command == 0x60 && type == 0x17) {
                 transport.reply(request, {0x61, 0x17, 2, 0, 0, 20, 1, 1, 0, 20, 1});
                 return;
             }
             if (command == 0x62 && type == 0x17) {
-                transport.reply(request, {0x63, 0x17, 0});
+                transport.reply(request, {0x63, 0x17, static_cast<Byte>(sound_available ? 0 : 1)});
                 return;
             }
             if (command == 0x66 && type == 0x17) {
@@ -197,7 +210,7 @@ struct Headphones {
                 return;
             }
             if (command == 0x50) {
-                Bytes response{0x51, 0, 6, 21, static_cast<Byte>(eq_presets.size())};
+                Bytes response{0x51, 0, eq_band_count, eq_step_count, static_cast<Byte>(eq_presets.size())};
                 for (const auto preset : eq_presets) {
                     response.push_back(preset);
                     response.push_back(0);
@@ -300,11 +313,11 @@ struct Headphones {
                 return;
             }
             if (command == 0x60 && type == 0x30) {
-                transport.reply(request, {0x61, 0x30, 0});
+                transport.reply(request, {0x61, 0x30, cycle_key});
                 return;
             }
             if (command == 0x62 && type == 0x30) {
-                transport.reply(request, {0x63, 0x30, 0});
+                transport.reply(request, {0x63, 0x30, cycle_status});
                 return;
             }
             if (command == 0x66 && type == 0x30) {
@@ -312,6 +325,7 @@ struct Headphones {
                 return;
             }
             if (command == 0x68 && type == 0x30) {
+                ++cycle_writes;
                 cycle_value = p[2];
                 transport.acknowledge(request);
                 return;
@@ -750,6 +764,37 @@ int main(int argc, char **argv) {
              prime(session, *transport);
              check(session.link() > old_link);
          }},
+        {"classic-connection-mode-bootstrap-and-refresh-without-fictional-queries",
+         [] {
+             for (const auto &model : {"WH-CH720N", "WF-LS900N", "WF-1000XM5"}) {
+                 Headphones headphones;
+                 headphones.model = model;
+                 headphones.functions1 = {0xe1};
+                 auto fake = fake_for(headphones);
+                 auto *transport = fake.get();
+                 unsigned reads{};
+                 fake->handler = [&](auto &t, const auto &f) {
+                     if (f.payload[0] == 0xe0 || f.payload[0] == 0xe2)
+                         throw std::runtime_error("Classic connection mode must not request capability/status");
+                     if (f.payload == Bytes({0xe6, 0})) { ++reads; t.reply(f, {0xe7, 0, headphones.preference}); }
+                     else headphones(t, f);
+                 };
+                 DeviceController controller(std::move(fake), policy());
+                 check(controller.connect(device()).ok());
+                 const auto initial = controller.snapshot();
+                 const auto &preference = initial.features.at(Feature::ConnectionPreference);
+                 check(initial.ready && initial.connected && reads == 1 && preference.available &&
+                       preference.choices == std::vector<int>({0, 1}) && preference.value.value == 0);
+                 check(!initial.hardware_verified && headphones.extended_writes == 0);
+                 check(preference.writable);
+                 headphones.preference = 1;
+                 check(controller.refresh().ok());
+                 check(controller.snapshot().features.at(Feature::ConnectionPreference).value.value == 1);
+                 transport->push({table1_type, 0, {0xe9, 0, 0xff}});
+                 eventually([&] { return !controller.snapshot().features.at(Feature::ConnectionPreference).value.known(); });
+                 check(!controller.snapshot().features.at(Feature::ConnectionPreference).available);
+             }
+         }},
         {"six-stage-bootstrap-known-identity-no-hardware-claim",
          [] {
              Headphones headphones;
@@ -772,6 +817,79 @@ int main(int argc, char **argv) {
              check(controller.set_sound({}, 21).code == ResultCode::InvalidValue);
              check(headphones.sound_writes == 1);
          }},
+        {"sound-confirmation-waits-for-delayed-notification-without-rewriting",
+         [] {
+             Headphones headphones;
+             headphones.model = "WH-CH720N";
+             headphones.functions1 = {0x6b};
+             auto fake = fake_for(headphones);
+             bool submitted{};
+             std::future<void> notification;
+             fake->handler = [&](auto &t, const auto &f) {
+                 if (f.payload[0] == 0x68) {
+                     ++headphones.sound_writes;
+                     submitted = true;
+                     t.acknowledge(f);
+                 } else {
+                     headphones(t, f);
+                     if (submitted && f.payload == Bytes({0x66, 0x17})) {
+                         submitted = false;
+                         notification = std::async(std::launch::async, [&t] {
+                             std::this_thread::sleep_for(Milliseconds{20});
+                             t.push({table1_type, 0, {0x69, 0x17, 1, 1, 0, 0, 12}});
+                         });
+                     }
+                 }
+             };
+             DeviceController controller(std::move(fake), policy());
+             check(controller.connect(device()).ok());
+             check(controller.set_sound(SoundMode::NoiseCanceling, 12).confirmed());
+             notification.get();
+             check(headphones.sound_writes == 1 && controller.snapshot().sound.ambient_level.value == 12);
+         }},
+        {"sound-confirmation-rechecks-readonly-when-no-notification-arrives",
+         [] {
+             Headphones headphones;
+             headphones.functions1 = {0x6b};
+             auto fake = fake_for(headphones);
+             bool submitted{};
+             unsigned reads_after_write{};
+             fake->handler = [&](auto &t, const auto &f) {
+                 if (f.payload[0] == 0x68) {
+                     ++headphones.sound_writes;
+                     submitted = true;
+                     t.acknowledge(f);
+                 } else {
+                     if (submitted && f.payload == Bytes({0x66, 0x17}) && ++reads_after_write == 2)
+                         headphones.sound.level = 12;
+                     headphones(t, f);
+                 }
+             };
+             auto limits = policy(); limits.request_timeout = Milliseconds{400};
+             DeviceController controller(std::move(fake), limits);
+             check(controller.connect(device()).ok());
+             check(controller.set_sound({}, 12).confirmed());
+             check(headphones.sound_writes == 1 && reads_after_write == 2);
+         }},
+        {"sound-confirmation-cancels-when-the-link-is-disconnected",
+         [] {
+             Headphones headphones;
+             headphones.functions1 = {0x6b};
+             auto fake = fake_for(headphones);
+             std::atomic_bool pending{}, old_read{};
+             fake->handler = [&](auto &t, const auto &f) {
+                 if (f.payload[0] == 0x68) { pending = true; ++headphones.sound_writes; t.acknowledge(f); }
+                 else { headphones(t, f); if (pending && f.payload == Bytes({0x66, 0x17})) old_read = true; }
+             };
+             auto limits = policy(); limits.request_timeout = Milliseconds{1000};
+             DeviceController controller(std::move(fake), limits);
+             check(controller.connect(device()).ok());
+             auto command = std::async(std::launch::async, [&] { return controller.set_sound({}, 12); });
+             eventually([&] { return old_read.load(); });
+             controller.disconnect();
+             check(command.wait_for(Milliseconds{200}) == std::future_status::ready);
+             check(!command.get().confirmed() && headphones.sound_writes == 1);
+         }},
         {"sound-ack-does-not-hide-device-rejection",
          [] {
              Headphones headphones;
@@ -792,17 +910,58 @@ int main(int argc, char **argv) {
              check(controller.set_sound({}, {}, true).code == ResultCode::InvalidValue);
              check(headphones.sound_writes == 0);
          }},
-        {"unreviewed-model-retains-reads-and-blocks-writes",
+        {"confirmed-capability-and-layout-enable-controls-without-model-whitelist",
+         [] {
+             for (const auto &model : {"WH-CH720N", "WH-1000XM5", "WF-LS900N", "WF-1000XM5", "Sony capability test"}) {
+                 Headphones headphones;
+                 headphones.model = model;
+                 headphones.functions1 = {0x6b, 0x50, 0x20};
+                 DeviceController controller(fake_for(headphones), policy());
+                 check(controller.connect(device()).ok());
+                 const auto snapshot = controller.snapshot();
+                 check(snapshot.sound.writable && snapshot.equalizer.writable);
+                 check(snapshot.battery.single.value == 80 && !snapshot.battery.left.known());
+                 check(controller.set_sound(SoundMode::Ambient, 12, true).confirmed());
+                 check(controller.set_equalizer(Byte{0xa0}).confirmed());
+                 check(headphones.sound_writes == 1 && headphones.eq_writes == 1);
+                 check(!controller.snapshot().hardware_verified);
+             }
+         }},
+        {"missing-unavailable-or-unknown-layout-remains-blocked-on-every-model",
+         [] {
+             for (const auto &model : {"WH-CH720N", "WF-1000XM5"}) {
+                 for (int condition = 0; condition < 3; ++condition) {
+                     Headphones headphones;
+                     headphones.model = model;
+                     if (condition) headphones.functions1 = {0x6b, 0x50};
+                     headphones.sound_available = false;
+                     if (condition == 1) headphones.eq_band_count = 5;
+                     if (condition == 2) headphones.eq_presets = {0xa0}; // Current preset is not declared.
+                     DeviceController controller(fake_for(headphones), policy());
+                     check(controller.connect(device()).ok());
+                     check(!controller.snapshot().sound.writable && !controller.snapshot().equalizer.writable);
+                     check(controller.set_sound(SoundMode::Ambient).code == ResultCode::Unavailable);
+                     check(controller.set_equalizer(Byte{0xa0}).code == ResultCode::Unavailable);
+                     check(headphones.sound_writes == 0 && headphones.eq_writes == 0);
+                 }
+             }
+         }},
+        {"battery-subtypes-follow-reported-capability-not-device-name",
          [] {
              Headphones headphones;
-             headphones.model = "WH-1000XM5";
-             headphones.functions1 = {0x50};
-             DeviceController controller(fake_for(headphones), policy());
+             headphones.model = "WF-LS900N";
+             headphones.functions1 = {0x29, 0x2a};
+             auto fake = fake_for(headphones);
+             auto *transport = fake.get();
+             DeviceController controller(std::move(fake), policy());
              check(controller.connect(device()).ok());
-             check(controller.snapshot().equalizer.preset.known());
-             check(!controller.snapshot().equalizer.writable);
-             check(controller.set_equalizer(Byte{0xa0}).code == ResultCode::Unavailable);
-             check(headphones.eq_writes == 0);
+             const auto state = controller.snapshot();
+             check(state.battery.left.value == 80 && state.battery.right.value == 70 && state.battery.case_level.value == 80);
+             check(!state.battery.single.known());
+             const auto revision = state.revision;
+             transport->push({table1_type, 0, {0x25, 0, 50, 0}}); // Single unit was not advertised.
+             eventually([&] { return controller.snapshot().revision > revision; });
+             check(!controller.snapshot().battery.single.known());
          }},
         {"equalizer-built-in-edit-becomes-manual-and-preserves-other-bands",
          [] {
@@ -945,6 +1104,170 @@ int main(int argc, char **argv) {
              check(controller.snapshot().touch.cycle_writable);
              check(controller.set(Feature::AmbientCycle, 3).confirmed());
              check(controller.set(Feature::AmbientCycle, 0).code == ResultCode::InvalidValue);
+         }},
+        {"independent-physical-cycle-does-not-require-assignable-touch",
+         [] {
+             for (const Byte key : {Byte{4}, Byte{5}}) {
+                 Headphones headphones;
+                 headphones.model = "WH-CH720N";
+                 headphones.functions1 = {0x69};
+                 headphones.cycle_key = key;
+                 DeviceController controller(fake_for(headphones), policy());
+                 check(controller.connect(device()).ok());
+                 const auto snapshot = controller.snapshot();
+                 check(snapshot.touch.keys.empty() && !snapshot.touch.writable);
+                 check(snapshot.touch.cycle.known() && snapshot.touch.cycle_writable);
+                 check(controller.set(Feature::AmbientCycle, 3).confirmed());
+                 check(headphones.cycle_writes == 1 && headphones.touch_writes == 0);
+                 check(controller.snapshot().touch.cycle.value == 3);
+                 check(controller.set(Feature::AmbientCycle, 0).code == ResultCode::InvalidValue);
+                 check(headphones.cycle_writes == 1);
+             }
+         }},
+        {"independent-physical-cycle-preserves-nonphysical-key-dependencies",
+         [] {
+             for (const Byte key : {Byte{0}, Byte{1}, Byte{2}, Byte{3}, Byte{0xff}}) {
+                 Headphones headphones;
+                 headphones.functions1 = {0x69};
+                 headphones.cycle_key = key;
+                 DeviceController controller(fake_for(headphones), policy());
+                 check(controller.connect(device()).ok());
+                 check(!controller.snapshot().touch.cycle_writable);
+                 check(controller.set(Feature::AmbientCycle, 3).code == ResultCode::Unavailable);
+                 check(headphones.cycle_writes == 0);
+             }
+         }},
+        {"independent-physical-cycle-requires-available-known-reported-state",
+         [] {
+             for (int invalid = 0; invalid < 3; ++invalid) {
+                 Headphones headphones;
+                 headphones.cycle_key = 4;
+                 headphones.functions1 = invalid == 2 ? Bytes{} : Bytes{0x69};
+                 if (invalid == 0) headphones.cycle_status = 1;
+                 if (invalid == 1) headphones.cycle_value = 0xff;
+                 DeviceController controller(fake_for(headphones), policy());
+                 check(controller.connect(device()).ok());
+                 check(!controller.snapshot().touch.cycle_writable);
+                 check(controller.set(Feature::AmbientCycle, 3).code == ResultCode::Unavailable);
+                 check(headphones.cycle_writes == 0);
+             }
+         }},
+        {"cycle-confirmation-waits-for-independent-and-custom-notifications",
+         [] {
+             for (bool custom : {false, true}) {
+                 Headphones headphones;
+                 headphones.functions1 = custom ? Bytes{0xf3} : Bytes{0x69};
+                 headphones.custom_touch = custom;
+                 headphones.cycle_key = 4;
+                 auto fake = fake_for(headphones);
+                 bool submitted{};
+                 std::future<void> notification;
+                 fake->handler = [&](auto &t, const auto &f) {
+                     if (f.payload[0] == (custom ? 0xfc : 0x68)) {
+                         if (custom) ++headphones.detail_writes; else ++headphones.cycle_writes;
+                         submitted = true;
+                         t.acknowledge(f);
+                     } else {
+                         headphones(t, f);
+                         if (submitted && f.payload[0] == (custom ? 0xfa : 0x66)) {
+                             submitted = false;
+                             notification = std::async(std::launch::async, [&t, custom] {
+                                 std::this_thread::sleep_for(Milliseconds{20});
+                                 t.push({table1_type, 0, custom ? Bytes{0xfd, 3, 1, 0x70, 2, 1, 0x20, 0, 3}
+                                                              : Bytes{0x69, 0x30, 3}});
+                             });
+                         }
+                     }
+                 };
+                 auto limits = policy(); limits.request_timeout = Milliseconds{300};
+                 DeviceController controller(std::move(fake), limits);
+                 check(controller.connect(device()).ok());
+                 const auto result = controller.set(Feature::AmbientCycle, 3);
+                 if (notification.valid()) notification.get();
+                 check(result.confirmed(), "Delayed cycle notification must confirm the original write");
+                 check(headphones.detail_writes + headphones.cycle_writes == 1);
+                 check(controller.snapshot().touch.cycle.value == 3);
+                 if (custom) {
+                     const auto state = controller.snapshot();
+                     check(state.touch.details.known() && state.touch.details.value->at(0).actions.size() == 2);
+                     check(state.touch.details.value->at(0).actions.at(0).function == 0x20,
+                           "Confirming the cycle must preserve the unrelated fixed action");
+                 }
+             }
+         }},
+        {"cycle-confirmation-readonly-recheck-without-notification",
+         [] {
+             Headphones headphones;
+             headphones.functions1 = {0x69}; headphones.cycle_key = 4;
+             auto fake = fake_for(headphones);
+             bool submitted{}; unsigned reads{};
+             fake->handler = [&](auto &t, const auto &f) {
+                 if (f.payload[0] == 0x68) {
+                     ++headphones.cycle_writes; submitted = true; t.acknowledge(f);
+                 } else {
+                     if (submitted && f.payload == Bytes({0x66, 0x30}) && ++reads == 2)
+                         headphones.cycle_value = 3;
+                     headphones(t, f);
+                 }
+             };
+             auto limits = policy(); limits.request_timeout = Milliseconds{350};
+             DeviceController controller(std::move(fake), limits);
+             check(controller.connect(device()).ok());
+             check(controller.set(Feature::AmbientCycle, 3).confirmed());
+             check(headphones.cycle_writes == 1 && reads == 2);
+         }},
+        {"cycle-confirmation-old-value-remains-failure-with-one-write",
+         [] {
+             Headphones headphones;
+             headphones.functions1 = {0x69}; headphones.cycle_key = 4;
+             auto fake = fake_for(headphones);
+             fake->handler = [&](auto &t, const auto &f) {
+                 if (f.payload[0] == 0x68) { ++headphones.cycle_writes; t.acknowledge(f); }
+                 else headphones(t, f);
+             };
+             auto limits = policy(); limits.request_timeout = Milliseconds{180};
+             DeviceController controller(std::move(fake), limits);
+             check(controller.connect(device()).ok());
+             check(controller.set(Feature::AmbientCycle, 3).code == ResultCode::DeviceRejected);
+             check(headphones.cycle_writes == 1 && controller.snapshot().touch.cycle.value == 1);
+         }},
+        {"cycle-confirmation-read-response-timeout-is-not-hidden",
+         [] {
+             Headphones headphones;
+             headphones.functions1 = {0x69}; headphones.cycle_key = 4;
+             auto fake = fake_for(headphones);
+             bool submitted{};
+             fake->handler = [&](auto &t, const auto &f) {
+                 if (f.payload[0] == 0x68) { ++headphones.cycle_writes; submitted = true; t.acknowledge(f); }
+                 else if (submitted && f.payload == Bytes({0x66, 0x30})) t.acknowledge(f);
+                 else headphones(t, f);
+             };
+             DeviceController controller(std::move(fake), policy());
+             check(controller.connect(device()).ok());
+             check(controller.set(Feature::AmbientCycle, 3).code == ResultCode::Timeout);
+             check(headphones.cycle_writes == 1);
+         }},
+        {"cycle-confirmation-disconnect-cancels-pending-target",
+         [] {
+             Headphones headphones;
+             headphones.functions1 = {0x69}; headphones.cycle_key = 4;
+             auto fake = fake_for(headphones);
+             std::atomic_bool submitted{}, old_read{};
+             fake->handler = [&](auto &t, const auto &f) {
+                 if (f.payload[0] == 0x68) { ++headphones.cycle_writes; submitted = true; t.acknowledge(f); }
+                 else {
+                     headphones(t, f);
+                     if (submitted && f.payload == Bytes({0x66, 0x30})) old_read = true;
+                 }
+             };
+             auto limits = policy(); limits.request_timeout = Milliseconds{1000};
+             DeviceController controller(std::move(fake), limits);
+             check(controller.connect(device()).ok());
+             auto operation = std::async(std::launch::async, [&] { return controller.set(Feature::AmbientCycle, 3); });
+             eventually([&] { return old_read.load(); });
+             controller.disconnect();
+             check(operation.wait_for(Milliseconds{200}) == std::future_status::ready);
+             check(!operation.get().confirmed() && headphones.cycle_writes == 1);
          }},
         {"custom-touch-details-preserve-fixed-actions-and-full-list",
          [] {

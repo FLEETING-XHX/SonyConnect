@@ -441,6 +441,23 @@ int wmain(int argc, wchar_t **argv) {
         check(busy_pixels == screen(window.handle(), {20, 60, 320, 90}),
               "Busy state must not change section heading colors");
         passed.push_back("busy_guard_preserves_unrelated_text_color");
+        const auto touch_labels_before = screen(window.handle(), {354, 100, 656, 184});
+        const auto prompt_label_before = screen(window.handle(), {24, 614, 260, 640});
+        for (int origin = 0; origin < 2; ++origin) {
+            model.busy = origin == 0;
+            model.device.busy = origin == 1;
+            window.update(model);
+            pump(window, 45);
+            check(!IsWindowEnabled(control(window, 1021)) && !IsWindowEnabled(control(window, 1041)),
+                  "Busy settings must continue to block conflicting input");
+            check(screen(window.handle(), {354, 100, 656, 184}) == touch_labels_before &&
+                      screen(window.handle(), {24, 614, 260, 640}) == prompt_label_before,
+                  "Host and device busy transitions must not flash touch rows or prompt-volume text");
+            model.busy = model.device.busy = false;
+            window.update(model);
+            pump(window, 45);
+        }
+        passed.push_back("cycle_submission_busy_keeps_touch_rows_and_prompt_volume_pixels_stable");
         click(window, 1040);
         check(actions.back().action == ui::MoreAction::guidance && actions.back().value == 0,
               "Guidance on switch must request off without guessing its wire encoding");
@@ -602,6 +619,64 @@ int wmain(int argc, wchar_t **argv) {
         check(!IsWindowEnabled(control(window, 1045)),
               "Offline preview must not change startup registration");
         passed.push_back("offline_mode_disables_system_mutations");
+
+        // Different physical controls must not inherit the WF left/right assignment UI.
+        on_action = {};
+        auto ch = ui::more_preview();
+        ch.preview = false;
+        ch.device.model = "WH-CH720N";
+        ch.device.touch.keys.clear();
+        ch.device.touch.assignments = {};
+        ch.device.touch.writable = false;
+        ch.touch_indices = {-1, -1};
+        ch.device.features.erase(p::Feature::SpeakToChat);
+        ch.device.features.erase(p::Feature::WearDetectionPause);
+        const auto ch_labels = ui::more_control_presentation(ch.device);
+        check(ch_labels.physical_nc_button && ch_labels.no_touch_sensor &&
+                  ch_labels.cycle_label.find(L"[NC/AMB]") != std::wstring::npos &&
+                  ch_labels.dsee_label == L"DSEE",
+              "CH720N must describe its physical NC/AMB button and ordinary DSEE");
+        window.update(ch);
+        pump(window, 100);
+        check(!IsWindowEnabled(control(window, 1021)) && !IsWindowEnabled(control(window, 1022)) &&
+                  !IsWindowEnabled(control(window, 1042)) && !IsWindowEnabled(control(window, 1043)) &&
+                  IsWindowEnabled(control(window, 1030)),
+              "CH720N must disable absent touch/wear features while retaining its advertised button cycle");
+        const auto before_disabled = actions.size();
+        for (int id : {1021, 1022, 1042, 1043}) SendMessageW(control(window, id), BM_CLICK, 0, 0);
+        check(actions.size() == before_disabled, "Disabled unsupported controls must never dispatch");
+        window.capture(output / L"12-ch720n-button-and-disabled-features.png");
+        passed.push_back("ch720n_physical_button_dsee_and_disabled_features");
+        auto wh = ui::more_preview();
+        wh.preview = false;
+        wh.device.model = "WH-1000XM5";
+        wh.device.touch.keys.clear();
+        wh.device.touch.assignments = {};
+        wh.device.touch.writable = false;
+        wh.touch_indices = {-1, -1};
+        const auto wh_labels = ui::more_control_presentation(wh.device);
+        check(wh_labels.physical_nc_button && !wh_labels.no_touch_sensor &&
+                  wh_labels.dsee_label == L"DSEE Extreme",
+              "WH1000XM5 must retain a distinct right touch sensor and DSEE Extreme");
+        window.update(wh);
+        pump(window, 50);
+        wchar_t row[128]{};
+        GetWindowTextW(control(window, 1022), row, 128);
+        check(std::wstring(row) == L"此版本尚未适配", "Unimplemented WH touch must not be labelled unsupported hardware");
+        check(IsWindowEnabled(control(window, 1042)) && IsWindowEnabled(control(window, 1043)),
+              "WH must retain its own advertised wearing and speak-to-chat features");
+        window.capture(output / L"13-wh1000xm5-distinct-right-touch.png");
+        auto wf = ui::more_preview();
+        wf.preview = false;
+        const auto wf_labels = ui::more_control_presentation(wf.device);
+        check(!wf_labels.physical_nc_button && !wf_labels.no_touch_sensor,
+              "WF must retain left/right touch semantics");
+        window.update(wf);
+        pump(window, 50);
+        check(IsWindowEnabled(control(window, 1021)) && IsWindowEnabled(control(window, 1022)),
+              "Changing from CH to WF must restore supported touch assignments");
+        window.capture(output / L"14-wf-left-and-right-touch.png");
+        passed.push_back("wh_touch_support_is_distinct_and_wf_restores_both_assignments");
 
         for (UINT dpi : {144u, 192u}) {
             ui::MoreWindow scaled([](auto, int, int, bool) {});

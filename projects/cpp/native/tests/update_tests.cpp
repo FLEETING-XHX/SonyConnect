@@ -31,6 +31,16 @@ int wmain(int argc, wchar_t **argv) {
             return ok ? 0 : 1;
         }
         unsigned passed{};
+        const auto embedded = d::UpdateSource::embedded();
+        check(!embedded.private_repository_requires_authentication &&
+              embedded.repository == "FLEETING-XHX/SonyConnect" &&
+              embedded.gitee_repository == "fleetingxhx/SonyConnect", "Embedded defaults must preserve anonymous dual-channel configuration"); ++passed;
+        for (const auto invalid : {std::string("{}"), std::string(R"({"schemaVersion":2})")}) {
+            bool rejected{};
+            try { (void)d::UpdateSource::parse(invalid); } catch (...) { rejected = true; }
+            check(rejected, "Invalid embedded source schema must fail visibly"); ++passed;
+        }
+
         d::UpdateSource source;
         source.private_repository_requires_authentication = false;
         source.gitee_repository = "fleetingxhx/SonyConnect";
